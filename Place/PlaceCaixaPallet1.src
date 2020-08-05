@@ -1,0 +1,160 @@
+DEF PlaceCaixaPallet1()
+   ;FOLD INI;%{PE}
+      
+      ;FOLD BASISTECH INI
+         GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS == TRUE DO IR_STOPM ( )
+         INTERRUPT ON 3 
+         BAS (#INITMOV,0 )
+      ;ENDFOLD (BASISTECH INI)
+      ;FOLD USER INI
+         ;Make your modifications here
+      ;ENDFOLD (USER INI)
+      
+   ;ENDFOLD (INI)
+   
+   ;FOLD Offset Place
+      ;Update dos pontos de place das caixas com relação às variáveis de ajustes em Config.dat
+      
+      XApp1Place.X = XApp1Place.X + OffsetP1_dx
+      XApp2Place.X = XApp2Place.X + OffsetP1_dx
+      XPlace.X = XPlace.X + OffsetP1_dx
+      
+      XApp1Place.Y = XApp1Place.Y + OffsetP1_dy
+      XApp2Place.Y = XApp2Place.Y + OffsetP1_dy
+      XPlace.Y = XPlace.Y + OffsetP1_dy
+      
+      XApp1Place.Z = XApp1Place.Z + + OffsetP1_dz
+      XApp2Place.Z = XApp2Place.Z + + OffsetP1_dz
+      XPlace.Z = XPlace.Z + Delta_Z + OffsetP1_dz
+      
+      XApp1Place.A = XApp1Place.A + OffsetP1_dA
+      XApp2Place.A = XApp2Place.A + OffsetP1_dA
+      XPlace.A = XPlace.A + OffsetP1_dA
+      
+   ;ENDFOLD
+   
+   ;FOLD Topo Dinamico
+      
+      XApp1Pallet1.Z = AlturaAtualPalete 
+      XP2.Z = AlturaAtualPalete
+      
+      IF AlturaAtualPalete < 900 THEN
+         XApp1Pallet1.Z = 900
+         XP2.Z = 900
+      ENDIF
+      
+      ;Seta valores de deposito
+      XApp1Pallet1.X = XApp1Place.X
+      XApp1Pallet1.Y = XApp1Place.Y
+      XApp1Pallet1.A = XApp1Place.A
+      XApp1Pallet1.B = XApp1Place.B
+      XApp1Pallet1.C = XApp1Place.C
+      XApp1Pallet1.S = XApp1Place.S
+      XApp1Pallet1.T = XApp1Place.T
+      
+   ;ENDFOLD
+   
+   ;Movimenta para o topo
+   ;FOLD PTP App1Pallet1 CONT Vel=100 % PDAT15 Tool[1]:GarraMecanica Base[0] ColDetect[1];%{PE}
+      $BWDSTART = FALSE
+      PDAT_ACT = PPDAT15
+      FDAT_ACT = FApp1Pallet1
+      BAS(#PTP_PARAMS, 100.0)
+      PTP XApp1Pallet1 C_Dis
+   ;ENDFOLD
+   
+   ;FOLD Verifica Caixas na Garra
+      
+      IF NOT SensoresGarraAtivos AND NOT DryRun THEN
+         FalhaCaixa = TRUE
+      ELSE
+         FalhaCaixa = FALSE
+      ENDIF    
+      
+      IF FalhaCaixa THEN
+         WAIT FOR FalhaDeposito()
+         FalhaCaixa = FALSE
+      ENDIF
+      
+   ;ENDFOLD     
+   
+   $TOOL = TOOL_DATA[1]
+   $VEL.CP = 2
+   $ACC.CP = 2
+   $VEL.ORI1 = 300
+   $ACC.ORI1 = 400
+   $VEL.ORI2 = 300
+   $ACC.ORI2 = 400
+   
+   ;Movimenta p/ aproximacao deposito
+   LIN  XApp1Place C_DIS C_DIS
+   LIN  XApp2Place C_DIS C_DIS
+   ;Movimenta p/ deposito
+   LIN  XPlace 
+   
+   ;FOLD Abre Garra
+      
+      FechaGarra1 = FALSE
+      FechaGarra2 = FALSE
+      FechaGarra3 = FALSE
+      AbreGarra1 = TRUE
+      AbreGarra2 = TRUE
+      AbreGarra3 = TRUE
+      
+      ;FOLD WAIT FOR ( Garra1Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:1, 7:Garra1Aberta, 9:CONTINUE
+         CONTINUE
+         WAIT FOR  ( Garra1Aberta ) 
+      ;ENDFOLD
+      ;FOLD WAIT FOR ( Garra2Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:2, 7:Garra2Aberta, 9:CONTINUE
+         CONTINUE
+         WAIT FOR  ( Garra2Aberta ) 
+      ;ENDFOLD     
+      ;FOLD WAIT FOR ( Garra3Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:2, 7:Garra2Aberta, 9:CONTINUE
+         CONTINUE
+         WAIT FOR  ( Garra3Aberta ) 
+      ;ENDFOLD
+      
+   ;ENDFOLD     
+   
+   WAIT FOR SetCamada()
+   
+   ;$APO.CDIS = 50 
+   ;LIN_Rel {Z 350} C_DIS C_DIS
+   
+   IF TrocarPalete OR GoHome THEN
+      SkipHome = FALSE
+   ENDIF
+   
+   ;Seta valores de deposito na saida do deposito
+   XApp1Pallet1.X = XPlace.X
+   XApp1Pallet1.Y = XPlace.Y 
+   
+   ;Movimenta para o topo      
+   ;FOLD LIN App1Pallet1 CONT Vel=2 m/s CPDAT3 Tool[1]:GarraMecanica Base[0] ColDetect[1] ;%{PE}
+      ;FOLD Parameters ;%{h}
+         ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=App1Pallet1; Kuka.BlendingEnabled=True; Kuka.MoveDataName=CPDAT3; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=1; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+      ;ENDFOLD
+      $BWDSTART = FALSE
+      LDAT_ACT = LCPDAT3
+      FDAT_ACT = FApp1Pallet1
+      BAS(#CP_PARAMS, 2.0)
+      LIN XApp1Pallet1 C_Dis C_Dis
+   ;ENDFOLD
+   
+   IF IndexCaixasEsteira1OK THEN
+      ;Movimenta para espera esteira 1
+      ;FOLD PTP P2 CONT Vel=100 % PDAT25 Tool[1]:GarraMecanica Base[0] ColDetect[1];%{PE}
+         ;FOLD Parameters ;%{h}
+            ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P2; Kuka.BlendingEnabled=True; Kuka.MoveDataPtpName=PDAT25; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=1; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
+         ;ENDFOLD
+         $BWDSTART = FALSE
+         PDAT_ACT = PPDAT25
+         FDAT_ACT = FP2
+         BAS(#PTP_PARAMS, 100.0)
+         PTP XP2 C_Dis
+      ;ENDFOLD
+   ELSE
+      ;Movimenta para espera esteira 2
+   ENDIF 
+   
+END

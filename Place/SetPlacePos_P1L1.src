@@ -1,0 +1,237 @@
+&ACCESS RVO1
+&PARAM EDITMASK = *
+DEFFCT BOOL SetPlacePos_P1L1()
+   
+   SWITCH  PlacePos                 
+      ;Pontos de place e aproximação de cada caixa para o palete 1 e layer 1
+      
+      CASE 1
+         
+         XApp1Place = XP1L1_Pos1
+         XApp2Place = XP1L1_Pos2
+         XPlace = XP1L1_Pos3
+         ;PrimeiroDeposito = TRUE
+         
+         RETURN TRUE
+         
+      CASE 2
+         
+         XApp1Place = XP1L1_Pos4
+         XApp2Place = XP1L1_Pos5
+         XPlace = XP1L1_Pos6
+         
+         RETURN TRUE
+         
+      CASE 3
+         
+         XApp1Place = XP1L1_Pos7
+         XApp2Place = XP1L1_Pos8
+         XPlace = XP1L1_Pos9
+         
+         RETURN TRUE
+         
+      CASE 4
+         
+         XApp1Place = XP1L1_Pos10
+         XApp2Place = XP1L1_Pos11
+         XPlace = XP1L1_Pos12
+         
+         RETURN TRUE
+         
+      CASE 5
+         
+         XApp1Place = XP1L1_Pos13
+         XApp2Place = XP1L1_Pos14
+         XPlace = XP1L1_Pos15
+         
+         RETURN TRUE
+         
+      CASE 6
+         
+         XApp1Place = XP1L1_Pos16
+         XApp2Place = XP1L1_Pos17
+         XPlace = XP1L1_Pos18
+         
+         RETURN TRUE
+         
+      CASE 7
+         
+         XApp1Place = XP1L1_Pos19
+         XApp2Place = XP1L1_Pos20
+         XPlace = XP1L1_Pos21
+         
+         RETURN TRUE
+         
+      CASE 8
+         
+         XApp1Place = XP1L1_Pos22
+         XApp2Place = XP1L1_Pos23
+         XPlace = XP1L1_Pos24
+         
+         RETURN TRUE
+         
+      CASE 9
+         
+         XApp1Place = XP1L1_Pos25
+         XApp2Place = XP1L1_Pos26
+         XPlace = XP1L1_Pos27
+         
+         RETURN TRUE
+         
+      CASE 10
+         
+         XApp1Place = XP1L1_Pos28
+         XApp2Place = XP1L1_Pos29
+         XPlace = XP1L1_Pos30
+         
+         RETURN TRUE
+         
+      CASE 11
+         
+         XApp1Place = XP1L1_Pos31
+         XApp2Place = XP1L1_Pos32
+         XPlace = XP1L1_Pos33
+         
+         RETURN TRUE
+         
+      CASE 12
+         
+         XApp1Place = XP1L1_Pos34
+         XApp2Place = XP1L1_Pos35
+         XPlace = XP1L1_Pos36
+         
+         RETURN TRUE
+         
+      CASE 13
+         
+         XApp1Place = XP1L1_Pos37
+         XApp2Place = XP1L1_Pos38
+         XPlace = XP1L1_Pos39
+         
+         RETURN TRUE
+         
+      CASE 14
+         
+         XApp1Place = XP1L1_Pos40
+         XApp2Place = XP1L1_Pos41
+         XPlace = XP1L1_Pos42
+         
+         RETURN TRUE
+         
+      CASE 15
+         
+         XApp1Place = XP1L1_Pos43
+         XApp2Place = XP1L1_Pos44
+         XPlace = XP1L1_Pos45
+         
+         RETURN TRUE
+         
+      CASE 16
+         
+         XApp1Place = XP1L1_Pos46
+         XApp2Place = XP1L1_Pos47
+         XPlace = XP1L1_Pos48
+         
+         RETURN TRUE
+         
+      CASE 17
+         
+         XApp1Place = XP1L1_Pos49
+         XApp2Place = XP1L1_Pos50
+         XPlace = XP1L1_Pos51
+         
+         RETURN TRUE
+         
+      CASE 18
+         
+         XApp1Place = XP1L1_Pos52
+         XApp2Place = XP1L1_Pos53
+         XPlace = XP1L1_Pos54
+         
+         RETURN TRUE
+         
+      CASE 19
+         
+         XApp1Place = XP1L1_Pos55
+         XApp2Place = XP1L1_Pos56
+         XPlace = XP1L1_Pos57
+         
+         RETURN TRUE
+         
+      CASE 20
+         
+         XApp1Place = XP1L1_Pos58
+         XApp2Place = XP1L1_Pos59
+         XPlace = XP1L1_Pos60
+         
+         RETURN TRUE
+         
+      CASE 21
+         
+         XApp1Place = XP1L1_Pos61
+         XApp2Place = XP1L1_Pos62
+         XPlace = XP1L1_Pos63
+         
+         RETURN TRUE
+         
+      CASE 22
+         
+         XApp1Place = XP1L1_Pos64
+         XApp2Place = XP1L1_Pos65
+         XPlace = XP1L1_Pos66
+         
+         RETURN TRUE
+         
+      CASE 23
+         
+         XApp1Place = XP1L1_Pos67
+         XApp2Place = XP1L1_Pos68
+         XPlace = XP1L1_Pos69
+         
+         RETURN TRUE
+         
+      CASE 24
+         
+         XApp1Place = XP1L1_Pos70
+         XApp2Place = XP1L1_Pos71
+         XPlace = XP1L1_Pos72
+         
+         RETURN TRUE
+         
+      CASE 25
+         
+         XApp1Place = XP1L1_Pos73
+         XApp2Place = XP1L1_Pos74
+         XPlace = XP1L1_Pos75
+         
+         RETURN TRUE
+         
+      CASE 26
+         
+         XApp1Place = XP1L1_Pos76
+         XApp2Place = XP1L1_Pos77
+         XPlace = XP1L1_Pos78
+         
+         RETURN TRUE
+         
+      CASE 27
+         
+         XApp1Place = XP1L1_Pos79
+         XApp2Place = XP1L1_Pos80
+         XPlace = XP1L1_Pos81
+         
+         RETURN TRUE
+         
+      CASE 28
+         
+         XApp1Place = XP1L1_Pos82
+         XApp2Place = XP1L1_Pos83
+         XPlace = XP1L1_Pos84
+         
+         RETURN TRUE
+         
+      DEFAULT
+         RETURN FALSE
+   ENDSWITCH
+   
+ENDFCT
