@@ -1,0 +1,54 @@
+﻿&ACCESS RVP
+&PARAM EDITMASK = *
+DEFFCT BOOL TPallet( )
+INT i
+;DECL FRAME TBASE[5] 
+DECL POS TBASE
+TBASE={X 0,Y 0,Z 0,A 0,B 0,C 0}
+;FOLD Definir Bases e Tools
+BASE_DATA[1]={X 1927.49,Y 1267.895,Z -451.0,A 0.0,B 0.0,C 0.0}
+BASE_DATA[2]={X 230.837,Y 1266.535,Z -451.0,A 0.0,B 0.0,C 0.0}
+BASE_DATA[3]={X -1434.132,Y 1186.008,Z -451.0,A 90.0,B 0.0,C 0.0}
+BASE_DATA[4]={X -24.888,Y -1247.561,Z -451.0,A 180.0,B 0.0,C 0.0}
+BASE_DATA[5]={X -1723.752,Y -1249.228,Z -451.0,A 180.0,B 0.0,C 0.0}
+TOOL_DATA[1]={X 441.263,Y 0.0,Z 405.123,A 0.0,B 0.0,C 0.0}
+;ENDFOLD
+
+;FOLD Iniciar Opções de Pallet
+FOR i = 1 TO NUMPALLETS
+PalletFurukawa[i].NumProduto=0
+PalletFurukawa[i].Livre=TRUE
+PalletFurukawa[i].AtualNumCaixas=0
+PalletFurukawa[i].AtualNumPlaces=0
+PalletFurukawa[i].AtualNumCamadas=0
+PalletFurukawa[i].BasePoint=BASE_DATA[i]
+PalletFurukawa[i].OffSetPallet={X 0,Y 0,Z 0,A 0,B 0,C 0}
+PalletFurukawa[i].Approch={X 0,Y 0,Z 0,A 0,B 0,C 0,S 2,T 35,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+ENDFOR
+;ENDFOLD
+
+;FOLD Definir OffSetPallet
+PalletFurukawa[1].OffSetPallet.X=0
+PalletFurukawa[1].OffSetPallet.Y=0
+PalletFurukawa[1].OffSetPallet.z=0
+
+PalletFurukawa[2].OffSetPallet.X=0
+PalletFurukawa[2].OffSetPallet.Y=0
+PalletFurukawa[2].OffSetPallet.z=0
+
+PalletFurukawa[3].OffSetPallet.X=0
+PalletFurukawa[3].OffSetPallet.Y=0
+PalletFurukawa[3].OffSetPallet.z=0
+
+PalletFurukawa[4].OffSetPallet.X=0
+PalletFurukawa[4].OffSetPallet.Y=0
+PalletFurukawa[4].OffSetPallet.z=0
+
+PalletFurukawa[5].OffSetPallet.X=0
+PalletFurukawa[5].OffSetPallet.Y=0
+PalletFurukawa[5].OffSetPallet.z=0
+;ENDFOLD
+
+RETURN TRUE
+
+ENDFCT

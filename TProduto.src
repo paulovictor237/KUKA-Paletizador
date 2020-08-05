@@ -1,0 +1,83 @@
+﻿&ACCESS RVP
+&PARAM EDITMASK = *
+DEFFCT BOOL TProduto( )
+
+;FOLD Definir Opções de pallet
+ProdutoFurukawa[1].NumPlaces=4 ;(12/3)
+ProdutoFurukawa[1].AlturaCaixa=170
+ProdutoFurukawa[1].NumCamadas=7
+ProdutoFurukawa[1].NumCaixas=28
+
+ProdutoFurukawa[2].NumPlaces=4 ;(12/3)
+ProdutoFurukawa[2].AlturaCaixa=125
+ProdutoFurukawa[2].NumCamadas=8
+ProdutoFurukawa[2].NumCaixas=38
+
+ProdutoFurukawa[3].NumPlaces=6 ;(18/3)
+ProdutoFurukawa[3].AlturaCaixa=165
+ProdutoFurukawa[3].NumCamadas=7
+ProdutoFurukawa[3].NumCaixas=42
+
+ProdutoFurukawa[4].NumPlaces=15 ;(45/3)
+ProdutoFurukawa[4].AlturaCaixa=398
+ProdutoFurukawa[4].NumCamadas=2
+ProdutoFurukawa[4].NumCaixas=30
+
+ProdutoFurukawa[5].NumPlaces=9 ;(27/3)
+ProdutoFurukawa[5].AlturaCaixa=120
+ProdutoFurukawa[5].NumCamadas=11
+ProdutoFurukawa[5].NumCaixas=99
+
+ProdutoFurukawa[6].NumPlaces=12 ;(36/3)
+ProdutoFurukawa[6].AlturaCaixa=120
+ProdutoFurukawa[6].NumCamadas=7
+ProdutoFurukawa[6].NumCaixas=54
+
+ProdutoFurukawa[7].NumPlaces=9 ;(27/3)
+ProdutoFurukawa[7].AlturaCaixa=220
+ProdutoFurukawa[7].NumCamadas=5
+ProdutoFurukawa[7].NumCaixas=45
+
+ProdutoFurukawa[8].NumPlaces=0
+ProdutoFurukawa[8].AlturaCaixa=0
+ProdutoFurukawa[8].NumCamadas=0
+ProdutoFurukawa[8].NumCaixas=0
+;ENDFOLD
+
+;FOLD Definir OffsetProduto
+ProdutoFurukawa[1].OffsetProduto.X=0
+ProdutoFurukawa[1].OffsetProduto.Y=0
+ProdutoFurukawa[1].OffsetProduto.z=0
+
+ProdutoFurukawa[2].OffsetProduto.X=0
+ProdutoFurukawa[2].OffsetProduto.Y=0
+ProdutoFurukawa[2].OffsetProduto.z=0
+
+ProdutoFurukawa[3].OffsetProduto.X=0
+ProdutoFurukawa[3].OffsetProduto.Y=0
+ProdutoFurukawa[3].OffsetProduto.z=0
+
+ProdutoFurukawa[4].OffsetProduto.X=0
+ProdutoFurukawa[4].OffsetProduto.Y=0
+ProdutoFurukawa[4].OffsetProduto.z=0
+
+ProdutoFurukawa[5].OffsetProduto.X=0
+ProdutoFurukawa[5].OffsetProduto.Y=0
+ProdutoFurukawa[5].OffsetProduto.z=0
+
+ProdutoFurukawa[6].OffsetProduto.X=0
+ProdutoFurukawa[6].OffsetProduto.Y=0
+ProdutoFurukawa[6].OffsetProduto.z=0
+
+ProdutoFurukawa[7].OffsetProduto.X=0
+ProdutoFurukawa[7].OffsetProduto.Y=0
+ProdutoFurukawa[7].OffsetProduto.z=0
+
+ProdutoFurukawa[8].OffsetProduto.X=0
+ProdutoFurukawa[8].OffsetProduto.Y=0
+ProdutoFurukawa[8].OffsetProduto.z=0
+;ENDFOLD
+
+RETURN TRUE
+
+ENDFCT
