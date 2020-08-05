@@ -1,19 +1,11 @@
 DEF PlaceCaixaPallet1()
-   ;FOLD INI;%{PE}
-      
-      ;FOLD BASISTECH INI
-         GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS == TRUE DO IR_STOPM ( )
-         INTERRUPT ON 3 
-         BAS (#INITMOV,0 )
-      ;ENDFOLD (BASISTECH INI)
-      ;FOLD USER INI
-         ;Make your modifications here
-      ;ENDFOLD (USER INI)
-      
-   ;ENDFOLD (INI)
-   
+   ;precisa saber qual o pallet ativo
+   ;atravez do pallet ativo o programa sabe qual mozaico est√° selecionado
+   INT PalletAtivo
+   INT MosaicoAtivo = PalletFurukawa[PalletAtivo].NumProduto
+   INT Ponto        = PalletFurukawa[PalletAtivo].AtualNumPlaces
    ;FOLD Offset Place
-      ;Update dos pontos de place das caixas com relaÁ„o ‡s vari·veis de ajustes em Config.dat
+   ;Update dos pontos de place das caixas com rel√ß√£o √°s vari√°veis de ajustes
       
       XApp1Place.X = XApp1Place.X + OffsetP1_dx
       XApp2Place.X = XApp2Place.X + OffsetP1_dx
