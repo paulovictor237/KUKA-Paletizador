@@ -3,45 +3,46 @@
 DEFFCT BOOL TProduto( )
 
 ;FOLD Definir Opções de pallet
+;1-42003385
 ProdutoFurukawa[1].NumPlaces=4 ;(12/3)
 ProdutoFurukawa[1].AlturaCaixa=170
 ProdutoFurukawa[1].NumCamadas=7
 ProdutoFurukawa[1].NumCaixas=28
-
+;2-42003384
 ProdutoFurukawa[2].NumPlaces=4 ;(12/3)
 ProdutoFurukawa[2].AlturaCaixa=125
 ProdutoFurukawa[2].NumCamadas=8
 ProdutoFurukawa[2].NumCaixas=38
-
+;3-42003383
 ProdutoFurukawa[3].NumPlaces=6 ;(18/3)
 ProdutoFurukawa[3].AlturaCaixa=165
 ProdutoFurukawa[3].NumCamadas=7
 ProdutoFurukawa[3].NumCaixas=42
-
+;4-42002793
 ProdutoFurukawa[4].NumPlaces=15 ;(45/3)
 ProdutoFurukawa[4].AlturaCaixa=398
 ProdutoFurukawa[4].NumCamadas=2
 ProdutoFurukawa[4].NumCaixas=30
-
-ProdutoFurukawa[5].NumPlaces=9 ;(27/3)
+;5.1-42002392
+ProdutoFurukawa[5].NumPlaces=12 ;(36/3)
 ProdutoFurukawa[5].AlturaCaixa=120
-ProdutoFurukawa[5].NumCamadas=11
-ProdutoFurukawa[5].NumCaixas=99
-
-ProdutoFurukawa[6].NumPlaces=12 ;(36/3)
+ProdutoFurukawa[5].NumCamadas=7
+ProdutoFurukawa[5].NumCaixas=54
+;5.2-42002392
+ProdutoFurukawa[6].NumPlaces=9 ;(27/3)
 ProdutoFurukawa[6].AlturaCaixa=120
-ProdutoFurukawa[6].NumCamadas=7
-ProdutoFurukawa[6].NumCaixas=54
-
+ProdutoFurukawa[6].NumCamadas=11
+ProdutoFurukawa[6].NumCaixas=99
+;6.1-E_nova
 ProdutoFurukawa[7].NumPlaces=9 ;(27/3)
 ProdutoFurukawa[7].AlturaCaixa=220
 ProdutoFurukawa[7].NumCamadas=5
 ProdutoFurukawa[7].NumCaixas=45
-
-ProdutoFurukawa[8].NumPlaces=0
-ProdutoFurukawa[8].AlturaCaixa=0
-ProdutoFurukawa[8].NumCamadas=0
-ProdutoFurukawa[8].NumCaixas=0
+;6.2-E_nova
+ProdutoFurukawa[8].NumPlaces=6
+ProdutoFurukawa[8].AlturaCaixa=220
+ProdutoFurukawa[8].NumCamadas=5
+ProdutoFurukawa[8].NumCaixas=30
 ;ENDFOLD
 
 ;FOLD Definir OffsetProduto

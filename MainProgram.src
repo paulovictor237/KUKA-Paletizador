@@ -24,9 +24,11 @@ DEF  MainProgram ( )
    ;ENDFOLD
    
    ;FOLD MAIN ROUTINE
-   ;ler CLP Produto
-
-
+   ; ->ler pallet
+   ; ->verificar se ka possui produto no pallet
+   ; ->se não tiver escrever um produto
+   ; ->gravar na variavel pallet ativo
+   
       ;Layer = 1
       ;Delta_Z = 0 * AlturaCaixa
       ;WAIT FOR SetPlacePos_P1L1()
