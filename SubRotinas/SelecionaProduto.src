@@ -1,7 +1,7 @@
 &ACCESS RVO3
 &REL 3
 &PARAM EDITMASK = *
-DEFFCT BOOL SetCamada( )
+DEFFCT BOOL SelecionaProduto( )
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
 

@@ -1,8 +1,6 @@
 DEF PlaceCaixaPallet1()
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
-   INT PalletAtivo
-   INT MosaicoAtivo; = PalletFurukawa[PalletAtivo].NumProduto
 
    ;MARCA A BASE DE PALLETIZAÇÃO
    $BASE = PalletFurukawa[PalletAtivo].BasePoint
@@ -34,7 +32,7 @@ DEF PlaceCaixaPallet1()
       ;->marca o mespo ponto de deposito so que deslocado em Z
       ;AQUI POSSO MARCAR UMA ALTURA PADRAO DEPOIS
       XTopoPallet = XApp1Place
-      XTopoPallet.Z = 850
+      XTopoPallet.Z = ALTURATOPO
 
       ;AlturaAtualPalete = Camada * AlturaCaixa + AlturaPalete  
       ;Verifica/seta altura minina/maxima para que nao haja colisao do robo no sobrevoo
@@ -116,7 +114,8 @@ DEF PlaceCaixaPallet1()
       
    ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
    ;Movimento RELATIVO de subida
-   PTP_REL {Z 200}    
+   INT AlturaRelativa=ProdutoFurukawa[MosaicoAtivo].AlturaCaixa + 200
+   LIN_REL {Z AlturaRelativa}    
 
    ;FOLD VOLTA PARA O TOPO DO PALLET
       ;Seta valores de deposito na saida do deposito

@@ -1,4 +1,7 @@
 ;FOLD Variaveis PEVE
+INT PalletAtivo
+INT MosaicoAtivo; = PalletFurukawa[PalletAtivo].NumProduto
+INT ALTURATOPO=850
 INT NUMPALLETS=5
 INT NUMMOZAICO=8
 INT NUMMAXPONTOS=50

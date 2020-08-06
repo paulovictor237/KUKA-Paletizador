@@ -24,21 +24,22 @@ DEF  MainProgram ( )
    ;ENDFOLD
    
    ;FOLD MAIN ROUTINE
-   ; ->ler pallet
-   ; ->verificar se ja possui produto no pallet
-   ; ->se não tiver escrever um produto
-   ; ->gravar na variavel pallet ativo
-   ;->INT PalletAtivo
-   ;->INT MosaicoAtivo = PalletFurukawa[PalletAtivo].NumProduto
-   ; SelecaoPrograma( )
-   
-      ;Layer = 1
-      ;Delta_Z = 0 * AlturaCaixa
-      ;WAIT FOR SetPlacePos_P1L1()
-      ;PickEsteira()
-      ;IF PegaOk THEN
-      ;   PlaceCaixaPallet1()
-      ;ENDIF 
+      ; ->ler do CLP pallet
+      ; ->gravar na variavel PalletAtivo
+      PalletAtivo=1
+      MosaicoAtivo=1 ;= PalletFurukawa[PalletAtivo].NumProduto
+      ; ->verificar se ja possui produto no pallet
+      ; ->se não tiver escrever um produto
+      IF PalletFurukawa[PalletAtivo].Livre == TRUE THEN
+         PalletFurukawa[PalletAtivo].Livre=FALSE
+         PalletFurukawa[PalletAtivo].NumProduto=MosaicoAtivo
+      ENDIF
+
+      WAIT FOR SetPlacePos_P1L1()
+      PickEsteira()
+      IF PegaOk THEN
+        PlaceCaixaPallet1()
+      ENDIF 
       
    ;ENDFOLD
 
