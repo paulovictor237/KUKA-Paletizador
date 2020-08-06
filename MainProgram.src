@@ -28,6 +28,7 @@ DEF  MainProgram ( )
    ; ->verificar se ka possui produto no pallet
    ; ->se não tiver escrever um produto
    ; ->gravar na variavel pallet ativo
+   ; SelecaoPrograma( )
    
       ;Layer = 1
       ;Delta_Z = 0 * AlturaCaixa

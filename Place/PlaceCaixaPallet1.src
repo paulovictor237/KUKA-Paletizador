@@ -3,56 +3,56 @@ DEF PlaceCaixaPallet1()
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
    INT PalletAtivo
    INT MosaicoAtivo = PalletFurukawa[PalletAtivo].NumProduto
-   INT Ponto        = PalletFurukawa[PalletAtivo].AtualNumPlaces
+
+   POS OffSetPalletAtivo = PalletFurukawa[PalletAtivo].OffSetPallet
+   POS OffSetProdutoAtivo = ProdutoFurukawa[MosaicoAtivo].OffSetPallet
+
    ;FOLD Offset Place
    ;Update dos pontos de place das caixas com relção ás variáveis de ajustes
       
-      XApp1Place.X = XApp1Place.X + OffsetP1_dx
-      XApp2Place.X = XApp2Place.X + OffsetP1_dx
-      XPlace.X = XPlace.X + OffsetP1_dx
+      XApp1Place.X = XApp1Place.X + OffSetPalletAtivo.X + OffSetProdutoAtivo.X
+      XApp1Place.Y = XApp1Place.Y + OffSetPalletAtivo.Y + OffSetProdutoAtivo.Y
+      XApp1Place.Z = XApp1Place.Z + OffSetPalletAtivo.Z + OffSetProdutoAtivo.Z
       
-      XApp1Place.Y = XApp1Place.Y + OffsetP1_dy
-      XApp2Place.Y = XApp2Place.Y + OffsetP1_dy
-      XPlace.Y = XPlace.Y + OffsetP1_dy
+      XApp2Place.X = XApp2Place.X + OffSetPalletAtivo.X + OffSetProdutoAtivo.X
+      XApp2Place.Y = XApp2Place.Y + OffSetPalletAtivo.Y + OffSetProdutoAtivo.Y
+      XApp2Place.Z = XApp2Place.Z + OffSetPalletAtivo.Z + OffSetProdutoAtivo.Z
       
-      XApp1Place.Z = XApp1Place.Z + + OffsetP1_dz
-      XApp2Place.Z = XApp2Place.Z + + OffsetP1_dz
-      XPlace.Z = XPlace.Z + Delta_Z + OffsetP1_dz
-      
-      XApp1Place.A = XApp1Place.A + OffsetP1_dA
-      XApp2Place.A = XApp2Place.A + OffsetP1_dA
-      XPlace.A = XPlace.A + OffsetP1_dA
-      
+      XPlace.X     = XPlace.X     + OffSetPalletAtivo.X + OffSetProdutoAtivo.X
+      XPlace.Y     = XPlace.Y     + OffSetPalletAtivo.Y + OffSetProdutoAtivo.Y
+      XPlace.Z     = XPlace.Z     + OffSetPalletAtivo.Z + OffSetProdutoAtivo.Z
+            
    ;ENDFOLD
    
    ;FOLD Topo Dinamico
-      
-      XApp1Pallet1.Z = AlturaAtualPalete 
+      ;AlturaAtualPalete = Camada * AlturaCaixa + AlturaPalete
+      ;Verifica/seta altura minina/maxima para que nao haja colisao do robo no sobrevoo
+      XTopoPallet.Z = AlturaAtualPalete 
       XP2.Z = AlturaAtualPalete
       
       IF AlturaAtualPalete < 900 THEN
-         XApp1Pallet1.Z = 900
+         XTopoPallet.Z = 900
          XP2.Z = 900
       ENDIF
       
       ;Seta valores de deposito
-      XApp1Pallet1.X = XApp1Place.X
-      XApp1Pallet1.Y = XApp1Place.Y
-      XApp1Pallet1.A = XApp1Place.A
-      XApp1Pallet1.B = XApp1Place.B
-      XApp1Pallet1.C = XApp1Place.C
-      XApp1Pallet1.S = XApp1Place.S
-      XApp1Pallet1.T = XApp1Place.T
+      ;->marca o mespo ponto de deposito so que deslocado em Z
+      ;AQUI POSSO MARCAR UMA ALTURA PADRAO DEPOIS
+      XTopoPallet = XApp1Place
+      XTopoPallet.Z = 850
       
    ;ENDFOLD
-   
+
+   ; -> aciona o ponto de aproximação do pallet
+   ; -> !!! mover de acordo com as rotações da caixa 
+
    ;Movimenta para o topo
    ;FOLD PTP App1Pallet1 CONT Vel=100 % PDAT15 Tool[1]:GarraMecanica Base[0] ColDetect[1];%{PE}
       $BWDSTART = FALSE
       PDAT_ACT = PPDAT15
       FDAT_ACT = FApp1Pallet1
       BAS(#PTP_PARAMS, 100.0)
-      PTP XApp1Pallet1 C_Dis
+      PTP XTopoPallet C_Dis
    ;ENDFOLD
    
    ;FOLD Verifica Caixas na Garra
@@ -108,6 +108,7 @@ DEF PlaceCaixaPallet1()
       
    ;ENDFOLD     
    
+   ;->SE OCCORRER TUDO BEM TROCA A CAMADA DO PALLET
    WAIT FOR SetCamada()
    
    ;$APO.CDIS = 50 
@@ -117,9 +118,11 @@ DEF PlaceCaixaPallet1()
       SkipHome = FALSE
    ENDIF
    
+   ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
+
    ;Seta valores de deposito na saida do deposito
-   XApp1Pallet1.X = XPlace.X
-   XApp1Pallet1.Y = XPlace.Y 
+   XTopoPallet.X = XPlace.X
+   XTopoPallet.Y = XPlace.Y 
    
    ;Movimenta para o topo      
    ;FOLD LIN App1Pallet1 CONT Vel=2 m/s CPDAT3 Tool[1]:GarraMecanica Base[0] ColDetect[1] ;%{PE}
@@ -130,9 +133,10 @@ DEF PlaceCaixaPallet1()
       LDAT_ACT = LCPDAT3
       FDAT_ACT = FApp1Pallet1
       BAS(#CP_PARAMS, 2.0)
-      LIN XApp1Pallet1 C_Dis C_Dis
+      LIN XTopoPallet C_Dis C_Dis
    ;ENDFOLD
    
+   ;VOLTA PARA O TOPO DO PALLET
    IF IndexCaixasEsteira1OK THEN
       ;Movimenta para espera esteira 1
       ;FOLD PTP P2 CONT Vel=100 % PDAT25 Tool[1]:GarraMecanica Base[0] ColDetect[1];%{PE}
