@@ -8,8 +8,8 @@ DEF PlaceCaixaPallet1()
    ;ou LIN  BASEPOINT:XPlace 
    $TOOL = TOOL_DATA[1]
 
-   POS OffSetPalletAtivo = PalletFurukawa[PalletAtivo].OffSetPallet
-   POS OffSetProdutoAtivo = ProdutoFurukawa[MosaicoAtivo].OffSetPallet
+   OffSetPalletAtivo = PalletFurukawa[PalletAtivo].OffSetPallet
+   OffSetProdutoAtivo = ProdutoFurukawa[MosaicoAtivo].OffsetProduto
 
    ;FOLD Offset Place
    ;Update dos pontos de place das caixas com relção ás variáveis de ajustes
@@ -114,8 +114,7 @@ DEF PlaceCaixaPallet1()
       
    ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
    ;Movimento RELATIVO de subida
-   INT AlturaRelativa=ProdutoFurukawa[MosaicoAtivo].AlturaCaixa + 200
-   LIN_REL {Z AlturaRelativa}    
+   LIN_REL {Z 200}    
 
    ;FOLD VOLTA PARA O TOPO DO PALLET
       ;Seta valores de deposito na saida do deposito

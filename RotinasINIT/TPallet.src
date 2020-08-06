@@ -3,8 +3,8 @@
 DEFFCT BOOL TPallet( )
 INT i
 ;DECL FRAME TBASE[5] 
-DECL POS TBASE
-TBASE={X 0,Y 0,Z 0,A 0,B 0,C 0}
+;DECL POS TBASE
+;TBASE={X 0,Y 0,Z 0,A 0,B 0,C 0}
 ;FOLD Definir Bases e Tools
 BASE_DATA[1]={X 1927.490,Y 1267.895,Z -701.000,A 0.0000,B -0.0000,C 0.0000}
 BASE_DATA[2]={X 230.837,Y 1266.535,Z -701.000,A 0.0000,B -0.0000,C 0.0000}
@@ -17,14 +17,14 @@ TOOL_DATA[1]={X 441.263,Y -0.000,Z 405.123,A 0.0000,B 0.0000,C 0.0000}
 
 ;FOLD Iniciar Opções de Pallet
 FOR i = 1 TO NUMPALLETS
-PalletFurukawa[i].NumProduto=0
-PalletFurukawa[i].Livre=TRUE
-PalletFurukawa[i].AtualNumCaixas=0
-PalletFurukawa[i].AtualNumPlaces=0
-PalletFurukawa[i].AtualNumCamadas=0
-PalletFurukawa[i].BasePoint=BASE_DATA[i]
-PalletFurukawa[i].OffSetPallet={X 0,Y 0,Z 0,A 0,B 0,C 0}
-PalletFurukawa[i].Approch={X 0,Y 0,Z 0,A 0,B 0,C 0,S 2,T 35,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   PalletFurukawa[i].NumProduto=0
+   PalletFurukawa[i].Livre=TRUE
+   PalletFurukawa[i].AtualNumCaixas=0
+   PalletFurukawa[i].AtualNumPlaces=0
+   PalletFurukawa[i].AtualNumCamadas=0
+   PalletFurukawa[i].BasePoint=BASE_DATA[i]
+   PalletFurukawa[i].OffSetPallet={X 0,Y 0,Z 0,A 0,B 0,C 0}
+   PalletFurukawa[i].Approch={X 0,Y 0,Z 0,A 0,B 0,C 0,S 2,T 35,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
 ENDFOR
 ;ENDFOLD
 

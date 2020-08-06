@@ -3,8 +3,8 @@
 DEFFCT BOOL SetPlacePos_P1L1()
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
-   INT Ponto       = PalletFurukawa[PalletAtivo].AtualNumPlaces
-   INT AlturaCaixa = ProdutoFurukawa[MosaicoAtivo].AlturaCaixa
+   Ponto       = PalletFurukawa[PalletAtivo].AtualNumPlaces
+   AlturaCaixa = ProdutoFurukawa[MosaicoAtivo].AlturaCaixa
    ;Aqui o programa coleta os pontos da matriz de três em três pontos
    ;XApp1Place = aproxima do ponto
    ;XApp2Place = desce em z

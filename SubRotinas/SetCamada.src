@@ -18,7 +18,7 @@ DEFFCT BOOL SetCamada( )
       ;->se a qtd de camadas do pallet for acima da qtd do mozaico
       IF PalletFurukawa[PalletAtivo].AtualNumCamadas > ProdutoFurukawa[MosaicoAtivo].NumCamadas THEN
          ;Envia alerta de Pallet concluido
-         reseta_pallet()
+         ResetaPallet()
       ENDIF
    ;ENDFOLD     
    
