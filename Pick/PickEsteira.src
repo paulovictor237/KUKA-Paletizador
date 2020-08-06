@@ -1,26 +1,45 @@
-&ACCESS RV1
-&REL 14
-&PARAM EDITMASK = *
-&PARAM DISKPATH = Program/40309_NestleCacapava_Paletizacao_TopGun/SubPrograms
-DEF PickEsteira( )
-         
-      IF Palete == 1 THEN
-         ;Chama o subprograma para verificar o número de pegas de cada mosaico   
-         ;WAIT FOR NumPegasP1_Especiais()  
-      ENDIF
-      
-      IF Palete == 2 THEN
-         ;Chama o subprograma para verificar o número de pegas de cada mosaico   
-         ;WAIT FOR NumPegasP2_Especiais()  
-      ENDIF
-      
-      ;Pegar caixas
-      IF IndexCaixasEsteira1OK THEN              
-            PickEsteira1()
-            
-         ENDIF
-      IF IndexCaixasEsteira2OK THEN  
-            PickEsteira2()  
-      ENDIF  
-             
+ï»¿DEF PickEsteira ( )
+  ;FOLD INI;%{PE}
+    ;FOLD BASISTECH INI
+      GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM()
+      INTERRUPT ON 3
+      BAS (#INITMOV,0 )
+    ;ENDFOLD (BASISTECH INI)
+    ;FOLD USER INI
+    ;Make your modifications here
+    
+    ;ENDFOLD (USER INI)
+  ;ENDFOLD (INI)
+  
+  ;COMMANDS
+  ;FOLD PTP P33  Vel=100.0 % PP33 Tool[1] Base[2] ;%{PE}%R 8.3.48,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:P33, 3:, 5:100.0, 7:PP33
+    FDAT_ACT=FP33
+    PDAT_ACT=PP33
+    BAS(#PTP_PARAMS,100)
+    PTP XP33
+  ;ENDFOLD
+  ;FOLD LIN P34  Vel=2.0 m/s LP34 Tool[1] Base[2] ;%{PE}%R 8.3.48,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:P34, 3:, 5:2.0, 7:LP34
+    FDAT_ACT=FP34
+    LDAT_ACT=LP34
+    BAS(#CP_PARAMS,2.00)
+    LIN XP34
+  ;ENDFOLD
+  ;FOLD LIN P35  Vel=2.0 m/s LP35 Tool[1] Base[2] ;%{PE}%R 8.3.48,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:P35, 3:, 5:2.0, 7:LP35
+    FDAT_ACT=FP35
+    LDAT_ACT=LP35
+    BAS(#CP_PARAMS,2.00)
+    LIN XP35
+  ;ENDFOLD
+  ;FOLD OUT 100 '' State=TRUE ;%{PE}%R 8.3.48,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:100, 3:, 5:TRUE, 6:
+    $OUT[100]=TRUE
+  ;ENDFOLD
+  ;FOLD OUT 1 '' State=TRUE ;%{PE}%R 8.3.48,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:1, 3:, 5:TRUE, 6:
+    $OUT[1]=TRUE
+  ;ENDFOLD
+  ;FOLD LIN P36  Vel=2.0 m/s LP36 Tool[1] Base[2] ;%{PE}%R 8.3.48,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:P36, 3:, 5:2.0, 7:LP36
+    FDAT_ACT=FP36
+    LDAT_ACT=LP36
+    BAS(#CP_PARAMS,2.00)
+    LIN XP36
+  ;ENDFOLD
 END

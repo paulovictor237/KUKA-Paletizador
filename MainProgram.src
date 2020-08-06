@@ -25,9 +25,11 @@ DEF  MainProgram ( )
    
    ;FOLD MAIN ROUTINE
    ; ->ler pallet
-   ; ->verificar se ka possui produto no pallet
+   ; ->verificar se ja possui produto no pallet
    ; ->se não tiver escrever um produto
    ; ->gravar na variavel pallet ativo
+   ;->INT PalletAtivo
+   ;->INT MosaicoAtivo = PalletFurukawa[PalletAtivo].NumProduto
    ; SelecaoPrograma( )
    
       ;Layer = 1
@@ -37,21 +39,7 @@ DEF  MainProgram ( )
       ;IF PegaOk THEN
       ;   PlaceCaixaPallet1()
       ;ENDIF 
-
-   ;FOLD VERIFICA CAIXA E CAMADA
-      ;->apos colocar a caixa deve acrescentar + 1 em
-      ;PalletFurukawa[i].AtualNumPlaces = PalletFurukawa[i].AtualNumPlaces +1
-      ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
-      ;IF PalletFurukawa[i].AtualNumPlaces > ProdutoFurukawa[1].NumPlaces THEN
-         ;PalletFurukawa[i].AtualNumPlaces=1 ;verificar aqui se deve comecar com 1 ou 0
-         ;PalletFurukawa[i].AtualNumCamadas=PalletFurukawa[i].AtualNumCamadas + 1
-      ;ENDIF
-      ;->se a qtd de camadas do pallet for acima da qtd do mozaico
-      ;IF PalletFurukawa[i].AtualNumCamadas > ProdutoFurukawa[1].NumCamadas THEN
-         ;->reseta_pallet()
-      ;ENDIF
-   ;ENDFOLD     
-
+      
    ;ENDFOLD
 
    ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT

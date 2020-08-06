@@ -2,7 +2,13 @@ DEF PlaceCaixaPallet1()
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
    INT PalletAtivo
-   INT MosaicoAtivo = PalletFurukawa[PalletAtivo].NumProduto
+   INT MosaicoAtivo; = PalletFurukawa[PalletAtivo].NumProduto
+
+   ;MARCA A BASE DE PALLETIZAÇÃO
+   $BASE = PalletFurukawa[PalletAtivo].BasePoint
+   ;FRAME BASEPOINT = PalletFurukawa[PalletAtivo].BasePoint
+   ;ou LIN  BASEPOINT:XPlace 
+   $TOOL = TOOL_DATA[1]
 
    POS OffSetPalletAtivo = PalletFurukawa[PalletAtivo].OffSetPallet
    POS OffSetProdutoAtivo = ProdutoFurukawa[MosaicoAtivo].OffSetPallet
@@ -25,132 +31,102 @@ DEF PlaceCaixaPallet1()
    ;ENDFOLD
    
    ;FOLD Topo Dinamico
-      ;AlturaAtualPalete = Camada * AlturaCaixa + AlturaPalete
-      ;Verifica/seta altura minina/maxima para que nao haja colisao do robo no sobrevoo
-      XTopoPallet.Z = AlturaAtualPalete 
-      XP2.Z = AlturaAtualPalete
-      
-      IF AlturaAtualPalete < 900 THEN
-         XTopoPallet.Z = 900
-         XP2.Z = 900
-      ENDIF
-      
-      ;Seta valores de deposito
       ;->marca o mespo ponto de deposito so que deslocado em Z
       ;AQUI POSSO MARCAR UMA ALTURA PADRAO DEPOIS
       XTopoPallet = XApp1Place
       XTopoPallet.Z = 850
-      
+
+      ;AlturaAtualPalete = Camada * AlturaCaixa + AlturaPalete  
+      ;Verifica/seta altura minina/maxima para que nao haja colisao do robo no sobrevoo
+      ; XTopoPallet.Z = AlturaAtualPalete       
+      ; IF AlturaAtualPalete < 900 THEN
+      ;    XTopoPallet.Z = 900
+      ; ENDIF
+
+
    ;ENDFOLD
 
    ; -> aciona o ponto de aproximação do pallet
    ; -> !!! mover de acordo com as rotações da caixa 
 
    ;Movimenta para o topo
-   ;FOLD PTP App1Pallet1 CONT Vel=100 % PDAT15 Tool[1]:GarraMecanica Base[0] ColDetect[1];%{PE}
-      $BWDSTART = FALSE
-      PDAT_ACT = PPDAT15
-      FDAT_ACT = FApp1Pallet1
-      BAS(#PTP_PARAMS, 100.0)
+      $BWDSTART=FALSE
+      FDAT_ACT=FP18
+      PDAT_ACT=PP18
+      BAS(#PTP_PARAMS,100)
       PTP XTopoPallet C_Dis
    ;ENDFOLD
    
    ;FOLD Verifica Caixas na Garra
       
-      IF NOT SensoresGarraAtivos AND NOT DryRun THEN
-         FalhaCaixa = TRUE
-      ELSE
-         FalhaCaixa = FALSE
-      ENDIF    
+      ; IF NOT SensoresGarraAtivos AND NOT DryRun THEN
+      ;    FalhaCaixa = TRUE
+      ; ELSE
+      ;    FalhaCaixa = FALSE
+      ; ENDIF    
       
-      IF FalhaCaixa THEN
-         WAIT FOR FalhaDeposito()
-         FalhaCaixa = FALSE
-      ENDIF
+      ; IF FalhaCaixa THEN
+      ;    WAIT FOR FalhaDeposito()
+      ;    FalhaCaixa = FALSE
+      ; ENDIF
       
    ;ENDFOLD     
    
-   $TOOL = TOOL_DATA[1]
-   $VEL.CP = 2
-   $ACC.CP = 2
-   $VEL.ORI1 = 300
-   $ACC.ORI1 = 400
-   $VEL.ORI2 = 300
-   $ACC.ORI2 = 400
+   ;FOLD DEPOSITO DA CAIXA EM RELAÇÃO AO BASEPOINT
+      ;$VEL.CP = 2
+      ;$ACC.CP = 2
+      ;$VEL.ORI1 = 300
+      ;$ACC.ORI1 = 400
+      ;$VEL.ORI2 = 300
+      ;$ACC.ORI2 = 400
+      FDAT_ACT=FP17
+      LDAT_ACT=LP17
+      BAS(#CP_PARAMS,2.00)
+      ;Movimenta p/ aproximacao deposito
+      LIN  XApp1Place C_DIS C_DIS
+      LIN  XApp2Place C_DIS C_DIS
+      ;Movimenta p/ deposito
+      LIN  XPlace 
+   ;ENDFOLD  
    
-   ;Movimenta p/ aproximacao deposito
-   LIN  XApp1Place C_DIS C_DIS
-   LIN  XApp2Place C_DIS C_DIS
-   ;Movimenta p/ deposito
-   LIN  XPlace 
-   
-   ;FOLD Abre Garra
+   ;FOLD Abre Garra  
+      ; FechaGarra1 = FALSE
+      ; FechaGarra2 = FALSE
+      ; FechaGarra3 = FALSE
+      ; AbreGarra1 = TRUE
+      ; AbreGarra2 = TRUE
+      ; AbreGarra3 = TRUE
       
-      FechaGarra1 = FALSE
-      FechaGarra2 = FALSE
-      FechaGarra3 = FALSE
-      AbreGarra1 = TRUE
-      AbreGarra2 = TRUE
-      AbreGarra3 = TRUE
-      
-      ;FOLD WAIT FOR ( Garra1Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:1, 7:Garra1Aberta, 9:CONTINUE
-         CONTINUE
-         WAIT FOR  ( Garra1Aberta ) 
-      ;ENDFOLD
-      ;FOLD WAIT FOR ( Garra2Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:2, 7:Garra2Aberta, 9:CONTINUE
-         CONTINUE
-         WAIT FOR  ( Garra2Aberta ) 
-      ;ENDFOLD     
-      ;FOLD WAIT FOR ( Garra3Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:2, 7:Garra2Aberta, 9:CONTINUE
-         CONTINUE
-         WAIT FOR  ( Garra3Aberta ) 
-      ;ENDFOLD
-      
+      ; ;FOLD WAIT FOR ( Garra1Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:1, 7:Garra1Aberta, 9:CONTINUE
+      ;    CONTINUE
+      ;    WAIT FOR  ( Garra1Aberta ) 
+      ; ;ENDFOLD
+      ; ;FOLD WAIT FOR ( Garra2Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:2, 7:Garra2Aberta, 9:CONTINUE
+      ;    CONTINUE
+      ;    WAIT FOR  ( Garra2Aberta ) 
+      ; ;ENDFOLD     
+      ; ;FOLD WAIT FOR ( Garra3Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:2, 7:Garra2Aberta, 9:CONTINUE
+      ;    CONTINUE
+      ;    WAIT FOR  ( Garra3Aberta ) 
+      ; ;ENDFOLD 
    ;ENDFOLD     
    
    ;->SE OCCORRER TUDO BEM TROCA A CAMADA DO PALLET
    WAIT FOR SetCamada()
-   
-   ;$APO.CDIS = 50 
-   ;LIN_Rel {Z 350} C_DIS C_DIS
-   
-   IF TrocarPalete OR GoHome THEN
-      SkipHome = FALSE
-   ENDIF
-   
+      
    ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
+   ;Movimento RELATIVO de subida
+   PTP_REL {Z 200}    
 
-   ;Seta valores de deposito na saida do deposito
-   XTopoPallet.X = XPlace.X
-   XTopoPallet.Y = XPlace.Y 
-   
-   ;Movimenta para o topo      
-   ;FOLD LIN App1Pallet1 CONT Vel=2 m/s CPDAT3 Tool[1]:GarraMecanica Base[0] ColDetect[1] ;%{PE}
-      ;FOLD Parameters ;%{h}
-         ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=App1Pallet1; Kuka.BlendingEnabled=True; Kuka.MoveDataName=CPDAT3; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=1; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
-      ;ENDFOLD
-      $BWDSTART = FALSE
-      LDAT_ACT = LCPDAT3
-      FDAT_ACT = FApp1Pallet1
-      BAS(#CP_PARAMS, 2.0)
-      LIN XTopoPallet C_Dis C_Dis
+   ;FOLD VOLTA PARA O TOPO DO PALLET
+      ;Seta valores de deposito na saida do deposito
+      XTopoPallet.X = XPlace.X
+      XTopoPallet.Y = XPlace.Y 
+      $BWDSTART=FALSE
+      FDAT_ACT=FP18
+      PDAT_ACT=PP18
+      BAS(#PTP_PARAMS,100)
+      PTP XTopoPallet C_Dis
    ;ENDFOLD
-   
-   ;VOLTA PARA O TOPO DO PALLET
-   IF IndexCaixasEsteira1OK THEN
-      ;Movimenta para espera esteira 1
-      ;FOLD PTP P2 CONT Vel=100 % PDAT25 Tool[1]:GarraMecanica Base[0] ColDetect[1];%{PE}
-         ;FOLD Parameters ;%{h}
-            ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P2; Kuka.BlendingEnabled=True; Kuka.MoveDataPtpName=PDAT25; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=1; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
-         ;ENDFOLD
-         $BWDSTART = FALSE
-         PDAT_ACT = PPDAT25
-         FDAT_ACT = FP2
-         BAS(#PTP_PARAMS, 100.0)
-         PTP XP2 C_Dis
-      ;ENDFOLD
-   ELSE
-      ;Movimenta para espera esteira 2
-   ENDIF 
-   
+
 END

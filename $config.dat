@@ -10,7 +10,8 @@ E6POS MatrizPontos[8,50]
 ;CHAR Nome[15]
 ;INT NumCaixas,NumPlaces,NumCamadas,AlturaCaixa
 ;POS OffsetProduto
-STRUC Produto CHAR Nome[15],INT NumCaixas,NumPlaces,NumCamadas,AlturaCaixa,POS OffsetProduto
+;E6POS PickEsteira,PickEsteiraLateral
+STRUC Produto CHAR Nome[15],INT NumCaixas,NumPlaces,NumCamadas,AlturaCaixa,POS OffsetProduto,E6POS PickEsteira,PickEsteiraLateral
 DECL GLOBAL Produto ProdutoFurukawa[8]
 ;ENDFOLD
 

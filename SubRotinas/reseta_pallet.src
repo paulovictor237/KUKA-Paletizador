@@ -1,0 +1,17 @@
+&ACCESS RVO3
+&REL 3
+&PARAM EDITMASK = *
+DEFFCT BOOL reseta_pallet( )
+   ;precisa saber qual o pallet ativo
+   ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
+
+   ;FOLD RESETA PALLET
+      PalletFurukawa[PalletAtivo].Livre=TRUE
+      PalletFurukawa[PalletAtivo].NumProduto=0
+      PalletFurukawa[PalletAtivo].AtualNumCaixas=0
+      PalletFurukawa[PalletAtivo].AtualNumPlaces=0
+      PalletFurukawa[PalletAtivo].AtualNumCamadas=0
+   ;ENDFOLD     
+   
+   RETURN TRUE
+ENDFCT
