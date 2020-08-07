@@ -27,23 +27,24 @@ DEF  MainProgram ( )
    ;ENDFOLD
    
    ;FOLD MAIN ROUTINE
-      ; ->ler do CLP pallet
-      ; ->gravar na variavel PalletAtivo
-      PalletAtivo=1
-      MosaicoAtivo=1 ;= PalletFurukawa[PalletAtivo].NumProduto
-      ; ->verificar se ja possui produto no pallet
-      ; ->se não tiver escrever um produto
-      IF PalletFurukawa[PalletAtivo].Livre == TRUE THEN
-         PalletFurukawa[PalletAtivo].Livre=FALSE
-         PalletFurukawa[PalletAtivo].NumProduto=MosaicoAtivo
-      ENDIF
+      WHILE TRUE
+         ; ->ler do CLP pallet
+         ; ->gravar na variavel PalletAtivo
+         PalletAtivo=1
+         MosaicoAtivo=1 ;= PalletFurukawa[PalletAtivo].NumProduto
+         ; ->verificar se ja possui produto no pallet
+         ; ->se não tiver escrever um produto
+         IF PalletFurukawa[PalletAtivo].Livre == TRUE THEN
+            PalletFurukawa[PalletAtivo].Livre=FALSE
+            PalletFurukawa[PalletAtivo].NumProduto=MosaicoAtivo
+         ENDIF
 
-      WAIT FOR SetPlacePos_P1L1()
-      PickEsteira()
-      IF PegaOk THEN
-        PlaceCaixaPallet1()
-      ENDIF 
-      
+         WAIT FOR SetPlacePos_P1L1()
+         PickEsteira()
+         IF PegaOk THEN
+         PlaceCaixaPallet1()
+         ENDIF 
+      ENDWHILE
    ;ENDFOLD
 
    ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
