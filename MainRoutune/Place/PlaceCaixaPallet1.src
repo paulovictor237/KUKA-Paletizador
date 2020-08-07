@@ -47,10 +47,10 @@ DEF PlaceCaixaPallet1()
    ; -> aciona o ponto de aproximação do pallet
    ; -> !!! mover de acordo com as rotações da caixa 
 
-   ;Movimenta para o topo
+   ;FOLD Movimenta para o topo
       $BWDSTART=FALSE
-      FDAT_ACT=FP18
-      PDAT_ACT=PP18
+      FDAT_ACT=FP2
+      PDAT_ACT=PP2
       BAS(#PTP_PARAMS,100)
       PTP XTopoPallet C_Dis
    ;ENDFOLD
@@ -77,8 +77,8 @@ DEF PlaceCaixaPallet1()
       ;$ACC.ORI1 = 400
       ;$VEL.ORI2 = 300
       ;$ACC.ORI2 = 400
-      FDAT_ACT=FP17
-      LDAT_ACT=LP17
+      FDAT_ACT=FP1
+      LDAT_ACT=LP1
       BAS(#CP_PARAMS,2.00)
       ;Movimenta p/ aproximacao deposito
       LIN  XApp1Place C_DIS C_DIS
@@ -109,20 +109,23 @@ DEF PlaceCaixaPallet1()
       ; ;ENDFOLD 
    ;ENDFOLD     
    
-   ;->SE OCCORRER TUDO BEM TROCA A CAMADA DO PALLET
-   WAIT FOR SetCamada()
-      
-   ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
-   ;Movimento RELATIVO de subida
-   LIN_REL {Z 200}    
+   ;FOLD VOLTA PARA O PONTO DE APROXIMACAO
+      ;->SE OCCORRER TUDO BEM TROCA A CAMADA DO PALLET
+      WAIT FOR SetCamada()
+      ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
+      ;Movimento RELATIVO de subida
+      XPlace.Z=XApp2Place.Z
+      LIN  XPlace 
+      ;LIN_REL {Z 200}
+   ;ENDFOLD    
 
-   ;FOLD VOLTA PARA O TOPO DO PALLET
-      ;Seta valores de deposito na saida do deposito
+   ;FOLD VOLTA PARA O TOPO
+      ;Seta valores de de2osito na saida do deposito
       XTopoPallet.X = XPlace.X
       XTopoPallet.Y = XPlace.Y 
       $BWDSTART=FALSE
-      FDAT_ACT=FP18
-      PDAT_ACT=PP18
+      FDAT_ACT=FP2
+      PDAT_ACT=PP2
       BAS(#PTP_PARAMS,100)
       PTP XTopoPallet C_Dis
    ;ENDFOLD
