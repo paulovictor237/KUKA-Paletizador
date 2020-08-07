@@ -11,7 +11,6 @@
     ;ENDFOLD (USER INI)
   ;ENDFOLD (INI)
 
-  ;COMMANDS
   ;FOLD MARCA OS PONTOS DE PICK
      XAPP1PICK=XP2
      XAPP2PICK=XP3
@@ -30,11 +29,13 @@
     LDAT_ACT=LP2
     BAS(#CP_PARAMS,2.00)
     LIN XAPP1PICK
-    ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
     LIN XPICK
+    ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
     XPICK.Z=XAPP2PICK.Z
-    LIN XPICK 
-    ;LIN_REL {Z 200}    
+    LIN XPICK
+    ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
+    ;RelFrame.Z=ProdutoFurukawa[MosaicoAtivo].AlturaCaixa + 200
+    ;LIN_REL RelFrame    
   ;ENDFOLD
 
   ;FOLD APROXIMA TOPO

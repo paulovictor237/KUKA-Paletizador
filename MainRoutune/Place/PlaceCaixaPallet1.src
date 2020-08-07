@@ -2,11 +2,15 @@ DEF PlaceCaixaPallet1()
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
 
-   ;MARCA A BASE DE PALLETIZAÇÃO
-   $BASE = PalletFurukawa[PalletAtivo].BasePoint
-   ;FRAME BASEPOINT = PalletFurukawa[PalletAtivo].BasePoint
-   ;ou LIN  BASEPOINT:XPlace 
-   $TOOL = TOOL_DATA[1]
+   ;FOLD MARCA A BASE DE PALLETIZAÇÃO
+      ;$TOOL = TOOL_DATA[1]
+      ;$BASE=$NULLFRAME
+      ;$BASE = PalletFurukawa[PalletAtivo].BasePoint
+      BASEPOINT = PalletFurukawa[PalletAtivo].BasePoint
+      ;MOVIMENTO COM BASE
+      ;LIN  BASEPOINT:XPlace 
+   ;ENDFOLD
+   
 
    OffSetPalletAtivo = PalletFurukawa[PalletAtivo].OffSetPallet
    OffSetProdutoAtivo = ProdutoFurukawa[MosaicoAtivo].OffsetProduto
@@ -52,7 +56,7 @@ DEF PlaceCaixaPallet1()
       FDAT_ACT=FP2
       PDAT_ACT=PP2
       BAS(#PTP_PARAMS,100)
-      PTP XTopoPallet C_Dis
+      PTP BASEPOINT:XTopoPallet C_Dis
    ;ENDFOLD
    
    ;FOLD Verifica Caixas na Garra
@@ -81,10 +85,10 @@ DEF PlaceCaixaPallet1()
       LDAT_ACT=LP1
       BAS(#CP_PARAMS,2.00)
       ;Movimenta p/ aproximacao deposito
-      LIN  XApp1Place C_DIS C_DIS
-      LIN  XApp2Place C_DIS C_DIS
+      LIN  BASEPOINT:XApp1Place C_DIS C_DIS
+      LIN  BASEPOINT:XApp2Place C_DIS C_DIS
       ;Movimenta p/ deposito
-      LIN  XPlace 
+      LIN  BASEPOINT:XPlace 
    ;ENDFOLD  
    
    ;FOLD Abre Garra  
@@ -112,11 +116,12 @@ DEF PlaceCaixaPallet1()
    ;FOLD VOLTA PARA O PONTO DE APROXIMACAO
       ;->SE OCCORRER TUDO BEM TROCA A CAMADA DO PALLET
       WAIT FOR SetCamada()
-      ;!!! SOBE PRA CIMA EM MOVIMENTO RELATIVO
       ;Movimento RELATIVO de subida
       XPlace.Z=XApp2Place.Z
-      LIN  XPlace 
-      ;LIN_REL {Z 200}
+      LIN  BASEPOINT:XPlace 
+      ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
+      ;RelFrame.Z=ProdutoFurukawa[MosaicoAtivo].AlturaCaixa + 200
+      ;LIN_REL RelFrame
    ;ENDFOLD    
 
    ;FOLD VOLTA PARA O TOPO
@@ -127,7 +132,7 @@ DEF PlaceCaixaPallet1()
       FDAT_ACT=FP2
       PDAT_ACT=PP2
       BAS(#PTP_PARAMS,100)
-      PTP XTopoPallet C_Dis
+      PTP BASEPOINT:XTopoPallet C_Dis
    ;ENDFOLD
 
 END

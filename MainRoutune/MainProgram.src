@@ -11,6 +11,9 @@ DEF  MainProgram ( )
          WAIT FOR TPontos()
          WAIT FOR TProduto()
          WAIT FOR TPallet()
+         $TOOL = TOOL_DATA[1]
+         $BASE=$NULLFRAME
+         $Advance=0
       ;ENDFOLD (USER INI)
    ;ENDFOLD (INI)
    
