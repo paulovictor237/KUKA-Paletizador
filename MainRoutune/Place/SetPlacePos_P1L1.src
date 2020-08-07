@@ -13,6 +13,8 @@ DEFFCT BOOL SetPlacePos_P1L1()
    XApp2Place = MatrizPontos[MosaicoAtivo,(Ponto-1)*3+2]
    XPlace     = MatrizPontos[MosaicoAtivo,(Ponto-1)*3+3]
    ;Delta_Z
+   XApp1Place.Z = XApp1Place.Z + (Ponto-1)*AlturaCaixa
+   XApp2Place.Z = XApp2Place.Z + (Ponto-1)*AlturaCaixa
    XPlace.Z=XPlace.Z + (Ponto-1)*AlturaCaixa
    RETURN TRUE
 ENDFCT
