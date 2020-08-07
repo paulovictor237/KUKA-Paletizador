@@ -42,7 +42,7 @@ DEF  MainProgram ( )
          WAIT FOR SetPlacePos_P1L1()
          PickEsteira()
          IF PegaOk THEN
-         PlaceCaixaPallet1()
+            PlaceCaixaPallet1()
          ENDIF 
       ENDWHILE
    ;ENDFOLD

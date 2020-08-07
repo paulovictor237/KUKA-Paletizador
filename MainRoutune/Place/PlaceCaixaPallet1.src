@@ -3,7 +3,7 @@ DEF PlaceCaixaPallet1()
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
 
    ;FOLD MARCA A BASE DE PALLETIZAÇÃO
-      ;$TOOL = TOOL_DATA[1]
+      $TOOL = TOOL_DATA[1]
       ;$BASE=$NULLFRAME
       ;$BASE = PalletFurukawa[PalletAtivo].BasePoint
       BASEPOINT = PalletFurukawa[PalletAtivo].BasePoint
@@ -44,8 +44,6 @@ DEF PlaceCaixaPallet1()
       ; IF AlturaAtualPalete < 900 THEN
       ;    XTopoPallet.Z = 900
       ; ENDIF
-
-
    ;ENDFOLD
 
    ; -> aciona o ponto de aproximação do pallet
@@ -92,25 +90,7 @@ DEF PlaceCaixaPallet1()
    ;ENDFOLD  
    
    ;FOLD Abre Garra  
-      ; FechaGarra1 = FALSE
-      ; FechaGarra2 = FALSE
-      ; FechaGarra3 = FALSE
-      ; AbreGarra1 = TRUE
-      ; AbreGarra2 = TRUE
-      ; AbreGarra3 = TRUE
-      
-      ; ;FOLD WAIT FOR ( Garra1Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:1, 7:Garra1Aberta, 9:CONTINUE
-      ;    CONTINUE
-      ;    WAIT FOR  ( Garra1Aberta ) 
-      ; ;ENDFOLD
-      ; ;FOLD WAIT FOR ( Garra2Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:2, 7:Garra2Aberta, 9:CONTINUE
-      ;    CONTINUE
-      ;    WAIT FOR  ( Garra2Aberta ) 
-      ; ;ENDFOLD     
-      ; ;FOLD WAIT FOR ( Garra3Aberta ) CONT;%{PE}%R 8.5.19,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:2, 7:Garra2Aberta, 9:CONTINUE
-      ;    CONTINUE
-      ;    WAIT FOR  ( Garra3Aberta ) 
-      ; ;ENDFOLD 
+      WAIT FOR AbreGarra()
    ;ENDFOLD     
    
    ;FOLD VOLTA PARA O PONTO DE APROXIMACAO
@@ -134,5 +114,7 @@ DEF PlaceCaixaPallet1()
       BAS(#PTP_PARAMS,100)
       PTP BASEPOINT:XTopoPallet C_Dis
    ;ENDFOLD
+
+   PegaOk=FALSE
 
 END

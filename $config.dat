@@ -22,13 +22,13 @@ INT NUMMAXPONTOS=50
     Signal SensorVerificaAltura $in[1]
     Signal SensorPresencaCaixa $in[2]
     ;Signal CilindroRecuado $in[3]
-    Signal SensorGarraAberta $in[3]
+    Signal SensorGarraAberta1 $in[3]
     ;Signal CilindroAvancado $in[4]
-    Signal SensorGarraFechada $in[4]
+    Signal SensorGarraFechada1 $in[4]
     ;Signal RecuaCilindro $out[1]
-    Signal GarraAberta $out[1]
+    Signal AbreGarra1 $out[1]
     ;Signal AvancaCilindro $out[2]
-    Signal GarraFechada $out[2]
+    Signal FechaGarra1 $out[2]
 ;ENDFOLD
 
 ;FOLD STRUC Produto

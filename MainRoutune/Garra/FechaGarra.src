@@ -1,0 +1,12 @@
+&ACCESS RVO1
+&PARAM EDITMASK = *
+DEFFCT BOOL FechaGarra()
+   ;RecuaCilindro $out[1]
+   AbreGarra1 = FALSE
+   ;AvancaCilindro $out[2]
+   FechaGarra1 = TRUE
+   ;CilindroAvancado $in[4]
+   WAIT FOR  ( SensorGarraFechada1 )
+   WAIT SEC 1
+   RETURN TRUE
+ENDFCT
