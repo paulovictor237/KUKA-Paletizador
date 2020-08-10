@@ -19,8 +19,8 @@ INT NUMMAXPONTOS=50
 ;ENDFOLD
 
 ;FOLD STRUC Produto
-    Signal SensorVerificaAltura $in[1]
-    Signal SensorPresencaCaixa $in[2]
+    Signal SensorAltura $in[1]
+    Signal SensorCaixa $in[2]
     ;Signal CilindroRecuado $in[3]
     Signal SensorGarraAberta1 $in[3]
     ;Signal CilindroAvancado $in[4]
