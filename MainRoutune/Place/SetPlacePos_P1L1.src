@@ -4,17 +4,18 @@ DEFFCT BOOL SetPlacePos_P1L1()
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
    Ponto       = PalletFurukawa[PalletAtivo].AtualNumPlaces
+   Delta_Z     = PalletFurukawa[PalletAtivo].AtualNumCamadas
    AlturaCaixa = ProdutoFurukawa[MosaicoAtivo].AlturaCaixa
    ;Aqui o programa coleta os pontos da matriz de três em três pontos
    ;XApp1Place = aproxima do ponto
    ;XApp2Place = desce em z
    ;XPlace     = faz o place no devido local 
-   XApp1Place = MatrizPontos[MosaicoAtivo,(Ponto-1)*3+1]
-   XApp2Place = MatrizPontos[MosaicoAtivo,(Ponto-1)*3+2]
-   XPlace     = MatrizPontos[MosaicoAtivo,(Ponto-1)*3+3]
+   XApp1Place = MatrizPontos[MosaicoAtivo,(Ponto)*3+1]
+   XApp2Place = MatrizPontos[MosaicoAtivo,(Ponto)*3+2]
+   XPlace     = MatrizPontos[MosaicoAtivo,(Ponto)*3+3]
    ;Delta_Z
-   XApp1Place.Z = XApp1Place.Z + (Ponto-1)*AlturaCaixa
-   XApp2Place.Z = XApp2Place.Z + (Ponto-1)*AlturaCaixa
-   XPlace.Z=XPlace.Z + (Ponto-1)*AlturaCaixa
+   XApp1Place.Z = XApp1Place.Z + (Delta_Z)*AlturaCaixa
+   XApp2Place.Z = XApp2Place.Z + (Delta_Z)*AlturaCaixa
+   XPlace.Z=XPlace.Z + (Delta_Z)*AlturaCaixa
    RETURN TRUE
 ENDFCT
