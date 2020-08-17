@@ -41,7 +41,7 @@
     XPICK.Z=XAPP2PICK.Z
     LIN XPICK
     ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
-    ;RelFrame.Z=ProdutoFurukawa[MosaicoAtivo].AlturaCaixa + 200
+    ;RelFrame.Z=ReceitaFurukawa[ReceitaAtivo].AlturaCaixa + 200
     ;LIN_REL RelFrame    
   ;ENDFOLD
 
