@@ -9,7 +9,7 @@ DEF  MainProgram ( )
          ;Make your modifications here
          $PAL_MODE=TRUE
          WAIT FOR TPontos()
-         WAIT FOR TProduto()
+         WAIT FOR TReceita()
          WAIT FOR TPallet()
          $TOOL = TOOL_DATA[1]
          $BASE=$NULLFRAME
