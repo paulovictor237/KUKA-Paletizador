@@ -16,7 +16,7 @@ TOOL_DATA[1]={X 441.263,Y -0.000,Z 405.123,A 0.0000,B 0.0000,C 0.0000}
 
 ;FOLD Iniciar Opções de Pallet
 FOR i = 1 TO NUMPALLETS
-   PalletFurukawa[i].NumProduto=0
+   PalletFurukawa[i].NumReceita=0
    PalletFurukawa[i].Livre=TRUE
    PalletFurukawa[i].AtualNumCaixas=0
    PalletFurukawa[i].AtualNumPlaces=0

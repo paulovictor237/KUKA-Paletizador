@@ -3,11 +3,11 @@
 &PARAM EDITMASK = *
 DEF ResetaPallet( )
    ;precisa saber qual o pallet ativo
-   ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
+   ;atravez do pallet ativo o programa sabe qual mozaico estï¿½ selecionado
 
    ;FOLD RESETA PALLET
       PalletFurukawa[PalletAtivo].Livre=TRUE
-      PalletFurukawa[PalletAtivo].NumProduto=0
+      PalletFurukawa[PalletAtivo].NumReceita=0
       PalletFurukawa[PalletAtivo].AtualNumCaixas=0
       PalletFurukawa[PalletAtivo].AtualNumPlaces=0
       PalletFurukawa[PalletAtivo].AtualNumCamadas=0

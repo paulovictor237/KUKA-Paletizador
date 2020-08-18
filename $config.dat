@@ -1,6 +1,6 @@
 ;FOLD Variaveis PEVE
 INT PalletAtivo
-INT ReceitaAtivo; = PalletFurukawa[PalletAtivo].NumProduto
+INT ReceitaAtivo; = PalletFurukawa[PalletAtivo].NumReceita
 
 BOOL PegaOk=FALSE
 
@@ -45,13 +45,13 @@ CONST INT NUMMAXPONTOS=50
 
 ;FOLD STRUC Pallet
     ;STRUC Pallet
-    ;INT NumProduto
+    ;INT NumReceita
     ;BOOL Livre
     ;INT AtualNumCaixas,AtualNumPlaces,AtualNumCamadas
     ;FRAME BasePoint
     ;POS OffSetPallet
     ;E6POS Approch
-    STRUC Pallet INT NumProduto, BOOL Livre, INT AtualNumCaixas, AtualNumPlaces, AtualNumCamadas, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    STRUC Pallet INT NumReceita, BOOL Livre, INT AtualNumCaixas, AtualNumPlaces, AtualNumCamadas, FRAME BasePoint, POS OffSetPallet, E6POS Approch
     DECL GLOBAL Pallet PalletFurukawa[5]
 ;ENDFOLD
 

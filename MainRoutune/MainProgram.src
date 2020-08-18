@@ -31,12 +31,12 @@ DEF  MainProgram ( )
          ; ->ler do CLP pallet
          ; ->gravar na variavel PalletAtivo
          PalletAtivo=1
-         ReceitaAtivo=1 ;= PalletFurukawa[PalletAtivo].NumProduto
+         ReceitaAtivo=1 ;= PalletFurukawa[PalletAtivo].NumReceita
          ; ->verificar se ja possui produto no pallet
          ; ->se não tiver escrever um produto
          IF PalletFurukawa[PalletAtivo].Livre == TRUE THEN
             PalletFurukawa[PalletAtivo].Livre=FALSE
-            PalletFurukawa[PalletAtivo].NumProduto=ReceitaAtivo
+            PalletFurukawa[PalletAtivo].NumReceita=ReceitaAtivo
          ENDIF
 
          WAIT FOR SetPlacePos_P1L1()
