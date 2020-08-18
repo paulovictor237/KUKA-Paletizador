@@ -2,4 +2,5 @@
 INT Ponto
 INT Delta_Z
 INT AlturaCaixa
+INT MosaicoAtivo
 ENDDAT

@@ -1,13 +1,14 @@
 ;FOLD Variaveis PEVE
 INT PalletAtivo
-INT MosaicoAtivo; = PalletFurukawa[PalletAtivo].NumProduto
+INT ReceitaAtivo; = PalletFurukawa[PalletAtivo].NumProduto
 
 BOOL PegaOk=FALSE
 
-INT ALTURATOPO=850
-INT NUMPALLETS=5
-INT NUMMOZAICO=8
-INT NUMMAXPONTOS=50
+CONST INT ALTURATOPO=850
+CONST INT NUMPALLETS=5
+CONST INT NUMMOZAICO=8
+CONST INT NUMMAXCAMADAS=15
+CONST INT NUMMAXPONTOS=50
 
 ;FOLD Definir Variaveis de Pontos
     E6POS XApp1Place
@@ -31,14 +32,15 @@ INT NUMMAXPONTOS=50
     Signal FechaGarra1 $out[2]
 ;ENDFOLD
 
-;FOLD STRUC Produto
-    ;STRUC Produto 
+;FOLD STRUC Receita
+    ;STRUC Receita 
     ;CHAR Nome[15]
     ;INT NumCaixas,NumPlaces,NumCamadas,AlturaCaixa
     ;POS OffsetProduto
     ;E6POS PickEsteira,PickEsteiraLateral
-    STRUC Produto CHAR Nome[15], INT NumCaixas, NumPlaces, NumCamadas, AlturaCaixa, POS OffsetProduto, E6POS PickEsteira, PickEsteiraLateral
-    DECL GLOBAL Produto ProdutoFurukawa[8]
+    STRUC Receita CHAR Nome[15], INT NumCaixas, NumPlaces, NumCamadas, AlturaCaixa, POS OffsetProduto, E6POS PickEsteira, PickEsteiraLateral
+    DECL GLOBAL Receita ReceitaFurukawa[8]
+    INT DescricaoCamada[8,15]
 ;ENDFOLD
 
 ;FOLD STRUC Pallet

@@ -13,7 +13,7 @@ DEF PlaceCaixaPallet1()
    
 
    OffSetPalletAtivo = PalletFurukawa[PalletAtivo].OffSetPallet
-   OffSetProdutoAtivo = ProdutoFurukawa[MosaicoAtivo].OffsetProduto
+   OffSetProdutoAtivo = ReceitaFurukawa[ReceitaAtivo].OffsetProduto
 
    ;FOLD Offset Place
    ;Update dos pontos de place das caixas com relção ás variáveis de ajustes
@@ -100,7 +100,7 @@ DEF PlaceCaixaPallet1()
       XPlace.Z=XApp2Place.Z
       LIN  BASEPOINT:XPlace 
       ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
-      ;RelFrame.Z=ProdutoFurukawa[MosaicoAtivo].AlturaCaixa + 200
+      ;RelFrame.Z=ReceitaFurukawa[ReceitaAtivo].AlturaCaixa + 200
       ;LIN_REL RelFrame
    ;ENDFOLD    
 
