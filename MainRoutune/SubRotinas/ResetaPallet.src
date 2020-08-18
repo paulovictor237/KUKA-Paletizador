@@ -8,9 +8,9 @@ DEF ResetaPallet( )
    ;FOLD RESETA PALLET
       PalletFurukawa[PalletAtivo].Livre=TRUE
       PalletFurukawa[PalletAtivo].NumReceita=0
-      PalletFurukawa[PalletAtivo].AtualNumCaixas=0
-      PalletFurukawa[PalletAtivo].AtualNumPlaces=0
-      PalletFurukawa[PalletAtivo].AtualNumCamadas=0
+      PalletFurukawa[PalletAtivo].AtualCaixas=0
+      PalletFurukawa[PalletAtivo].AtualPlacesCamada=0
+      PalletFurukawa[PalletAtivo].AtualCamadas=0
    ;ENDFOLD     
    
 END

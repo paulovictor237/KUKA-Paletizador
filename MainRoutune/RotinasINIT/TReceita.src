@@ -3,7 +3,7 @@
 DEFFCT BOOL TReceita( )
 
 ;CHAR Nome[15]
-;INT NumCaixas,NumPlaces,NumCamadas,AlturaCaixa
+;INT Caixas,PlacesCamada,Camadas,AlturaCaixa
 ;POS OffsetProduto
 ;E6POS PickEsteira,PickEsteiraLateral
 
@@ -12,14 +12,17 @@ DEFFCT BOOL TReceita( )
 ;1-42003385
 ReceitaFurukawa[1].OffsetProduto.X=0
 ReceitaFurukawa[1].OffsetProduto.Y=0
-ReceitaFurukawa[1].OffsetProduto.z=0
+ReceitaFurukawa[1].OffsetProduto.Z=0
+ReceitaFurukawa[1].OffsetProduto.A=0
+ReceitaFurukawa[1].OffsetProduto.B=0
+ReceitaFurukawa[1].OffsetProduto.C=0
 ReceitaFurukawa[1].Nome="42003385"
 ReceitaFurukawa[1].PickEsteira=P1_PickEsteira
 ReceitaFurukawa[1].PickEsteiraLateral=P1_PickEsteiraLateral
-ReceitaFurukawa[1].NumPlaces=4 ;(12/3)
+ReceitaFurukawa[1].PlacesCamada=4 ;(12/3)
 ReceitaFurukawa[1].AlturaCaixa=170
-ReceitaFurukawa[1].NumCaixas=28
-ReceitaFurukawa[1].NumCamadas=7
+ReceitaFurukawa[1].Caixas=28
+ReceitaFurukawa[1].Camadas=7
 DescricaoCamada[1,1]=1
 DescricaoCamada[1,2]=1
 DescricaoCamada[1,3]=1
@@ -30,14 +33,17 @@ DescricaoCamada[1,7]=1
 ;2-42003384
 ReceitaFurukawa[2].OffsetProduto.X=0
 ReceitaFurukawa[2].OffsetProduto.Y=0
-ReceitaFurukawa[2].OffsetProduto.z=0
+ReceitaFurukawa[2].OffsetProduto.Z=0
+ReceitaFurukawa[2].OffsetProduto.A=0
+ReceitaFurukawa[2].OffsetProduto.B=0
+ReceitaFurukawa[2].OffsetProduto.C=0
 ReceitaFurukawa[2].Nome="42003384"
 ReceitaFurukawa[2].PickEsteira=P2_PickEsteira
 ReceitaFurukawa[2].PickEsteiraLateral=P2_PickEsteiraLateral
-ReceitaFurukawa[2].NumPlaces=4 ;(12/3)
+ReceitaFurukawa[2].PlacesCamada=4 ;(12/3)
 ReceitaFurukawa[2].AlturaCaixa=125
-ReceitaFurukawa[2].NumCaixas=38
-ReceitaFurukawa[2].NumCamadas=8
+ReceitaFurukawa[2].Caixas=38
+ReceitaFurukawa[2].Camadas=8
 DescricaoCamada[2,1]=2
 DescricaoCamada[2,2]=2
 DescricaoCamada[2,3]=2
@@ -49,14 +55,17 @@ DescricaoCamada[2,8]=2
 ;3-42003383
 ReceitaFurukawa[3].OffsetProduto.X=0
 ReceitaFurukawa[3].OffsetProduto.Y=0
-ReceitaFurukawa[3].OffsetProduto.z=0
+ReceitaFurukawa[3].OffsetProduto.Z=0
+ReceitaFurukawa[3].OffsetProduto.A=0
+ReceitaFurukawa[3].OffsetProduto.B=0
+ReceitaFurukawa[3].OffsetProduto.C=0
 ReceitaFurukawa[3].Nome="42003383"
 ReceitaFurukawa[3].PickEsteira=P3_PickEsteira
 ReceitaFurukawa[3].PickEsteiraLateral=P3_PickEsteiraLateral
-ReceitaFurukawa[3].NumPlaces=6 ;(18/3)
+ReceitaFurukawa[3].PlacesCamada=6 ;(18/3)
 ReceitaFurukawa[3].AlturaCaixa=165
-ReceitaFurukawa[3].NumCaixas=42
-ReceitaFurukawa[3].NumCamadas=7
+ReceitaFurukawa[3].Caixas=42
+ReceitaFurukawa[3].Camadas=7
 DescricaoCamada[3,1]=3
 DescricaoCamada[3,2]=3
 DescricaoCamada[3,3]=3
@@ -67,27 +76,33 @@ DescricaoCamada[3,7]=3
 ;4-42002793
 ReceitaFurukawa[4].OffsetProduto.X=0
 ReceitaFurukawa[4].OffsetProduto.Y=0
-ReceitaFurukawa[4].OffsetProduto.z=0
+ReceitaFurukawa[4].OffsetProduto.Z=0
+ReceitaFurukawa[4].OffsetProduto.A=0
+ReceitaFurukawa[4].OffsetProduto.B=0
+ReceitaFurukawa[4].OffsetProduto.C=0
 ReceitaFurukawa[4].Nome="42002793"
 ReceitaFurukawa[4].PickEsteira=P4_PickEsteira
 ReceitaFurukawa[4].PickEsteiraLateral=P4_PickEsteiraLateral
-ReceitaFurukawa[4].NumPlaces=15 ;(45/3)
+ReceitaFurukawa[4].PlacesCamada=15 ;(45/3)
 ReceitaFurukawa[4].AlturaCaixa=398
-ReceitaFurukawa[4].NumCaixas=30
-ReceitaFurukawa[4].NumCamadas=2
+ReceitaFurukawa[4].Caixas=30
+ReceitaFurukawa[4].Camadas=2
 DescricaoCamada[4,1]=4
 DescricaoCamada[4,2]=4
 ;5.1-42002392
 ReceitaFurukawa[5].OffsetProduto.X=0
 ReceitaFurukawa[5].OffsetProduto.Y=0
-ReceitaFurukawa[5].OffsetProduto.z=0
+ReceitaFurukawa[5].OffsetProduto.Z=0
+ReceitaFurukawa[5].OffsetProduto.A=0
+ReceitaFurukawa[5].OffsetProduto.B=0
+ReceitaFurukawa[5].OffsetProduto.C=0
 ReceitaFurukawa[5].Nome="42002392"
 ReceitaFurukawa[5].PickEsteira=P5_PickEsteira
 ReceitaFurukawa[5].PickEsteiraLateral=P5_PickEsteiraLateral
-ReceitaFurukawa[5].NumPlaces=12 ;(36/3)
+ReceitaFurukawa[5].PlacesCamada=12 ;(36/3)
 ReceitaFurukawa[5].AlturaCaixa=120
-ReceitaFurukawa[5].NumCaixas=54
-ReceitaFurukawa[5].NumCamadas=7
+ReceitaFurukawa[5].Caixas=54
+ReceitaFurukawa[5].Camadas=7
 DescricaoCamada[5,1]=5
 DescricaoCamada[5,2]=5
 DescricaoCamada[5,3]=5
@@ -98,14 +113,17 @@ DescricaoCamada[5,7]=5
 ;5.2-42002392
 ReceitaFurukawa[6].OffsetProduto.X=0
 ReceitaFurukawa[6].OffsetProduto.Y=0
-ReceitaFurukawa[6].OffsetProduto.z=0
+ReceitaFurukawa[6].OffsetProduto.Z=0
+ReceitaFurukawa[6].OffsetProduto.A=0
+ReceitaFurukawa[6].OffsetProduto.B=0
+ReceitaFurukawa[6].OffsetProduto.C=0
 ReceitaFurukawa[6].Nome="42002392"
 ReceitaFurukawa[6].PickEsteira=P6_PickEsteira
 ReceitaFurukawa[6].PickEsteiraLateral=P6_PickEsteiraLateral
-ReceitaFurukawa[6].NumPlaces=9 ;(27/3)
+ReceitaFurukawa[6].PlacesCamada=9 ;(27/3)
 ReceitaFurukawa[6].AlturaCaixa=120
-ReceitaFurukawa[6].NumCaixas=99
-ReceitaFurukawa[6].NumCamadas=11
+ReceitaFurukawa[6].Caixas=99
+ReceitaFurukawa[6].Camadas=11
 DescricaoCamada[6,1]=6
 DescricaoCamada[6,2]=6
 DescricaoCamada[6,3]=6
@@ -120,14 +138,17 @@ DescricaoCamada[6,11]=6
 ;6.1-E_nova
 ReceitaFurukawa[7].OffsetProduto.X=0
 ReceitaFurukawa[7].OffsetProduto.Y=0
-ReceitaFurukawa[7].OffsetProduto.z=0
+ReceitaFurukawa[7].OffsetProduto.Z=0
+ReceitaFurukawa[7].OffsetProduto.A=0
+ReceitaFurukawa[7].OffsetProduto.B=0
+ReceitaFurukawa[7].OffsetProduto.C=0
 ReceitaFurukawa[7].Nome="E_nova"
 ReceitaFurukawa[7].PickEsteira=P7_PickEsteira
 ReceitaFurukawa[7].PickEsteiraLateral=P7_PickEsteiraLateral
-ReceitaFurukawa[7].NumPlaces=9 ;(27/3)
+ReceitaFurukawa[7].PlacesCamada=9 ;(27/3)
 ReceitaFurukawa[7].AlturaCaixa=220
-ReceitaFurukawa[7].NumCaixas=45
-ReceitaFurukawa[7].NumCamadas=5
+ReceitaFurukawa[7].Caixas=45
+ReceitaFurukawa[7].Camadas=5
 DescricaoCamada[7,1]=7
 DescricaoCamada[7,2]=7
 DescricaoCamada[7,3]=7
@@ -136,14 +157,17 @@ DescricaoCamada[7,5]=7
 ;6.2-E_nova
 ReceitaFurukawa[8].OffsetProduto.X=0
 ReceitaFurukawa[8].OffsetProduto.Y=0
-ReceitaFurukawa[8].OffsetProduto.z=0
+ReceitaFurukawa[8].OffsetProduto.Z=0
+ReceitaFurukawa[8].OffsetProduto.A=0
+ReceitaFurukawa[8].OffsetProduto.B=0
+ReceitaFurukawa[8].OffsetProduto.C=0
 ReceitaFurukawa[8].Nome="E_nova"
 ReceitaFurukawa[8].PickEsteira=P8_PickEsteira
 ReceitaFurukawa[8].PickEsteiraLateral=P8_PickEsteiraLateral
-ReceitaFurukawa[8].NumPlaces=6
+ReceitaFurukawa[8].PlacesCamada=6
 ReceitaFurukawa[8].AlturaCaixa=220
-ReceitaFurukawa[8].NumCaixas=30
-ReceitaFurukawa[8].NumCamadas=5
+ReceitaFurukawa[8].Caixas=30
+ReceitaFurukawa[8].Camadas=5
 DescricaoCamada[8,1]=8
 DescricaoCamada[8,2]=8
 DescricaoCamada[8,3]=8

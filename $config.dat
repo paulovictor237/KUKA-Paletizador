@@ -35,10 +35,10 @@ CONST INT NUMMAXPONTOS=50
 ;FOLD STRUC Receita
     ;STRUC Receita 
     ;CHAR Nome[15]
-    ;INT NumCaixas,NumPlaces,NumCamadas,AlturaCaixa
+    ;INT Caixas,PlacesCamada,Camadas,AlturaCaixa
     ;POS OffsetProduto
     ;E6POS PickEsteira,PickEsteiraLateral
-    STRUC Receita CHAR Nome[15], INT NumCaixas, NumPlaces, NumCamadas, AlturaCaixa, POS OffsetProduto, E6POS PickEsteira, PickEsteiraLateral
+    STRUC Receita CHAR Nome[15], INT Caixas, PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS PickEsteira, PickEsteiraLateral
     DECL GLOBAL Receita ReceitaFurukawa[8]
     INT DescricaoCamada[8,15]
 ;ENDFOLD
@@ -47,11 +47,11 @@ CONST INT NUMMAXPONTOS=50
     ;STRUC Pallet
     ;INT NumReceita
     ;BOOL Livre
-    ;INT AtualNumCaixas,AtualNumPlaces,AtualNumCamadas
+    ;INT AtualCaixas,AtualPlacesCamada,AtualCamadas
     ;FRAME BasePoint
     ;POS OffSetPallet
     ;E6POS Approch
-    STRUC Pallet INT NumReceita, BOOL Livre, INT AtualNumCaixas, AtualNumPlaces, AtualNumCamadas, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    STRUC Pallet INT NumReceita, BOOL Livre, INT AtualCaixas, AtualPlacesCamada, AtualCamadas, FRAME BasePoint, POS OffSetPallet, E6POS Approch
     DECL GLOBAL Pallet PalletFurukawa[5]
 ;ENDFOLD
 
