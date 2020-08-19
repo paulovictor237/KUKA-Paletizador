@@ -12,14 +12,6 @@
     ;ENDFOLD (USER INI)
   ;ENDFOLD (INI)
 
-  ;FOLD PickEsteiraLateral
-    ; verifica se sera pega normal ou lateral
-    AtualPlacesCamada = PalletFurukawa[PalletAtivo].AtualPlacesCamada
-    IF Tombador[ReceitaAtivo,AtualPlacesCamada]==TRUE THEN
-       PickEsteiraLateral()
-    ENDIF 
-  ;ENDFOLD (INI)
-
   ;FOLD MARCA OS PONTOS DE PICK
      XAPP1PICK=XP2
      XAPP2PICK=XP3

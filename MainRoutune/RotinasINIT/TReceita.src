@@ -13,7 +13,10 @@ DEFFCT BOOL TReceita( )
             MozaicoCamada[I,J]=1;[NUMRECEITAS,MaxCamadas]
         ENDFOR
         FOR J = 1 to MaxPlaceCamada
-            Tombador[I,J]=FALSE;[NUMRECEITAS,MaxPlaceCamada]
+            ;AbrirGarras[I,J]=0 abre de 1 a 6
+            ;AbrirGarras[I,J]=1 abre de 1 a 3
+            ;AbrirGarras[I,J]=2 abre de 4 a 6
+            AbrirGarras[I,J]=0;[NUMRECEITAS,MaxPlaceCamada]
         ENDFOR
     ENDFOR    
 ;ENDFOLD

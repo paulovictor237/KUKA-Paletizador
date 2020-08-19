@@ -1,12 +1,27 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
 DEFFCT BOOL FechaGarra()
-   ;RecuaCilindro $out[1]
+   ;RecuaCilindro
    AbreGarra1 = FALSE
-   ;AvancaCilindro $out[2]
+   AbreGarra2 = FALSE
+   AbreGarra3 = FALSE
+   AbreGarra4 = FALSE
+   AbreGarra5 = FALSE
+   AbreGarra6 = FALSE
+   ;AvancaCilindro
    FechaGarra1 = TRUE
-   ;CilindroAvancado $in[4]
+   FechaGarra2 = TRUE
+   FechaGarra3 = TRUE
+   FechaGarra4 = TRUE
+   FechaGarra5 = TRUE
+   FechaGarra6 = TRUE
+   ;CilindroAvancado
    WAIT FOR  ( SensorGarraFechada1 )
+   WAIT FOR  ( SensorGarraFechada2 )
+   WAIT FOR  ( SensorGarraFechada3 )
+   WAIT FOR  ( SensorGarraFechada4 )
+   WAIT FOR  ( SensorGarraFechada5 )
+   WAIT FOR  ( SensorGarraFechada6 )
    WAIT SEC 1
    RETURN TRUE
 ENDFCT

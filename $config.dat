@@ -24,14 +24,34 @@ CONST INT MaxPlaceCamada=15
 ;FOLD STRUC Produto
     Signal SensorAltura $in[1]
     Signal SensorCaixa $in[2]
-    ;Signal CilindroRecuado $in[3]
-    Signal SensorGarraAberta1 $in[3]
-    ;Signal CilindroAvancado $in[4]
-    Signal SensorGarraFechada1 $in[4]
-    ;Signal RecuaCilindro $out[1]
-    Signal AbreGarra1 $out[1]
-    ;Signal AvancaCilindro $out[2]
-    Signal FechaGarra1 $out[2]
+    ;RecuaCilindro
+    Signal AbreGarra1 $out[11]
+    Signal AbreGarra2 $out[12]
+    Signal AbreGarra3 $out[13]
+    Signal AbreGarra4 $out[14]
+    Signal AbreGarra5 $out[15]
+    Signal AbreGarra6 $out[16]
+    ;AvancaCilindro
+    Signal FechaGarra1 $out[21]
+    Signal FechaGarra2 $out[22]
+    Signal FechaGarra3 $out[23]
+    Signal FechaGarra4 $out[24]
+    Signal FechaGarra5 $out[25]
+    Signal FechaGarra6 $out[26]
+    ;CilindroRecuado
+    Signal SensorGarraAberta1 $in[31]
+    Signal SensorGarraAberta2 $in[32]
+    Signal SensorGarraAberta3 $in[33]
+    Signal SensorGarraAberta4 $in[34]
+    Signal SensorGarraAberta5 $in[35]
+    Signal SensorGarraAberta6 $in[36]
+    ;CilindroAvancado
+    Signal SensorGarraFechada1 $in[41]
+    Signal SensorGarraFechada2 $in[42]
+    Signal SensorGarraFechada3 $in[43]
+    Signal SensorGarraFechada4 $in[44]
+    Signal SensorGarraFechada5 $in[45]
+    Signal SensorGarraFechada6 $in[46]
 ;ENDFOLD
 
 ;FOLD STRUC Receita
@@ -43,7 +63,7 @@ CONST INT MaxPlaceCamada=15
     STRUC Receita CHAR Nome[15], INT Caixas, PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS PickEsteira, PickEsteiraLateral
     DECL GLOBAL Receita ReceitaFurukawa[8];[NUMRECEITAS]
     INT  MozaicoCamada[8,11];[NUMRECEITAS,MaxCamadas]
-    BOOL Tombador[8,15];[NUMRECEITAS,MaxPlaceCamada]
+    INT  AbrirGarras[8,15];[NUMRECEITAS,MaxPlaceCamada]
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
