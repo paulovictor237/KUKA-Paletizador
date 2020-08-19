@@ -40,14 +40,7 @@ DEF  MainProgram ( )
          ENDIF
 
          WAIT FOR SetPlacePos_P1L1()
-         ; verifica se sera pega normal ou lateral
-         AtualPlacesCamada = PalletFurukawa[PalletAtivo].AtualPlacesCamada
-         IF Tombador[ReceitaAtivo,AtualPlacesCamada]==FALSE THEN
-            PickEsteira()
-         ELSE
-            PickEsteiraLateral()
-         ENDIF 
-         ;apos fazer a pega, continua com o place
+         PickEsteira()
          IF PegaOk THEN
             PlaceCaixaPallet1()
          ENDIF 
