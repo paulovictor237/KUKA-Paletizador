@@ -7,6 +7,16 @@ DEFFCT BOOL TReceita( )
 ;POS OffsetProduto
 ;E6POS PickEsteira,PickEsteiraLateral
 
+;FOLD iniciar camadas e tombador
+    FOR I = 1 to NUMRECEITAS
+        FOR J = 1 to MaxCamadas
+            MozaicoCamada[I,J]=1;[NUMRECEITAS,MaxCamadas]
+        ENDFOR
+        FOR J = 1 to MaxPlaceCamada
+            Tombador[I,J]=FALSE;[NUMRECEITAS,MaxPlaceCamada]
+        ENDFOR
+    ENDFOR    
+;ENDFOLD
 
 ;FOLD Definir Opções de pallet
 ;1-42003385
