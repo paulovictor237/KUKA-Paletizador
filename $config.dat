@@ -40,7 +40,7 @@ CONST INT NUMMAXPONTOS=50
     ;E6POS PickEsteira,PickEsteiraLateral
     STRUC Receita CHAR Nome[15], INT Caixas, PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS PickEsteira, PickEsteiraLateral
     DECL GLOBAL Receita ReceitaFurukawa[8]
-    INT DescricaoCamada[8,15]
+    INT MozaicoCamada[8,15]
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
