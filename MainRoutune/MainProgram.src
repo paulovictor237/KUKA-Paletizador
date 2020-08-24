@@ -8,9 +8,10 @@ DEF  MainProgram ( )
       ;FOLD USER INI
          ;Make your modifications here
          $PAL_MODE=TRUE
-         WAIT FOR TPontos()
-         WAIT FOR TReceita()
+         WAIT FOR TDefault()
          WAIT FOR TPallet()
+         WAIT FOR TMatriz()
+         WAIT FOR TReceita()
          $TOOL = TOOL_DATA[1]
          $BASE=$NULLFRAME
          $Advance=0

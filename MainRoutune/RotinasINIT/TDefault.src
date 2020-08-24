@@ -1,0 +1,32 @@
+﻿DEF TDefault ( )
+
+;FOLD Variaveis Default da Matriz de Pontos
+    FOR I = 1 to NumMatrizI
+        FOR J = 1 to NumMatrizJ
+            MatrizPontos[I,J].PickOp = 0
+            MatrizPontos[I,J].AbreGarraOp = 0
+            MatrizPontos[I,J].NumCaixas  = 0
+            MatrizPontos[I,J].IndexacaoVH = FALSE
+            MatrizPontos[I,J].SkipGoHome = FALSE
+            MatrizPontos[I,J].SkipSobeRelativo = FALSE
+        ENDFOR
+    ENDFOR    
+;ENDFOLD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+END

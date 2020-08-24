@@ -10,10 +10,10 @@ DEFFCT BOOL SetPlacePos_P1L1()
    ;Aqui o programa coleta os pontos da matriz de três em três pontos
    ;XApp1Place = aproxima do ponto
    ;XApp2Place = desce em z
-   ;XPlace     = faz o place no devido local 
-   XApp1Place = MatrizPontos[MosaicoAtivo,(AtualPlacesCamada)*3+1]
-   XApp2Place = MatrizPontos[MosaicoAtivo,(AtualPlacesCamada)*3+2]
-   XPlace     = MatrizPontos[MosaicoAtivo,(AtualPlacesCamada)*3+3]
+   ;XPlace     = faz o place no devido local
+   XApp1Place = MatrizPontos[MosaicoAtivo,AtualPlacesCamada+1].XApp1Place
+   XApp2Place = MatrizPontos[MosaicoAtivo,AtualPlacesCamada+1].XApp2Place
+   XPlace     = MatrizPontos[MosaicoAtivo,AtualPlacesCamada+1].XPlace  
    ;AtualCamadas
    XApp1Place.Z = XApp1Place.Z + (AtualCamadas)*AlturaCaixa
    XApp2Place.Z = XApp2Place.Z + (AtualCamadas)*AlturaCaixa
