@@ -1,5 +1,5 @@
 ﻿DEFDAT SetPlacePos_P1L1
-INT Ponto
-INT Delta_Z
+INT PlaceAtivo
+INT CamadaAtiva
 INT AlturaCaixa
 ENDDAT

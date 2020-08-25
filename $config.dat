@@ -1,55 +1,113 @@
 ;FOLD Variaveis PEVE
 INT PalletAtivo
-INT MosaicoAtivo; = PalletFurukawa[PalletAtivo].NumProduto
+INT ReceitaAtivo; = PalletFurukawa[PalletAtivo].NumReceita
+INT MosaicoAtivo; = MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
 
 BOOL PegaOk=FALSE
 
-INT ALTURATOPO=850
-INT NUMPALLETS=5
-INT NUMMOZAICO=8
-INT NUMMAXPONTOS=50
+CONST INT ALTURATOPO=850
 
 ;FOLD Definir Variaveis de Pontos
     E6POS XApp1Place
     E6POS XApp2Place
     E6POS XPlace
     E6POS XTopoPallet
-    ;MatrizPontos[MOZAICOS,PONTOS]
-    E6POS MatrizPontos[8,50]
 ;ENDFOLD
 
-;FOLD STRUC Produto
-    Signal SensorVerificaAltura $in[1]
-    Signal SensorPresencaCaixa $in[2]
-    ;Signal CilindroRecuado $in[3]
-    Signal SensorGarraAberta1 $in[3]
-    ;Signal CilindroAvancado $in[4]
-    Signal SensorGarraFechada1 $in[4]
-    ;Signal RecuaCilindro $out[1]
-    Signal AbreGarra1 $out[1]
-    ;Signal AvancaCilindro $out[2]
-    Signal FechaGarra1 $out[2]
+;FOLD STRUC Sinais
+    Signal SensorAltura $in[1]
+    Signal SensorCaixa $in[2]
+    ;RecuaCilindro
+    Signal AbreGarra1 $out[11]
+    Signal AbreGarra2 $out[12]
+    Signal AbreGarra3 $out[13]
+    Signal AbreGarra4 $out[14]
+    Signal AbreGarra5 $out[15]
+    Signal AbreGarra6 $out[16]
+    ;AvancaCilindro
+    Signal FechaGarra1 $out[21]
+    Signal FechaGarra2 $out[22]
+    Signal FechaGarra3 $out[23]
+    Signal FechaGarra4 $out[24]
+    Signal FechaGarra5 $out[25]
+    Signal FechaGarra6 $out[26]
+    ;CilindroRecuado
+    Signal SensorGarraAberta1 $in[31]
+    Signal SensorGarraAberta2 $in[32]
+    Signal SensorGarraAberta3 $in[33]
+    Signal SensorGarraAberta4 $in[34]
+    Signal SensorGarraAberta5 $in[35]
+    Signal SensorGarraAberta6 $in[36]
+    ;CilindroAvancado
+    Signal SensorGarraFechada1 $in[41]
+    Signal SensorGarraFechada2 $in[42]
+    Signal SensorGarraFechada3 $in[43]
+    Signal SensorGarraFechada4 $in[44]
+    Signal SensorGarraFechada5 $in[45]
+    Signal SensorGarraFechada6 $in[46]
 ;ENDFOLD
 
-;FOLD STRUC Produto
-    ;STRUC Produto 
-    ;CHAR Nome[15]
-    ;INT NumCaixas,NumPlaces,NumCamadas,AlturaCaixa
+;FOLD STRUC MatrizPontos
+    ;STRUC MatrizPontoS
+
+    ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
+    ;BOOL IndexacaoVH = (FALSE)
+    ;-> {NumCaixas} numero de caixas para o pick
+    ;INT NumCaixas = (0)
+    ;-> {ConfGarraPick} Opcao de abertura da garra (1,2,3,4,5...)
+    ;INT ConfGarraPick = (0)
+    ;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
+    ;INT PickOp = (2)
+    ;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+    ;INT FechaGarraOp = (0)
+    
+    ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+    ;INT AbreGarraOp = (0)
+    ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
+    ;BOOL SkipGoHome = (FALSE)
+    ;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
+    ;BOOL SkipSobeRelativo = (FALSE)
+    
+    ;-> {XApp1Place} Primeiro ponto de aproximacao de place
+    ;E6POS XApp1Place
+    ;-> {XApp2Place} Segundo ponto de aproximacao de place
+    ;E6POS XApp2Place
+    ;-> {XPlace} Ponto de place
+    ;E6POS XPlace
+    
+    STRUC Matriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
+    ;----------MatrizPontos[MOZAICOS,PONTOS]----------
+    CONST INT NumMatrizI=8
+    CONST INT NumMatrizJ=15  
+    DECL GLOBAL Matriz MatrizPontos[8,15];
+;ENDFOLD
+
+;FOLD STRUC Receita
+    ;STRUC Receita 
+    ;INT Caixas,PlacesCamada,Camadas,AlturaCaixa
     ;POS OffsetProduto
-    ;E6POS PickEsteira,PickEsteiraLateral
-    STRUC Produto CHAR Nome[15], INT NumCaixas, NumPlaces, NumCamadas, AlturaCaixa, POS OffsetProduto, E6POS PickEsteira, PickEsteiraLateral
-    DECL GLOBAL Produto ProdutoFurukawa[8]
+    ;E6POS Pick1Esteira1
+    ;E6POS Pick1Esteira2
+    ;E6POS Pick2Esteira1
+    ;E6POS Pick2Esteira2
+    STRUC Receita INT Caixas, PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
+    ;----------Receita[RECEITAS,MaxCamadas]----------
+    CONST INT NumReceitas=8
+    CONST INT MaxCamadas=11
+    DECL GLOBAL Receita ReceitaFurukawa[8];[NUMRECEITAS]
+    INT  MozaicoCamada[8,11];[NUMRECEITAS,MaxCamadas]
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
     ;STRUC Pallet
-    ;INT NumProduto
+    ;INT NumReceita
     ;BOOL Livre
-    ;INT AtualNumCaixas,AtualNumPlaces,AtualNumCamadas
+    ;INT AtualCaixas,PlaceAtivo,CamadaAtiva
     ;FRAME BasePoint
     ;POS OffSetPallet
     ;E6POS Approch
-    STRUC Pallet INT NumProduto, BOOL Livre, INT AtualNumCaixas, AtualNumPlaces, AtualNumCamadas, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    STRUC Pallet INT NumReceita, BOOL Livre, INT AtualCaixas, PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    CONST INT NumPallets=5
     DECL GLOBAL Pallet PalletFurukawa[5]
 ;ENDFOLD
 

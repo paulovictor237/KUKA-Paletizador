@@ -13,7 +13,7 @@ DEF PlaceCaixaPallet1()
    
 
    OffSetPalletAtivo = PalletFurukawa[PalletAtivo].OffSetPallet
-   OffSetProdutoAtivo = ProdutoFurukawa[MosaicoAtivo].OffsetProduto
+   OffSetProdutoAtivo = ReceitaFurukawa[ReceitaAtivo].OffsetProduto
 
    ;FOLD Offset Place
    ;Update dos pontos de place das caixas com relção ás variáveis de ajustes
@@ -21,22 +21,31 @@ DEF PlaceCaixaPallet1()
       XApp1Place.X = XApp1Place.X + OffSetPalletAtivo.X + OffSetProdutoAtivo.X
       XApp1Place.Y = XApp1Place.Y + OffSetPalletAtivo.Y + OffSetProdutoAtivo.Y
       XApp1Place.Z = XApp1Place.Z + OffSetPalletAtivo.Z + OffSetProdutoAtivo.Z
+      XApp1Place.A = XApp1Place.A + OffSetPalletAtivo.A + OffSetProdutoAtivo.A
+      XApp1Place.B = XApp1Place.B + OffSetPalletAtivo.B + OffSetProdutoAtivo.B
+      XApp1Place.C = XApp1Place.C + OffSetPalletAtivo.C + OffSetProdutoAtivo.C
       
       XApp2Place.X = XApp2Place.X + OffSetPalletAtivo.X + OffSetProdutoAtivo.X
       XApp2Place.Y = XApp2Place.Y + OffSetPalletAtivo.Y + OffSetProdutoAtivo.Y
       XApp2Place.Z = XApp2Place.Z + OffSetPalletAtivo.Z + OffSetProdutoAtivo.Z
+      XApp2Place.A = XApp2Place.A + OffSetPalletAtivo.A + OffSetProdutoAtivo.A
+      XApp2Place.B = XApp2Place.B + OffSetPalletAtivo.B + OffSetProdutoAtivo.B
+      XApp2Place.C = XApp2Place.C + OffSetPalletAtivo.C + OffSetProdutoAtivo.C
       
       XPlace.X     = XPlace.X     + OffSetPalletAtivo.X + OffSetProdutoAtivo.X
       XPlace.Y     = XPlace.Y     + OffSetPalletAtivo.Y + OffSetProdutoAtivo.Y
       XPlace.Z     = XPlace.Z     + OffSetPalletAtivo.Z + OffSetProdutoAtivo.Z
+      XPlace.A     = XPlace.A     + OffSetPalletAtivo.A + OffSetProdutoAtivo.A
+      XPlace.B     = XPlace.B     + OffSetPalletAtivo.B + OffSetProdutoAtivo.B
+      XPlace.C     = XPlace.C     + OffSetPalletAtivo.C + OffSetProdutoAtivo.C
             
    ;ENDFOLD
    
-   ;FOLD Topo Dinamico
+   ;FOLD Rotina Topo Dinamico - DESATIVADO
       ;->marca o mespo ponto de deposito so que deslocado em Z
       ;AQUI POSSO MARCAR UMA ALTURA PADRAO DEPOIS
-      XTopoPallet = XApp1Place
-      XTopoPallet.Z = ALTURATOPO
+      ;XTopoPallet = XApp1Place
+      ;XTopoPallet.Z = ALTURATOPO
 
       ;AlturaAtualPalete = Camada * AlturaCaixa + AlturaPalete  
       ;Verifica/seta altura minina/maxima para que nao haja colisao do robo no sobrevoo
@@ -46,46 +55,31 @@ DEF PlaceCaixaPallet1()
       ; ENDIF
    ;ENDFOLD
 
-   ; -> aciona o ponto de aproximação do pallet
-   ; -> !!! mover de acordo com as rotações da caixa 
-
-   ;FOLD Movimenta para o topo
-      $BWDSTART=FALSE
-      FDAT_ACT=FP2
-      PDAT_ACT=PP2
-      BAS(#PTP_PARAMS,100)
-      PTP BASEPOINT:XTopoPallet C_Dis
+   ;FOLD Movimenta para o topo - DESATIVADO
+      ;$BWDSTART=FALSE
+      ;FDAT_ACT=FP2
+      ;PDAT_ACT=PP2
+      ;BAS(#PTP_PARAMS,100)
+      ;PTP BASEPOINT:XTopoPallet C_Dis
    ;ENDFOLD
-   
-   ;FOLD Verifica Caixas na Garra
       
-      ; IF NOT SensoresGarraAtivos AND NOT DryRun THEN
-      ;    FalhaCaixa = TRUE
-      ; ELSE
-      ;    FalhaCaixa = FALSE
-      ; ENDIF    
-      
-      ; IF FalhaCaixa THEN
-      ;    WAIT FOR FalhaDeposito()
-      ;    FalhaCaixa = FALSE
-      ; ENDIF
-      
-   ;ENDFOLD     
-   
    ;FOLD DEPOSITO DA CAIXA EM RELAÇÃO AO BASEPOINT
-      ;$VEL.CP = 2
-      ;$ACC.CP = 2
-      ;$VEL.ORI1 = 300
-      ;$ACC.ORI1 = 400
-      ;$VEL.ORI2 = 300
-      ;$ACC.ORI2 = 400
-      FDAT_ACT=FP1
+      ;XApp1Place DIRETO com movimento PTP
+      $BWDSTART=FALSE
+      PDAT_ACT=PP2
+      FDAT_ACT=FP2
+      BAS(#PTP_PARAMS,100)
+      SET_CD_PARAMS (0)
+      PTP  BASEPOINT:XApp1Place C_DIS
+      
+      $BWDSTART = FALSE
       LDAT_ACT=LP1
+      FDAT_ACT=FP1
       BAS(#CP_PARAMS,2.00)
-      ;Movimenta p/ aproximacao deposito
-      LIN  BASEPOINT:XApp1Place C_DIS C_DIS
+      SET_CD_PARAMS (0)
+      ;XApp2Place DIRETO com movimento LIN
       LIN  BASEPOINT:XApp2Place C_DIS C_DIS
-      ;Movimenta p/ deposito
+      ;XPlace DIRETO com movimento LIN
       LIN  BASEPOINT:XPlace 
    ;ENDFOLD  
    
@@ -100,7 +94,7 @@ DEF PlaceCaixaPallet1()
       XPlace.Z=XApp2Place.Z
       LIN  BASEPOINT:XPlace 
       ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
-      ;RelFrame.Z=ProdutoFurukawa[MosaicoAtivo].AlturaCaixa + 200
+      ;RelFrame.Z=ReceitaFurukawa[ReceitaAtivo].AlturaCaixa + 200
       ;LIN_REL RelFrame
    ;ENDFOLD    
 

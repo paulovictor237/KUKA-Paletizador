@@ -8,9 +8,10 @@ DEF  MainProgram ( )
       ;FOLD USER INI
          ;Make your modifications here
          $PAL_MODE=TRUE
-         WAIT FOR TPontos()
-         WAIT FOR TProduto()
+         WAIT FOR TDefault()
          WAIT FOR TPallet()
+         WAIT FOR TMatriz()
+         WAIT FOR TReceita()
          $TOOL = TOOL_DATA[1]
          $BASE=$NULLFRAME
          $Advance=0
@@ -31,12 +32,14 @@ DEF  MainProgram ( )
          ; ->ler do CLP pallet
          ; ->gravar na variavel PalletAtivo
          PalletAtivo=1
-         MosaicoAtivo=1 ;= PalletFurukawa[PalletAtivo].NumProduto
+         ReceitaAtivo=1 ;= PalletFurukawa[PalletAtivo].NumReceita
+         MosaicoAtivo= MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
+         ;MosaicoAtivo; = MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
          ; ->verificar se ja possui produto no pallet
          ; ->se não tiver escrever um produto
          IF PalletFurukawa[PalletAtivo].Livre == TRUE THEN
             PalletFurukawa[PalletAtivo].Livre=FALSE
-            PalletFurukawa[PalletAtivo].NumProduto=MosaicoAtivo
+            PalletFurukawa[PalletAtivo].NumReceita=ReceitaAtivo
          ENDIF
 
          WAIT FOR SetPlacePos_P1L1()
