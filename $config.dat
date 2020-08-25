@@ -3,6 +3,8 @@ INT PalletAtivo
 INT ReceitaAtivo; = PalletFurukawa[PalletAtivo].NumReceita
 INT MosaicoAtivo; = MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
 
+INT EsteiraAtiva=1;
+
 BOOL PegaOk=FALSE
 
 CONST INT ALTURATOPO=850

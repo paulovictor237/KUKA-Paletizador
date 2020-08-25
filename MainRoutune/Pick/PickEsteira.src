@@ -1,35 +1,62 @@
 ﻿DEF PickEsteira ( )
   PegaOK = FALSE
-  ;FOLD INI;%{PE}
-    ;FOLD BASISTECH INI
-      GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM()
-      INTERRUPT ON 3
-      BAS (#INITMOV,0 )
-    ;ENDFOLD (BASISTECH INI)
-    ;FOLD USER INI
-    ;Make your modifications here
-    
-    ;ENDFOLD (USER INI)
-  ;ENDFOLD (INI)
+  
+  ;FOLD PickEsteira de cada receita e esteira
+    ;verifica qual opcao de pick do place
+    PickOp=MatrizPontos[MosaicoAtivo,PlaceAtivo+1].PickOp
 
-  ;FOLD MARCA OS PONTOS DE PICK
-     XAPP1PICK=XP2
-     XAPP2PICK=XP3
-     XPICK=XP3
+    IF PickOp==1 AND EsteiraAtiva==1 THEN
+      XPICK = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira1
+    ENDIF
+    IF PickOp==1 AND EsteiraAtiva==2 THEN
+      XPICK = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira2
+    ENDIF
+    IF PickOp==2 AND EsteiraAtiva==1 THEN
+      XPICK = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira1
+    ENDIF
+    IF PickOp==2 AND EsteiraAtiva==2 THEN
+      XPICK = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira2
+    ENDIF
   ;ENDFOLD
+
+  ;FOLD MARCA OS PONTOS DE PICK - RELATIVO
+    XAPP1PICK=XPICK
+    XAPP2PICK=XPICK
+    XPICK=XPICK
+  ;ENDFOLD
+
+  ;Pega a altura da caixa para fazer as posiçoes relativas
+  PlaceAtivo  = PalletFurukawa[PalletAtivo].PlaceAtivo
+  CamadaAtiva = PalletFurukawa[PalletAtivo].CamadaAtiva
+  AlturaCaixa = ReceitaFurukawa[ReceitaAtivo].AlturaCaixa
+  
+  XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva+1)*AlturaCaixa
+  XAPP2PICK.Z = XAPP2PICK.Z + (CamadaAtiva+1)*(AlturaCaixa/2)
   
   ;FOLD APROXIMA TOPO
-    FDAT_ACT=FP1
+    $BWDSTART=FALSE
     PDAT_ACT=PP1
+    FDAT_ACT=FP1
     BAS(#PTP_PARAMS,100)
-    PTP XP1
+    SET_CD_PARAMS (0)
+    PTP XAPP1PICK C_DIS
   ;ENDFOLD
   
   ;FOLD APROXIMA DA CAIXA
-    FDAT_ACT=FP2
+    $BWDSTART = FALSE
     LDAT_ACT=LP2
+    FDAT_ACT=FP2
     BAS(#CP_PARAMS,2.00)
-    LIN XAPP1PICK C_DIS C_DIS
+    SET_CD_PARAMS (0)
+    LIN XAPP2PICK C_DIS C_DIS
+  ;ENDFOLD
+  
+  ;FOLD PONTO DE PICK
+    $BWDSTART = FALSE
+    LDAT_ACT=LP2
+    FDAT_ACT=FP2
+    BAS(#CP_PARAMS,2.00)
+    SET_CD_PARAMS (0)
     LIN XPICK
   ;ENDFOLD 
 
@@ -38,17 +65,25 @@
   ;ENDFOLD  
   
   ;FOLD SOBE EM MOVIMENTO RELATIVO
-    XPICK.Z=XAPP2PICK.Z
-    LIN XPICK
-    ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
-    ;RelFrame.Z=ReceitaFurukawa[ReceitaAtivo].AlturaCaixa + 200
-    ;LIN_REL RelFrame    
+    $BWDSTART = FALSE
+    LDAT_ACT=LP2
+    FDAT_ACT=FP2
+    BAS(#CP_PARAMS,2.00)
+    SET_CD_PARAMS (0)
+    ;XPICK.Z=XAPP2PICK.Z
+    ;LIN XPICK
+    RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
+    RelFrame.Z=(CamadaAtiva+1)*AlturaCaixa
+    LIN_REL RelFrame    
   ;ENDFOLD
 
-  ;FOLD APROXIMA TOPO
-    PDAT_ACT=PP1
-    BAS(#PTP_PARAMS,100)    
-    PTP XP4
+  ;FOLD APROXIMA TOPO - DESATIVADO
+    ;$BWDSTART=FALSE
+    ;PDAT_ACT=PP1
+    ;FDAT_ACT=FP1
+    ;BAS(#PTP_PARAMS,100)
+    ;SET_CD_PARAMS (0)
+    ;PTP XP4
   ;ENDFOLD
 
   PegaOk=TRUE

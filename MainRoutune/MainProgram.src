@@ -34,6 +34,8 @@ DEF  MainProgram ( )
          PalletAtivo=1
          ReceitaAtivo=1 ;= PalletFurukawa[PalletAtivo].NumReceita
          MosaicoAtivo= MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
+         ;valores globais do CLP
+         EsteiraAtiva=1;
          ;MosaicoAtivo; = MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
          ; ->verificar se ja possui produto no pallet
          ; ->se não tiver escrever um produto
