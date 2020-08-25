@@ -1,6 +1,11 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
 DEFFCT BOOL SetPlacePos_P1L1()
+   ;Esses valores devem vir sempre da main
+   ;PalletAtivo=1
+   ;ReceitaAtivo=1 ;= PalletFurukawa[PalletAtivo].NumReceita
+   ;MosaicoAtivo= MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
+
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
    PlaceAtivo  = PalletFurukawa[PalletAtivo].PlaceAtivo

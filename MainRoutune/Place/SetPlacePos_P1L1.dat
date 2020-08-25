@@ -2,5 +2,4 @@
 INT PlaceAtivo
 INT CamadaAtiva
 INT AlturaCaixa
-INT MosaicoAtivo
 ENDDAT
