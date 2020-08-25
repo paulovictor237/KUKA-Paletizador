@@ -1,6 +1,7 @@
 ;FOLD Variaveis PEVE
 INT PalletAtivo
 INT ReceitaAtivo; = PalletFurukawa[PalletAtivo].NumReceita
+INT MosaicoAtivo; = MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
 
 BOOL PegaOk=FALSE
 
@@ -74,7 +75,7 @@ CONST INT ALTURATOPO=850
     ;-> {XPlace} Ponto de place
     ;E6POS XPlace
     
-    STRUC Matriz INT PickOp,AbreGarraOp,NumCaixas,BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,E6POS XApp1Place,XApp2Place,XPlace
+    STRUC Matriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
     ;----------MatrizPontos[MOZAICOS,PONTOS]----------
     CONST INT NumMatrizI=8
     CONST INT NumMatrizJ=15  
@@ -101,11 +102,11 @@ CONST INT ALTURATOPO=850
     ;STRUC Pallet
     ;INT NumReceita
     ;BOOL Livre
-    ;INT AtualCaixas,AtualPlacesCamada,AtualCamadas
+    ;INT AtualCaixas,PlaceAtivo,CamadaAtiva
     ;FRAME BasePoint
     ;POS OffSetPallet
     ;E6POS Approch
-    STRUC Pallet INT NumReceita, BOOL Livre, INT AtualCaixas, AtualPlacesCamada, AtualCamadas, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    STRUC Pallet INT NumReceita, BOOL Livre, INT AtualCaixas, PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
     CONST INT NumPallets=5
     DECL GLOBAL Pallet PalletFurukawa[5]
 ;ENDFOLD
