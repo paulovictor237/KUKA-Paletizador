@@ -41,11 +41,11 @@ DEF PlaceCaixaPallet1()
             
    ;ENDFOLD
    
-   ;FOLD Topo Dinamico
+   ;FOLD Rotina Topo Dinamico - DESATIVADO
       ;->marca o mespo ponto de deposito so que deslocado em Z
       ;AQUI POSSO MARCAR UMA ALTURA PADRAO DEPOIS
-      XTopoPallet = XApp1Place
-      XTopoPallet.Z = ALTURATOPO
+      ;XTopoPallet = XApp1Place
+      ;XTopoPallet.Z = ALTURATOPO
 
       ;AlturaAtualPalete = Camada * AlturaCaixa + AlturaPalete  
       ;Verifica/seta altura minina/maxima para que nao haja colisao do robo no sobrevoo
@@ -55,46 +55,31 @@ DEF PlaceCaixaPallet1()
       ; ENDIF
    ;ENDFOLD
 
-   ; -> aciona o ponto de aproximação do pallet
-   ; -> !!! mover de acordo com as rotações da caixa 
-
-   ;FOLD Movimenta para o topo
-      $BWDSTART=FALSE
-      FDAT_ACT=FP2
-      PDAT_ACT=PP2
-      BAS(#PTP_PARAMS,100)
-      PTP BASEPOINT:XTopoPallet C_Dis
+   ;FOLD Movimenta para o topo - DESATIVADO
+      ;$BWDSTART=FALSE
+      ;FDAT_ACT=FP2
+      ;PDAT_ACT=PP2
+      ;BAS(#PTP_PARAMS,100)
+      ;PTP BASEPOINT:XTopoPallet C_Dis
    ;ENDFOLD
-   
-   ;FOLD Verifica Caixas na Garra
       
-      ; IF NOT SensoresGarraAtivos AND NOT DryRun THEN
-      ;    FalhaCaixa = TRUE
-      ; ELSE
-      ;    FalhaCaixa = FALSE
-      ; ENDIF    
-      
-      ; IF FalhaCaixa THEN
-      ;    WAIT FOR FalhaDeposito()
-      ;    FalhaCaixa = FALSE
-      ; ENDIF
-      
-   ;ENDFOLD     
-   
    ;FOLD DEPOSITO DA CAIXA EM RELAÇÃO AO BASEPOINT
-      ;$VEL.CP = 2
-      ;$ACC.CP = 2
-      ;$VEL.ORI1 = 300
-      ;$ACC.ORI1 = 400
-      ;$VEL.ORI2 = 300
-      ;$ACC.ORI2 = 400
-      FDAT_ACT=FP1
+      ;XApp1Place DIRETO com movimento PTP
+      $BWDSTART=FALSE
+      PDAT_ACT=PP2
+      FDAT_ACT=FP2
+      BAS(#PTP_PARAMS,100)
+      SET_CD_PARAMS (0)
+      PTP  BASEPOINT:XApp1Place C_DIS
+      
+      $BWDSTART = FALSE
       LDAT_ACT=LP1
+      FDAT_ACT=FP1
       BAS(#CP_PARAMS,2.00)
-      ;Movimenta p/ aproximacao deposito
-      LIN  BASEPOINT:XApp1Place C_DIS C_DIS
+      SET_CD_PARAMS (0)
+      ;XApp2Place DIRETO com movimento LIN
       LIN  BASEPOINT:XApp2Place C_DIS C_DIS
-      ;Movimenta p/ deposito
+      ;XPlace DIRETO com movimento LIN
       LIN  BASEPOINT:XPlace 
    ;ENDFOLD  
    
