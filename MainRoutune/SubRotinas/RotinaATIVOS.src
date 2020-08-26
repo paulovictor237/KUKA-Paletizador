@@ -1,26 +1,26 @@
 ﻿DEF RotinaATIVOS ( )
 
 ;FOLD STRUC Pallet
-ReceitaAtivo = PalletFurukawa[PalletAtivo].ReceitaAtivo
-Livre = PalletFurukawa[PalletAtivo].Livre
-AtualCaixas = PalletFurukawa[PalletAtivo].AtualCaixas
-PlaceAtivo = PalletFurukawa[PalletAtivo].PlaceAtivo
-CamadaAtiva = PalletFurukawa[PalletAtivo].CamadaAtiva
-BasePoint = PalletFurukawa[PalletAtivo].BasePoint
-OffSetPallet = PalletFurukawa[PalletAtivo].OffSetPallet
-Approch = PalletFurukawa[PalletAtivo].Approch
+ReceitaAtivo = StrPallet[PalletAtivo].ReceitaAtivo
+Livre = StrPallet[PalletAtivo].Livre
+AtualCaixas = StrPallet[PalletAtivo].AtualCaixas
+PlaceAtivo = StrPallet[PalletAtivo].PlaceAtivo
+CamadaAtiva = StrPallet[PalletAtivo].CamadaAtiva
+BasePoint = StrPallet[PalletAtivo].BasePoint
+OffSetPallet = StrPallet[PalletAtivo].OffSetPallet
+Approch = StrPallet[PalletAtivo].Approch
 ;ENDFOLD
 
 ;FOLD STRUC Receita 
-Caixas = ReceitaFurukawa[ReceitaAtivo].Caixas
-PlacesCamada = ReceitaFurukawa[ReceitaAtivo].PlacesCamada
-Camadas = ReceitaFurukawa[ReceitaAtivo].Camadas
-AlturaCaixa = ReceitaFurukawa[ReceitaAtivo].AlturaCaixa
-OffsetProduto = ReceitaFurukawa[ReceitaAtivo].OffsetProduto
-Pick1Esteira1 = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira1
-Pick1Esteira2 = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira2
-Pick2Esteira1 = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira1
-Pick2Esteira2 = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira2
+Caixas = StrReceita[ReceitaAtivo].Caixas
+PlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
+Camadas = StrReceita[ReceitaAtivo].Camadas
+AlturaCaixa = StrReceita[ReceitaAtivo].AlturaCaixa
+OffsetProduto = StrReceita[ReceitaAtivo].OffsetProduto
+Pick1Esteira1 = StrReceita[ReceitaAtivo].Pick1Esteira1
+Pick1Esteira2 = StrReceita[ReceitaAtivo].Pick1Esteira2
+Pick2Esteira1 = StrReceita[ReceitaAtivo].Pick2Esteira1
+Pick2Esteira2 = StrReceita[ReceitaAtivo].Pick2Esteira2
 
 MosaicoAtivo = MozaicoCamada[ReceitaAtivo,CamadaAtiva+1]
 ;ENDFOLD

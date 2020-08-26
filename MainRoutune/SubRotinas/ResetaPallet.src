@@ -6,11 +6,11 @@ DEF ResetaPallet( )
    ;atravez do pallet ativo o programa sabe qual mozaico est� selecionado
 
    ;FOLD RESETA PALLET
-      PalletFurukawa[PalletAtivo].Livre=TRUE
-      PalletFurukawa[PalletAtivo].ReceitaAtivo=0
-      PalletFurukawa[PalletAtivo].AtualCaixas=0
-      PalletFurukawa[PalletAtivo].PlaceAtivo=0
-      PalletFurukawa[PalletAtivo].CamadaAtiva=0
+      StrPallet[PalletAtivo].Livre=TRUE
+      StrPallet[PalletAtivo].ReceitaAtivo=0
+      StrPallet[PalletAtivo].AtualCaixas=0
+      StrPallet[PalletAtivo].PlaceAtivo=0
+      StrPallet[PalletAtivo].CamadaAtiva=0
    ;ENDFOLD     
    
 END

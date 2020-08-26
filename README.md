@@ -75,8 +75,8 @@ E6POS XPlace;
 MatrizPontos[MOZAICOS,PONTOS]
 
 ```c++
-const int NumMatrizI = 8
-const int NumMatrizJ = 15  
+const int MaxMatrizI = 8
+const int MaxMatrizJ = 15  
 DECL GLOBAL Matriz MatrizPontos[8,15];
 ```
 

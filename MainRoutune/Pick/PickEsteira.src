@@ -4,16 +4,16 @@
   ;FOLD PickEsteira de cada receita e esteira
     ;verifica qual opcao de pick do place
     IF (PickOp==1) AND (EsteiraAtiva==1) THEN
-      XPICK = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira1
+      XPICK = StrReceita[ReceitaAtivo].Pick1Esteira1
     ENDIF
     IF (PickOp==1) AND (EsteiraAtiva==2) THEN
-      XPICK = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira2
+      XPICK = StrReceita[ReceitaAtivo].Pick1Esteira2
     ENDIF
     IF (PickOp==2) AND (EsteiraAtiva==1) THEN
-      XPICK = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira1
+      XPICK = StrReceita[ReceitaAtivo].Pick2Esteira1
     ENDIF
     IF (PickOp==2) AND (EsteiraAtiva==2) THEN
-      XPICK = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira2
+      XPICK = StrReceita[ReceitaAtivo].Pick2Esteira2
     ENDIF
   ;ENDFOLD
 

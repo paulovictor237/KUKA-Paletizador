@@ -1,8 +1,8 @@
 ﻿DEF TDefault ( )
 
 ;FOLD Variaveis Default da Matriz de Pontos
-    FOR I = 1 to NumMatrizI
-        FOR J = 1 to NumMatrizJ
+    FOR I = 1 to MaxMatrizI
+        FOR J = 1 to MaxMatrizJ
          ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
          MatrizPontos[I,J].IndexacaoVH = FALSE
          ;-> {NumCaixas} numero de caixas para o pick

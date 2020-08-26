@@ -73,11 +73,11 @@ CONST INT ALTURATOPO=850
     E6POS XApp1Place
     E6POS XApp2Place
     E6POS XPlace
-    STRUC Matriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
+    STRUC DecMatriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
     ;----------MatrizPontos[MOZAICOS,PONTOS]----------
-    CONST INT NumMatrizI=8
-    CONST INT NumMatrizJ=15  
-    DECL GLOBAL Matriz MatrizPontos[8,15];
+    CONST INT MaxMatrizI=8
+    CONST INT MaxMatrizJ=15  
+    DECL GLOBAL DecMatriz MatrizPontos[8,15];
 ;ENDFOLD
 
 ;FOLD STRUC Receita
@@ -90,12 +90,12 @@ CONST INT ALTURATOPO=850
     E6POS Pick1Esteira2
     E6POS Pick2Esteira1
     E6POS Pick2Esteira2
-    STRUC Receita INT Caixas, PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
-    ;----------Receita[RECEITAS,MaxCamadas]----------
-    CONST INT NumReceitas=8
+    STRUC DecStrReceita INT Caixas, PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
+    ;----------DecStrReceita[RECEITAS,MaxCamadas]----------
+    CONST INT MaxReceitas=8
     CONST INT MaxCamadas=11
-    DECL GLOBAL Receita ReceitaFurukawa[8];[NUMRECEITAS]
-    INT  MozaicoCamada[8,11];[NUMRECEITAS,MaxCamadas]
+    DECL GLOBAL DecStrReceita StrReceita[8];[MaxReceitas]
+    INT  MozaicoCamada[8,11];[MaxReceitas,MaxCamadas]
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
@@ -108,8 +108,8 @@ CONST INT ALTURATOPO=850
     POS OffSetPallet
     E6POS Approch
     STRUC Pallet INT ReceitaAtivo, BOOL Livre, INT AtualCaixas, PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
-    CONST INT NumPallets=5
-    DECL GLOBAL Pallet PalletFurukawa[5]
+    CONST INT MaxPallets=5
+    DECL GLOBAL Pallet StrPallet[5]
 ;ENDFOLD
 
 ;FOLD VARIAVEIS CLP
