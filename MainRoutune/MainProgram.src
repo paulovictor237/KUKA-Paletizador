@@ -42,7 +42,6 @@ DEF  MainProgram ( )
          WAIT FOR RotinaCLP()
          PickEsteira()
          IF PegaOk THEN
-            WAIT FOR SetPlacePos_P1L1()
             PlaceCaixaPallet1()
          ENDIF 
       ENDWHILE
