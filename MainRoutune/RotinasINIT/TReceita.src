@@ -173,7 +173,4 @@ MozaicoCamada[8,3]=8
 MozaicoCamada[8,4]=8
 MozaicoCamada[8,5]=8
 ;ENDFOLD
-
-RETURN TRUE
-
-ENDFCT
+END

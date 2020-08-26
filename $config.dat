@@ -1,18 +1,12 @@
 ;FOLD Variaveis PEVE
 INT PalletAtivo
-INT ReceitaAtivo; = PalletFurukawa[PalletAtivo].NumReceita
-INT MosaicoAtivo; = MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
-
-INT EsteiraAtiva=1;
+INT MosaicoAtivo
 
 BOOL PegaOk=FALSE
 
 CONST INT ALTURATOPO=850
 
 ;FOLD Definir Variaveis de Pontos
-    E6POS XApp1Place
-    E6POS XApp2Place
-    E6POS XPlace
     E6POS XTopoPallet
 ;ENDFOLD
 
@@ -50,33 +44,31 @@ CONST INT ALTURATOPO=850
 ;ENDFOLD
 
 ;FOLD STRUC MatrizPontos
-    ;STRUC MatrizPontoS
-
     ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
-    ;BOOL IndexacaoVH = (FALSE)
     ;-> {NumCaixas} numero de caixas para o pick
-    ;INT NumCaixas = (0)
     ;-> {ConfGarraPick} Opcao de abertura da garra (1,2,3,4,5...)
-    ;INT ConfGarraPick = (0)
     ;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
-    ;INT PickOp = (2)
     ;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-    ;INT FechaGarraOp = (0)
     
     ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-    ;INT AbreGarraOp = (0)
     ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
-    ;BOOL SkipGoHome = (FALSE)
     ;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
-    ;BOOL SkipSobeRelativo = (FALSE)
     
     ;-> {XApp1Place} Primeiro ponto de aproximacao de place
-    ;E6POS XApp1Place
     ;-> {XApp2Place} Segundo ponto de aproximacao de place
-    ;E6POS XApp2Place
     ;-> {XPlace} Ponto de place
-    ;E6POS XPlace
     
+    BOOL IndexacaoVH
+    BOOL SkipGoHome
+    BOOL SkipSobeRelativo
+    INT NumCaixas
+    INT ConfGarraPick
+    INT PickOp
+    INT FechaGarraOp
+    INT AbreGarraOp
+    E6POS XApp1Place
+    E6POS XApp2Place
+    E6POS XPlace
     STRUC Matriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
     ;----------MatrizPontos[MOZAICOS,PONTOS]----------
     CONST INT NumMatrizI=8
@@ -85,13 +77,15 @@ CONST INT ALTURATOPO=850
 ;ENDFOLD
 
 ;FOLD STRUC Receita
-    ;STRUC Receita 
-    ;INT Caixas,PlacesCamada,Camadas,AlturaCaixa
-    ;POS OffsetProduto
-    ;E6POS Pick1Esteira1
-    ;E6POS Pick1Esteira2
-    ;E6POS Pick2Esteira1
-    ;E6POS Pick2Esteira2
+    INT Caixas
+    INT PlacesCamada
+    INT Camadas
+    INT AlturaCaixa
+    POS OffsetProduto
+    E6POS Pick1Esteira1
+    E6POS Pick1Esteira2
+    E6POS Pick2Esteira1
+    E6POS Pick2Esteira2
     STRUC Receita INT Caixas, PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
     ;----------Receita[RECEITAS,MaxCamadas]----------
     CONST INT NumReceitas=8
@@ -101,14 +95,15 @@ CONST INT ALTURATOPO=850
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
-    ;STRUC Pallet
-    ;INT NumReceita
-    ;BOOL Livre
-    ;INT AtualCaixas,PlaceAtivo,CamadaAtiva
-    ;FRAME BasePoint
-    ;POS OffSetPallet
-    ;E6POS Approch
-    STRUC Pallet INT NumReceita, BOOL Livre, INT AtualCaixas, PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    BOOL Livre
+    INT ReceitaAtivo
+    INT AtualCaixas
+    INT PlaceAtivo
+    INT CamadaAtiva
+    FRAME BasePoint
+    POS OffSetPallet
+    E6POS Approch
+    STRUC Pallet INT ReceitaAtivo, BOOL Livre, INT AtualCaixas, PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
     CONST INT NumPallets=5
     DECL GLOBAL Pallet PalletFurukawa[5]
 ;ENDFOLD
@@ -119,6 +114,7 @@ CONST INT ALTURATOPO=850
     ;3 - Sem pallet
     ;Mosaico
     ;Produto selecionado
+    INT EsteiraAtiva
     STRUC CLP CHAR Produto[15], INT TamPallet, Mosaico
     DECL GLOBAL CLP CLPFurukawa
 ;ENDFOLD

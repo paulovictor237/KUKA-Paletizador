@@ -790,6 +790,4 @@ MatrizPontos[8,6].XApp1Place = PE_8x6_XApp1Place
 MatrizPontos[8,6].XApp2Place = PE_8x6_XApp2Place
 MatrizPontos[8,6].XPlace     = PE_8x6_XPlace
 ;ENDFOLD
-
-RETURN TRUE
-ENDFCT
+END

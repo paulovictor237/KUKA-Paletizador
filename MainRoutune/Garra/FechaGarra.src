@@ -1,7 +1,6 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
 DEF FechaGarra()
-   FechaGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].FechaGarraOp
    SWITCH FechaGarraOp
    CASE 1
       ;RecuaCilindro
@@ -53,5 +52,4 @@ DEF FechaGarra()
       WAIT FOR  ( SensorGarraFechada6 )
    ENDSWITCH
    WAIT SEC 1
-   RETURN TRUE
-ENDFCT
+END

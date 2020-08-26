@@ -22,5 +22,4 @@ DEF SetCamada( )
       ENDIF
    ;ENDFOLD     
    
-   RETURN TRUE
-ENDFCT
+END

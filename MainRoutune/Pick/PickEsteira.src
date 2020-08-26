@@ -3,18 +3,16 @@
   
   ;FOLD PickEsteira de cada receita e esteira
     ;verifica qual opcao de pick do place
-    PickOp=MatrizPontos[MosaicoAtivo,PlaceAtivo+1].PickOp
-
-    IF PickOp==1 AND EsteiraAtiva==1 THEN
+    IF (PickOp==1) AND (EsteiraAtiva==1) THEN
       XPICK = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira1
     ENDIF
-    IF PickOp==1 AND EsteiraAtiva==2 THEN
+    IF (PickOp==1) AND (EsteiraAtiva==2) THEN
       XPICK = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira2
     ENDIF
-    IF PickOp==2 AND EsteiraAtiva==1 THEN
+    IF (PickOp==2) AND (EsteiraAtiva==1) THEN
       XPICK = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira1
     ENDIF
-    IF PickOp==2 AND EsteiraAtiva==2 THEN
+    IF (PickOp==2) AND (EsteiraAtiva==2) THEN
       XPICK = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira2
     ENDIF
   ;ENDFOLD
@@ -25,11 +23,7 @@
     XPICK=XPICK
   ;ENDFOLD
 
-  ;Pega a altura da caixa para fazer as posiçoes relativas
-  PlaceAtivo  = PalletFurukawa[PalletAtivo].PlaceAtivo
-  CamadaAtiva = PalletFurukawa[PalletAtivo].CamadaAtiva
-  AlturaCaixa = ReceitaFurukawa[ReceitaAtivo].AlturaCaixa
-  
+  ;Pega a altura da caixa para fazer as posiçoes relativas  
   XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva+1)*AlturaCaixa
   XAPP2PICK.Z = XAPP2PICK.Z + (CamadaAtiva+1)*(AlturaCaixa/2)
   

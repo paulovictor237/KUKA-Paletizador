@@ -1,0 +1,47 @@
+﻿DEF RotinaATIVOS ( )
+
+;ENDFOLD valores globais do CLP
+PalletAtivo = 1
+
+;ENDFOLD
+
+;FOLD STRUC Pallet
+ReceitaAtivo = PalletFurukawa[PalletAtivo].ReceitaAtivo
+Livre = PalletFurukawa[PalletAtivo].Livre
+AtualCaixas = PalletFurukawa[PalletAtivo].AtualCaixas
+PlaceAtivo = PalletFurukawa[PalletAtivo].PlaceAtivo
+CamadaAtiva = PalletFurukawa[PalletAtivo].CamadaAtiva
+BasePoint = PalletFurukawa[PalletAtivo].BasePoint
+OffSetPallet = PalletFurukawa[PalletAtivo].OffSetPallet
+Approch = PalletFurukawa[PalletAtivo].Approch
+;ENDFOLD
+
+;FOLD STRUC Receita 
+Caixas = ReceitaFurukawa[ReceitaAtivo].Caixas
+PlacesCamada = ReceitaFurukawa[ReceitaAtivo].PlacesCamada
+Camadas = ReceitaFurukawa[ReceitaAtivo].Camadas
+AlturaCaixa = ReceitaFurukawa[ReceitaAtivo].AlturaCaixa
+OffsetProduto = ReceitaFurukawa[ReceitaAtivo].OffsetProduto
+Pick1Esteira1 = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira1
+Pick1Esteira2 = ReceitaFurukawa[ReceitaAtivo].Pick1Esteira2
+Pick2Esteira1 = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira1
+Pick2Esteira2 = ReceitaFurukawa[ReceitaAtivo].Pick2Esteira2
+
+MosaicoAtivo = MozaicoCamada[ReceitaAtivo,CamadaAtiva+1]
+;ENDFOLD
+
+;FOLD STRUC Matriz 
+IndexacaoVH = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].IndexacaoVH
+SkipGoHome = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].SkipGoHome
+SkipSobeRelativo = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].SkipSobeRelativo
+NumCaixas = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].NumCaixas
+ConfGarraPick = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].ConfGarraPick
+PickOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].PickOp
+FechaGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].FechaGarraOp
+AbreGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].AbreGarraOp
+XApp1Place = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XApp1Place
+XApp2Place = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XApp2Place
+XPlace = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XPlace
+;ENDFOLD
+
+END
