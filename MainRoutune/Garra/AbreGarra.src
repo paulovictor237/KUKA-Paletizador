@@ -1,8 +1,8 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
 DEFFCT BOOL AbreGarra()
-   PlaceAtivo = PalletFurukawa[PalletAtivo].PlaceAtivo
-   SWITCH AbrirGarras[ReceitaAtivo,PlaceAtivo]
+   AbreGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].AbreGarraOp
+   SWITCH AbreGarraOp
    CASE 1
       ;AvancaCilindro
       FechaGarra1 = FALSE
