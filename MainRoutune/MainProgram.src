@@ -33,7 +33,7 @@ DEF  MainProgram ( )
          ; ->gravar na variavel PalletAtivo
          ;MosaicoAtivo; = MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
          ; ->verificar se ja possui produto no pallet
-         ; ->se não tiver escrever um produto
+         ; ->se nao tiver escrever um produto
          IF PalletFurukawa[PalletAtivo].Livre == TRUE THEN
             PalletFurukawa[PalletAtivo].Livre=FALSE
             PalletFurukawa[PalletAtivo].ReceitaAtivo=ReceitaAtivo

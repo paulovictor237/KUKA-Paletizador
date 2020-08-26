@@ -44,16 +44,18 @@ CONST INT ALTURATOPO=850
 ;ENDFOLD
 
 ;FOLD STRUC MatrizPontos
+    ;CLP
     ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
     ;-> {NumCaixas} numero de caixas para o pick
+    ;Configuracao de Pick
     ;-> {ConfGarraPick} Opcao de abertura da garra (1,2,3,4,5...)
     ;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
     ;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-    
+    ;Configuracao de Place
     ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
     ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
     ;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
-    
+    ;Pontos de Place
     ;-> {XApp1Place} Primeiro ponto de aproximacao de place
     ;-> {XApp2Place} Segundo ponto de aproximacao de place
     ;-> {XPlace} Ponto de place

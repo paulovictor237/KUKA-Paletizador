@@ -2,7 +2,7 @@ DEF PlaceCaixaPallet1()
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
 
-   ;FOLD MARCA A BASE DE PALLETIZAÇÃO
+   ;FOLD MARCA A BASE DE PALLETIZAcaO
       $TOOL = TOOL_DATA[1]
       ;$BASE=$NULLFRAME
       ;MOVIMENTO COM BASE
@@ -10,7 +10,7 @@ DEF PlaceCaixaPallet1()
    ;ENDFOLD
 
    ;FOLD Offset Place
-   ;Update dos pontos de place das caixas com relção ás variáveis de ajustes
+   ;Update dos pontos de place das caixas com relcao ás variáveis de ajustes
       
       XApp1Place.X = XApp1Place.X + OffSetPallet.X + OffsetProduto.X
       XApp1Place.Y = XApp1Place.Y + OffSetPallet.Y + OffsetProduto.Y
@@ -57,7 +57,7 @@ DEF PlaceCaixaPallet1()
       ;PTP BASEPOINT:XTopoPallet C_Dis
    ;ENDFOLD
       
-   ;FOLD DEPOSITO DA CAIXA EM RELAÇÃO AO BASEPOINT
+   ;FOLD DEPOSITO DA CAIXA EM RELAcaO AO BASEPOINT
       ;XApp1Place DIRETO com movimento PTP
       $BWDSTART=FALSE
       PDAT_ACT=PP2

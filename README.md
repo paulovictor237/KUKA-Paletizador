@@ -1,5 +1,5 @@
 # FOLD STRUC MatrizPontos
-### Cabeçalho Pick
+### Cabecalho Pick
 
 {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
 
@@ -30,7 +30,7 @@ int PickOp = 1;
 int FechaGarraOp = 1;
 ```
 
-### Cabeçalho Place
+### Cabecalho Place
 
 {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
 
@@ -50,7 +50,7 @@ bool SkipGoHome = false;
 bool SkipSobeRelativo = false;
 ```
 
-### Cabeçalho Pontos
+### Cabecalho Pontos
 
 {XApp1Place} Primeiro ponto de aproximacao de place
 

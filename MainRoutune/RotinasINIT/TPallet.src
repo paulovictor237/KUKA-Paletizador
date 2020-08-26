@@ -14,7 +14,7 @@ BASE_DATA[6]={X 0.000,Y 0.000,Z 0.000,A 0.0000,B -0.0000,C 0.0000}
 TOOL_DATA[1]={X 441.263,Y -0.000,Z 405.123,A 0.0000,B 0.0000,C 0.0000}
 ;ENDFOLD
 
-;FOLD Iniciar Opções de Pallet
+;FOLD Iniciar Opcoes de Pallet
 FOR i = 1 TO NumPallets
    PalletFurukawa[i].ReceitaAtivo=0
    PalletFurukawa[i].Livre=TRUE
