@@ -1,6 +1,7 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
 DEF FechaGarra()
+IF (OperarVazio==FALSE) THEN
    SWITCH FechaGarraOp
    CASE 1
       ;RecuaCilindro
@@ -52,4 +53,5 @@ DEF FechaGarra()
       WAIT FOR  ( SensorGarraFechada6 )
    ENDSWITCH
    WAIT SEC 1
+ENDIF
 END

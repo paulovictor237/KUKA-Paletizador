@@ -1,6 +1,7 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
 DEF AbreGarra()
+IF (OperarVazio==FALSE) THEN
    SWITCH AbreGarraOp
    CASE 1
       ;AvancaCilindro
@@ -52,4 +53,5 @@ DEF AbreGarra()
       WAIT FOR  ( SensorGarraAberta6 )
    ENDSWITCH
    WAIT SEC 1
+ENDIF
 END
