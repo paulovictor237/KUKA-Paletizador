@@ -1,6 +1,6 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
-DEFFCT BOOL AbreGarra()
+DEF AbreGarra()
    AbreGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].AbreGarraOp
    SWITCH AbreGarraOp
    CASE 1

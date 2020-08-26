@@ -1,6 +1,6 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
-DEFFCT BOOL SetPlacePos_P1L1()
+DEF SetPlacePos_P1L1()
    ;Esses valores devem vir sempre da main
    ;PalletAtivo=1
    ;ReceitaAtivo=1 ;= PalletFurukawa[PalletAtivo].NumReceita

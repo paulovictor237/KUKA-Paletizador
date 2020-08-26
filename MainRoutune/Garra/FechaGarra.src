@@ -1,6 +1,6 @@
 &ACCESS RVO1
 &PARAM EDITMASK = *
-DEFFCT BOOL FechaGarra()
+DEF FechaGarra()
    FechaGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].FechaGarraOp
    SWITCH FechaGarraOp
    CASE 1

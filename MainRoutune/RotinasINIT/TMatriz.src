@@ -1,6 +1,6 @@
 ﻿&ACCESS RVP
 &PARAM EDITMASK = *
-DEFFCT BOOL TMatriz( )
+DEF TMatriz( )
 ;MatrizPontos[MOZAICOS,PONTOS]
 ;FOLD 1-42003385
 MatrizPontos[I,J].IndexacaoVH = FALSE

@@ -1,6 +1,6 @@
 ﻿&ACCESS RVP
 &PARAM EDITMASK = *
-DEFFCT BOOL TReceita( )
+DEF TReceita( )
 ;FOLD 1-42003385
 ReceitaFurukawa[1].OffsetProduto.X=0
 ReceitaFurukawa[1].OffsetProduto.Y=0
