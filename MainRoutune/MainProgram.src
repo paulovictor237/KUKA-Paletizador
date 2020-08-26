@@ -38,10 +38,11 @@ DEF  MainProgram ( )
             PalletFurukawa[PalletAtivo].Livre=FALSE
             PalletFurukawa[PalletAtivo].ReceitaAtivo=ReceitaAtivo
          ENDIF
+         WAIT FOR RotinaATIVOS()
          WAIT FOR RotinaCLP()
-         WAIT FOR SetPlacePos_P1L1()
          PickEsteira()
          IF PegaOk THEN
+            WAIT FOR SetPlacePos_P1L1()
             PlaceCaixaPallet1()
          ENDIF 
       ENDWHILE
