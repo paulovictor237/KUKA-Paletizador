@@ -4,9 +4,6 @@
 DEF SetCamada( )
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
-
-   $Advance=0
-
    ;FOLD VERIFICA CAIXA E CAMADA
       ;->apos colocar a caixa deve acrescentar + 1 em
       StrPallet[PalletAtivo].PlaceAtivo = StrPallet[PalletAtivo].PlaceAtivo + 1

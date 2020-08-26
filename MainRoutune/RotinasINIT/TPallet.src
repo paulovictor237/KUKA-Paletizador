@@ -1,56 +1,56 @@
 ﻿&ACCESS RVP
 &PARAM EDITMASK = *
 DEF TPallet( )
-;DECL FRAME TBASE[5] 
-;DECL POS TBASE
-;TBASE={X 0,Y 0,Z 0,A 0,B 0,C 0}
-;FOLD Definir Bases e Tools
-BASE_DATA[1]={X 1927.490,Y 1267.895,Z -701.000,A 0.0000,B -0.0000,C 0.0000}
-BASE_DATA[2]={X 230.837,Y 1266.535,Z -701.000,A 0.0000,B -0.0000,C 0.0000}
-BASE_DATA[3]={X -1434.132,Y 1186.008,Z -701.000,A 90.0000,B -0.0000,C -0.0000}
-BASE_DATA[4]={X -24.888,Y -1247.561,Z -701.000,A 180.0000,B -0.0000,C -0.0000}
-BASE_DATA[5]={X -1723.752,Y -1249.228,Z -701.000,A 180.0000,B -0.0000,C -0.0000}
-BASE_DATA[6]={X 0.000,Y 0.000,Z 0.000,A 0.0000,B -0.0000,C 0.0000}
-TOOL_DATA[1]={X 441.263,Y -0.000,Z 405.123,A 0.0000,B 0.0000,C 0.0000}
-;ENDFOLD
-
-;FOLD Iniciar Opcoes de Pallet
-FOR i = 1 TO MaxPallets
-   StrPallet[i].ReceitaAtivo=0
-   StrPallet[i].Livre=TRUE
-   StrPallet[i].AtualCaixas=0
-   StrPallet[i].PlaceAtivo=0
-   StrPallet[i].CamadaAtiva=0
-   StrPallet[i].BasePoint=BASE_DATA[i]
-   StrPallet[i].OffSetPallet.X=0
-   StrPallet[i].OffSetPallet.Y=0
-   StrPallet[i].OffSetPallet.Z=0
-   StrPallet[i].OffSetPallet.A=0
-   StrPallet[i].OffSetPallet.B=0
-   StrPallet[i].OffSetPallet.C=0
-ENDFOR
-;ENDFOLD
-
-;FOLD Definir OffSetPallet
-StrPallet[1].OffSetPallet.X=0
-StrPallet[1].OffSetPallet.Y=0
-StrPallet[1].OffSetPallet.z=0
-
-StrPallet[2].OffSetPallet.X=0
-StrPallet[2].OffSetPallet.Y=0
-StrPallet[2].OffSetPallet.z=0
-
-StrPallet[3].OffSetPallet.X=0
-StrPallet[3].OffSetPallet.Y=0
-StrPallet[3].OffSetPallet.z=0
-
-StrPallet[4].OffSetPallet.X=0
-StrPallet[4].OffSetPallet.Y=0
-StrPallet[4].OffSetPallet.z=0
-
-StrPallet[5].OffSetPallet.X=0
-StrPallet[5].OffSetPallet.Y=0
-StrPallet[5].OffSetPallet.z=0
-;ENDFOLD
-
+   ;DECL FRAME TBASE[5] 
+   ;DECL POS TBASE
+   ;TBASE={X 0,Y 0,Z 0,A 0,B 0,C 0}
+   ;FOLD Definir Bases e Tools
+      BASE_DATA[1]={X 1927.490,Y 1267.895,Z -701.000,A 0.0000,B -0.0000,C 0.0000}
+      BASE_DATA[2]={X 230.837,Y 1266.535,Z -701.000,A 0.0000,B -0.0000,C 0.0000}
+      BASE_DATA[3]={X -1434.132,Y 1186.008,Z -701.000,A 90.0000,B -0.0000,C -0.0000}
+      BASE_DATA[4]={X -24.888,Y -1247.561,Z -701.000,A 180.0000,B -0.0000,C -0.0000}
+      BASE_DATA[5]={X -1723.752,Y -1249.228,Z -701.000,A 180.0000,B -0.0000,C -0.0000}
+      BASE_DATA[6]={X 0.000,Y 0.000,Z 0.000,A 0.0000,B -0.0000,C 0.0000}
+      TOOL_DATA[1]={X 441.263,Y -0.000,Z 405.123,A 0.0000,B 0.0000,C 0.0000}
+   ;ENDFOLD
+   
+   ;FOLD Iniciar Opcoes de Pallet
+      FOR i = 1 TO MaxPallets
+         StrPallet[i].ReceitaAtivo=0
+         StrPallet[i].Livre=TRUE
+         StrPallet[i].AtualCaixas=0
+         StrPallet[i].PlaceAtivo=0
+         StrPallet[i].CamadaAtiva=0
+         StrPallet[i].BasePoint=BASE_DATA[i]
+         StrPallet[i].OffSetPallet.X=0
+         StrPallet[i].OffSetPallet.Y=0
+         StrPallet[i].OffSetPallet.Z=0
+         StrPallet[i].OffSetPallet.A=0
+         StrPallet[i].OffSetPallet.B=0
+         StrPallet[i].OffSetPallet.C=0
+      ENDFOR
+   ;ENDFOLD
+   
+   ;FOLD Definir OffSetPallet
+      StrPallet[1].OffSetPallet.X=0
+      StrPallet[1].OffSetPallet.Y=0
+      StrPallet[1].OffSetPallet.z=0
+      
+      StrPallet[2].OffSetPallet.X=0
+      StrPallet[2].OffSetPallet.Y=0
+      StrPallet[2].OffSetPallet.z=0
+      
+      StrPallet[3].OffSetPallet.X=0
+      StrPallet[3].OffSetPallet.Y=0
+      StrPallet[3].OffSetPallet.z=0
+      
+      StrPallet[4].OffSetPallet.X=0
+      StrPallet[4].OffSetPallet.Y=0
+      StrPallet[4].OffSetPallet.z=0
+      
+      StrPallet[5].OffSetPallet.X=0
+      StrPallet[5].OffSetPallet.Y=0
+      StrPallet[5].OffSetPallet.z=0
+   ;ENDFOLD
+   
 END

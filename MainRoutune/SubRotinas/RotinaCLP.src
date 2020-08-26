@@ -1,10 +1,8 @@
 ﻿DEF RotinaCLP ( )
-
-    ;{EsteiraAtiva} numero da esteira que está com a caixa
-    ;{CLPNumCaixas} numero de caixas para o pick
-    ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
-    ;INT EsteiraAtiva=1
-    ;INT  CLPNumCaixas    
-    ;BOOL CLPIndexacaoVH  
-
+   ;{EsteiraAtiva} numero da esteira que está com a caixa
+   ;{CLPNumCaixas} numero de caixas para o pick
+   ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
+   ;INT EsteiraAtiva=1
+   ;INT  CLPNumCaixas    
+   ;BOOL CLPIndexacaoVH    
 END

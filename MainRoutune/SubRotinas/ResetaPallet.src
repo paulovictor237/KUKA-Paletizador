@@ -4,7 +4,7 @@
 DEF ResetaPallet( )
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico est� selecionado
-
+   
    ;FOLD RESETA PALLET
       StrPallet[PalletAtivo].Livre=TRUE
       StrPallet[PalletAtivo].ReceitaAtivo=0

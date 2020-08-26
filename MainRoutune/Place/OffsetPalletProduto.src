@@ -1,23 +1,23 @@
 ﻿DEF OffsetPalletProduto ( )
-    ;Update dos pontos de place das caixas com relcao ás variáveis de ajustes
-    XApp1Place.X = XApp1Place.X + OffSetPallet.X + OffsetProduto.X
-    XApp1Place.Y = XApp1Place.Y + OffSetPallet.Y + OffsetProduto.Y
-    XApp1Place.Z = XApp1Place.Z + OffSetPallet.Z + OffsetProduto.Z
-    XApp1Place.A = XApp1Place.A + OffSetPallet.A + OffsetProduto.A
-    XApp1Place.B = XApp1Place.B + OffSetPallet.B + OffsetProduto.B
-    XApp1Place.C = XApp1Place.C + OffSetPallet.C + OffsetProduto.C
-    
-    XApp2Place.X = XApp2Place.X + OffSetPallet.X + OffsetProduto.X
-    XApp2Place.Y = XApp2Place.Y + OffSetPallet.Y + OffsetProduto.Y
-    XApp2Place.Z = XApp2Place.Z + OffSetPallet.Z + OffsetProduto.Z
-    XApp2Place.A = XApp2Place.A + OffSetPallet.A + OffsetProduto.A
-    XApp2Place.B = XApp2Place.B + OffSetPallet.B + OffsetProduto.B
-    XApp2Place.C = XApp2Place.C + OffSetPallet.C + OffsetProduto.C
-    
-    XPlace.X     = XPlace.X     + OffSetPallet.X + OffsetProduto.X
-    XPlace.Y     = XPlace.Y     + OffSetPallet.Y + OffsetProduto.Y
-    XPlace.Z     = XPlace.Z     + OffSetPallet.Z + OffsetProduto.Z
-    XPlace.A     = XPlace.A     + OffSetPallet.A + OffsetProduto.A
-    XPlace.B     = XPlace.B     + OffSetPallet.B + OffsetProduto.B
-    XPlace.C     = XPlace.C     + OffSetPallet.C + OffsetProduto.C        
+   ;Update dos pontos de place das caixas com relcao ás variáveis de ajustes
+   XApp1Place.X = XApp1Place.X + OffSetPallet.X + OffsetProduto.X
+   XApp1Place.Y = XApp1Place.Y + OffSetPallet.Y + OffsetProduto.Y
+   XApp1Place.Z = XApp1Place.Z + OffSetPallet.Z + OffsetProduto.Z
+   XApp1Place.A = XApp1Place.A + OffSetPallet.A + OffsetProduto.A
+   XApp1Place.B = XApp1Place.B + OffSetPallet.B + OffsetProduto.B
+   XApp1Place.C = XApp1Place.C + OffSetPallet.C + OffsetProduto.C
+   
+   XApp2Place.X = XApp2Place.X + OffSetPallet.X + OffsetProduto.X
+   XApp2Place.Y = XApp2Place.Y + OffSetPallet.Y + OffsetProduto.Y
+   XApp2Place.Z = XApp2Place.Z + OffSetPallet.Z + OffsetProduto.Z
+   XApp2Place.A = XApp2Place.A + OffSetPallet.A + OffsetProduto.A
+   XApp2Place.B = XApp2Place.B + OffSetPallet.B + OffsetProduto.B
+   XApp2Place.C = XApp2Place.C + OffSetPallet.C + OffsetProduto.C
+   
+   XPlace.X     = XPlace.X     + OffSetPallet.X + OffsetProduto.X
+   XPlace.Y     = XPlace.Y     + OffSetPallet.Y + OffsetProduto.Y
+   XPlace.Z     = XPlace.Z     + OffSetPallet.Z + OffsetProduto.Z
+   XPlace.A     = XPlace.A     + OffSetPallet.A + OffsetProduto.A
+   XPlace.B     = XPlace.B     + OffSetPallet.B + OffsetProduto.B
+   XPlace.C     = XPlace.C     + OffSetPallet.C + OffsetProduto.C        
 END
