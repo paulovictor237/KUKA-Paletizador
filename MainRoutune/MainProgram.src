@@ -31,7 +31,9 @@ DEF  MainProgram ( )
       WHILE TRUE
          ; ->ler do CLP pallet
          ; ->gravar na variavel PalletAtivo
-         ;MosaicoAtivo; = MozaicoCamada[ReceitaAtivo,PalletFurukawa[PalletAtivo].CamadaAtiva+1]
+         PalletAtivo=1 ; TESTE
+         ReceitaAtivo=1 ; TESTE
+         PalletFurukawa[PalletAtivo].Livre=TRUE ; TESTE
          ; ->verificar se ja possui produto no pallet
          ; ->se nao tiver escrever um produto
          IF PalletFurukawa[PalletAtivo].Livre == TRUE THEN

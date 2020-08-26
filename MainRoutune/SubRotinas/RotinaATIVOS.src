@@ -1,10 +1,5 @@
 ﻿DEF RotinaATIVOS ( )
 
-;ENDFOLD valores globais do CLP
-PalletAtivo = 1
-
-;ENDFOLD
-
 ;FOLD STRUC Pallet
 ReceitaAtivo = PalletFurukawa[PalletAtivo].ReceitaAtivo
 Livre = PalletFurukawa[PalletAtivo].Livre

@@ -1,4 +1,6 @@
 ;FOLD Variaveis PEVE
+
+;Principais variaveis
 INT PalletAtivo
 INT MosaicoAtivo
 
@@ -10,7 +12,7 @@ CONST INT ALTURATOPO=850
     E6POS XTopoPallet
 ;ENDFOLD
 
-;FOLD STRUC Sinais
+;FOLD SINAIS
     Signal SensorAltura $in[1]
     Signal SensorCaixa $in[2]
     ;RecuaCilindro
@@ -110,15 +112,15 @@ CONST INT ALTURATOPO=850
     DECL GLOBAL Pallet PalletFurukawa[5]
 ;ENDFOLD
 
-;FOLD STRUC CLP
-    ;1 - Pallet menor
-    ;2 - Pallet maior
-    ;3 - Sem pallet
-    ;Mosaico
-    ;Produto selecionado
-    INT EsteiraAtiva
-    STRUC CLP CHAR Produto[15], INT TamPallet, Mosaico
-    DECL GLOBAL CLP CLPFurukawa
+;FOLD VARIAVEIS CLP
+    ;{EsteiraAtiva} numero da esteira que está com a caixa
+    ;{CLPNumCaixas} numero de caixas para o pick
+    ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
+    INT EsteiraAtiva=1
+    INT  CLPNumCaixas    
+    BOOL CLPIndexacaoVH  
+    ;STRUC CLP CHAR Produto[15], INT TamPallet, Mosaico
+    ;DECL GLOBAL CLP CLPFurukawa
 ;ENDFOLD
 
 
