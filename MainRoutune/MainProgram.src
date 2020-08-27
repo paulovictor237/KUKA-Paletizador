@@ -41,7 +41,7 @@ DEF  MainProgram ( )
             StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
          ENDIF
          WAIT FOR RotinaATIVOS()
-         WAIT FOR RotinaCLP()
+         ;WAIT FOR RotinaCLP()
          PickEsteira()
          IF PegaOk THEN
             PlaceCaixaPallet()

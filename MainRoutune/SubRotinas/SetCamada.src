@@ -9,7 +9,7 @@ DEF SetCamada( )
       StrPallet[PalletAtivo].PlaceAtivo = StrPallet[PalletAtivo].PlaceAtivo + 1
       ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
       IF StrPallet[PalletAtivo].PlaceAtivo > StrReceita[ReceitaAtivo].PlacesCamada THEN
-         StrPallet[PalletAtivo].PlaceAtivo=1 ;verificar aqui se deve comecar com 1 ou 0
+         StrPallet[PalletAtivo].PlaceAtivo=0 ;verificar aqui se deve comecar com 1 ou 0
          StrPallet[PalletAtivo].CamadaAtiva=StrPallet[PalletAtivo].CamadaAtiva + 1
       ENDIF
       ;->se a qtd de camadas do pallet for acima da qtd do mozaico

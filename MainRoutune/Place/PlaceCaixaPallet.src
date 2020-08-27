@@ -87,11 +87,11 @@ DEF PlaceCaixaPallet()
             FDAT_ACT = FP1
             BAS(#CP_PARAMS, 2.0)
             SET_CD_PARAMS (0)
-            ;XPlace.Z=XApp2Place.Z
-            ;LIN  BasePoint:XPlace 
-            RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
-            RelFrame.Z=AlturaCaixa + 100
-            LIN_REL RelFrame   
+            XPlace.Z=XApp2Place.Z
+            LIN  BasePoint:XPlace 
+            ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
+            ;RelFrame.Z=AlturaCaixa + 100
+            ;LIN_REL RelFrame   
          ;ENDFOLD
       ENDIF
       
