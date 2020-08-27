@@ -1,0 +1,84 @@
+DEF  AlterarAqui ( )
+   ;FOLD INI;%{PE}
+      ;FOLD BASISTECH INI
+         GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+         INTERRUPT ON 3 
+         BAS (#INITMOV,0 )
+      ;ENDFOLD (BASISTECH INI)
+      ;FOLD USER INI
+         ;Make your modifications here
+         $TOOL = TOOL_DATA[1]
+         ;$TOOL = $NULLFRAME
+         $BASE = $NULLFRAME
+      ;ENDFOLD (USER INI)
+   ;ENDFOLD (INI)
+   
+   ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+      $BWDSTART = FALSE
+      PDAT_ACT=PDEFAULT
+      FDAT_ACT=FHOME
+      BAS (#PTP_PARAMS,100 )
+      $H_POS=XHOME
+      PTP  XHOME
+   ;ENDFOLD
+   
+   ;FOLD MAIN ROUTINE
+      ;ALINHE BEM A GARRA COM A ESTEIRA
+      
+      ;TOUCHUP ESTEIRA 1
+      ;FOLD TOUCHUP ESTEIRA 1
+         $BWDSTART = FALSE
+         PDAT_ACT = PPDAT1
+         FDAT_ACT = FP1
+         BAS(#PTP_PARAMS, 100.0)
+         SET_CD_PARAMS (0)
+         PTP ServiceEsteira1 C_DIS
+      ;ENDFOLD
+
+      ;TOUCHUP ESTEIRA 2
+      ;FOLD TOUCHUP ESTEIRA 2
+         $BWDSTART = FALSE
+         PDAT_ACT = PPDAT1
+         FDAT_ACT = FP1
+         BAS(#PTP_PARAMS, 100.0)
+         SET_CD_PARAMS (0)
+         PTP ServiceEsteira2 C_DIS
+      ;ENDFOLD
+
+      ;ALINHE BEM A GARRA COM O PALLET
+
+      ;TOUCHUP PALLET 1
+      ;FOLD TOUCHUP PALLET 1
+         $BWDSTART = FALSE
+         PDAT_ACT = PPDAT1
+         FDAT_ACT = FP1
+         BAS(#PTP_PARAMS, 100.0)
+         SET_CD_PARAMS (0)
+         PTP ServicePallet1 C_DIS
+      ;ENDFOLD
+
+      ;TOUCHUP PALLET 2
+      ;FOLD TOUCHUP PALLET 2
+         $BWDSTART = FALSE
+         PDAT_ACT = PPDAT1
+         FDAT_ACT = FP1
+         BAS(#PTP_PARAMS, 100.0)
+         SET_CD_PARAMS (0)
+         PTP ServicePallet2 C_DIS
+      ;ENDFOLD
+
+      ;FOLD ATUALIZA OFFSETS
+         ;WAIT FOR AtualizaOffsets( )
+      ;ENDFOLD
+
+   ;ENDFOLD
+   
+   ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+      $BWDSTART = FALSE
+      PDAT_ACT=PDEFAULT
+      FDAT_ACT=FHOME
+      BAS (#PTP_PARAMS,100 )
+      $H_POS=XHOME
+      PTP  XHOME
+   ;ENDFOLD
+END

@@ -2,13 +2,13 @@
 &PARAM EDITMASK = *
 DEF TReceita( )
 
-   ;FOLD OffsetPick
-      OffsetPick.X=0
-      OffsetPick.Y=0
-      OffsetPick.Z=0
-      OffsetPick.A=0
-      OffsetPick.B=0
-      OffsetPick.C=0
+   ;FOLD OffsetEsteira1
+      OffsetEsteira1.X=0
+      OffsetEsteira1.Y=0
+      OffsetEsteira1.Z=0
+      OffsetEsteira1.A=0
+      OffsetEsteira1.B=0
+      OffsetEsteira1.C=0
    ;ENDFOLD
 
    ;FOLD 1-42003385
