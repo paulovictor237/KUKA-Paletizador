@@ -44,7 +44,7 @@ DEF  MainProgram ( )
          WAIT FOR RotinaCLP()
          PickEsteira()
          IF PegaOk THEN
-            PlaceCaixaPallet1()
+            PlaceCaixaPallet()
          ENDIF 
       ENDWHILE
    ;ENDFOLD

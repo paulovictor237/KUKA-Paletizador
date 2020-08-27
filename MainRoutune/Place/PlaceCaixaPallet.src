@@ -1,0 +1,114 @@
+DEF PlaceCaixaPallet()
+   
+   ;FOLD ROTINAS DE INICIALIZACAO
+      $TOOL = TOOL_DATA[1]
+      ;$BASE=$NULLFRAME
+      ;MOVIMENTO COM BASE
+      SkipPTP = FALSE
+   ;ENDFOLD
+   
+   REPEAT
+      ;FOLD ATUALIZA OS PONTOS DE PLACE
+         WAIT FOR SetPlacePos()
+      ;ENDFOLD 
+      
+      ;FOLD ATUALIZA OFFSET PALLET+PRODUTO
+         WAIT FOR OffsetPalletProduto()
+      ;ENDFOLD
+      
+      ;FOLD ATUALIZA VARIAVEIS DE SKIP
+         SkipGoHome = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].SkipGoHome
+         SkipSobeRelativo = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].SkipSobeRelativo
+      ;ENDFOLD
+      
+      ;FOLD ATUALIZA TOPO DINAMICO - DESATIVADO
+         ;->marca o mespo ponto de deposito so que deslocado em Z
+         ;AQUI POSSO MARCAR UMA ALTURA PADRAO DEPOIS
+         ;XTopoPallet = XApp1Place
+         ;XTopoPallet.Z = ALTURATOPO
+      ;ENDFOLD
+      
+      ;FOLD MOVE XTopoPallet - DESATIVADO
+         ;$BWDSTART = FALSE
+         ;PDAT_ACT = PPDAT1
+         ;FDAT_ACT = FP1
+         ;BAS(#PTP_PARAMS, 100.0)
+         ;SET_CD_PARAMS (0)
+         ;PTP BasePoint:XTopoPallet C_Dis
+      ;ENDFOLD
+      
+      ;FOLD TRES PONTOS DE DEPOSITO
+         ;XApp1Place DIRETO com movimento PTP         
+         ;se for fazer um outro place o 
+         ;primeiro movimento deve ser linear
+         IF (SkipPTP == TRUE) THEN
+            $BWDSTART = FALSE
+            LDAT_ACT = LCPDAT1
+            FDAT_ACT = FP1
+            BAS(#CP_PARAMS, 2.0)
+            SET_CD_PARAMS (0)
+            LIN  BasePoint:XApp1Place C_DIS C_DIS
+         ELSE
+            $BWDSTART = FALSE
+            PDAT_ACT = PPDAT1
+            FDAT_ACT = FP1
+            BAS(#PTP_PARAMS, 100.0)
+            SET_CD_PARAMS (0)
+            PTP  BasePoint:XApp1Place C_DIS
+         ENDIF
+         
+         IF (SkipSobeRelativo == TRUE) THEN
+            SkipPTP = TRUE
+         ENDIF
+         
+         $BWDSTART = FALSE
+         LDAT_ACT = LCPDAT1
+         FDAT_ACT = FP1
+         BAS(#CP_PARAMS, 2.0)
+         SET_CD_PARAMS (0)
+         ;XApp2Place DIRETO com movimento LIN
+         LIN  BasePoint:XApp2Place C_DIS C_DIS
+         ;XPlace DIRETO com movimento LIN
+         LIN  BasePoint:XPlace 
+      ;ENDFOLD  
+      
+      ;FOLD ABRE GARRA  
+         WAIT FOR AbreGarra()
+      ;ENDFOLD     
+      
+      ;FOLD TROCA A CAMADA DO PALLET
+         WAIT FOR SetCamada()
+      ;ENDFOLD
+      
+      IF (SkipSobeRelativo == FALSE) THEN
+         ;FOLD MOVIMENTO SOBE RELATIVO
+            $BWDSTART = FALSE
+            LDAT_ACT = LCPDAT1
+            FDAT_ACT = FP1
+            BAS(#CP_PARAMS, 2.0)
+            SET_CD_PARAMS (0)
+            ;XPlace.Z=XApp2Place.Z
+            ;LIN  BasePoint:XPlace 
+            RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
+            RelFrame.Z=AlturaCaixa + 100
+            LIN_REL RelFrame   
+         ;ENDFOLD
+      ENDIF
+      
+      ;FOLD MOVE XTopoPallet  - DESATIVADO
+         ;Seta valores de de2osito na saida do deposito
+         ;XTopoPallet.X = XPlace.X
+         ;XTopoPallet.Y = XPlace.Y 
+         ;$BWDSTART = FALSE
+         ;PDAT_ACT = PPDAT1
+         ;FDAT_ACT = FP1
+         ;BAS(#PTP_PARAMS, 100.0)
+         ;SET_CD_PARAMS (0)
+         ;PTP BasePoint:XTopoPallet C_Dis
+      ;ENDFOLD
+      
+   UNTIL (SkipGoHome == FALSE)
+   
+   PegaOk=FALSE
+   
+END

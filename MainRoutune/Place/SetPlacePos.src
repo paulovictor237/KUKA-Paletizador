@@ -1,0 +1,15 @@
+&ACCESS RVO1
+&PARAM EDITMASK = *
+DEF SetPlacePos()
+   ;Esses valores devem vir sempre da main
+   
+   ;XPlace     = faz o place no devido local
+   XApp1Place = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XApp1Place
+   XApp2Place = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XApp2Place
+   XPlace     = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XPlace  
+   
+   ;CamadaAtiva
+   XApp1Place.Z = XApp1Place.Z + (CamadaAtiva)*AlturaCaixa
+   XApp2Place.Z = XApp2Place.Z + (CamadaAtiva)*AlturaCaixa
+   XPlace.Z=XPlace.Z + (CamadaAtiva)*AlturaCaixa
+END
