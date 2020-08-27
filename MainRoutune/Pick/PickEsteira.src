@@ -17,10 +17,30 @@
       ENDIF
    ;ENDFOLD
    
-   ;FOLD MARCA OS PONTOS DE PICK - RELATIVO
-      XAPP1PICK=XPICK
-      XAPP2PICK=XPICK
-      XPICK=XPICK
+   ;FOLD MARCA OS PONTOS DE PICK + OffsetPick (RELATIVO)
+      XAPP1PICK = XPICK
+      XAPP1PICK.X = XAPP1PICK.X + OffsetPick.Y
+      XAPP1PICK.Y = XAPP1PICK.Y + OffsetPick.Z
+      XAPP1PICK.Z = XAPP1PICK.Z + OffsetPick.X
+      XAPP1PICK.A = XAPP1PICK.A + OffsetPick.A
+      XAPP1PICK.B = XAPP1PICK.B + OffsetPick.B
+      XAPP1PICK.C = XAPP1PICK.C + OffsetPick.C
+      
+      XAPP2PICK = XPICK
+      XAPP2PICK.Y = XAPP2PICK.Y + OffsetPick.Y
+      XAPP2PICK.X = XAPP2PICK.X + OffsetPick.X
+      XAPP2PICK.Z = XAPP2PICK.Z + OffsetPick.Z
+      XAPP2PICK.A = XAPP2PICK.A + OffsetPick.A
+      XAPP2PICK.B = XAPP2PICK.B + OffsetPick.B
+      XAPP2PICK.C = XAPP2PICK.C + OffsetPick.C
+      
+      XPICK = XPICK
+      XPICK.X = XPICK.X + OffsetPick.X
+      XPICK.Y = XPICK.Y + OffsetPick.Y
+      XPICK.Z = XPICK.Z + OffsetPick.Z
+      XPICK.A = XPICK.A + OffsetPick.A
+      XPICK.B = XPICK.B + OffsetPick.B
+      XPICK.C = XPICK.C + OffsetPick.C
    ;ENDFOLD
    
    ;Pega a altura da caixa para fazer as posicoes relativas  

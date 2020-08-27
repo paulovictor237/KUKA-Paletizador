@@ -1,6 +1,16 @@
 ﻿&ACCESS RVP
 &PARAM EDITMASK = *
 DEF TReceita( )
+
+   ;FOLD OffsetPick
+      OffsetPick.X=0
+      OffsetPick.Y=0
+      OffsetPick.Z=0
+      OffsetPick.A=0
+      OffsetPick.B=0
+      OffsetPick.C=0
+   ;ENDFOLD
+
    ;FOLD 1-42003385
       StrReceita[1].OffsetProduto.X=0
       StrReceita[1].OffsetProduto.Y=0

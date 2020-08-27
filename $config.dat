@@ -10,6 +10,7 @@ CONST BOOL OperarVazio=TRUE
 CONST INT ALTURATOPO=850
 
 ;FOLD Definir Variaveis de Pontos
+    POS OffsetPick
     E6POS XTopoPallet
 ;ENDFOLD
 
