@@ -16,11 +16,10 @@ DEF TPallet( )
    
    ;FOLD Iniciar Opcoes de Pallet
       FOR i = 1 TO MaxPallets
-         StrPallet[i].ReceitaAtivo=0
+         StrPallet[i].ReceitaAtivo=1
          StrPallet[i].Livre=TRUE
-         StrPallet[i].AtualCaixas=0
-         StrPallet[i].PlaceAtivo=0
-         StrPallet[i].CamadaAtiva=0
+         StrPallet[i].PlaceAtivo=1
+         StrPallet[i].CamadaAtiva=1
          StrPallet[i].BasePoint=BASE_DATA[i]
          StrPallet[i].OffSetPallet.X=0
          StrPallet[i].OffSetPallet.Y=0
@@ -29,28 +28,6 @@ DEF TPallet( )
          StrPallet[i].OffSetPallet.B=0
          StrPallet[i].OffSetPallet.C=0
       ENDFOR
-   ;ENDFOLD
-   
-   ;FOLD Definir OffSetPallet
-      StrPallet[1].OffSetPallet.X=0
-      StrPallet[1].OffSetPallet.Y=0
-      StrPallet[1].OffSetPallet.z=0
-      
-      StrPallet[2].OffSetPallet.X=0
-      StrPallet[2].OffSetPallet.Y=0
-      StrPallet[2].OffSetPallet.z=0
-      
-      StrPallet[3].OffSetPallet.X=0
-      StrPallet[3].OffSetPallet.Y=0
-      StrPallet[3].OffSetPallet.z=0
-      
-      StrPallet[4].OffSetPallet.X=0
-      StrPallet[4].OffSetPallet.Y=0
-      StrPallet[4].OffSetPallet.z=0
-      
-      StrPallet[5].OffSetPallet.X=0
-      StrPallet[5].OffSetPallet.Y=0
-      StrPallet[5].OffSetPallet.z=0
    ;ENDFOLD
    
 END

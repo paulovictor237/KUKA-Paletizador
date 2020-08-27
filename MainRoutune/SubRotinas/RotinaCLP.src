@@ -17,7 +17,7 @@
 
          ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
          IF ProximoPlace > StrReceita[ReceitaAtivo].PlacesCamada THEN
-         ProximoPlace=0 ;verificar aqui se deve comecar com 1 ou 0
+         ProximoPlace=1 ;verificar aqui se deve comecar com 1 ou 0
          ProximaCamada=StrPallet[PalletAtivo].CamadaAtiva + 1
          ENDIF
          ;->se a qtd de camadas do pallet for acima da qtd do mozaico
@@ -29,16 +29,16 @@
          ENDIF
       ;ENDFOLD
 
-      IF (MatrizPontos[MosaicoAtivo,ProximoPlace+1].SkipGoHome == TRUE) THEN
+      IF (MatrizPontos[MosaicoAtivo,ProximoPlace].SkipGoHome == TRUE) THEN
          SkipPTP = TRUE
-      IF (MatrizPontos[MosaicoAtivo,ProximoPlace+1].SkipGoHome == FALSE) AND (SkipPTP = TRUE)  THEN
+      IF (MatrizPontos[MosaicoAtivo,ProximoPlace].SkipGoHome == FALSE) AND (SkipPTP = TRUE)  THEN
          SkipPTP = FALSE
       ENDIF
 
    UNTIL (SkipPTP == FALSE)
 
    ;SAIDA
-   IndexacaoVH = MatrizPontos[MosaicoAtivo,ProximoPlace+1].IndexacaoVH
-   NumCaixas = MatrizPontos[MosaicoAtivo,ProximoPlace+1].NumCaixas  
+   IndexacaoVH = MatrizPontos[MosaicoAtivo,ProximoPlace].IndexacaoVH
+   NumCaixas = MatrizPontos[MosaicoAtivo,ProximoPlace].NumCaixas  
 
 END

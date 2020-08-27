@@ -17,8 +17,8 @@ DEF PlaceCaixaPallet()
       ;ENDFOLD
       
       ;FOLD ATUALIZA VARIAVEIS DE SKIP
-         SkipGoHome = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].SkipGoHome
-         SkipSobeRelativo = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].SkipSobeRelativo
+         SkipGoHome = MatrizPontos[MosaicoAtivo,PlaceAtivo].SkipGoHome
+         SkipSobeRelativo = MatrizPontos[MosaicoAtivo,PlaceAtivo].SkipSobeRelativo
       ;ENDFOLD
       
       ;FOLD ATUALIZA TOPO DINAMICO - DESATIVADO

@@ -4,29 +4,31 @@
       FOR I = 1 to MaxMatrizI
          FOR J = 1 to MaxMatrizJ
             ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
-            MatrizPontos[I,J].IndexacaoVH = FALSE
             ;-> {NumCaixas} numero de caixas para o pick
-            MatrizPontos[I,J].NumCaixas = 0
             ;-> {ConfGarraPick} Opcao de abertura da garra (1,2,3,4,5...)
-            MatrizPontos[I,J].ConfGarraPick = 0
             ;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
-            MatrizPontos[I,J].PickOp = 0
             ;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-            MatrizPontos[I,J].FechaGarraOp = 0
             
             ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-            MatrizPontos[I,J].AbreGarraOp = 0
             ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
-            MatrizPontos[I,J].SkipGoHome = FALSE
             ;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
-            MatrizPontos[I,J].SkipSobeRelativo = FALSE
             
             ;-> {XApp1Place} Primeiro ponto de aproximacao de place
-            ;MatrizPontos[I,J].XApp1Place
             ;-> {XApp2Place} Segundo ponto de aproximacao de place
-            ;MatrizPontos[I,J].XApp2Place
             ;-> {XPlace} Ponto de place
+
+            MatrizPontos[I,J].IndexacaoVH = FALSE
+            MatrizPontos[I,J].NumCaixas = 0
+            MatrizPontos[I,J].ConfGarraPick = 0
+            MatrizPontos[I,J].PickOp = 0
+            MatrizPontos[I,J].FechaGarraOp = 0
+            MatrizPontos[I,J].AbreGarraOp = 0
+            MatrizPontos[I,J].SkipGoHome = FALSE
+            MatrizPontos[I,J].SkipSobeRelativo = FALSE
+            ;MatrizPontos[I,J].XApp1Place
+            ;MatrizPontos[I,J].XApp2Place
             ;MatrizPontos[I,J].XPlace
+
          ENDFOR
       ENDFOR    
    ;ENDFOLD

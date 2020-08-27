@@ -103,13 +103,12 @@ CONST INT ALTURATOPO=850
 ;FOLD STRUC Pallet
     BOOL Livre
     INT ReceitaAtivo
-    INT AtualCaixas
     INT PlaceAtivo
     INT CamadaAtiva
     FRAME BasePoint
     POS OffSetPallet
     E6POS Approch
-    STRUC Pallet INT ReceitaAtivo, BOOL Livre, INT AtualCaixas, PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    STRUC Pallet INT ReceitaAtivo, BOOL Livre, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
     CONST INT MaxPallets=5
     DECL GLOBAL Pallet StrPallet[5]
 ;ENDFOLD

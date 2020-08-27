@@ -3,7 +3,6 @@
    ;FOLD STRUC Pallet
       ReceitaAtivo = StrPallet[PalletAtivo].ReceitaAtivo
       Livre = StrPallet[PalletAtivo].Livre
-      AtualCaixas = StrPallet[PalletAtivo].AtualCaixas
       PlaceAtivo = StrPallet[PalletAtivo].PlaceAtivo
       CamadaAtiva = StrPallet[PalletAtivo].CamadaAtiva
       BasePoint = StrPallet[PalletAtivo].BasePoint
@@ -22,21 +21,21 @@
       Pick2Esteira1 = StrReceita[ReceitaAtivo].Pick2Esteira1
       Pick2Esteira2 = StrReceita[ReceitaAtivo].Pick2Esteira2
       
-      MosaicoAtivo = MozaicoCamada[ReceitaAtivo,CamadaAtiva+1]
+      MosaicoAtivo = MozaicoCamada[ReceitaAtivo,CamadaAtiva]
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 
-      IndexacaoVH = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].IndexacaoVH
-      SkipGoHome = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].SkipGoHome
-      SkipSobeRelativo = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].SkipSobeRelativo
-      NumCaixas = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].NumCaixas
-      ConfGarraPick = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].ConfGarraPick
-      PickOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].PickOp
-      FechaGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].FechaGarraOp
-      AbreGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].AbreGarraOp
-      XApp1Place = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XApp1Place
-      XApp2Place = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XApp2Place
-      XPlace = MatrizPontos[MosaicoAtivo,PlaceAtivo+1].XPlace
+      IndexacaoVH = MatrizPontos[MosaicoAtivo,PlaceAtivo].IndexacaoVH
+      SkipGoHome = MatrizPontos[MosaicoAtivo,PlaceAtivo].SkipGoHome
+      SkipSobeRelativo = MatrizPontos[MosaicoAtivo,PlaceAtivo].SkipSobeRelativo
+      NumCaixas = MatrizPontos[MosaicoAtivo,PlaceAtivo].NumCaixas
+      ConfGarraPick = MatrizPontos[MosaicoAtivo,PlaceAtivo].ConfGarraPick
+      PickOp = MatrizPontos[MosaicoAtivo,PlaceAtivo].PickOp
+      FechaGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo].FechaGarraOp
+      AbreGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo].AbreGarraOp
+      XApp1Place = MatrizPontos[MosaicoAtivo,PlaceAtivo].XApp1Place
+      XApp2Place = MatrizPontos[MosaicoAtivo,PlaceAtivo].XApp2Place
+      XPlace = MatrizPontos[MosaicoAtivo,PlaceAtivo].XPlace
    ;ENDFOLD
    
 END

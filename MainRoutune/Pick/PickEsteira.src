@@ -44,8 +44,8 @@
    ;ENDFOLD
    
    ;Pega a altura da caixa para fazer as posicoes relativas  
-   XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva+1)*AlturaCaixa + 200
-   XAPP2PICK.Z = XAPP2PICK.Z + (CamadaAtiva+1)*(AlturaCaixa/2)
+   XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva)*AlturaCaixa + 200
+   XAPP2PICK.Z = XAPP2PICK.Z + (CamadaAtiva)*(AlturaCaixa/2)
    
    ;FOLD APROXIMA TOPO
       $BWDSTART = FALSE
@@ -91,7 +91,7 @@
       ;XPICK.Z=XAPP2PICK.Z
       ;LIN XPICK
       RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
-      RelFrame.Z=(CamadaAtiva+1)*AlturaCaixa
+      RelFrame.Z=(CamadaAtiva)*AlturaCaixa
       LIN_REL RelFrame    
    ;ENDFOLD
    
