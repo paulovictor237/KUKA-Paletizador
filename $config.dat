@@ -83,7 +83,6 @@ CONST INT ALTURATOPO=850
 ;ENDFOLD
 
 ;FOLD STRUC Receita
-    INT Caixas
     INT PlacesCamada
     INT Camadas
     INT AlturaCaixa
@@ -92,7 +91,7 @@ CONST INT ALTURATOPO=850
     E6POS Pick1Esteira2
     E6POS Pick2Esteira1
     E6POS Pick2Esteira2
-    STRUC DecStrReceita INT Caixas, PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
+    STRUC DecStrReceita INT PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
     ;----------DecStrReceita[RECEITAS,MaxCamadas]----------
     CONST INT MaxReceitas=8
     CONST INT MaxCamadas=11
