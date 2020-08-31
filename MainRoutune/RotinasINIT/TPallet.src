@@ -10,24 +10,15 @@ DEF TPallet( )
       BASE_DATA[3]={X -1434.132,Y 1186.008,Z -701.000,A 90.0000,B -0.0000,C -0.0000}
       BASE_DATA[4]={X -24.888,Y -1247.561,Z -701.000,A 180.0000,B -0.0000,C -0.0000}
       BASE_DATA[5]={X -1723.752,Y -1249.228,Z -701.000,A 180.0000,B -0.0000,C -0.0000}
-      BASE_DATA[6]={X 0.000,Y 0.000,Z 0.000,A 0.0000,B -0.0000,C 0.0000}
       TOOL_DATA[1]={X 441.263,Y -0.000,Z 405.123,A 0.0000,B 0.0000,C 0.0000}
    ;ENDFOLD
    
    ;FOLD Iniciar Opcoes de Pallet
-      FOR i = 1 TO MaxPallets
-         StrPallet[i].ReceitaAtivo=1
-         StrPallet[i].Livre=TRUE
-         StrPallet[i].PlaceAtivo=1
-         StrPallet[i].CamadaAtiva=1
-         StrPallet[i].BasePoint=BASE_DATA[i]
-         StrPallet[i].OffSetPallet.X=0
-         StrPallet[i].OffSetPallet.Y=0
-         StrPallet[i].OffSetPallet.Z=0
-         StrPallet[i].OffSetPallet.A=0
-         StrPallet[i].OffSetPallet.B=0
-         StrPallet[i].OffSetPallet.C=0
-      ENDFOR
+      StrPallet[1].BasePoint=BASE_DATA[1]
+      StrPallet[2].BasePoint=BASE_DATA[2]
+      StrPallet[3].BasePoint=BASE_DATA[3]
+      StrPallet[4].BasePoint=BASE_DATA[4]
+      StrPallet[5].BasePoint=BASE_DATA[5]
    ;ENDFOLD
    
 END

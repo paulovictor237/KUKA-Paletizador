@@ -3,20 +3,6 @@
    ;FOLD Variaveis Default da Matriz de Pontos
       FOR I = 1 to MaxMatrizI
          FOR J = 1 to MaxMatrizJ
-            ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
-            ;-> {NumCaixas} numero de caixas para o pick
-            ;-> {ConfGarraPick} Opcao de abertura da garra (1,2,3,4,5...)
-            ;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
-            ;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-            
-            ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-            ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
-            ;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
-            
-            ;-> {XApp1Place} Primeiro ponto de aproximacao de place
-            ;-> {XApp2Place} Segundo ponto de aproximacao de place
-            ;-> {XPlace} Ponto de place
-
             MatrizPontos[I,J].IndexacaoVH = FALSE
             MatrizPontos[I,J].NumCaixas = 0
             MatrizPontos[I,J].ConfGarraPick = 0
@@ -25,12 +11,48 @@
             MatrizPontos[I,J].AbreGarraOp = 0
             MatrizPontos[I,J].SkipGoHome = FALSE
             MatrizPontos[I,J].SkipSobeRelativo = FALSE
-            ;MatrizPontos[I,J].XApp1Place
-            ;MatrizPontos[I,J].XApp2Place
-            ;MatrizPontos[I,J].XPlace
-
+            MatrizPontos[I,J].XApp1Place = DefaultPoint
+            MatrizPontos[I,J].XApp2Place = DefaultPoint
+            MatrizPontos[I,J].XPlace = DefaultPoint
          ENDFOR
       ENDFOR    
    ;ENDFOLD
-   
+
+   ;FOLD Variaveis Default Receita
+      FOR I = 1 to MaxReceitas
+         StrReceita[I].PlacesCamada = 1
+         StrReceita[I].Camadas = 1
+         StrReceita[I].AlturaCaixa = 1
+         StrReceita[I].OffsetProduto = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+         StrReceita[I].Pick1Esteira1 = DefaultPoint
+         StrReceita[I].Pick1Esteira2 = DefaultPoint
+         StrReceita[I].Pick2Esteira1 = DefaultPoint
+         StrReceita[I].Pick2Esteira2 = DefaultPoint
+         FOR J = 1 to MaxCamadas
+            StrReceitaLayer[I,J] = 1
+         ENDFOR
+      ENDFOR    
+   ;ENDFOLD
+
+   ;FOLD Variaveis Default Pallet
+      FOR I = 1 to MaxPallets
+         StrPallet[I].Livre = TRUE
+         StrPallet[I].ReceitaAtivo = 1
+         StrPallet[I].PlaceAtivo = 1
+         StrPallet[I].CamadaAtiva = 1
+         StrPallet[I].BasePoint = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+         StrPallet[I].OffSetPallet = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+         StrPallet[I].Approch = DefaultPoint
+      ENDFOR    
+   ;ENDFOLD  
+
+   ;FOLD OffsetEsteira1
+      OffsetEsteira1.X=0
+      OffsetEsteira1.Y=0
+      OffsetEsteira1.Z=0
+      OffsetEsteira1.A=0
+      OffsetEsteira1.B=0
+      OffsetEsteira1.C=0
+   ;ENDFOLD
+
 END

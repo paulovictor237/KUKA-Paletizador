@@ -21,20 +21,24 @@
       Pick2Esteira2 = StrReceita[ReceitaAtivo].Pick2Esteira2
       
       LayerAtivo = StrReceitaLayer[ReceitaAtivo,CamadaAtiva]
+
+      ;por possuir duas Layers por Receita o numero referente ao place
+      ;deve subir em relacao a LayerAtivo
+      PlaceLayerAtivo = PlaceAtivo + Camadas*(LayerAtivo-1)
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 
-      IndexacaoVH = MatrizPontos[ReceitaAtivo,PlaceAtivo].IndexacaoVH
-      SkipGoHome = MatrizPontos[ReceitaAtivo,PlaceAtivo].SkipGoHome
-      SkipSobeRelativo = MatrizPontos[ReceitaAtivo,PlaceAtivo].SkipSobeRelativo
-      NumCaixas = MatrizPontos[ReceitaAtivo,PlaceAtivo].NumCaixas
-      ConfGarraPick = MatrizPontos[ReceitaAtivo,PlaceAtivo].ConfGarraPick
-      PickOp = MatrizPontos[ReceitaAtivo,PlaceAtivo].PickOp
-      FechaGarraOp = MatrizPontos[ReceitaAtivo,PlaceAtivo].FechaGarraOp
-      AbreGarraOp = MatrizPontos[ReceitaAtivo,PlaceAtivo].AbreGarraOp
-      XApp1Place = MatrizPontos[ReceitaAtivo,PlaceAtivo].XApp1Place
-      XApp2Place = MatrizPontos[ReceitaAtivo,PlaceAtivo].XApp2Place
-      XPlace = MatrizPontos[ReceitaAtivo,PlaceAtivo].XPlace
+      IndexacaoVH = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].IndexacaoVH
+      SkipGoHome = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].SkipGoHome
+      SkipSobeRelativo = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].SkipSobeRelativo
+      NumCaixas = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].NumCaixas
+      ConfGarraPick = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].ConfGarraPick
+      PickOp = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].PickOp
+      FechaGarraOp = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].FechaGarraOp
+      AbreGarraOp = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].AbreGarraOp
+      XApp1Place = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].XApp1Place
+      XApp2Place = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].XApp2Place
+      XPlace = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].XPlace
    ;ENDFOLD
    
 END
