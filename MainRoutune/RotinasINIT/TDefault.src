@@ -46,13 +46,11 @@
       ENDFOR    
    ;ENDFOLD  
 
-   ;FOLD OffsetEsteira1
-      OffsetEsteira1.X=0
-      OffsetEsteira1.Y=0
-      OffsetEsteira1.Z=0
-      OffsetEsteira1.A=0
-      OffsetEsteira1.B=0
-      OffsetEsteira1.C=0
+   ;FOLD OffsetEsteira
+      OffsetEsteira1 = NULLPOS
+      OffsetEsteira2 = NULLPOS
+      BaseEsteira1 = NULLFRAME
+      BaseEsteira1 = NULLFRAME
    ;ENDFOLD
 
 END

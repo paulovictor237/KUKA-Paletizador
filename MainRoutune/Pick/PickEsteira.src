@@ -5,15 +5,19 @@
       ;verifica qual opcao de pick do place
       IF (PickOp==1) AND (EsteiraAtiva==1) THEN
          XPICK = StrReceita[ReceitaAtivo].Pick1Esteira1
+         BaseEsteiraR = BaseEsteira1
       ENDIF
       IF (PickOp==1) AND (EsteiraAtiva==2) THEN
          XPICK = StrReceita[ReceitaAtivo].Pick1Esteira2
+         BaseEsteiraR = BaseEsteira2
       ENDIF
       IF (PickOp==2) AND (EsteiraAtiva==1) THEN
          XPICK = StrReceita[ReceitaAtivo].Pick2Esteira1
+         BaseEsteiraR = BaseEsteira1
       ENDIF
       IF (PickOp==2) AND (EsteiraAtiva==2) THEN
          XPICK = StrReceita[ReceitaAtivo].Pick2Esteira2
+         BaseEsteiraR = BaseEsteira2
       ENDIF
    ;ENDFOLD
    
@@ -53,7 +57,7 @@
       FDAT_ACT = FP1
       BAS(#PTP_PARAMS, 100.0)
       SET_CD_PARAMS (0)
-      PTP XAPP1PICK C_DIS
+      PTP BaseEsteiraR:XAPP1PICK C_DIS
    ;ENDFOLD
    
    ;FOLD CONFIGURA GARRA
@@ -66,7 +70,7 @@
       FDAT_ACT = FP1
       BAS(#CP_PARAMS, 2.0)
       SET_CD_PARAMS (0)
-      LIN XAPP2PICK C_DIS C_DIS
+      LIN BaseEsteiraR:XAPP2PICK C_DIS C_DIS
    ;ENDFOLD
    
    ;FOLD PONTO DE PICK
@@ -75,7 +79,7 @@
       FDAT_ACT = FP1
       BAS(#CP_PARAMS, 2.0)
       SET_CD_PARAMS (0)
-      LIN XPICK
+      LIN BaseEsteiraR:XPICK
    ;ENDFOLD 
    
    ;FOLD Fecha Garra  
@@ -89,10 +93,10 @@
       BAS(#CP_PARAMS, 2.0)
       SET_CD_PARAMS (0)
       ;XPICK.Z=XAPP2PICK.Z
-      ;LIN XPICK
+      ;LIN BaseEsteiraR:XPICK
       RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
       RelFrame.Z=(CamadaAtiva)*AlturaCaixa
-      LIN_REL RelFrame    
+      LIN_REL BaseEsteiraR:RelFrame    
    ;ENDFOLD
    
    ;FOLD APROXIMA TOPO - DESATIVADO
@@ -101,7 +105,7 @@
       ;FDAT_ACT = FP1
       ;BAS(#PTP_PARAMS, 100.0)
       ;SET_CD_PARAMS (0)
-      ;PTP XP4
+      ;PTP BaseEsteiraR:XP4
    ;ENDFOLD
    
    PegaOk=TRUE
