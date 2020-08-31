@@ -21,21 +21,21 @@
       Pick2Esteira1 = StrReceita[ReceitaAtivo].Pick2Esteira1
       Pick2Esteira2 = StrReceita[ReceitaAtivo].Pick2Esteira2
       
-      MosaicoAtivo = MozaicoCamada[ReceitaAtivo,CamadaAtiva]
+      LayerAtivo = StrReceitaLayer[ReceitaAtivo,CamadaAtiva]
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 
-      IndexacaoVH = MatrizPontos[MosaicoAtivo,PlaceAtivo].IndexacaoVH
-      SkipGoHome = MatrizPontos[MosaicoAtivo,PlaceAtivo].SkipGoHome
-      SkipSobeRelativo = MatrizPontos[MosaicoAtivo,PlaceAtivo].SkipSobeRelativo
-      NumCaixas = MatrizPontos[MosaicoAtivo,PlaceAtivo].NumCaixas
-      ConfGarraPick = MatrizPontos[MosaicoAtivo,PlaceAtivo].ConfGarraPick
-      PickOp = MatrizPontos[MosaicoAtivo,PlaceAtivo].PickOp
-      FechaGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo].FechaGarraOp
-      AbreGarraOp = MatrizPontos[MosaicoAtivo,PlaceAtivo].AbreGarraOp
-      XApp1Place = MatrizPontos[MosaicoAtivo,PlaceAtivo].XApp1Place
-      XApp2Place = MatrizPontos[MosaicoAtivo,PlaceAtivo].XApp2Place
-      XPlace = MatrizPontos[MosaicoAtivo,PlaceAtivo].XPlace
+      IndexacaoVH = MatrizPontos[LayerAtivo,PlaceAtivo].IndexacaoVH
+      SkipGoHome = MatrizPontos[LayerAtivo,PlaceAtivo].SkipGoHome
+      SkipSobeRelativo = MatrizPontos[LayerAtivo,PlaceAtivo].SkipSobeRelativo
+      NumCaixas = MatrizPontos[LayerAtivo,PlaceAtivo].NumCaixas
+      ConfGarraPick = MatrizPontos[LayerAtivo,PlaceAtivo].ConfGarraPick
+      PickOp = MatrizPontos[LayerAtivo,PlaceAtivo].PickOp
+      FechaGarraOp = MatrizPontos[LayerAtivo,PlaceAtivo].FechaGarraOp
+      AbreGarraOp = MatrizPontos[LayerAtivo,PlaceAtivo].AbreGarraOp
+      XApp1Place = MatrizPontos[LayerAtivo,PlaceAtivo].XApp1Place
+      XApp2Place = MatrizPontos[LayerAtivo,PlaceAtivo].XApp2Place
+      XPlace = MatrizPontos[LayerAtivo,PlaceAtivo].XPlace
    ;ENDFOLD
    
 END

@@ -29,16 +29,16 @@
          ENDIF
       ;ENDFOLD
 
-      IF (MatrizPontos[MosaicoAtivo,ProximoPlace].SkipGoHome == TRUE) THEN
+      IF (MatrizPontos[LayerAtivo,ProximoPlace].SkipGoHome == TRUE) THEN
          SkipPTP = TRUE
-      IF (MatrizPontos[MosaicoAtivo,ProximoPlace].SkipGoHome == FALSE) AND (SkipPTP = TRUE)  THEN
+      IF (MatrizPontos[LayerAtivo,ProximoPlace].SkipGoHome == FALSE) AND (SkipPTP = TRUE)  THEN
          SkipPTP = FALSE
       ENDIF
 
    UNTIL (SkipPTP == FALSE)
 
    ;SAIDA
-   IndexacaoVH = MatrizPontos[MosaicoAtivo,ProximoPlace].IndexacaoVH
-   NumCaixas = MatrizPontos[MosaicoAtivo,ProximoPlace].NumCaixas  
+   IndexacaoVH = MatrizPontos[LayerAtivo,ProximoPlace].IndexacaoVH
+   NumCaixas = MatrizPontos[LayerAtivo,ProximoPlace].NumCaixas  
 
 END

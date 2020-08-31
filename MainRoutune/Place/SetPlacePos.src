@@ -4,9 +4,9 @@ DEF SetPlacePos()
    ;Esses valores devem vir sempre da main
    
    ;XPlace     = faz o place no devido local
-   XApp1Place = MatrizPontos[MosaicoAtivo,PlaceAtivo].XApp1Place
-   XApp2Place = MatrizPontos[MosaicoAtivo,PlaceAtivo].XApp2Place
-   XPlace     = MatrizPontos[MosaicoAtivo,PlaceAtivo].XPlace  
+   XApp1Place = MatrizPontos[LayerAtivo,PlaceAtivo].XApp1Place
+   XApp2Place = MatrizPontos[LayerAtivo,PlaceAtivo].XApp2Place
+   XPlace     = MatrizPontos[LayerAtivo,PlaceAtivo].XPlace  
    
    ;CamadaAtiva
    XApp1Place.Z = XApp1Place.Z + (CamadaAtiva-1)*AlturaCaixa

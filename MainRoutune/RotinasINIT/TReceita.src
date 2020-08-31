@@ -25,13 +25,13 @@ DEF TReceita( )
       StrReceita[1].PlacesCamada=4
       StrReceita[1].AlturaCaixa=170
       StrReceita[1].Camadas=7
-      MozaicoCamada[1,1]=1
-      MozaicoCamada[1,2]=1
-      MozaicoCamada[1,3]=1
-      MozaicoCamada[1,4]=1
-      MozaicoCamada[1,5]=1
-      MozaicoCamada[1,6]=1
-      MozaicoCamada[1,7]=1
+      StrReceitaLayer[1,1]=1
+      StrReceitaLayer[1,2]=1
+      StrReceitaLayer[1,3]=1
+      StrReceitaLayer[1,4]=1
+      StrReceitaLayer[1,5]=1
+      StrReceitaLayer[1,6]=1
+      StrReceitaLayer[1,7]=1
    ;ENDFOLD
    ;FOLD 2-42003384
       StrReceita[2].OffsetProduto.X=0
@@ -47,14 +47,14 @@ DEF TReceita( )
       StrReceita[2].PlacesCamada=4
       StrReceita[2].AlturaCaixa=125
       StrReceita[2].Camadas=8
-      MozaicoCamada[2,1]=2
-      MozaicoCamada[2,2]=2
-      MozaicoCamada[2,3]=2
-      MozaicoCamada[2,4]=2
-      MozaicoCamada[2,5]=2
-      MozaicoCamada[2,6]=2
-      MozaicoCamada[2,7]=2
-      MozaicoCamada[2,8]=2
+      StrReceitaLayer[2,1]=2
+      StrReceitaLayer[2,2]=2
+      StrReceitaLayer[2,3]=2
+      StrReceitaLayer[2,4]=2
+      StrReceitaLayer[2,5]=2
+      StrReceitaLayer[2,6]=2
+      StrReceitaLayer[2,7]=2
+      StrReceitaLayer[2,8]=2
    ;ENDFOLD
    ;FOLD 3-42003383
       StrReceita[3].OffsetProduto.X=0
@@ -70,13 +70,13 @@ DEF TReceita( )
       StrReceita[3].PlacesCamada=6 
       StrReceita[3].AlturaCaixa=165
       StrReceita[3].Camadas=7
-      MozaicoCamada[3,1]=3
-      MozaicoCamada[3,2]=3
-      MozaicoCamada[3,3]=3
-      MozaicoCamada[3,4]=3
-      MozaicoCamada[3,5]=3
-      MozaicoCamada[3,6]=3
-      MozaicoCamada[3,7]=3
+      StrReceitaLayer[3,1]=3
+      StrReceitaLayer[3,2]=3
+      StrReceitaLayer[3,3]=3
+      StrReceitaLayer[3,4]=3
+      StrReceitaLayer[3,5]=3
+      StrReceitaLayer[3,6]=3
+      StrReceitaLayer[3,7]=3
    ;ENDFOLD
    ;FOLD 4-42002793
       StrReceita[4].OffsetProduto.X=0
@@ -92,8 +92,8 @@ DEF TReceita( )
       StrReceita[4].PlacesCamada=15
       StrReceita[4].AlturaCaixa=398
       StrReceita[4].Camadas=2
-      MozaicoCamada[4,1]=4
-      MozaicoCamada[4,2]=4
+      StrReceitaLayer[4,1]=4
+      StrReceitaLayer[4,2]=4
    ;ENDFOLD
    ;FOLD 5.1-42002392
       StrReceita[5].OffsetProduto.X=0
@@ -109,13 +109,13 @@ DEF TReceita( )
       StrReceita[5].PlacesCamada=12
       StrReceita[5].AlturaCaixa=120
       StrReceita[5].Camadas=7
-      MozaicoCamada[5,1]=5
-      MozaicoCamada[5,2]=5
-      MozaicoCamada[5,3]=5
-      MozaicoCamada[5,4]=5
-      MozaicoCamada[5,5]=5
-      MozaicoCamada[5,6]=5
-      MozaicoCamada[5,7]=5
+      StrReceitaLayer[5,1]=5
+      StrReceitaLayer[5,2]=5
+      StrReceitaLayer[5,3]=5
+      StrReceitaLayer[5,4]=5
+      StrReceitaLayer[5,5]=5
+      StrReceitaLayer[5,6]=5
+      StrReceitaLayer[5,7]=5
    ;ENDFOLD
    ;FOLD 5.2-42002392
       StrReceita[6].OffsetProduto.X=0
@@ -131,17 +131,17 @@ DEF TReceita( )
       StrReceita[6].PlacesCamada=9
       StrReceita[6].AlturaCaixa=120
       StrReceita[6].Camadas=11
-      MozaicoCamada[6,1]=6
-      MozaicoCamada[6,2]=6
-      MozaicoCamada[6,3]=6
-      MozaicoCamada[6,4]=6
-      MozaicoCamada[6,5]=6
-      MozaicoCamada[6,6]=6
-      MozaicoCamada[6,7]=6
-      MozaicoCamada[6,8]=6
-      MozaicoCamada[6,9]=6
-      MozaicoCamada[6,10]=6
-      MozaicoCamada[6,11]=6
+      StrReceitaLayer[6,1]=6
+      StrReceitaLayer[6,2]=6
+      StrReceitaLayer[6,3]=6
+      StrReceitaLayer[6,4]=6
+      StrReceitaLayer[6,5]=6
+      StrReceitaLayer[6,6]=6
+      StrReceitaLayer[6,7]=6
+      StrReceitaLayer[6,8]=6
+      StrReceitaLayer[6,9]=6
+      StrReceitaLayer[6,10]=6
+      StrReceitaLayer[6,11]=6
    ;ENDFOLD
    ;FOLD 6.1-E_nova
       StrReceita[7].OffsetProduto.X=0
@@ -157,11 +157,11 @@ DEF TReceita( )
       StrReceita[7].PlacesCamada=9
       StrReceita[7].AlturaCaixa=220
       StrReceita[7].Camadas=5
-      MozaicoCamada[7,1]=7
-      MozaicoCamada[7,2]=7
-      MozaicoCamada[7,3]=7
-      MozaicoCamada[7,4]=7
-      MozaicoCamada[7,5]=7
+      StrReceitaLayer[7,1]=7
+      StrReceitaLayer[7,2]=7
+      StrReceitaLayer[7,3]=7
+      StrReceitaLayer[7,4]=7
+      StrReceitaLayer[7,5]=7
    ;ENDFOLD
    ;FOLD 6.2-E_nova
       StrReceita[8].OffsetProduto.X=0
@@ -177,10 +177,10 @@ DEF TReceita( )
       StrReceita[8].PlacesCamada=6
       StrReceita[8].AlturaCaixa=220
       StrReceita[8].Camadas=5
-      MozaicoCamada[8,1]=8
-      MozaicoCamada[8,2]=8
-      MozaicoCamada[8,3]=8
-      MozaicoCamada[8,4]=8
-      MozaicoCamada[8,5]=8
+      StrReceitaLayer[8,1]=8
+      StrReceitaLayer[8,2]=8
+      StrReceitaLayer[8,3]=8
+      StrReceitaLayer[8,4]=8
+      StrReceitaLayer[8,5]=8
    ;ENDFOLD
 END

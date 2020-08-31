@@ -2,7 +2,7 @@
 
 ;Principais variaveis
 INT PalletAtivo
-INT MosaicoAtivo
+INT LayerAtivo
 
 BOOL PegaOk=FALSE
 
@@ -97,7 +97,7 @@ CONST INT ALTURATOPO=850
     CONST INT MaxReceitas=8
     CONST INT MaxCamadas=11
     DECL GLOBAL DecStrReceita StrReceita[8];[MaxReceitas]
-    INT  MozaicoCamada[8,11];[MaxReceitas,MaxCamadas]
+    INT  StrReceitaLayer[8,11];[MaxReceitas,MaxCamadas]
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
