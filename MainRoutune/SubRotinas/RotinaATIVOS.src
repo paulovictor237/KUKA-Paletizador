@@ -24,17 +24,17 @@
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 
-      IndexacaoVH = MatrizPontos[LayerAtivo,PlaceAtivo].IndexacaoVH
-      SkipGoHome = MatrizPontos[LayerAtivo,PlaceAtivo].SkipGoHome
-      SkipSobeRelativo = MatrizPontos[LayerAtivo,PlaceAtivo].SkipSobeRelativo
-      NumCaixas = MatrizPontos[LayerAtivo,PlaceAtivo].NumCaixas
-      ConfGarraPick = MatrizPontos[LayerAtivo,PlaceAtivo].ConfGarraPick
-      PickOp = MatrizPontos[LayerAtivo,PlaceAtivo].PickOp
-      FechaGarraOp = MatrizPontos[LayerAtivo,PlaceAtivo].FechaGarraOp
-      AbreGarraOp = MatrizPontos[LayerAtivo,PlaceAtivo].AbreGarraOp
-      XApp1Place = MatrizPontos[LayerAtivo,PlaceAtivo].XApp1Place
-      XApp2Place = MatrizPontos[LayerAtivo,PlaceAtivo].XApp2Place
-      XPlace = MatrizPontos[LayerAtivo,PlaceAtivo].XPlace
+      IndexacaoVH = MatrizPontos[ReceitaAtivo,PlaceAtivo].IndexacaoVH
+      SkipGoHome = MatrizPontos[ReceitaAtivo,PlaceAtivo].SkipGoHome
+      SkipSobeRelativo = MatrizPontos[ReceitaAtivo,PlaceAtivo].SkipSobeRelativo
+      NumCaixas = MatrizPontos[ReceitaAtivo,PlaceAtivo].NumCaixas
+      ConfGarraPick = MatrizPontos[ReceitaAtivo,PlaceAtivo].ConfGarraPick
+      PickOp = MatrizPontos[ReceitaAtivo,PlaceAtivo].PickOp
+      FechaGarraOp = MatrizPontos[ReceitaAtivo,PlaceAtivo].FechaGarraOp
+      AbreGarraOp = MatrizPontos[ReceitaAtivo,PlaceAtivo].AbreGarraOp
+      XApp1Place = MatrizPontos[ReceitaAtivo,PlaceAtivo].XApp1Place
+      XApp2Place = MatrizPontos[ReceitaAtivo,PlaceAtivo].XApp2Place
+      XPlace = MatrizPontos[ReceitaAtivo,PlaceAtivo].XPlace
    ;ENDFOLD
    
 END
