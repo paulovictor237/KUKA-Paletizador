@@ -32,7 +32,7 @@
       IF (MatrizPontos[ReceitaAtivo,ProximoPlace].SkipGoHome == TRUE) THEN
          SkipPTP = TRUE
       ENDIF 
-      IF (MatrizPontos[ReceitaAtivo,ProximoPlace].SkipGoHome == FALSE) AND (SkipPTP = TRUE)  THEN
+      IF (MatrizPontos[ReceitaAtivo,ProximoPlace].SkipGoHome == FALSE) AND (SkipPTP == TRUE)  THEN
          SkipPTP = FALSE
       ENDIF
 

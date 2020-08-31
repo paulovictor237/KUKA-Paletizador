@@ -28,20 +28,20 @@ DEF  AlterarAqui ( )
       ;TOUCHUP ESTEIRA 1
       ;FOLD TOUCHUP ESTEIRA 1
          $BWDSTART = FALSE
-         PDAT_ACT = PPDAT1
-         FDAT_ACT = FP1
+         PDAT_ACT = PPDAT1G
+         FDAT_ACT = FP1G
          BAS(#PTP_PARAMS, 100.0)
-         SET_CD_PARAMS (0)
+         ;SET_CD_PARAMS (0)
          PTP XServiceEsteira1 C_DIS
       ;ENDFOLD
 
       ;TOUCHUP ESTEIRA 2
       ;FOLD TOUCHUP ESTEIRA 2
          $BWDSTART = FALSE
-         PDAT_ACT = PPDAT1
-         FDAT_ACT = FP1
+         PDAT_ACT = PPDAT1G
+         FDAT_ACT = FP1G
          BAS(#PTP_PARAMS, 100.0)
-         SET_CD_PARAMS (0)
+         ;SET_CD_PARAMS (0)
          PTP XServiceEsteira2 C_DIS
       ;ENDFOLD
 
@@ -50,20 +50,20 @@ DEF  AlterarAqui ( )
       ;TOUCHUP PALLET 1
       ;FOLD TOUCHUP PALLET 1
          $BWDSTART = FALSE
-         PDAT_ACT = PPDAT1
-         FDAT_ACT = FP1
+         PDAT_ACT = PPDAT1G
+         FDAT_ACT = FP1G
          BAS(#PTP_PARAMS, 100.0)
-         SET_CD_PARAMS (0)
+         ;SET_CD_PARAMS (0)
          PTP XServicePallet1 C_DIS
       ;ENDFOLD
 
       ;TOUCHUP PALLET 2
       ;FOLD TOUCHUP PALLET 2
          $BWDSTART = FALSE
-         PDAT_ACT = PPDAT1
-         FDAT_ACT = FP1
+         PDAT_ACT = PPDAT1G
+         FDAT_ACT = FP1G
          BAS(#PTP_PARAMS, 100.0)
-         SET_CD_PARAMS (0)
+         ;SET_CD_PARAMS (0)
          PTP XServicePallet2 C_DIS
       ;ENDFOLD
 

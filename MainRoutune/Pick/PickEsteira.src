@@ -56,7 +56,7 @@
       PDAT_ACT = PPDAT1
       FDAT_ACT = FP1
       BAS(#PTP_PARAMS, 100.0)
-      SET_CD_PARAMS (0)
+      ;SET_CD_PARAMS (0)
       PTP BaseEsteiraR:XAPP1PICK C_DIS
    ;ENDFOLD
    
@@ -69,7 +69,7 @@
       LDAT_ACT = LCPDAT1
       FDAT_ACT = FP1
       BAS(#CP_PARAMS, 2.0)
-      SET_CD_PARAMS (0)
+      ;SET_CD_PARAMS (0)
       LIN BaseEsteiraR:XAPP2PICK C_DIS C_DIS
    ;ENDFOLD
    
@@ -78,7 +78,7 @@
       LDAT_ACT = LCPDAT1
       FDAT_ACT = FP1
       BAS(#CP_PARAMS, 2.0)
-      SET_CD_PARAMS (0)
+      ;SET_CD_PARAMS (0)
       LIN BaseEsteiraR:XPICK
    ;ENDFOLD 
    
@@ -91,7 +91,7 @@
       LDAT_ACT = LCPDAT1
       FDAT_ACT = FP1
       BAS(#CP_PARAMS, 2.0)
-      SET_CD_PARAMS (0)
+      ;SET_CD_PARAMS (0)
       ;XPICK.Z=XAPP2PICK.Z
       ;LIN BaseEsteiraR:XPICK
       RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
