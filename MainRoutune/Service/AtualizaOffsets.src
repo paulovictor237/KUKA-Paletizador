@@ -6,36 +6,36 @@ DEF AtualiZaOffsets( )
    ;Verifica diferenca
    
    ;FOLD OFFSET ESTEIRA
-      OffsetEsteira1.X = PolluxEsteira1.X - ServiceEsteira1.X
-      OffsetEsteira1.Y = PolluxEsteira1.Y - ServiceEsteira1.Y
-      OffsetEsteira1.Z = PolluxEsteira1.Z - ServiceEsteira1.Z
-      OffsetEsteira1.A = PolluxEsteira1.A - ServiceEsteira1.A
-      OffsetEsteira1.B = PolluxEsteira1.B - ServiceEsteira1.B
-      OffsetEsteira1.C = PolluxEsteira1.C - ServiceEsteira1.C
+      OffsetEsteira1.X = PolluxEsteira1.X - XServiceEsteira1.X
+      OffsetEsteira1.Y = PolluxEsteira1.Y - XServiceEsteira1.Y
+      OffsetEsteira1.Z = PolluxEsteira1.Z - XServiceEsteira1.Z
+      OffsetEsteira1.A = PolluxEsteira1.A - XServiceEsteira1.A
+      OffsetEsteira1.B = PolluxEsteira1.B - XServiceEsteira1.B
+      OffsetEsteira1.C = PolluxEsteira1.C - XServiceEsteira1.C
       
-      OffsetEsteira2.X = PolluxEsteira2.X - ServiceEsteira2.X
-      OffsetEsteira2.Y = PolluxEsteira2.Y - ServiceEsteira2.Y
-      OffsetEsteira2.Z = PolluxEsteira2.Z - ServiceEsteira2.Z
-      OffsetEsteira2.A = PolluxEsteira2.A - ServiceEsteira2.A
-      OffsetEsteira2.B = PolluxEsteira2.B - ServiceEsteira2.B
-      OffsetEsteira2.C = PolluxEsteira2.C - ServiceEsteira2.C
+      OffsetEsteira2.X = PolluxEsteira2.X - XServiceEsteira2.X
+      OffsetEsteira2.Y = PolluxEsteira2.Y - XServiceEsteira2.Y
+      OffsetEsteira2.Z = PolluxEsteira2.Z - XServiceEsteira2.Z
+      OffsetEsteira2.A = PolluxEsteira2.A - XServiceEsteira2.A
+      OffsetEsteira2.B = PolluxEsteira2.B - XServiceEsteira2.B
+      OffsetEsteira2.C = PolluxEsteira2.C - XServiceEsteira2.C
    ;ENDFOLD
 
 
    ;FOLD OFFSET PALLET
-      StrPallet[1].OffSetPallet.X = PolluxPallet1.X - ServicePallet1.X
-      StrPallet[1].OffSetPallet.Y = PolluxPallet1.Y - ServicePallet1.Y
-      StrPallet[1].OffSetPallet.Z = PolluxPallet1.Z - ServicePallet1.Z
-      StrPallet[1].OffSetPallet.A = PolluxPallet1.A - ServicePallet1.A
-      StrPallet[1].OffSetPallet.B = PolluxPallet1.B - ServicePallet1.B
-      StrPallet[1].OffSetPallet.C = PolluxPallet1.C - ServicePallet1.C
+      StrPallet[1].OffSetPallet.X = PolluxPallet1.X - XServicePallet1.X
+      StrPallet[1].OffSetPallet.Y = PolluxPallet1.Y - XServicePallet1.Y
+      StrPallet[1].OffSetPallet.Z = PolluxPallet1.Z - XServicePallet1.Z
+      StrPallet[1].OffSetPallet.A = PolluxPallet1.A - XServicePallet1.A
+      StrPallet[1].OffSetPallet.B = PolluxPallet1.B - XServicePallet1.B
+      StrPallet[1].OffSetPallet.C = PolluxPallet1.C - XServicePallet1.C
       
-      StrPallet[2].OffSetPallet.X = PolluxPallet2.X - ServicePallet2.X
-      StrPallet[2].OffSetPallet.Y = PolluxPallet2.Y - ServicePallet2.Y
-      StrPallet[2].OffSetPallet.Z = PolluxPallet2.Z - ServicePallet2.Z
-      StrPallet[2].OffSetPallet.A = PolluxPallet2.A - ServicePallet2.A
-      StrPallet[2].OffSetPallet.B = PolluxPallet2.B - ServicePallet2.B
-      StrPallet[2].OffSetPallet.C = PolluxPallet2.C - ServicePallet2.C
+      StrPallet[2].OffSetPallet.X = PolluxPallet2.X - XServicePallet2.X
+      StrPallet[2].OffSetPallet.Y = PolluxPallet2.Y - XServicePallet2.Y
+      StrPallet[2].OffSetPallet.Z = PolluxPallet2.Z - XServicePallet2.Z
+      StrPallet[2].OffSetPallet.A = PolluxPallet2.A - XServicePallet2.A
+      StrPallet[2].OffSetPallet.B = PolluxPallet2.B - XServicePallet2.B
+      StrPallet[2].OffSetPallet.C = PolluxPallet2.C - XServicePallet2.C
    ;ENDFOLD
    
 END
