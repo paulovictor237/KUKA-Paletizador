@@ -8,10 +8,10 @@ DEF  MainProgram ( )
       ;FOLD USER INI
          ;Make your modifications here
          $PAL_MODE=TRUE
-         WAIT FOR TDefault()
-         WAIT FOR TPallet()
-         WAIT FOR TMatriz()
-         WAIT FOR TReceita()
+         TDefault()
+         TPallet()
+         TMatriz()
+         TReceita()
          $TOOL = TOOL_DATA[1]
          $BASE=$NULLFRAME
          $Advance=0
@@ -31,7 +31,7 @@ DEF  MainProgram ( )
       WHILE TRUE
          ; ->ler do CLP pallet
          ; ->gravar na variavel PalletAtivo
-         PalletAtivo=1 ; TESTE
+         PalletAtivo=2 ; TESTE
          ReceitaAtivo=1 ; TESTE
          StrPallet[PalletAtivo].Livre=TRUE ; TESTE
          ; ->verificar se ja possui produto no pallet
@@ -40,8 +40,8 @@ DEF  MainProgram ( )
             StrPallet[PalletAtivo].Livre=FALSE
             StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
          ENDIF
-         WAIT FOR RotinaATIVOS()
-         ;WAIT FOR RotinaCLP()
+         RotinaATIVOS()
+         ;RotinaCLP()
          PickEsteira()
          IF PegaOk THEN
             PlaceCaixaPallet()
