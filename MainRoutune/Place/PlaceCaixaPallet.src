@@ -9,11 +9,11 @@ DEF PlaceCaixaPallet()
    
    REPEAT
       ;FOLD ATUALIZA OS PONTOS DE PLACE
-         WAIT FOR SetPlacePos()
+         SetPlacePos()
       ;ENDFOLD 
       
       ;FOLD ATUALIZA OFFSET PALLET+PRODUTO
-         WAIT FOR OffsetPalletProduto()
+         OffsetPalletProduto()
       ;ENDFOLD
       
       ;FOLD ATUALIZA VARIAVEIS DE SKIP
@@ -73,11 +73,11 @@ DEF PlaceCaixaPallet()
       ;ENDFOLD  
       
       ;FOLD ABRE GARRA  
-         WAIT FOR AbreGarra()
+         AbreGarra()
       ;ENDFOLD     
       
       ;FOLD TROCA A CAMADA DO PALLET
-         WAIT FOR SetCamada()
+         SetCamada()
       ;ENDFOLD
       
       IF (SkipSobeRelativo == FALSE) THEN
