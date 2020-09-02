@@ -5,8 +5,8 @@
          FOR J = 1 to MaxMatrizJ
             MatrizPontos[I,J].IndexacaoVH = FALSE
             MatrizPontos[I,J].NumCaixas = 0
-            MatrizPontos[I,J].ConfGarraPick = 0
             MatrizPontos[I,J].PickOp = 0
+            MatrizPontos[I,J].ConfGarraPick = 0
             MatrizPontos[I,J].FechaGarraOp = 0
             MatrizPontos[I,J].AbreGarraOp = 0
             MatrizPontos[I,J].SkipGoHome = FALSE

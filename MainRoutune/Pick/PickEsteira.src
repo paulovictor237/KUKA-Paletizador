@@ -26,7 +26,7 @@
       ENDIF
       IF (NENHUM==TRUE) THEN
          XPICK = StrReceita[ReceitaAtivo].Pick1Esteira1
-         BaseEsteiraR = BaseEsteira1
+         BaseEsteiraR = NULLFRAME
       ENDIF
    ;ENDFOLD
    
