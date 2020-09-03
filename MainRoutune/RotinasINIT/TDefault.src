@@ -53,4 +53,14 @@
       BaseEsteira1 = NULLFRAME
    ;ENDFOLD
 
+   ;FOLD Principais variaveis
+      PalletAtivo = 1
+      LayerAtivo = 1
+      PlaceLayerAtivo = 1
+      EsteiraAtiva = 1
+      ReceitaAtivo = 1
+      PlaceAtivo = 1
+      CamadaAtiva = 1
+   ;ENDFOLD
+
 END
