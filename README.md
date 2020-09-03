@@ -1,7 +1,7 @@
 # FOLD STRUC MatrizPontos
 ### Cabecalho Pick
 
-{IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
+{IndexacaoVH} FALSE-> Vertical / TRUE -> Horizontal
 
 ```c++
 bool IndexacaoVH = false;

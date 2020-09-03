@@ -1,23 +1,23 @@
 ;FOLD Variaveis PEVE
 
-;Principais variaveis
-INT PalletAtivo
-INT LayerAtivo
-INT PlaceLayerAtivo
+;FOLD ENUM PRODUTOS
+    CONST INT ProdutoA=1
+    CONST INT ProdutoB=2 
+    CONST INT ProdutoC=3 
+    CONST INT ProdutoD=4 
+    CONST INT ProdutoE=5
+    CONST INT ProdutoF=6
+    CONST INT ProdutoG=7
+    CONST INT ProdutoH=8
+;ENDFOLD
 
-BOOL PegaOk=FALSE
-
-CONST BOOL OperarVazio=TRUE
-CONST INT ALTURATOPO=850
-
-;FOLD Definir Variaveis de Pontos
-    CONST POS NULLPOS = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    POS OffsetEsteira1
-    POS OffsetEsteira2
-    CONST FRAME NULLFRAME = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    FRAME BaseEsteira1
-    FRAME BaseEsteira2
-    CONST E6POS DefaultPoint={X 20000,Y 0,Z 1100,A 180.000,B 0,C 180.000,S 2,T 43,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
+;FOLD VARIAVEIS CLP
+    ;{EsteiraAtiva} numero da esteira que está com a caixa
+    ;{CLPNumCaixas} numero de caixas para o pick
+    ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
+    INT EsteiraAtiva=1
+    INT  CLPNumCaixas    
+    BOOL CLPIndexacaoVH  
 ;ENDFOLD
 
 ;FOLD SINAIS
@@ -53,15 +53,28 @@ CONST INT ALTURATOPO=850
     Signal SensorGarraFechada6 $in[46]
 ;ENDFOLD
 
-;FOLD ENUM PRODUTOS
-    CONST INT ProdutoA=1
-    CONST INT ProdutoB=2 
-    CONST INT ProdutoC=3 
-    CONST INT ProdutoD=4 
-    CONST INT ProdutoE=5
-    CONST INT ProdutoF=6
-    CONST INT ProdutoG=7
-    CONST INT ProdutoH=8
+;FOLD Principais variaveis
+    INT PalletAtivo
+    INT LayerAtivo
+    INT PlaceLayerAtivo
+;ENDFOLD
+
+;FOLD Variaveis de estado
+    BOOL PegaOk=FALSE
+    CONST BOOL OperarVazio=TRUE
+    CONST INT ALTURATOPO=850
+;ENDFOLD
+
+;FOLD Esteira e Pick
+    CONST E6POS DefaultPoint={X 20000,Y 0,Z 1100,A 180.000,B 0,C 180.000,S 2,T 43,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
+    CONST POS NULLPOS = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+    CONST FRAME NULLFRAME = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+    
+    POS OffsetEsteira1
+    POS OffsetEsteira2
+    
+    FRAME BaseEsteira1
+    FRAME BaseEsteira2
 ;ENDFOLD
 
 ;FOLD STRUC MatrizPontos
@@ -92,11 +105,11 @@ CONST INT ALTURATOPO=850
     E6POS XApp1Place
     E6POS XApp2Place
     E6POS XPlace
-    STRUC DecMatriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
-    ;----------MatrizPontos[MOZAICOS,PONTOS]----------
+    STRUC DefMatriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
+    ;---------- MatrizPontos[MaxMatrizI,MaxMatrizJ] ----------
     CONST INT MaxMatrizI=8
     CONST INT MaxMatrizJ=15  
-    DECL GLOBAL DecMatriz MatrizPontos[8,15];
+    DECL GLOBAL DefMatriz MatrizPontos[8,15];[MaxMatrizI,MaxMatrizJ]
 ;ENDFOLD
 
 ;FOLD STRUC Receita
@@ -108,11 +121,11 @@ CONST INT ALTURATOPO=850
     E6POS Pick1Esteira2
     E6POS Pick2Esteira1
     E6POS Pick2Esteira2
-    STRUC DecStrReceita INT PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
-    ;----------DecStrReceita[RECEITAS,MaxCamadas]----------
+    STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
+    ;---------- StrReceita[MaxReceitas] ----------
     CONST INT MaxReceitas=8
     CONST INT MaxCamadas=11
-    DECL GLOBAL DecStrReceita StrReceita[8];[MaxReceitas]
+    DECL GLOBAL DefStrReceita StrReceita[8];[MaxReceitas]
     INT  StrReceitaLayer[8,11];[MaxReceitas,MaxCamadas]
 ;ENDFOLD
 
@@ -124,21 +137,10 @@ CONST INT ALTURATOPO=850
     FRAME BasePoint
     POS OffSetPallet
     E6POS Approch
-    STRUC Pallet INT ReceitaAtivo, BOOL Livre, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    STRUC DefPallet INT ReceitaAtivo, BOOL Livre, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    ;---------- StrPallet[MaxPallets] ----------
     CONST INT MaxPallets=5
-    DECL GLOBAL Pallet StrPallet[5]
+    DECL GLOBAL DefPallet StrPallet[5];[MaxPallets]
 ;ENDFOLD
-
-;FOLD VARIAVEIS CLP
-    ;{EsteiraAtiva} numero da esteira que está com a caixa
-    ;{CLPNumCaixas} numero de caixas para o pick
-    ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
-    INT EsteiraAtiva=1
-    INT  CLPNumCaixas    
-    BOOL CLPIndexacaoVH  
-    ;STRUC CLP CHAR Produto[15], INT TamPallet, Mosaico
-    ;DECL GLOBAL CLP CLPFurukawa
-;ENDFOLD
-
 
 ;ENDFOLD

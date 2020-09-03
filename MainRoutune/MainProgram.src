@@ -33,6 +33,7 @@ DEF  MainProgram ( )
          ; ->gravar na variavel PalletAtivo
          PalletAtivo=2 ; TESTE
          ReceitaAtivo=1 ; TESTE
+         EsteiraAtiva=1 ; TESTE
          StrPallet[PalletAtivo].Livre=TRUE ; TESTE
          ; ->verificar se ja possui produto no pallet
          ; ->se nao tiver escrever um produto
