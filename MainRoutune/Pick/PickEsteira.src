@@ -4,28 +4,46 @@
    NENHUM = TRUE
    ;FOLD PickEsteira de cada receita e esteira
       ;verifica qual opcao de pick do place
-      IF (PickOp==1) AND (EsteiraAtiva==1) THEN
-         XPICK = StrReceita[ReceitaAtivo].Pick1Esteira1
-         BaseEsteiraR = BaseEsteira1
-         NENHUM = FALSE
-      ENDIF
-      IF (PickOp==1) AND (EsteiraAtiva==2) THEN
-         XPICK = StrReceita[ReceitaAtivo].Pick1Esteira2
-         BaseEsteiraR = BaseEsteira2
-         NENHUM = FALSE
-      ENDIF
-      IF (PickOp==2) AND (EsteiraAtiva==1) THEN
-         XPICK = StrReceita[ReceitaAtivo].Pick2Esteira1
-         BaseEsteiraR = BaseEsteira1
-         NENHUM = FALSE
-      ENDIF
-      IF (PickOp==2) AND (EsteiraAtiva==2) THEN
-         XPICK = StrReceita[ReceitaAtivo].Pick2Esteira2
-         BaseEsteiraR = BaseEsteira2
-         NENHUM = FALSE
-      ENDIF
+      SWITCH EsteiraAtiva
+         CASE 1
+            BaseEsteiraR = BaseEsteira1
+            IF (PickOp==1) THEN
+               XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_1
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==2) THEN
+               XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_2
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==3) THEN
+               XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_3
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==4) THEN
+               XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_4
+               NENHUM = FALSE
+            ENDIF
+         CASE 2
+            BaseEsteiraR = BaseEsteira2
+            IF (PickOp==1) THEN
+               XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_1
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==2) THEN
+               XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_2
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==3) THEN
+               XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_3
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==4) THEN
+               XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_4
+               NENHUM = FALSE
+            ENDIF
+      ENDSWITCH
       IF (NENHUM==TRUE) THEN
-         XPICK = StrReceita[ReceitaAtivo].Pick1Esteira1
+         XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_1
          BaseEsteiraR = NULLFRAME
       ENDIF
    ;ENDFOLD

@@ -1,15 +1,29 @@
 ;FOLD Variaveis PEVE
 
 ;FOLD ENUM PRODUTOS
-    CONST INT ProdutoA=1
-    CONST INT ProdutoB=2 
-    CONST INT ProdutoC=3 
-    CONST INT ProdutoD=4 
-    CONST INT ProdutoE=5
-    CONST INT ProdutoF=6
-    CONST INT ProdutoG=7
-    CONST INT ProdutoH=8
+    CONST INT Produto_A  = 1
+    CONST INT Produto_B  = 2
+    CONST INT Produto_C1 = 3
+    CONST INT Produto_C2 = 4
+    CONST INT Produto_E1 = 5
+    CONST INT Produto_E2 = 6
+    CONST INT Produto_E3 = 7
+    CONST INT Produto_F  = 8
+    CONST INT Produto_G  = 9
+    CONST INT Produto_I  = 10
+    CONST INT Produto_J  = 11
+    CONST INT Produto_K  = 12
+    CONST INT Produto_L  = 13
+    CONST INT Produto_M  = 14
+    CONST INT Produto_N  = 15
+    CONST INT Produto_O  = 16
+    CONST INT Produto_P  = 17
+    CONST INT Produto_Q  = 18
+    CONST INT Produto_R  = 19
+    CONST INT Produto_S  = 20
+    CONST INT Produto_T  = 21
 ;ENDFOLD
+
 
 ;FOLD VARIAVEIS CLP
     ;{EsteiraAtiva} numero da esteira que está com a caixa
@@ -116,16 +130,20 @@
     INT Camadas
     INT AlturaCaixa
     FRAME OffsetProduto
-    E6POS Pick1Esteira1
-    E6POS Pick1Esteira2
-    E6POS Pick2Esteira1
-    E6POS Pick2Esteira2
-    STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
+    E6POS Pick_E_1_P_1
+    E6POS Pick_E_1_P_2
+    E6POS Pick_E_1_P_3
+    E6POS Pick_E_1_P_4
+    E6POS Pick_E_2_P_1
+    E6POS Pick_E_2_P_2
+    E6POS Pick_E_2_P_3
+    E6POS Pick_E_2_P_4
+    STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick_E_1_P_1, Pick_E_1_P_2, Pick_E_1_P_3, Pick_E_1_P_4, Pick_E_2_P_1, Pick_E_2_P_2, Pick_E_2_P_3, Pick_E_2_P_4
     ;---------- StrReceita[MaxReceitas] ----------
-    CONST INT MaxReceitas=8
-    CONST INT MaxCamadas=11
-    DECL GLOBAL DefStrReceita StrReceita[8];[MaxReceitas]
-    INT  StrReceitaLayer[8,11];[MaxReceitas,MaxCamadas]
+    CONST INT MaxReceitas=21
+    CONST INT MaxCamadas=8
+    DECL GLOBAL DefStrReceita StrReceita[21];[MaxReceitas]
+    INT  StrReceitaLayer[21,8];[MaxReceitas,MaxCamadas]
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
@@ -138,8 +156,8 @@
     E6POS Approch
     STRUC DefPallet INT ReceitaAtivo, BOOL Livre, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, FRAME OffSetPallet, E6POS Approch
     ;---------- StrPallet[MaxPallets] ----------
-    CONST INT MaxPallets=5
-    DECL GLOBAL DefPallet StrPallet[5];[MaxPallets]
+    CONST INT MaxPallets=2
+    DECL GLOBAL DefPallet StrPallet[2];[MaxPallets]
 ;ENDFOLD
 
 ;ENDFOLD

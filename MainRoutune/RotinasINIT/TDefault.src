@@ -24,10 +24,14 @@
          StrReceita[I].Camadas = 1
          StrReceita[I].AlturaCaixa = 1
          StrReceita[I].OffsetProduto = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-         StrReceita[I].Pick1Esteira1 = DefaultPoint
-         StrReceita[I].Pick1Esteira2 = DefaultPoint
-         StrReceita[I].Pick2Esteira1 = DefaultPoint
-         StrReceita[I].Pick2Esteira2 = DefaultPoint
+         StrReceita[I].Pick_E_1_P_1 = DefaultPoint
+         StrReceita[I].Pick_E_1_P_2 = DefaultPoint
+         StrReceita[I].Pick_E_1_P_3 = DefaultPoint
+         StrReceita[I].Pick_E_1_P_4 = DefaultPoint
+         StrReceita[I].Pick_E_2_P_1 = DefaultPoint
+         StrReceita[I].Pick_E_2_P_2 = DefaultPoint
+         StrReceita[I].Pick_E_2_P_3 = DefaultPoint
+         StrReceita[I].Pick_E_2_P_4 = DefaultPoint
          FOR J = 1 to MaxCamadas
             StrReceitaLayer[I,J] = 1
          ENDFOR
