@@ -5,7 +5,7 @@
    ;INT EsteiraAtiva=1
    ;INT  CLPNumCaixas    
    ;BOOL CLPIndexacaoVH  
-   SkipPTP = FALSE
+   SaidaLoop = FALSE
 
    REPEAT
       ;precisa saber qual o pallet ativo
@@ -25,22 +25,27 @@
                ;Envia alerta de Pallet concluido
                ProximoPlace = 1
                ProximaCamada = 1
-               SkipPTP = FALSE
+               SaidaLoop = FALSE
                EXIT
          ENDIF
       ;ENDFOLD
+      
 
-      IF (MatrizPontos[ReceitaAtivo,ProximoPlace].SkipGoHome == TRUE) THEN
-         SkipPTP = TRUE
+      ProxPlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
+      ProxLayer = StrReceitaLayer[ReceitaAtivo,ProximaCamada]
+      ProxPlaceLayer = ProximoPlace + ProxPlacesCamada*(ProxLayer-1)
+
+      IF (MatrizPontos[ReceitaAtivo,ProxPlaceLayer].SkipGoHome == TRUE) THEN
+         SaidaLoop = TRUE
       ENDIF 
-      IF (MatrizPontos[ReceitaAtivo,ProximoPlace].SkipGoHome == FALSE) AND (SkipPTP == TRUE)  THEN
-         SkipPTP = FALSE
+      IF (MatrizPontos[ReceitaAtivo,ProxPlaceLayer].SkipGoHome == FALSE) AND (SaidaLoop == TRUE)  THEN
+         SaidaLoop = FALSE
       ENDIF
 
-   UNTIL (SkipPTP == FALSE)
+   UNTIL (SaidaLoop == FALSE)
 
-   ;SAIDA
-   IndexacaoVH = MatrizPontos[ReceitaAtivo,ProximoPlace].IndexacaoVH
-   NumCaixas = MatrizPontos[ReceitaAtivo,ProximoPlace].NumCaixas  
+   ;SaidaLoop
+   IndexacaoVH = MatrizPontos[ReceitaAtivo,ProxPlaceLayer].IndexacaoVH
+   NumCaixas = MatrizPontos[ReceitaAtivo,ProxPlaceLayer].NumCaixas  
 
 END

@@ -1,5 +1,8 @@
 ﻿DEFDAT RotinaCLP 
-    BOOL SkipPTP = FALSE
+    BOOL SaidaLoop = FALSE
     INT ProximoPlace
     INT ProximaCamada
+    INT ProxPlacesCamada
+    INT ProxLayer
+    INT ProxPlaceLayer
 ENDDAT
