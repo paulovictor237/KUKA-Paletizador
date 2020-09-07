@@ -114,6 +114,4 @@ DEF PlaceCaixaPallet()
       
    UNTIL (SkipGoHome == FALSE)
    
-   PegaOk=FALSE
-   
 END

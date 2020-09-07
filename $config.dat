@@ -74,7 +74,6 @@
 ;ENDFOLD
 
 ;FOLD Variaveis de estado
-    BOOL PegaOk=FALSE
     CONST BOOL OperarVazio=TRUE
     CONST INT ALTURATOPO=850
 ;ENDFOLD

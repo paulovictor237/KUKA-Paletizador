@@ -44,9 +44,7 @@ DEF  MainProgram ( )
          RotinaATIVOS()
          ;RotinaCLP()
          PickEsteira()
-         IF PegaOk THEN
-            PlaceCaixaPallet()
-         ENDIF 
+         PlaceCaixaPallet()
       ENDWHILE
    ;ENDFOLD
    

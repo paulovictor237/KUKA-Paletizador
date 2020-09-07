@@ -28,7 +28,7 @@
 
       ;por possuir duas Layers por Receita o numero referente ao place
       ;deve subir em relacao a LayerAtivo
-      PlaceLayerAtivo = PlaceAtivo + Camadas*(LayerAtivo-1)
+      PlaceLayerAtivo = PlaceAtivo + PlacesCamada*(LayerAtivo-1)
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 

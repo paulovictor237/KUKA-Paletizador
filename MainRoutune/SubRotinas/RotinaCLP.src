@@ -23,8 +23,9 @@
          ;->se a qtd de camadas do pallet for acima da qtd do mozaico
          IF ProximaCamada > StrReceita[ReceitaAtivo].Camadas THEN
                ;Envia alerta de Pallet concluido
-               IndexacaoVH = FALSE
-               NumCaixas = 0
+               ProximoPlace = 1
+               ProximaCamada = 1
+               SkipPTP = FALSE
                EXIT
          ENDIF
       ;ENDFOLD
