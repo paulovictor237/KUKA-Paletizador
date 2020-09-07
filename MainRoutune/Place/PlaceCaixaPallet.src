@@ -13,7 +13,12 @@ DEF PlaceCaixaPallet()
       ;ENDFOLD 
       
       ;FOLD ATUALIZA OFFSET PALLET+PRODUTO
-         OffsetPalletProduto()
+         BasePoint.X = BasePoint.X + OffSetPallet.X + OffsetProduto.X
+         BasePoint.Y = BasePoint.Y + OffSetPallet.Y + OffsetProduto.Y
+         BasePoint.Z = BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z
+         BasePoint.A = BasePoint.A + OffSetPallet.A + OffsetProduto.A
+         BasePoint.B = BasePoint.B + OffSetPallet.B + OffsetProduto.B
+         BasePoint.C = BasePoint.C + OffSetPallet.C + OffsetProduto.C
       ;ENDFOLD
       
       ;FOLD ATUALIZA VARIAVEIS DE SKIP

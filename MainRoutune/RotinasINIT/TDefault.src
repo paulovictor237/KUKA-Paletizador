@@ -47,8 +47,8 @@
    ;ENDFOLD  
 
    ;FOLD OffsetEsteira
-      OffsetEsteira1 = NULLPOS
-      OffsetEsteira2 = NULLPOS
+      OffsetEsteira1 = NULLFRAME
+      OffsetEsteira2 = NULLFRAME
       BaseEsteira1 = NULLFRAME
       BaseEsteira1 = NULLFRAME
    ;ENDFOLD

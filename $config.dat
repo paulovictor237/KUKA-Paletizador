@@ -67,11 +67,11 @@
 
 ;FOLD Esteira e Pick
     CONST E6POS DefaultPoint={X 20000,Y 0,Z 1100,A 180.000,B 0,C 180.000,S 2,T 43,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-    CONST POS NULLPOS = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+    CONST FRAME NULLFRAME = {x 0,Y 0,Z 0,A 0,B 0,C 0}
     CONST FRAME NULLFRAME = {x 0,Y 0,Z 0,A 0,B 0,C 0}
     
-    POS OffsetEsteira1
-    POS OffsetEsteira2
+    FRAME OffsetEsteira1
+    FRAME OffsetEsteira2
     
     FRAME BaseEsteira1
     FRAME BaseEsteira2
@@ -116,12 +116,12 @@
     INT PlacesCamada
     INT Camadas
     INT AlturaCaixa
-    POS OffsetProduto
+    FRAME OffsetProduto
     E6POS Pick1Esteira1
     E6POS Pick1Esteira2
     E6POS Pick2Esteira1
     E6POS Pick2Esteira2
-    STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, POS OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
+    STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick1Esteira1, Pick1Esteira2, Pick2Esteira1, Pick2Esteira2
     ;---------- StrReceita[MaxReceitas] ----------
     CONST INT MaxReceitas=8
     CONST INT MaxCamadas=11
@@ -135,9 +135,9 @@
     INT PlaceAtivo
     INT CamadaAtiva
     FRAME BasePoint
-    POS OffSetPallet
+    FRAME OffSetPallet
     E6POS Approch
-    STRUC DefPallet INT ReceitaAtivo, BOOL Livre, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, POS OffSetPallet, E6POS Approch
+    STRUC DefPallet INT ReceitaAtivo, BOOL Livre, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, FRAME OffSetPallet, E6POS Approch
     ;---------- StrPallet[MaxPallets] ----------
     CONST INT MaxPallets=5
     DECL GLOBAL DefPallet StrPallet[5];[MaxPallets]
