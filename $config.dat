@@ -1,6 +1,6 @@
 ;FOLD Variaveis PEVE
 
-;FOLD ENUM PRODUTOS
+;FOLD ENUM RECEITA
     CONST INT Produto_A  = 1
     CONST INT Produto_B  = 2
     CONST INT Produto_C1 = 3
@@ -24,6 +24,70 @@
     CONST INT Produto_T  = 21
 ;ENDFOLD
 
+;FOLD ENUM MATRIZ
+    CONST INT P1_Produto_A  = 1
+    CONST INT P2_Produto_A  = 2
+    
+    CONST INT P1_Produto_B  = 3
+    CONST INT P2_Produto_B  = 4
+    
+    CONST INT P1_Produto_C1 = 5
+    CONST INT P2_Produto_C1 = 6
+    
+    CONST INT P1_Produto_C2 = 7
+    CONST INT P2_Produto_C2 = 8
+    
+    CONST INT P1_Produto_E1 = 9
+    CONST INT P2_Produto_E1 = 10
+    
+    CONST INT P1_Produto_E2 = 11
+    CONST INT P2_Produto_E2 = 12
+    
+    CONST INT P1_Produto_E3 = 13
+    CONST INT P2_Produto_E3 = 14
+    
+    CONST INT P1_Produto_F  = 15
+    CONST INT P2_Produto_F  = 16
+    
+    CONST INT P1_Produto_G  = 17
+    CONST INT P2_Produto_G  = 18
+    
+    CONST INT P1_Produto_I  = 19
+    CONST INT P2_Produto_I  = 20
+    
+    CONST INT P1_Produto_J  = 21
+    CONST INT P2_Produto_J  = 22
+    
+    CONST INT P1_Produto_K  = 23
+    CONST INT P2_Produto_K  = 24
+    
+    CONST INT P1_Produto_L  = 25
+    CONST INT P2_Produto_L  = 26
+    
+    CONST INT P1_Produto_M  = 27
+    CONST INT P2_Produto_M  = 28
+    
+    CONST INT P1_Produto_N  = 29
+    CONST INT P2_Produto_N  = 30
+    
+    CONST INT P1_Produto_O  = 31
+    CONST INT P2_Produto_O  = 32
+    
+    CONST INT P1_Produto_P  = 33
+    CONST INT P2_Produto_P  = 34
+    
+    CONST INT P1_Produto_Q  = 35
+    CONST INT P2_Produto_Q  = 36
+    
+    CONST INT P1_Produto_R  = 37
+    CONST INT P2_Produto_R  = 38
+    
+    CONST INT P1_Produto_S  = 39
+    CONST INT P2_Produto_S  = 40
+    
+    CONST INT P1_Produto_T  = 41
+    CONST INT P2_Produto_T  = 42
+;ENDFOLD
 
 ;FOLD VARIAVEIS CLP
     ;{EsteiraAtiva} numero da esteira que está com a caixa
@@ -31,39 +95,6 @@
     ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
     INT  CLPNumCaixas    
     BOOL CLPIndexacaoVH  
-;ENDFOLD
-
-;FOLD SINAIS
-    Signal SensorAltura $in[1]
-    Signal SensorCaixa $in[2]
-    ;RecuaCilindro
-    Signal AbreGarra1 $out[11]
-    Signal AbreGarra2 $out[12]
-    Signal AbreGarra3 $out[13]
-    Signal AbreGarra4 $out[14]
-    Signal AbreGarra5 $out[15]
-    Signal AbreGarra6 $out[16]
-    ;AvancaCilindro
-    Signal FechaGarra1 $out[21]
-    Signal FechaGarra2 $out[22]
-    Signal FechaGarra3 $out[23]
-    Signal FechaGarra4 $out[24]
-    Signal FechaGarra5 $out[25]
-    Signal FechaGarra6 $out[26]
-    ;CilindroRecuado
-    Signal SensorGarraAberta1 $in[31]
-    Signal SensorGarraAberta2 $in[32]
-    Signal SensorGarraAberta3 $in[33]
-    Signal SensorGarraAberta4 $in[34]
-    Signal SensorGarraAberta5 $in[35]
-    Signal SensorGarraAberta6 $in[36]
-    ;CilindroAvancado
-    Signal SensorGarraFechada1 $in[41]
-    Signal SensorGarraFechada2 $in[42]
-    Signal SensorGarraFechada3 $in[43]
-    Signal SensorGarraFechada4 $in[44]
-    Signal SensorGarraFechada5 $in[45]
-    Signal SensorGarraFechada6 $in[46]
 ;ENDFOLD
 
 ;FOLD Principais variaveis
@@ -119,9 +150,9 @@
     E6POS XPlace
     STRUC DefMatriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
     ;---------- MatrizPontos[MaxMatrizI,MaxMatrizJ] ----------
-    CONST INT MaxMatrizI=8
-    CONST INT MaxMatrizJ=15  
-    DECL GLOBAL DefMatriz MatrizPontos[8,15];[MaxMatrizI,MaxMatrizJ]
+    CONST INT MaxMatrizI=45 ;42
+    CONST INT MaxMatrizJ=25 ;22
+    DECL GLOBAL DefMatriz MatrizPontos[45,25];[MaxMatrizI,MaxMatrizJ]
 ;ENDFOLD
 
 ;FOLD STRUC Receita
@@ -139,10 +170,10 @@
     E6POS Pick_E_2_P_4
     STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick_E_1_P_1, Pick_E_1_P_2, Pick_E_1_P_3, Pick_E_1_P_4, Pick_E_2_P_1, Pick_E_2_P_2, Pick_E_2_P_3, Pick_E_2_P_4
     ;---------- StrReceita[MaxReceitas] ----------
-    CONST INT MaxReceitas=21
-    CONST INT MaxCamadas=8
+    CONST INT MaxReceitas=21 ; 21
+    CONST INT MaxCamadas=12 ; 8
     DECL GLOBAL DefStrReceita StrReceita[21];[MaxReceitas]
-    INT  StrReceitaLayer[21,8];[MaxReceitas,MaxCamadas]
+    INT  StrReceitaLayer[21,12];[MaxReceitas,MaxCamadas]
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
@@ -160,3 +191,247 @@
 ;ENDFOLD
 
 ;ENDFOLD
+
+;FOLD OUTROS SINAIS
+;*******************************************
+;Make your modifications -ONLY- here
+;*******************************************
+;==================================
+; Userdefined Types 
+;==================================
+
+;==================================
+; Userdefined Externals 
+;==================================
+
+;==================================
+; Userdefined Variables 
+;==================================
+
+;FOLD ENTRADAS DIGITAIS
+
+;==================================
+; Entradas Digitais 
+;==================================
+
+;********************
+;HUB Baluff 126A1
+;********************
+SIGNAL SensorPresencaCaixa_1 $IN[1]
+SIGNAL SensorPresencaCaixa_3 $IN[2]
+SIGNAL Cil_1_Gar_2_Ava $IN[3]
+SIGNAL Cil_Comp_Triplo_A_Ava $IN[4]
+SIGNAL Cil_Comp_Indiv_GR_1_Ava $IN[5]
+;SIGNAL Reserva $IN[6]
+;SIGNAL Reserva $IN[7]
+;SIGNAL NaoUsar $IN[8]
+SIGNAL SensorPresencaCaixa_2 $IN[9]
+SIGNAL Cil_1_Gar_1_Ava $IN[10]
+SIGNAL Cil_1_Gar_3_Ava $IN[11]
+SIGNAL Cil_Comp_Triplo_A_Rec $IN[12]
+SIGNAL Cil_Comp_Indiv_GR_1_Rec $IN[13]
+;SIGNAL Reserva $IN[14]
+;SIGNAL Reserva $IN[15]
+;SIGNAL NaoUsar $IN[16]
+
+;********************
+;HUB Baluff 129A1
+;********************
+SIGNAL SensorPresencaCaixa_4 $IN[17]
+SIGNAL SensorPresencaCaixa_6 $IN[18]
+SIGNAL Cil_1_Gar_5_Ava $IN[19]
+SIGNAL Cil_Comp_Indiv_GR_3_Ava $IN[20]
+SIGNAL Reserva $IN[21]
+;SIGNAL Reserva $IN[22]
+;SIGNAL Reserva $IN[23]
+;SIGNAL Reserva $IN[24]
+SIGNAL SensorPresencaCaixa_5 $IN[25]
+SIGNAL Cil_1_Gar_4_Ava $IN[26]
+SIGNAL Cil_1_Gar_6_Ava $IN[27]
+SIGNAL Cil_Comp_Indiv_GR_3_Rec $IN[28]
+;SIGNAL Reserva $IN[29]
+;SIGNAL Reserva $IN[30]
+;SIGNAL Reserva $IN[31]
+;SIGNAL Reserva $IN[32]
+
+;********************
+;HUB Baluff 132A1
+;********************
+SIGNAL Cil_Comp_Indiv_Gr_4_Ava $IN[33]
+SIGNAL Cil_2_Gar_1_Ava $IN[34]
+SIGNAL Cil_2_Gar_3_Ava $IN[35]
+;SIGNAL Reserva $IN[36]
+;SIGNAL Reserva $IN[37]
+;SIGNAL Reserva $IN[38]
+;SIGNAL Reserva $IN[39]
+;SIGNAL NaoUsar $IN[40]
+SIGNAL Cil_Comp_Indiv_Gr_4_Rec $IN[41]
+SIGNAL Cil_2_Gar_2_Ava $IN[42]
+;SIGNAL Reserva $IN[43]
+;SIGNAL Reserva $IN[44]
+;SIGNAL Reserva $IN[45]
+;SIGNAL Reserva $IN[46]
+;SIGNAL Reserva $IN[47]
+;SIGNAL NaoUsar $IN[48]
+
+;********************
+;HUB Baluff 135A1
+;********************
+SIGNAL Cil_Comp_Triplo_B_Ava $IN[49]
+SIGNAL Cil_Comp_Indiv_Gr_6_Ava $IN[50]
+SIGNAL Cil_2_Gar_4_Ava $IN[51]
+SIGNAL Cil_2_Gar_6_Ava $IN[52]
+;SIGNAL Reserva $IN[53]
+;SIGNAL Reserva $IN[54]
+;SIGNAL Reserva $IN[55]
+;SIGNAL Reserva $IN[56]
+SIGNAL Cil_Comp_Triplo_B_Rec $IN[57]
+SIGNAL Cil_Comp_Indiv_Gr_6_Rec $IN[58]
+SIGNAL Cil_2_Gar_5_Ava $IN[59]
+;SIGNAL Reserva $IN[60]
+;SIGNAL Reserva $IN[61]
+;SIGNAL Reserva $IN[62]
+;SIGNAL Reserva $IN[63]
+;SIGNAL Reserva $IN[64]
+;ENDFOLD (ENTRADAS DIGITAIS)
+;FOLD SAIDAS DIGITAIS
+
+;==================================
+; Saidas Digitais 
+;==================================
+
+;**********************************
+;Bloco de Valvula Lado A - 141A1 
+;**********************************
+SIGNAL Fecha_Gar_Triplo_Lado_A $OUT[1]
+SIGNAL Abre_Gar_Triplo_Lado_A $OUT[2]
+SIGNAL Ava_Comp_Indiv_Gar_1 $OUT[3]
+SIGNAL Rec_Comp_Indiv_Gar_1 $OUT[4]
+SIGNAL Ava_Comp_Indiv_Gar_3 $OUT[5]
+SIGNAL Rec_Comp_Indiv_Gar_3 $OUT[6]
+;SIGNAL Reserva $OUT[7]
+;SIGNAL Reserva $OUT[8]
+SIGNAL Ava_Cil_1_Gar_1 $OUT[9]
+SIGNAL Rec_Cil_1_Gar_1 $OUT[10]
+SIGNAL Ava_Cil_1_Gar_2 $OUT[11]
+SIGNAL Rec_Cil_1_Gar_2 $OUT[12]
+SIGNAL Ava_Cil_1_Gar_3 $OUT[13]
+SIGNAL Rec_Cil_1_Gar_3 $OUT[14]
+SIGNAL Ava_Cil_1_Gar_4 $OUT[15]
+SIGNAL Rec_Cil_1_Gar_4 $OUT[16]
+SIGNAL Ava_Cil_1_Gar_5 $OUT[17]
+SIGNAL Rec_Cil_1_Gar_5 $OUT[18]
+SIGNAL Ava_Cil_1_Gar_6 $OUT[19]
+SIGNAL Rec_Cil_1_Gar_6 $OUT[20]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[21]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[22]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[23]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[24]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[25]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[26]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[27]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[28]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[29]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[30]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[31]
+;SIGNAL ReservadoBlocoValvula_1 $OUT[32]
+
+;***************************************
+;Bloco de Valvula Lado B - 141A2
+;***************************************
+SIGNAL Fecha_Gar_Triplo_Lado_B $OUT[33]
+SIGNAL Abre_Gar_Triplo_Lado_B $OUT[34]
+SIGNAL Ava_Comp_Indiv_Gar_6 $OUT[35]
+SIGNAL Rec_Comp_Indiv_Gar_6 $OUT[36]
+SIGNAL Ava_Comp_Indiv_Gar_4 $OUT[37]
+SIGNAL Rec_Comp_Indiv_Gar_4 $OUT[38]
+;SIGNAL Reserva $OUT[39]
+;SIGNAL Reserva $OUT[40]
+SIGNAL Ava_Cil_2_Gar_1 $OUT[41]
+SIGNAL Rec_Cil_2_Gar_1 $OUT[42]
+SIGNAL Ava_Cil_2_Gar_2 $OUT[43]
+SIGNAL Rec_Cil_2_Gar_2 $OUT[44]
+SIGNAL Ava_Cil_2_Gar_3 $OUT[45]
+SIGNAL Rec_Cil_2_Gar_3 $OUT[46]
+SIGNAL Ava_Cil_2_Gar_4 $OUT[47]
+SIGNAL Rec_Cil_2_Gar_4 $OUT[48]
+SIGNAL Ava_Cil_2_Gar_5 $OUT[49]
+SIGNAL Rec_Cil_2_Gar_5 $OUT[50]
+SIGNAL Ava_Cil_2_Gar_6 $OUT[51]
+SIGNAL Rec_Cil_2_Gar_6 $OUT[52]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[53]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[54]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[55]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[56]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[57]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[58]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[59]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[60]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[61]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[62]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[63]
+;SIGNAL ReservadoBlocoValvula_2 $OUT[64]
+
+;***********************************************
+;Valvula Regulador de Pressao Proporcional - 1
+;***********************************************
+SIGNAL Val_Reg_Prop_1_Bit_1 $OUT[65]
+SIGNAL Val_Reg_Prop_1_Bit_2 $OUT[66]
+SIGNAL Val_Reg_Prop_1_Bit_3 $OUT[67]
+SIGNAL Val_Reg_Prop_1_Bit_4 $OUT[68]
+SIGNAL Val_Reg_Prop_1_Bit_5 $OUT[69]
+SIGNAL Val_Reg_Prop_1_Bit_6 $OUT[70]
+SIGNAL Val_Reg_Prop_1_Bit_7 $OUT[71]
+SIGNAL Val_Reg_Prop_1_Bit_8 $OUT[72]
+SIGNAL Val_Reg_Prop_1_Bit_9 $OUT[73]
+SIGNAL Val_Reg_Prop_1_Bit_10 $OUT[74]
+SIGNAL Val_Reg_Prop_1_Bit_11 $OUT[75]
+SIGNAL Val_Reg_Prop_1_Bit_12 $OUT[76]
+SIGNAL Val_Reg_Prop_1_Bit_13 $OUT[77]
+SIGNAL Val_Reg_Prop_1_Bit_14 $OUT[78]
+SIGNAL Val_Reg_Prop_1_Bit_15 $OUT[79]
+SIGNAL Val_Reg_Prop_1_Bit_16 $OUT[80]
+
+;***********************************************
+;Valvula Regulador de Pressao Proporcional - 2
+;***********************************************
+SIGNAL Val_Reg_Prop_2_Bit_1 $OUT[81]
+SIGNAL Val_Reg_Prop_2_Bit_2 $OUT[82]
+SIGNAL Val_Reg_Prop_2_Bit_3 $OUT[83]
+SIGNAL Val_Reg_Prop_2_Bit_4 $OUT[84]
+SIGNAL Val_Reg_Prop_2_Bit_5 $OUT[85]
+SIGNAL Val_Reg_Prop_2_Bit_6 $OUT[86]
+SIGNAL Val_Reg_Prop_2_Bit_7 $OUT[87]
+SIGNAL Val_Reg_Prop_2_Bit_8 $OUT[88]
+SIGNAL Val_Reg_Prop_2_Bit_9 $OUT[89]
+SIGNAL Val_Reg_Prop_2_Bit_10 $OUT[90]
+SIGNAL Val_Reg_Prop_2_Bit_11 $OUT[91]
+SIGNAL Val_Reg_Prop_2_Bit_12 $OUT[92]
+SIGNAL Val_Reg_Prop_2_Bit_13 $OUT[93]
+SIGNAL Val_Reg_Prop_2_Bit_14 $OUT[94]
+SIGNAL Val_Reg_Prop_2_Bit_15 $OUT[95]
+SIGNAL Val_Reg_Prop_2_Bit_16 $OUT[96]
+
+;********************************************************
+;Ativa a possibilidade de setar Outputs no Cabeca de Rede
+;********************************************************
+
+SIGNAL Set_Output_CH1 $OUT[100]
+SIGNAL Set_Output_CH2 $OUT[101]
+SIGNAL Set_Output_CH3 $OUT[102]
+SIGNAL Set_Output_CH4 $OUT[103]
+SIGNAL Set_Output_CH5 $OUT[104]
+SIGNAL Set_Output_CH6 $OUT[105]
+SIGNAL Set_Output_CH7 $OUT[106]
+SIGNAL Set_Output_CH8 $OUT[107]
+
+;ENDFOLD SAIDAS DIGITAIS
+;FOLD Meus Inteiros
+INT Garra=0
+;ENDFOLD
+;FOLD Meus Booleanos
+BOOL DruRun=FALSE
+;ENDFOLD
+;FOLD MEUS FLOATS
+;ENDFOLD
+;ENDFOLD (USER GLOBALS)
