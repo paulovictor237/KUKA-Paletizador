@@ -2,7 +2,7 @@
 &PARAM EDITMASK = *
 DEF FechaGarra( )
    IF (OperarVazio==FALSE) THEN
-      SWITCH AbreGarraOp
+      SWITCH FechaGarraOp
          CASE 0
             Ava_Cil_2_Gar_1 = FALSE
             Rec_Cil_2_Gar_1 = TRUE

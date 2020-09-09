@@ -2,7 +2,7 @@
 &PARAM EDITMASK = *
 DEF ConfGarra( )
    IF (OperarVazio==FALSE) THEN
-      SWITCH AbreGarraOp
+      SWITCH ConfGarraPick
          CASE 11
             Abre_Gar_Triplo_Lado_A = FALSE
             Fecha_Gar_Triplo_Lado_A = TRUE
