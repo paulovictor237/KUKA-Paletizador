@@ -24,25 +24,36 @@
       Pick_E_2_P_3 = StrReceita[ReceitaAtivo].Pick_E_2_P_3
       Pick_E_2_P_4 = StrReceita[ReceitaAtivo].Pick_E_2_P_4
       
-      LayerAtivo = StrReceitaLayer[ReceitaAtivo,CamadaAtiva]
-
+      ;dependendo de qual pallet está ativa muda o mosaico
+      ;pois tem um mosaico para o pallet1 e outro para o pallet2
+      ;apenas os pontos que vão mudar
+      ;quem decido se os pontos serao colocados no pllt1 ou pllt2 eh o StrPallet
+      SWITCH PalletAtivo
+         CASE 1
+            MatrizAtivo = StrReceita[ReceitaAtivo].MatrizAtivoPllt1
+         CASE 2
+            MatrizAtivo = StrReceita[ReceitaAtivo].MatrizAtivoPllt2
+         DEFAULT
+            MatrizAtivo = StrReceita[ReceitaAtivo].MatrizAtivoPllt1
+      ENDSWITCH
       ;por possuir duas Layers por Receita o numero referente ao place
       ;deve subir em relacao a LayerAtivo
+      LayerAtivo = StrReceitaLayer[ReceitaAtivo,CamadaAtiva]
       PlaceLayerAtivo = PlaceAtivo + PlacesCamada*(LayerAtivo-1)
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 
-      IndexacaoVH = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].IndexacaoVH
-      SkipGoHome = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].SkipGoHome
-      SkipSobeRelativo = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].SkipSobeRelativo
-      NumCaixas = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].NumCaixas
-      ConfGarraPick = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].ConfGarraPick
-      PickOp = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].PickOp
-      FechaGarraOp = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].FechaGarraOp
-      AbreGarraOp = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].AbreGarraOp
-      XApp1Place = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].XApp1Place
-      XApp2Place = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].XApp2Place
-      XPlace = MatrizPontos[ReceitaAtivo,PlaceLayerAtivo].XPlace
+      IndexacaoVH = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].IndexacaoVH
+      SkipGoHome = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].SkipGoHome
+      SkipSobeRelativo = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].SkipSobeRelativo
+      NumCaixas = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].NumCaixas
+      ConfGarraPick = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].ConfGarraPick
+      PickOp = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].PickOp
+      FechaGarraOp = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].FechaGarraOp
+      AbreGarraOp = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].AbreGarraOp
+      XApp1Place = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].XApp1Place
+      XApp2Place = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].XApp2Place
+      XPlace = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].XPlace
    ;ENDFOLD
    
 END

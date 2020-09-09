@@ -3,6 +3,8 @@
 DEF TReceita( )
 
    ;FOLD Produto_A
+      StrReceita[Produto_A].MatrizAtivoPllt1 = P1_Produto_A
+      StrReceita[Produto_A].MatrizAtivoPllt2 = P2_Produto_A
       StrReceita[Produto_A].OffsetProduto.X=0
       StrReceita[Produto_A].OffsetProduto.Y=0
       StrReceita[Produto_A].OffsetProduto.Z=0
@@ -29,6 +31,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_B
+      StrReceita[Produto_B].MatrizAtivoPllt1 = P1_Produto_B
+      StrReceita[Produto_B].MatrizAtivoPllt2 = P2_Produto_B
       StrReceita[Produto_B].OffsetProduto.X=0
       StrReceita[Produto_B].OffsetProduto.Y=0
       StrReceita[Produto_B].OffsetProduto.Z=0
@@ -54,6 +58,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_C1
+      StrReceita[Produto_C1].MatrizAtivoPllt1 = P1_Produto_C1
+      StrReceita[Produto_C1].MatrizAtivoPllt2 = P2_Produto_C1
       StrReceita[Produto_C1].OffsetProduto.X=0
       StrReceita[Produto_C1].OffsetProduto.Y=0
       StrReceita[Produto_C1].OffsetProduto.Z=0
@@ -79,6 +85,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_C2
+      StrReceita[Produto_C2].MatrizAtivoPllt1 = P1_Produto_C2
+      StrReceita[Produto_C2].MatrizAtivoPllt2 = P2_Produto_C2
       StrReceita[Produto_C2].OffsetProduto.X=0
       StrReceita[Produto_C2].OffsetProduto.Y=0
       StrReceita[Produto_C2].OffsetProduto.Z=0
@@ -104,6 +112,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_E1
+      StrReceita[Produto_E1].MatrizAtivoPllt1 = P1_Produto_E1
+      StrReceita[Produto_E1].MatrizAtivoPllt2 = P2_Produto_E1
       StrReceita[Produto_E1].OffsetProduto.X=0
       StrReceita[Produto_E1].OffsetProduto.Y=0
       StrReceita[Produto_E1].OffsetProduto.Z=0
@@ -129,6 +139,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_E2
+      StrReceita[Produto_E2].MatrizAtivoPllt1 = P1_Produto_E2
+      StrReceita[Produto_E2].MatrizAtivoPllt2 = P2_Produto_E2
       StrReceita[Produto_E2].OffsetProduto.X=0
       StrReceita[Produto_E2].OffsetProduto.Y=0
       StrReceita[Produto_E2].OffsetProduto.Z=0
@@ -155,6 +167,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_E3
+      StrReceita[Produto_E3].MatrizAtivoPllt1 = P1_Produto_E3
+      StrReceita[Produto_E3].MatrizAtivoPllt2 = P2_Produto_E3
       StrReceita[Produto_E3].OffsetProduto.X=0
       StrReceita[Produto_E3].OffsetProduto.Y=0
       StrReceita[Produto_E3].OffsetProduto.Z=0
@@ -182,6 +196,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_F
+      StrReceita[Produto_F].MatrizAtivoPllt1 = P1_Produto_F
+      StrReceita[Produto_F].MatrizAtivoPllt2 = P2_Produto_F
       StrReceita[Produto_F].OffsetProduto.X=0
       StrReceita[Produto_F].OffsetProduto.Y=0
       StrReceita[Produto_F].OffsetProduto.Z=0
@@ -207,6 +223,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_G
+      StrReceita[Produto_G].MatrizAtivoPllt1 = P1_Produto_G
+      StrReceita[Produto_G].MatrizAtivoPllt2 = P2_Produto_G
       StrReceita[Produto_G].OffsetProduto.X=0
       StrReceita[Produto_G].OffsetProduto.Y=0
       StrReceita[Produto_G].OffsetProduto.Z=0
@@ -233,6 +251,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_I
+      StrReceita[Produto_I].MatrizAtivoPllt1 = P1_Produto_I
+      StrReceita[Produto_I].MatrizAtivoPllt2 = P2_Produto_I
       StrReceita[Produto_I].OffsetProduto.X=0
       StrReceita[Produto_I].OffsetProduto.Y=0
       StrReceita[Produto_I].OffsetProduto.Z=0
@@ -257,6 +277,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_J
+      StrReceita[Produto_J].MatrizAtivoPllt1 = P1_Produto_J
+      StrReceita[Produto_J].MatrizAtivoPllt2 = P2_Produto_J
       StrReceita[Produto_J].OffsetProduto.X=0
       StrReceita[Produto_J].OffsetProduto.Y=0
       StrReceita[Produto_J].OffsetProduto.Z=0
@@ -281,6 +303,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_K
+      StrReceita[Produto_K].MatrizAtivoPllt1 = P1_Produto_K
+      StrReceita[Produto_K].MatrizAtivoPllt2 = P2_Produto_K
       StrReceita[Produto_K].OffsetProduto.X=0
       StrReceita[Produto_K].OffsetProduto.Y=0
       StrReceita[Produto_K].OffsetProduto.Z=0
@@ -306,6 +330,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_L
+      StrReceita[Produto_L].MatrizAtivoPllt1 = P1_Produto_L
+      StrReceita[Produto_L].MatrizAtivoPllt2 = P2_Produto_L
       StrReceita[Produto_L].OffsetProduto.X=0
       StrReceita[Produto_L].OffsetProduto.Y=0
       StrReceita[Produto_L].OffsetProduto.Z=0
@@ -330,6 +356,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_M
+      StrReceita[Produto_M].MatrizAtivoPllt1 = P1_Produto_M
+      StrReceita[Produto_M].MatrizAtivoPllt2 = P2_Produto_M
       StrReceita[Produto_M].OffsetProduto.X=0
       StrReceita[Produto_M].OffsetProduto.Y=0
       StrReceita[Produto_M].OffsetProduto.Z=0
@@ -355,6 +383,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_N
+      StrReceita[Produto_N].MatrizAtivoPllt1 = P1_Produto_N
+      StrReceita[Produto_N].MatrizAtivoPllt2 = P2_Produto_N
       StrReceita[Produto_N].OffsetProduto.X=0
       StrReceita[Produto_N].OffsetProduto.Y=0
       StrReceita[Produto_N].OffsetProduto.Z=0
@@ -381,6 +411,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_O
+      StrReceita[Produto_O].MatrizAtivoPllt1 = P1_Produto_O
+      StrReceita[Produto_O].MatrizAtivoPllt2 = P2_Produto_O
       StrReceita[Produto_O].OffsetProduto.X=0
       StrReceita[Produto_O].OffsetProduto.Y=0
       StrReceita[Produto_O].OffsetProduto.Z=0
@@ -407,6 +439,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_P
+      StrReceita[Produto_P].MatrizAtivoPllt1 = P1_Produto_P
+      StrReceita[Produto_P].MatrizAtivoPllt2 = P2_Produto_P
       StrReceita[Produto_P].OffsetProduto.X=0
       StrReceita[Produto_P].OffsetProduto.Y=0
       StrReceita[Produto_P].OffsetProduto.Z=0
@@ -435,6 +469,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_Q
+      StrReceita[Produto_Q].MatrizAtivoPllt1 = P1_Produto_Q
+      StrReceita[Produto_Q].MatrizAtivoPllt2 = P2_Produto_Q
       StrReceita[Produto_Q].OffsetProduto.X=0
       StrReceita[Produto_Q].OffsetProduto.Y=0
       StrReceita[Produto_Q].OffsetProduto.Z=0
@@ -458,6 +494,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_R
+      StrReceita[Produto_R].MatrizAtivoPllt1 = P1_Produto_R
+      StrReceita[Produto_R].MatrizAtivoPllt2 = P2_Produto_R
       StrReceita[Produto_R].OffsetProduto.X=0
       StrReceita[Produto_R].OffsetProduto.Y=0
       StrReceita[Produto_R].OffsetProduto.Z=0
@@ -482,6 +520,8 @@ DEF TReceita( )
    ;ENDFOLD
 
    ;FOLD Produto_S
+      StrReceita[Produto_S].MatrizAtivoPllt1 = P1_Produto_S
+      StrReceita[Produto_S].MatrizAtivoPllt2 = P2_Produto_S
       StrReceita[Produto_S].OffsetProduto.X=0
       StrReceita[Produto_S].OffsetProduto.Y=0
       StrReceita[Produto_S].OffsetProduto.Z=0
@@ -506,6 +546,8 @@ DEF TReceita( )
    ;ENDFOLD
     
    ;FOLD Produto_T
+      StrReceita[Produto_T].MatrizAtivoPllt1 = P1_Produto_T
+      StrReceita[Produto_T].MatrizAtivoPllt2 = P2_Produto_T
       StrReceita[Produto_T].OffsetProduto.X=0
       StrReceita[Produto_T].OffsetProduto.Y=0
       StrReceita[Produto_T].OffsetProduto.Z=0

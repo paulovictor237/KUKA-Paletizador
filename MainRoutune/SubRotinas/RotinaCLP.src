@@ -35,17 +35,17 @@
       ProxLayer = StrReceitaLayer[ReceitaAtivo,ProximaCamada]
       ProxPlaceLayer = ProximoPlace + ProxPlacesCamada*(ProxLayer-1)
 
-      IF (MatrizPontos[ReceitaAtivo,ProxPlaceLayer].SkipGoHome == TRUE) THEN
+      IF (MatrizPontos[MatrizAtivo,ProxPlaceLayer].SkipGoHome == TRUE) THEN
          SaidaLoop = TRUE
       ENDIF 
-      IF (MatrizPontos[ReceitaAtivo,ProxPlaceLayer].SkipGoHome == FALSE) AND (SaidaLoop == TRUE)  THEN
+      IF (MatrizPontos[MatrizAtivo,ProxPlaceLayer].SkipGoHome == FALSE) AND (SaidaLoop == TRUE)  THEN
          SaidaLoop = FALSE
       ENDIF
 
    UNTIL (SaidaLoop == FALSE)
 
    ;SaidaLoop
-   IndexacaoVH = MatrizPontos[ReceitaAtivo,ProxPlaceLayer].IndexacaoVH
-   NumCaixas = MatrizPontos[ReceitaAtivo,ProxPlaceLayer].NumCaixas  
+   IndexacaoVH = MatrizPontos[MatrizAtivo,ProxPlaceLayer].IndexacaoVH
+   NumCaixas = MatrizPontos[MatrizAtivo,ProxPlaceLayer].NumCaixas  
 
 END

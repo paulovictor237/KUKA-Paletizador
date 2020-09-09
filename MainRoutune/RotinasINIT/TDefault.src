@@ -20,6 +20,8 @@
 
    ;FOLD Variaveis Default Receita
       FOR I = 1 to MaxReceitas
+         StrReceita[I].MatrizAtivoPllt1 = 1
+         StrReceita[I].MatrizAtivoPllt2 = 1
          StrReceita[I].PlacesCamada = 1
          StrReceita[I].Camadas = 1
          StrReceita[I].AlturaCaixa = 1

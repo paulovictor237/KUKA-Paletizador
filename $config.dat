@@ -102,6 +102,7 @@
     INT LayerAtivo
     INT PlaceLayerAtivo
     INT EsteiraAtiva
+    INT MatrizAtivo
 ;ENDFOLD
 
 ;FOLD Variaveis de estado
@@ -168,7 +169,7 @@
     E6POS Pick_E_2_P_2
     E6POS Pick_E_2_P_3
     E6POS Pick_E_2_P_4
-    STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick_E_1_P_1, Pick_E_1_P_2, Pick_E_1_P_3, Pick_E_1_P_4, Pick_E_2_P_1, Pick_E_2_P_2, Pick_E_2_P_3, Pick_E_2_P_4
+    STRUC DefStrReceita INT MatrizAtivoPllt1,MatrizAtivoPllt2,PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick_E_1_P_1, Pick_E_1_P_2, Pick_E_1_P_3, Pick_E_1_P_4, Pick_E_2_P_1, Pick_E_2_P_2, Pick_E_2_P_3, Pick_E_2_P_4
     ;---------- StrReceita[MaxReceitas] ----------
     CONST INT MaxReceitas=21 ; 21
     CONST INT MaxCamadas=12 ; 8
@@ -191,7 +192,6 @@
 ;ENDFOLD
 
 ;ENDFOLD
-
 ;FOLD OUTROS SINAIS
 ;*******************************************
 ;Make your modifications -ONLY- here
