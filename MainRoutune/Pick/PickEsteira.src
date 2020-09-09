@@ -5,7 +5,12 @@
       ;verifica qual opcao de pick do place
       SWITCH EsteiraAtiva
          CASE 1
-            BaseEsteiraR = BaseEsteira1
+            BaseEsteiraR.X = BaseEsteira1.X
+            BaseEsteiraR.Y = BaseEsteira1.Y
+            BaseEsteiraR.Z = BaseEsteira1.Z
+            BaseEsteiraR.A = BaseEsteira1.A
+            BaseEsteiraR.B = BaseEsteira1.B
+            BaseEsteiraR.C = BaseEsteira1.C
             IF (PickOp==1) THEN
                XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_1
                NENHUM = FALSE
@@ -23,7 +28,12 @@
                NENHUM = FALSE
             ENDIF
          CASE 2
-            BaseEsteiraR = BaseEsteira2
+            BaseEsteiraR.X = BaseEsteira2.X
+            BaseEsteiraR.Y = BaseEsteira2.Y
+            BaseEsteiraR.Z = BaseEsteira2.Z
+            BaseEsteiraR.A = BaseEsteira2.A
+            BaseEsteiraR.B = BaseEsteira2.B
+            BaseEsteiraR.C = BaseEsteira2.C
             IF (PickOp==1) THEN
                XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_1
                NENHUM = FALSE
@@ -48,9 +58,9 @@
    ;ENDFOLD
    
    ;FOLD OffsetEsteira1 (RELATIVO)
-      BaseEsteiraR.X = BaseEsteiraR.X + OffsetEsteira1.Y
-      BaseEsteiraR.Y = BaseEsteiraR.Y + OffsetEsteira1.Z
-      BaseEsteiraR.Z = BaseEsteiraR.Z + OffsetEsteira1.X
+      BaseEsteiraR.X = BaseEsteiraR.X + OffsetEsteira1.X
+      BaseEsteiraR.Y = BaseEsteiraR.Y + OffsetEsteira1.Y
+      BaseEsteiraR.Z = BaseEsteiraR.Z + OffsetEsteira1.Z
       BaseEsteiraR.A = BaseEsteiraR.A + OffsetEsteira1.A
       BaseEsteiraR.B = BaseEsteiraR.B + OffsetEsteira1.B
       BaseEsteiraR.C = BaseEsteiraR.C + OffsetEsteira1.C
