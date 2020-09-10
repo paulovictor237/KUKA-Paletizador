@@ -12,10 +12,10 @@ bool IndexacaoVH = false;
 int NumCaixas = 4;
 ```
 
-{ConfGarraPick} Opcao de abertura da garra (1,2,3,4,5...)
+{ConfGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
 
 ```c++
-int ConfGarraPick = 0;
+int ConfGarraOp = 0;
 ```
 
 {PickOp} Opcao de pick na esteira (1,2,3,4,5...)

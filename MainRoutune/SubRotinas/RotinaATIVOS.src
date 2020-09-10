@@ -47,7 +47,7 @@
       SkipGoHome = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].SkipGoHome
       SkipSobeRelativo = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].SkipSobeRelativo
       NumCaixas = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].NumCaixas
-      ConfGarraPick = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].ConfGarraPick
+      ConfGarraOp = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].ConfGarraOp
       PickOp = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].PickOp
       FechaGarraOp = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].FechaGarraOp
       AbreGarraOp = MatrizPontos[MatrizAtivo,PlaceLayerAtivo].AbreGarraOp

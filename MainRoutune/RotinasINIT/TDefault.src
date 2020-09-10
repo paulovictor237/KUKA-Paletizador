@@ -6,7 +6,7 @@
             MatrizPontos[I,J].IndexacaoVH = FALSE
             MatrizPontos[I,J].NumCaixas = 0
             MatrizPontos[I,J].PickOp = 0
-            MatrizPontos[I,J].ConfGarraPick = 0
+            MatrizPontos[I,J].ConfGarraOp = 0
             MatrizPontos[I,J].FechaGarraOp = 0
             MatrizPontos[I,J].AbreGarraOp = 0
             MatrizPontos[I,J].SkipGoHome = FALSE
@@ -63,7 +63,6 @@
       PalletAtivo = 1
       LayerAtivo = 1
       PlaceLayerAtivo = 1
-      EsteiraAtiva = 1
       ReceitaAtivo = 1
       PlaceAtivo = 1
       CamadaAtiva = 1

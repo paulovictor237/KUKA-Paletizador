@@ -90,7 +90,7 @@
 ;ENDFOLD
 
 ;FOLD VARIAVEIS CLP
-    ;{EsteiraAtiva} numero da esteira que está com a caixa
+    ;{PalletAtivo} numero da esteira que está com a caixa
     ;{CLPNumCaixas} numero de caixas para o pick
     ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
     INT  CLPNumCaixas    
@@ -101,7 +101,6 @@
     INT PalletAtivo
     INT LayerAtivo
     INT PlaceLayerAtivo
-    INT EsteiraAtiva
     INT MatrizAtivo
 ;ENDFOLD
 
@@ -126,7 +125,7 @@
     ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
     ;-> {NumCaixas} numero de caixas para o pick
     ;Configuracao de Pick
-    ;-> {ConfGarraPick} Opcao de abertura da garra (1,2,3,4,5...)
+    ;-> {ConfGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
     ;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
     ;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
     ;Configuracao de Place
@@ -142,14 +141,14 @@
     BOOL SkipGoHome
     BOOL SkipSobeRelativo
     INT NumCaixas
-    INT ConfGarraPick
     INT PickOp
+    INT ConfGarraOp
     INT FechaGarraOp
     INT AbreGarraOp
     E6POS XApp1Place
     E6POS XApp2Place
     E6POS XPlace
-    STRUC DefMatriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraPick,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
+    STRUC DefMatriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
     ;---------- MatrizPontos[MaxMatrizI,MaxMatrizJ] ----------
     CONST INT MaxMatrizI=45 ;42
     CONST INT MaxMatrizJ=25 ;22
