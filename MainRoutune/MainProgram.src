@@ -31,7 +31,7 @@ DEF  MainProgram ( )
       WHILE TRUE
          ; ->ler do CLP pallet
          ; ->gravar na variavel PalletAtivo
-         PalletAtivo=2 ; TESTE
+         PalletAtivo=1 ; TESTE
          ReceitaAtivo=1 ; TESTE
          EsteiraAtiva=1 ; TESTE
          StrPallet[PalletAtivo].Livre=TRUE ; TESTE

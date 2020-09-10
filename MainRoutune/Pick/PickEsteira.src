@@ -73,16 +73,16 @@
    ;ENDFOLD
    
    ;Pega a altura da caixa para fazer as posicoes relativas  
-   XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva)*AlturaCaixa + 200
+   XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva)*AlturaCaixa + 10
    XAPP2PICK.Z = XAPP2PICK.Z + (CamadaAtiva)*(AlturaCaixa/2)
-   IF (EsteiraAtiva==1) THEN
-      XAPP1PICK.Y = XAPP1PICK.Y + 60
-      XAPP2PICK.Y = XAPP2PICK.Y + 60
-   ENDIF
-   IF (EsteiraAtiva==2) THEN
-      XAPP1PICK.Y = XAPP1PICK.Y - 60 
-      XAPP2PICK.Y = XAPP2PICK.Y - 60
-   ENDIF
+   ;IF (EsteiraAtiva==1) THEN
+   ;   XAPP1PICK.Y = XAPP1PICK.Y + 60
+   ;   XAPP2PICK.Y = XAPP2PICK.Y + 60
+   ;ENDIF
+   ;IF (EsteiraAtiva==2) THEN
+   ;   XAPP1PICK.Y = XAPP1PICK.Y - 60 
+   ;   XAPP2PICK.Y = XAPP2PICK.Y - 60
+   ;ENDIF
    ;FOLD APROXIMA TOPO
       PDAT_ACT = PPDAT1
       FDAT_ACT = FP1

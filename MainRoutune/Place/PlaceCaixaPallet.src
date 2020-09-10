@@ -8,6 +8,10 @@ DEF PlaceCaixaPallet()
    ;ENDFOLD
    
    REPEAT
+      ;FOLD PUXA TUDO PARA AS VARIAVEIS
+         RotinaATIVOS()
+      ;ENDFOLD 
+
       ;FOLD ATUALIZA OS PONTOS DE PLACE
          SetPlacePos()
       ;ENDFOLD 

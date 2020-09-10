@@ -106,7 +106,7 @@
 ;ENDFOLD
 
 ;FOLD Variaveis de estado
-    CONST BOOL OperarVazio=FALSE
+    CONST BOOL OperarVazio=TRUE
     CONST INT ALTURATOPO=850
 ;ENDFOLD
 
