@@ -17,7 +17,7 @@ DEF TReceita( )
       StrReceita[Produto_A].Pick_E_2_P_2=Pick_A_E_2_P_2
       StrReceita[Produto_A].Pick_E_2_P_3=Pick_A_E_2_P_3
       StrReceita[Produto_A].Pick_E_2_P_4=Pick_A_E_2_P_4
-      StrReceita[Produto_A].PlacesCamada=8
+      StrReceita[Produto_A].PlacesCamada=4
       StrReceita[Produto_A].AlturaCaixa = 276  
       StrReceita[Produto_A].Camadas=6
       StrReceitaLayer[Produto_A,1]=1
@@ -43,7 +43,7 @@ DEF TReceita( )
       StrReceita[Produto_B].Pick_E_2_P_2=Pick_B_E_2_P_2
       StrReceita[Produto_B].Pick_E_2_P_3=Pick_B_E_2_P_3
       StrReceita[Produto_B].Pick_E_2_P_4=Pick_B_E_2_P_4
-      StrReceita[Produto_B].PlacesCamada=8
+      StrReceita[Produto_B].PlacesCamada=4
       StrReceita[Produto_B].AlturaCaixa = 271  
       StrReceita[Produto_B].Camadas=5
       StrReceitaLayer[Produto_B,1]=1
@@ -68,7 +68,7 @@ DEF TReceita( )
       StrReceita[Produto_C1].Pick_E_2_P_2=Pick_C1_E_2_P_2
       StrReceita[Produto_C1].Pick_E_2_P_3=Pick_C1_E_2_P_3
       StrReceita[Produto_C1].Pick_E_2_P_4=Pick_C1_E_2_P_4
-      StrReceita[Produto_C1].PlacesCamada=8
+      StrReceita[Produto_C1].PlacesCamada=4
       StrReceita[Produto_C1].AlturaCaixa = 264  
       StrReceita[Produto_C1].Camadas=5
       StrReceitaLayer[Produto_C1,1]=1
@@ -118,7 +118,7 @@ DEF TReceita( )
       StrReceita[Produto_E1].Pick_E_2_P_2=Pick_E1_E_2_P_2
       StrReceita[Produto_E1].Pick_E_2_P_3=Pick_E1_E_2_P_3
       StrReceita[Produto_E1].Pick_E_2_P_4=Pick_E1_E_2_P_4
-      StrReceita[Produto_E1].PlacesCamada=14
+      StrReceita[Produto_E1].PlacesCamada=7
       StrReceita[Produto_E1].AlturaCaixa = 282  
       StrReceita[Produto_E1].Camadas=5
       StrReceitaLayer[Produto_E1,1]=1
@@ -143,7 +143,7 @@ DEF TReceita( )
       StrReceita[Produto_E2].Pick_E_2_P_2=Pick_E2_E_2_P_2
       StrReceita[Produto_E2].Pick_E_2_P_3=Pick_E2_E_2_P_3
       StrReceita[Produto_E2].Pick_E_2_P_4=Pick_E2_E_2_P_4
-      StrReceita[Produto_E2].PlacesCamada=14
+      StrReceita[Produto_E2].PlacesCamada=7
       StrReceita[Produto_E2].AlturaCaixa = 245  
       StrReceita[Produto_E2].Camadas=6
       StrReceitaLayer[Produto_E2,1]=1
@@ -196,7 +196,7 @@ DEF TReceita( )
       StrReceita[Produto_F].Pick_E_2_P_2=Pick_F_E_2_P_2
       StrReceita[Produto_F].Pick_E_2_P_3=Pick_F_E_2_P_3
       StrReceita[Produto_F].Pick_E_2_P_4=Pick_F_E_2_P_4
-      StrReceita[Produto_F].PlacesCamada=8
+      StrReceita[Produto_F].PlacesCamada=4
       StrReceita[Produto_F].AlturaCaixa = 230  
       StrReceita[Produto_F].Camadas=5
       StrReceitaLayer[Produto_F,1]=1
@@ -221,7 +221,7 @@ DEF TReceita( )
       StrReceita[Produto_G].Pick_E_2_P_2=Pick_G_E_2_P_2
       StrReceita[Produto_G].Pick_E_2_P_3=Pick_G_E_2_P_3
       StrReceita[Produto_G].Pick_E_2_P_4=Pick_G_E_2_P_4
-      StrReceita[Produto_G].PlacesCamada=22
+      StrReceita[Produto_G].PlacesCamada=11
       StrReceita[Produto_G].AlturaCaixa = 244  
       StrReceita[Produto_G].Camadas=6
       StrReceitaLayer[Produto_G,1]=1
@@ -247,7 +247,7 @@ DEF TReceita( )
       StrReceita[Produto_I].Pick_E_2_P_2=Pick_I_E_2_P_2
       StrReceita[Produto_I].Pick_E_2_P_3=Pick_I_E_2_P_3
       StrReceita[Produto_I].Pick_E_2_P_4=Pick_I_E_2_P_4
-      StrReceita[Produto_I].PlacesCamada=10
+      StrReceita[Produto_I].PlacesCamada=5
       StrReceita[Produto_I].AlturaCaixa = 260  
       StrReceita[Produto_I].Camadas=4
       StrReceitaLayer[Produto_I,1]=1
@@ -271,7 +271,7 @@ DEF TReceita( )
       StrReceita[Produto_J].Pick_E_2_P_2=Pick_J_E_2_P_2
       StrReceita[Produto_J].Pick_E_2_P_3=Pick_J_E_2_P_3
       StrReceita[Produto_J].Pick_E_2_P_4=Pick_J_E_2_P_4
-      StrReceita[Produto_J].PlacesCamada=10
+      StrReceita[Produto_J].PlacesCamada=5
       StrReceita[Produto_J].AlturaCaixa = 265  
       StrReceita[Produto_J].Camadas=4
       StrReceitaLayer[Produto_J,1]=1
@@ -295,7 +295,7 @@ DEF TReceita( )
       StrReceita[Produto_K].Pick_E_2_P_2=Pick_K_E_2_P_2
       StrReceita[Produto_K].Pick_E_2_P_3=Pick_K_E_2_P_3
       StrReceita[Produto_K].Pick_E_2_P_4=Pick_K_E_2_P_4
-      StrReceita[Produto_K].PlacesCamada=12
+      StrReceita[Produto_K].PlacesCamada=6
       StrReceita[Produto_K].AlturaCaixa = 288  
       StrReceita[Produto_K].Camadas=5
       StrReceitaLayer[Produto_K,1]=1
@@ -320,7 +320,7 @@ DEF TReceita( )
       StrReceita[Produto_L].Pick_E_2_P_2=Pick_L_E_2_P_2
       StrReceita[Produto_L].Pick_E_2_P_3=Pick_L_E_2_P_3
       StrReceita[Produto_L].Pick_E_2_P_4=Pick_L_E_2_P_4
-      StrReceita[Produto_L].PlacesCamada=20
+      StrReceita[Produto_L].PlacesCamada=10
       StrReceita[Produto_L].AlturaCaixa = 338  
       StrReceita[Produto_L].Camadas=4
       StrReceitaLayer[Produto_L,1]=1
@@ -344,7 +344,7 @@ DEF TReceita( )
       StrReceita[Produto_M].Pick_E_2_P_2=Pick_M_E_2_P_2
       StrReceita[Produto_M].Pick_E_2_P_3=Pick_M_E_2_P_3
       StrReceita[Produto_M].Pick_E_2_P_4=Pick_M_E_2_P_4
-      StrReceita[Produto_M].PlacesCamada=6
+      StrReceita[Produto_M].PlacesCamada=3
       StrReceita[Produto_M].AlturaCaixa = 263  
       StrReceita[Produto_M].Camadas=5
       StrReceitaLayer[Produto_M,1]=1
@@ -395,7 +395,7 @@ DEF TReceita( )
       StrReceita[Produto_O].Pick_E_2_P_2=Pick_O_E_2_P_2
       StrReceita[Produto_O].Pick_E_2_P_3=Pick_O_E_2_P_3
       StrReceita[Produto_O].Pick_E_2_P_4=Pick_O_E_2_P_4
-      StrReceita[Produto_O].PlacesCamada=12
+      StrReceita[Produto_O].PlacesCamada=6
       StrReceita[Produto_O].AlturaCaixa = 167  
       StrReceita[Produto_O].Camadas=6
       StrReceitaLayer[Produto_O,1]=1
@@ -421,7 +421,7 @@ DEF TReceita( )
       StrReceita[Produto_P].Pick_E_2_P_2=Pick_P_E_2_P_2
       StrReceita[Produto_P].Pick_E_2_P_3=Pick_P_E_2_P_3
       StrReceita[Produto_O].Pick_E_2_P_4=Pick_P_E_2_P_4
-      StrReceita[Produto_P].PlacesCamada=8
+      StrReceita[Produto_P].PlacesCamada=4
       StrReceita[Produto_P].AlturaCaixa = 190  
       StrReceita[Produto_P].Camadas=8
       StrReceitaLayer[Produto_P,1]=1
@@ -472,7 +472,7 @@ DEF TReceita( )
       StrReceita[Produto_R].Pick_E_2_P_2=Pick_R_E_2_P_2
       StrReceita[Produto_R].Pick_E_2_P_3=Pick_R_E_2_P_3
       StrReceita[Produto_R].Pick_E_2_P_4=Pick_R_E_2_P_4
-      StrReceita[Produto_R].PlacesCamada=12
+      StrReceita[Produto_R].PlacesCamada=6
       StrReceita[Produto_R].AlturaCaixa = 316  
       StrReceita[Produto_R].Camadas=4
       StrReceitaLayer[Produto_R,1]=1
@@ -496,7 +496,7 @@ DEF TReceita( )
       StrReceita[Produto_S].Pick_E_2_P_2=Pick_S_E_2_P_2
       StrReceita[Produto_S].Pick_E_2_P_3=Pick_S_E_2_P_3
       StrReceita[Produto_S].Pick_E_2_P_4=Pick_S_E_2_P_4
-      StrReceita[Produto_S].PlacesCamada=10
+      StrReceita[Produto_S].PlacesCamada=5
       StrReceita[Produto_S].AlturaCaixa = 356   
       StrReceita[Produto_S].Camadas=4
       StrReceitaLayer[Produto_S,1]=1
@@ -520,7 +520,7 @@ DEF TReceita( )
       StrReceita[Produto_T].Pick_E_2_P_2=Pick_T_E_2_P_2
       StrReceita[Produto_T].Pick_E_2_P_3=Pick_T_E_2_P_3
       StrReceita[Produto_T].Pick_E_2_P_4=Pick_T_E_2_P_4
-      StrReceita[Produto_T].PlacesCamada=12
+      StrReceita[Produto_T].PlacesCamada=6
       StrReceita[Produto_T].AlturaCaixa = 251   
       StrReceita[Produto_T].Camadas=5
       StrReceitaLayer[Produto_T,1]=1
