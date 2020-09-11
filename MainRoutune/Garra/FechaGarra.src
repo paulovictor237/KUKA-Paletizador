@@ -1,9 +1,28 @@
-&ACCESS RVO1
+﻿&ACCESS RVO1
+&REL 1
 &PARAM EDITMASK = *
 DEF FechaGarra( )
    IF (OperarVazio==FALSE) THEN
       SWITCH FechaGarraOp
          CASE 0
+                 
+            ;FOLD SETAR PRESSAO LADO1 E LADO2
+      
+            ;FOLD Gripper SET [11]ModificaPressaoLado1 State=[1]PressaoMax Wait 0[s] Check with Strategy 1 ;%{PE}
+            ;FOLD Parameters Parameters ;%{h}
+            ;Params IlfProvider=GripperTech.GripperSet;setgripper=11;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
+            ;ENDFOLD
+            GRPg_SetStateAndCheck(11, 1, 0, 1)
+            ;ENDFOLD
+            ;FOLD Gripper SET [12]ModificaPressaoLado2 State=[2]PressaoMin Wait 0.2[s] Check with Strategy 1 ;%{PE}
+            ;FOLD Parameters Parameters ;%{h}
+            ;Params IlfProvider=GripperTech.GripperSet;setgripper=12;setstate=2;setcont=nocont;waittime=0.2;errorstrategy=1
+            ;ENDFOLD
+            GRPg_SetStateAndCheck(12, 2, 0.2, 1)
+            ;ENDFOLD
+
+            ;ENDFOLD
+
             Ava_Cil_2_Gar_1 = FALSE
             Rec_Cil_2_Gar_1 = TRUE
 
@@ -30,6 +49,24 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
             WAIT SEC 0.5
          CASE 1
+     
+            ;FOLD SETAR PRESSAO LADO1 E LADO2
+      
+            ;FOLD Gripper SET [11]ModificaPressaoLado1 State=[2]PressaoMix Wait 0[s] Check with Strategy 1 ;%{PE}
+            ;FOLD Parameters Parameters ;%{h}
+            ;Params IlfProvider=GripperTech.GripperSet;setgripper=11;setstate=2;setcont=nocont;waittime=0;errorstrategy=1
+            ;ENDFOLD
+            GRPg_SetStateAndCheck(11, 2, 0, 1)
+            ;ENDFOLD
+            ;FOLD Gripper SET [12]ModificaPressaoLado2 State=[1]PressaoMax Wait 0.2[s] Check with Strategy 1 ;%{PE}
+            ;FOLD Parameters Parameters ;%{h}
+            ;Params IlfProvider=GripperTech.GripperSet;setgripper=12;setstate=1;setcont=nocont;waittime=0.2;errorstrategy=1
+            ;ENDFOLD
+            GRPg_SetStateAndCheck(12, 1, 0.2, 1)
+            ;ENDFOLD
+
+            ;ENDFOLD
+
             Ava_Cil_1_Gar_1 = FALSE
             Rec_Cil_1_Gar_1 = TRUE
 
