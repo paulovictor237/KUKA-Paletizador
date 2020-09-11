@@ -1,4 +1,4 @@
-﻿DEF PickEsteira ( )
+DEF PickEsteira ( )
    ;FOLD ROTINAS DE INICIALIZACAO
       $TOOL = TOOL_DATA[1]
       NENHUM = TRUE
@@ -8,12 +8,12 @@
       ;verifica qual opcao de pick do place
       SWITCH PalletAtivo
          CASE 1
-            BaseRelativa.X = BaseEsteira1.X
-            BaseRelativa.Y = BaseEsteira1.Y
-            BaseRelativa.Z = BaseEsteira1.Z
-            BaseRelativa.A = BaseEsteira1.A
-            BaseRelativa.B = BaseEsteira1.B
-            BaseRelativa.C = BaseEsteira1.C
+            BaseRelativa.X = BaseEsteira1.X + OffsetEsteira1.X
+            BaseRelativa.Y = BaseEsteira1.Y + OffsetEsteira1.Y
+            BaseRelativa.Z = BaseEsteira1.Z + OffsetEsteira1.Z
+            BaseRelativa.A = BaseEsteira1.A + OffsetEsteira1.A
+            BaseRelativa.B = BaseEsteira1.B + OffsetEsteira1.B
+            BaseRelativa.C = BaseEsteira1.C + OffsetEsteira1.C
             IF (PickOp==1) THEN
                XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_1
                NENHUM = FALSE
@@ -31,12 +31,12 @@
                NENHUM = FALSE
             ENDIF
          CASE 2
-            BaseRelativa.X = BaseEsteira2.X
-            BaseRelativa.Y = BaseEsteira2.Y
-            BaseRelativa.Z = BaseEsteira2.Z
-            BaseRelativa.A = BaseEsteira2.A
-            BaseRelativa.B = BaseEsteira2.B
-            BaseRelativa.C = BaseEsteira2.C
+            BaseRelativa.X = BaseEsteira2.X + OffsetEsteira2.X
+            BaseRelativa.Y = BaseEsteira2.Y + OffsetEsteira2.Y
+            BaseRelativa.Z = BaseEsteira2.Z + OffsetEsteira2.Z
+            BaseRelativa.A = BaseEsteira2.A + OffsetEsteira2.A
+            BaseRelativa.B = BaseEsteira2.B + OffsetEsteira2.B
+            BaseRelativa.C = BaseEsteira2.C + OffsetEsteira2.C
             IF (PickOp==1) THEN
                XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_1
                NENHUM = FALSE
@@ -59,15 +59,6 @@
          BaseRelativa = NULLFRAME
       ENDIF
    ;ENDFOLD
-   
-   ;FOLD OffsetEsteira1 (RELATIVO)
-      BaseRelativa.X = BaseRelativa.X + OffsetEsteira1.X
-      BaseRelativa.Y = BaseRelativa.Y + OffsetEsteira1.Y
-      BaseRelativa.Z = BaseRelativa.Z + OffsetEsteira1.Z
-      BaseRelativa.A = BaseRelativa.A + OffsetEsteira1.A
-      BaseRelativa.B = BaseRelativa.B + OffsetEsteira1.B
-      BaseRelativa.C = BaseRelativa.C + OffsetEsteira1.C
-   ;ENDFOLD
 
    ;FOLD SET BaseRelativa
       $BASE=BaseRelativa
@@ -80,16 +71,16 @@
    ;ENDFOLD
    
    ;Pega a altura da caixa para fazer as posicoes relativas  
-   XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva)*(AlturaCaixa) + 10
-   XAPP2PICK.Z = XAPP2PICK.Z + (CamadaAtiva)*(AlturaCaixa/2)
-   IF (PalletAtivo==1) THEN
-      XAPP1PICK.Y = XAPP1PICK.Y - 60
-      XAPP2PICK.Y = XAPP2PICK.Y - 60
-   ENDIF
-   IF (PalletAtivo==2) THEN
-      XAPP1PICK.Y = XAPP1PICK.Y + 60 
-      XAPP2PICK.Y = XAPP2PICK.Y + 60
-   ENDIF
+   XAPP1PICK.Z = XAPP2PICK.Z + (CamadaAtiva)*AlturaCaixa
+   XAPP2PICK.Z = XAPP2PICK.Z + (AlturaCaixa/2)
+   ;IF (PalletAtivo==1) THEN
+   ;   XAPP1PICK.Y = XAPP1PICK.Y - 60
+   ;   XAPP2PICK.Y = XAPP2PICK.Y - 60
+   ;ENDIF
+   ;IF (PalletAtivo==2) THEN
+   ;   XAPP1PICK.Y = XAPP1PICK.Y + 60 
+   ;   XAPP2PICK.Y = XAPP2PICK.Y + 60
+   ;ENDIF
    ;FOLD APROXIMA TOPO
       PTP XAPP1PICK C_DIS
    ;ENDFOLD

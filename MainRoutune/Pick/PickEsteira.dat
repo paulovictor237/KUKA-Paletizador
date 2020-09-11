@@ -1,5 +1,6 @@
 ﻿DEFDAT PickEsteira
-   BOOL NENHUM
+   BOOL NENHUM = false
+   REAL TopoRelativo=0
    FRAME RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
    FRAME BaseRelativa = {X 0,Y 0,Z 0,A 0,B 0,C 0}
    DECL E6POS XAPP1PICK={X 0,Y 0,Z 0,A 0,B 0,C 0,S 2,T 2,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
