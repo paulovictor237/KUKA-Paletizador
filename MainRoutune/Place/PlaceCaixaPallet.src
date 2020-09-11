@@ -2,9 +2,20 @@ DEF PlaceCaixaPallet()
    
    ;FOLD ROTINAS DE INICIALIZACAO
       $TOOL = TOOL_DATA[1]
-      ;$BASE=$NULLFRAME
-      ;MOVIMENTO COM BASE
       SkipPTP = FALSE
+   ;ENDFOLD
+
+   ;FOLD ATUALIZA OFFSET PALLET+PRODUTO
+      BaseRelativa.X = BasePoint.X + OffSetPallet.X + OffsetProduto.X
+      BaseRelativa.Y = BasePoint.Y + OffSetPallet.Y + OffsetProduto.Y
+      BaseRelativa.Z = BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z
+      BaseRelativa.A = BasePoint.A + OffSetPallet.A + OffsetProduto.A
+      BaseRelativa.B = BasePoint.B + OffSetPallet.B + OffsetProduto.B
+      BaseRelativa.C = BasePoint.C + OffSetPallet.C + OffsetProduto.C
+   ;ENDFOLD
+
+   ;FOLD SET BaseRelativa
+      $BASE=BaseRelativa
    ;ENDFOLD
    
    REPEAT
@@ -15,15 +26,6 @@ DEF PlaceCaixaPallet()
       ;FOLD ATUALIZA OS PONTOS DE PLACE
          SetPlacePos()
       ;ENDFOLD 
-      
-      ;FOLD ATUALIZA OFFSET PALLET+PRODUTO
-         BasePoint.X = BasePoint.X + OffSetPallet.X + OffsetProduto.X
-         BasePoint.Y = BasePoint.Y + OffSetPallet.Y + OffsetProduto.Y
-         BasePoint.Z = BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z
-         BasePoint.A = BasePoint.A + OffSetPallet.A + OffsetProduto.A
-         BasePoint.B = BasePoint.B + OffSetPallet.B + OffsetProduto.B
-         BasePoint.C = BasePoint.C + OffSetPallet.C + OffsetProduto.C
-      ;ENDFOLD
       
       ;FOLD ATUALIZA VARIAVEIS DE SKIP
          SkipGoHome = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipGoHome
@@ -43,7 +45,7 @@ DEF PlaceCaixaPallet()
          ;FDAT_ACT = FP1
          ;BAS(#PTP_PARAMS, 100.0)
          ;SET_CD_PARAMS (0)
-         ;PTP BasePoint:XTopoPallet C_Dis
+         ;PTP XTopoPallet C_Dis
       ;ENDFOLD
       
       ;FOLD TRES PONTOS DE DEPOSITO
@@ -51,9 +53,9 @@ DEF PlaceCaixaPallet()
          ;se for fazer um outro place o 
          ;primeiro movimento deve ser linear
          IF (SkipPTP == TRUE) THEN
-            LIN  BasePoint:XApp1Place C_DIS C_DIS
+            LIN  XApp1Place C_DIS C_DIS
          ELSE
-            PTP  BasePoint:XApp1Place C_DIS
+            PTP  XApp1Place C_DIS
          ENDIF
          
          IF (SkipSobeRelativo == TRUE) THEN
@@ -62,9 +64,9 @@ DEF PlaceCaixaPallet()
          
          ;SET_CD_PARAMS (0)
          ;XApp2Place DIRETO com movimento LIN
-         LIN  BasePoint:XApp2Place C_DIS C_DIS
+         LIN  XApp2Place C_DIS C_DIS
          ;XPlace DIRETO com movimento LIN
-         LIN  BasePoint:XPlace 
+         LIN  XPlace 
       ;ENDFOLD  
       
       ;FOLD ABRE GARRA  
@@ -78,7 +80,7 @@ DEF PlaceCaixaPallet()
       IF (SkipSobeRelativo == FALSE) THEN
          ;FOLD MOVIMENTO SOBE RELATIVO
             XPlace.Z=XApp2Place.Z
-            LIN  BasePoint:XPlace 
+            LIN  XPlace 
             ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
             ;RelFrame.Z=AlturaCaixa + 100
             ;LIN_REL RelFrame   
@@ -94,7 +96,7 @@ DEF PlaceCaixaPallet()
          ;FDAT_ACT = FP1
          ;BAS(#PTP_PARAMS, 100.0)
          ;SET_CD_PARAMS (0)
-         ;PTP BasePoint:XTopoPallet C_Dis
+         ;PTP XTopoPallet C_Dis
       ;ENDFOLD
       
    UNTIL (SkipGoHome == FALSE)
