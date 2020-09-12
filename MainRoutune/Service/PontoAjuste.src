@@ -1,4 +1,4 @@
-DEF  AlterarAqui ( )
+DEF  PontoAjuste ( )
    ;FOLD INI;%{PE}
       ;FOLD BASISTECH INI
          GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
@@ -8,7 +8,6 @@ DEF  AlterarAqui ( )
       ;FOLD USER INI
          ;Make your modifications here
          $TOOL = TOOL_DATA[1]
-         ;$TOOL = $NULLFRAME
          $BASE = $NULLFRAME
       ;ENDFOLD (USER INI)
    ;ENDFOLD (INI)
@@ -23,9 +22,9 @@ DEF  AlterarAqui ( )
    ;ENDFOLD
    
    ;ALINHE BEM A GARRA COM A ESTEIRA
-   
+   $BASE = BaseEsteira1
    ;TOUCHUP ESTEIRA 1
-   ;FOLD TOUCHUP ESTEIRA 1
+   ;FOLD PTP XServiceEsteira1 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[3];%{PE}
       $BWDSTART = FALSE
       PDAT_ACT = PPDAT1G
       FDAT_ACT = FP1G
@@ -34,8 +33,9 @@ DEF  AlterarAqui ( )
       PTP XServiceEsteira1 C_DIS
    ;ENDFOLD
 
+   $BASE = BaseEsteira2
    ;TOUCHUP ESTEIRA 2
-   ;FOLD TOUCHUP ESTEIRA 2
+   ;FOLD PTP XServiceEsteira2 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[4];%{PE}
       $BWDSTART = FALSE
       PDAT_ACT = PPDAT1G
       FDAT_ACT = FP1G
@@ -45,9 +45,9 @@ DEF  AlterarAqui ( )
    ;ENDFOLD
 
    ;ALINHE BEM A GARRA COM O PALLET
-
+   $BASE = StrPallet[1].OffSetPallet
    ;TOUCHUP PALLET 1
-   ;FOLD TOUCHUP PALLET 1
+   ;FOLD PTP XServicePallet1 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[1];%{PE}
       $BWDSTART = FALSE
       PDAT_ACT = PPDAT1G
       FDAT_ACT = FP1G
@@ -56,8 +56,9 @@ DEF  AlterarAqui ( )
       PTP XServicePallet1 C_DIS
    ;ENDFOLD
 
+   $BASE = StrPallet[2].OffSetPallet
    ;TOUCHUP PALLET 2
-   ;FOLD TOUCHUP PALLET 2
+   ;FOLD PTP XServicePallet2 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[2];%{PE}
       $BWDSTART = FALSE
       PDAT_ACT = PPDAT1G
       FDAT_ACT = FP1G
@@ -66,9 +67,8 @@ DEF  AlterarAqui ( )
       PTP XServicePallet2 C_DIS
    ;ENDFOLD
 
-   ;FOLD ATUALIZA OFFSETS
-      ;AtualizaOffsets( )
-   ;ENDFOLD
+   ;ATUALIZA OFFSETS
+   ;AtualizaOffsets( )
 
    ;ADICIONE AQUI PONTOS DA SUA ESCOLHA 
 
