@@ -44,9 +44,13 @@
 ;ENDFOLD
 
 ;FOLD Variaveis de estado
-    CONST INT ALTURATOPO=850
     BOOL OperarVazio=FALSE
-    REAL OffsetTopo=0
+;ENDFOLD
+
+;FOLD Variaveis adicionais
+    CONST INT ALTURATOPO=850
+    REAL AlturaPalletCompleto=0
+    BOOL PalletCompleto=FALSE
 ;ENDFOLD
 
 ;FOLD Esteira e Pick

@@ -76,7 +76,13 @@ DEF PickEsteira ( )
       XAPP1PICK = XAppEsteira2
       XAPP2PICK = XAppEsteira2   
    ENDIF
-   XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva-1)*AlturaCaixa
+
+   IF (PalletCompleto==TRUE) THEN
+      XAPP1PICK.Z = XAPP1PICK.Z + (AlturaPalletCompleto)
+   ELSE
+      XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva-1)*AlturaCaixa 
+   ENDIF
+
    XAPP2PICK.Z = XPICK.Z + (AlturaCaixa/2)
 
    ;APROXIMA TOPO

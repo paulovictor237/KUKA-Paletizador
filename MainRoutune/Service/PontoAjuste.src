@@ -1,3 +1,5 @@
+﻿&ACCESS RVP
+&REL 6
 DEF  PontoAjuste ( )
    ;FOLD INI;%{PE}
       ;FOLD BASISTECH INI
@@ -22,48 +24,57 @@ DEF  PontoAjuste ( )
    ;ENDFOLD
    
    ;ALINHE BEM A GARRA COM A ESTEIRA
-   $BASE = BaseEsteira1
    ;TOUCHUP ESTEIRA 1
-   ;FOLD PTP XServiceEsteira1 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[3];%{PE}
+   ;FOLD PTP XServiceEsteira1 Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[0];%{PE}
+      ;FOLD Parameters ;%{h}
+         ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=xservice; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT2; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
+      ;ENDFOLD
       $BWDSTART = FALSE
-      PDAT_ACT = PPDAT1G
-      FDAT_ACT = FP1G
+      PDAT_ACT = PPDAT2
+      FDAT_ACT = Fxservice
       BAS(#PTP_PARAMS, 100.0)
-      ;SET_CD_PARAMS (0)
+      SET_CD_PARAMS (0)
       PTP XServiceEsteira1 C_DIS
    ;ENDFOLD
 
-   $BASE = BaseEsteira2
    ;TOUCHUP ESTEIRA 2
-   ;FOLD PTP XServiceEsteira2 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[4];%{PE}
+   ;FOLD PTP XServiceEsteira2 Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[0];%{PE}
+      ;FOLD Parameters ;%{h}
+         ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=xservice; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT2; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
+      ;ENDFOLD
       $BWDSTART = FALSE
-      PDAT_ACT = PPDAT1G
-      FDAT_ACT = FP1G
+      PDAT_ACT = PPDAT2
+      FDAT_ACT = Fxservice
       BAS(#PTP_PARAMS, 100.0)
-      ;SET_CD_PARAMS (0)
+      SET_CD_PARAMS (0)
       PTP XServiceEsteira2 C_DIS
    ;ENDFOLD
 
    ;ALINHE BEM A GARRA COM O PALLET
-   $BASE = StrPallet[1].OffSetPallet
+   
    ;TOUCHUP PALLET 1
-   ;FOLD PTP XServicePallet1 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[1];%{PE}
+   ;FOLD PTP XServicePallet1 Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[0];%{PE}
+      ;FOLD Parameters ;%{h}
+         ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=xservice; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT2; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
+      ;ENDFOLD
       $BWDSTART = FALSE
-      PDAT_ACT = PPDAT1G
-      FDAT_ACT = FP1G
+      PDAT_ACT = PPDAT2
+      FDAT_ACT = Fxservice
       BAS(#PTP_PARAMS, 100.0)
-      ;SET_CD_PARAMS (0)
+      SET_CD_PARAMS (0)
       PTP XServicePallet1 C_DIS
    ;ENDFOLD
 
-   $BASE = StrPallet[2].OffSetPallet
    ;TOUCHUP PALLET 2
-   ;FOLD PTP XServicePallet2 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[2];%{PE}
+   ;FOLD PTP XServicePallet2 Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[0];%{PE}
+      ;FOLD Parameters ;%{h}
+         ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=xservice; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT2; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
+      ;ENDFOLD
       $BWDSTART = FALSE
-      PDAT_ACT = PPDAT1G
-      FDAT_ACT = FP1G
+      PDAT_ACT = PPDAT2
+      FDAT_ACT = Fxservice
       BAS(#PTP_PARAMS, 100.0)
-      ;SET_CD_PARAMS (0)
+      SET_CD_PARAMS (0)
       PTP XServicePallet2 C_DIS
    ;ENDFOLD
 

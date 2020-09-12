@@ -2,6 +2,8 @@
 &REL 3
 &PARAM EDITMASK = *
 DEF SetCamada( )
+   ;para evitar que a garra dessa na hora do pick com o pallet concluido
+   PalletCompleto=FALSE
    ;precisa saber qual o pallet ativo
    ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
    ;FOLD VERIFICA CAIXA E CAMADA
@@ -15,6 +17,8 @@ DEF SetCamada( )
       ;->se a qtd de camadas do pallet for acima da qtd do mozaico
       IF StrPallet[PalletAtivo].CamadaAtiva > StrReceita[ReceitaAtivo].Camadas THEN
          ;Envia alerta de Pallet concluido
+         PalletCompleto=TRUE
+         AlturaPalletCompleto = (CamadaAtiva-1)*AlturaCaixa
          ResetaPallet()
       ENDIF
    ;ENDFOLD     
