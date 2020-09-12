@@ -1,4 +1,4 @@
-&ACCESS RV1
+﻿&ACCESS RV1
 &REL 1
 &PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\MainRoutune\Pick
 DEF PickEsteira ( )
@@ -60,47 +60,45 @@ DEF PickEsteira ( )
          BaseRelativa = NULLFRAME
       ENDIF
    ;ENDFOLD
-
-   ;SET BaseRelativa
+   
    $TOOL = TOOL_DATA[1]
    $BASE=BaseRelativa
+   TopoRelativo = (BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z + XApp1Place.Z - BaseRelativa.Z) + OffsetTopo
    
    IF (PalletAtivo==1) THEN
+      
       ;Pega a altura da caixa para fazer as posicoes relativas
       XAPP1PICK = XAppEsteira2
       XAPP2PICK = XAppEsteira2   
+      XAPP1PICK.Z = XAppEsteira2.Z + (CamadaAtiva-1)*AlturaCaixa
+      XAPP2PICK.Z = XPICK.Z + (AlturaCaixa/2)
+      
    ENDIF
    
    IF (PalletAtivo==2) THEN
+      
       ;Pega a altura da caixa para fazer as posicoes relativas
       XAPP1PICK = XAppEsteira2
       XAPP2PICK = XAppEsteira2   
+      XAPP1PICK.Z = XAppEsteira2.Z + (CamadaAtiva-1)*AlturaCaixa
+      XAPP2PICK.Z = XPICK.Z + (AlturaCaixa/2)
+      
    ENDIF
-   XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva-1)*AlturaCaixa
-   XAPP2PICK.Z = XPICK.Z + (AlturaCaixa/2)
-
-   ;APROXIMA TOPO
-   PTP XAPP1PICK C_DIS   
    
-   ;CONFIGURA GARRA
+   PTP XAPP1PICK C_DIS
+   
    ConfGarra()
-   
-   ;APROXIMA DA CAIXA
    LIN XAPP2PICK C_DIS C_DIS
-   
-   ;PONTO DE PICK
    LIN XPICK
    
-   ;Fecha Garra  
-   FechaGarra()
+   FechaGarra()  
    
-   ;SOBE EM MOVIMENTO RELATIVO
    XSAIPICK = XPICK
-   XSAIPICK.Z=XPICK.Z + (CamadaAtiva)*AlturaCaixa
+   XSAIPICK.Z=XPICK.Z + CamadaAtiva*AlturaCaixa
    LIN XSAIPICK
    
 END
-
+;#######################################################
 DEF PontosReferencia()
    
    ;FOLD PTP AppEsteira2 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[4];%{PE}
