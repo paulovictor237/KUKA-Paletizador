@@ -1,6 +1,6 @@
-&ACCESS RV1
-&REL 1
-&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\MainRoutune\Pick
+&ACCESS RVO1
+&REL 58
+&PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Pick
 DEF PickEsteira ( )
       
    NENHUM = TRUE
@@ -67,8 +67,8 @@ DEF PickEsteira ( )
    
    IF (PalletAtivo==1) THEN
       ;Pega a altura da caixa para fazer as posicoes relativas
-      XAPP1PICK = XAppEsteira2
-      XAPP2PICK = XAppEsteira2   
+      XAPP1PICK = XAppEsteira1
+      XAPP2PICK = XAppEsteira1   
    ENDIF
    
    IF (PalletAtivo==2) THEN
@@ -107,7 +107,21 @@ DEF PickEsteira ( )
    
 END
 
-DEF PontosReferencia()
+DEF PontoReferencia()
+   
+   
+         ;FOLD PTP AppEsteira1 CONT Vel=100 % PDAT3 Tool[1]:GarraUniversal Base[3];%{PE}
+      ;FOLD Parameters ;%{h}
+         ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=AppEsteira3; Kuka.BlendingEnabled=True; Kuka.MoveDataPtpName=PDAT3; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
+      ;ENDFOLD
+      $BWDSTART = FALSE
+      PDAT_ACT = PPDAT1
+      FDAT_ACT = FAppEsteira1
+      BAS(#PTP_PARAMS, 100.0)
+      SET_CD_PARAMS (0)
+      PTP XAppEsteira1 C_Dis
+   ;ENDFOLD
+   
    
    ;FOLD PTP AppEsteira2 CONT Vel=100 % PDAT2 Tool[1]:GarraUniversal Base[4];%{PE}
       ;FOLD Parameters ;%{h}
@@ -119,6 +133,7 @@ DEF PontosReferencia()
       BAS(#PTP_PARAMS, 100.0)
       SET_CD_PARAMS (0)
       PTP XAppEsteira2 C_Dis
-   ;ENDFOLD
-   
+      ;ENDFOLD
+      
+  
 END

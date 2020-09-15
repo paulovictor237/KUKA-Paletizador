@@ -30,7 +30,7 @@ DEF  PontoAjuste ( )
          ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=xservice; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT2; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
       ;ENDFOLD
       $BWDSTART = FALSE
-      PDAT_ACT = PPDAT2
+      PDAT_ACT = PPDATSS
       FDAT_ACT = Fxservice
       BAS(#PTP_PARAMS, 100.0)
       SET_CD_PARAMS (0)
@@ -43,7 +43,7 @@ DEF  PontoAjuste ( )
          ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=xservice; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT2; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
       ;ENDFOLD
       $BWDSTART = FALSE
-      PDAT_ACT = PPDAT2
+      PDAT_ACT = PPDATSS
       FDAT_ACT = Fxservice
       BAS(#PTP_PARAMS, 100.0)
       SET_CD_PARAMS (0)
@@ -58,7 +58,7 @@ DEF  PontoAjuste ( )
          ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=xservice; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT2; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
       ;ENDFOLD
       $BWDSTART = FALSE
-      PDAT_ACT = PPDAT2
+      PDAT_ACT = PPDATSS
       FDAT_ACT = Fxservice
       BAS(#PTP_PARAMS, 100.0)
       SET_CD_PARAMS (0)
@@ -71,7 +71,7 @@ DEF  PontoAjuste ( )
          ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=xservice; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT2; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
       ;ENDFOLD
       $BWDSTART = FALSE
-      PDAT_ACT = PPDAT2
+      PDAT_ACT = PPDATSS
       FDAT_ACT = Fxservice
       BAS(#PTP_PARAMS, 100.0)
       SET_CD_PARAMS (0)

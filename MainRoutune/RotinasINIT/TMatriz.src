@@ -1,4 +1,4 @@
-&ACCESS RVP
+&ACCESS RVO1
 &PARAM EDITMASK = *
 DEF TMatriz( )
    ;FOLD Pallet1
