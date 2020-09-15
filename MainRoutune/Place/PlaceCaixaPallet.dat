@@ -1,4 +1,4 @@
-&ACCESS RV1
+DEFDAT  PlaceCaixaPallet
    FRAME RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
    FRAME BaseRelativa = {X 0,Y 0,Z 0,A 0,B 0,C 0}
    BOOL SkipPTP = FALSE
