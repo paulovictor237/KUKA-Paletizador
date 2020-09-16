@@ -87,7 +87,7 @@ IF (PalletAtivo==1) THEN
       XAPP1PICK.Z = XPICK.Z + CamadaAtiva*AlturaCaixa + 60
    ENDIF
 
-   XAPP2PICK.Z = XPICK.Z + (AlturaCaixa/2)
+   XAPP2PICK.Z = XPICK.Z
 
    ;APROXIMA TOPO
    PTP XAPP1PICK C_DIS   
