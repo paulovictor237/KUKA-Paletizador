@@ -64,17 +64,21 @@ DEF PickEsteira ( )
    ;SET BaseRelativa
    $TOOL = TOOL_DATA[1]
    $BASE=BaseRelativa
+
+   ;SET Ponto de pick
+   XAPP1PICK = XPICK
+   XAPP2PICK = XPICK
    
-   IF (PalletAtivo==1) THEN
+IF (PalletAtivo==1) THEN
       ;Pega a altura da caixa para fazer as posicoes relativas
-      XAPP1PICK = XAppEsteira1
-      XAPP2PICK = XAppEsteira1   
+      XAPP1PICK.Y = XAppEsteira1.Y
+      XAPP2PICK.Y = XAppEsteira1.Y   
    ENDIF
    
    IF (PalletAtivo==2) THEN
       ;Pega a altura da caixa para fazer as posicoes relativas
-      XAPP1PICK = XAppEsteira2
-      XAPP2PICK = XAppEsteira2   
+      XAPP1PICK.Y = XAppEsteira2.Y
+      XAPP2PICK.Y = XAppEsteira2.Y     
    ENDIF
 
    IF (PalletCompleto==TRUE) THEN
