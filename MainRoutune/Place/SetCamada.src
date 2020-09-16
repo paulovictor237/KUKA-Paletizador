@@ -18,7 +18,7 @@ DEF SetCamada( )
       IF StrPallet[PalletAtivo].CamadaAtiva > StrReceita[ReceitaAtivo].Camadas THEN
          ;Envia alerta de Pallet concluido
          PalletCompleto=TRUE
-         AlturaPalletCompleto = (CamadaAtiva-1)*AlturaCaixa
+         AlturaPalletCompleto = CamadaAtiva*AlturaCaixa
          ResetaPallet()
       ENDIF
    ;ENDFOLD     

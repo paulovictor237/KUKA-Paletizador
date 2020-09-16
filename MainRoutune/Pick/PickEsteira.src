@@ -78,9 +78,9 @@ DEF PickEsteira ( )
    ENDIF
 
    IF (PalletCompleto==TRUE) THEN
-      XAPP1PICK.Z = XAPP1PICK.Z + (AlturaPalletCompleto)
+      XAPP1PICK.Z = XPICK.Z + AlturaPalletCompleto + 60
    ELSE
-      XAPP1PICK.Z = XAPP1PICK.Z + (CamadaAtiva-1)*AlturaCaixa 
+      XAPP1PICK.Z = XPICK.Z + CamadaAtiva*AlturaCaixa + 60
    ENDIF
 
    XAPP2PICK.Z = XPICK.Z + (AlturaCaixa/2)
