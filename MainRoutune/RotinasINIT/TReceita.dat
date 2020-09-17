@@ -1,3 +1,5 @@
+&ACCESS RVO1
+&PARAM EDITMASK = *
 DEFDAT  TReceita
 
 ;Fold Mosaico A

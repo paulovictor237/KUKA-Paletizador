@@ -1,3 +1,5 @@
+&ACCESS RVO1
+&PARAM EDITMASK = *
 DEFDAT  TMatriz
    ;FOLD Pallet1
    ;FOLD  MosaicoA_Pallet1

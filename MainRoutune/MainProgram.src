@@ -1,6 +1,7 @@
 ﻿&ACCESS RVP
-&REL 10
+&REL 12
 DEF  MainProgram ( )
+
    ;FOLD INI;%{PE}
       ;FOLD BASISTECH INI
          GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
@@ -16,9 +17,24 @@ DEF  MainProgram ( )
          TReceita()
          $TOOL = TOOL_DATA[1]
          $BASE=$NULLFRAME
-         $Advance=0
+         $Advance = 3 
+         EstadoAutExt = 0
+         Estado_Palete1 = 0
+         Estado_Palete2 = 0
       ;ENDFOLD (USER INI)
-   ;ENDFOLD (INI)
+      ;ENDFOLD (INI)
+      
+;FOLD Sobe Seguro
+
+;Realiza primeiro SAK do programa   
+$base=base_data[1]
+$tool=tool_data[1]
+XSobeSeguro = $POS_ACT
+PTP XSobeSeguro
+XSobeSeguro.Z = h_SobeSeguro ; TODO: Criar variavel LimiteTopoMaximo
+LIN XSobeSeguro
+
+;ENDFOLD
   
 ;FOLD ABRE_GARRAS
    
@@ -49,7 +65,41 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
 
 ;ENDFOLD
 
-   ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+;FOLD UPDATE CAMADA
+StrPallet[Pallet_1].CamadaAtiva = Camada_P1
+StrPallet[Pallet_2].CamadaAtiva = Camada_P2
+;ENDFOLD
+
+;FOLD Reseta Paletes
+StrPallet[Pallet_1].Completo=FALSE
+StrPallet[Pallet_2].Completo=FALSE
+StrPallet[Pallet_1].Livre=TRUE
+StrPallet[Pallet_2].Livre=TRUE
+;ENDFOLD
+
+;FOLD SET INDEX ESTEIRA 1
+   
+  PalletAtivo = Pallet_1
+  ReceitaAtivo = Mosaico_Est1
+  RotinaATIVOS()
+  UpdateIndexCaixas()  
+  IndexacaoVH_Est1 = IndexacaoVH
+  NumCaixas_Est1 = NumCaixas 
+  
+;ENDFOLD
+
+;FOLD SET INDEX ESTEIRA 2
+   
+  PalletAtivo = Pallet_2
+  ReceitaAtivo = Mosaico_Est2
+  RotinaATIVOS()
+  UpdateIndexCaixas()  
+  IndexacaoVH_Est2 = IndexacaoVH
+  NumCaixas_Est2 = NumCaixas 
+  
+;ENDFOLD
+
+            ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
       $BWDSTART = FALSE
       PDAT_ACT=PDEFAULT
       FDAT_ACT=FHOME
@@ -57,33 +107,70 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
       $H_POS=XHOME
       PTP  XHOME
    ;ENDFOLD
+
+;FOLD CHECK CAMADA 1
+
+IF (NOT Palete1_Completo AND Palete1_OK) or OperarVazio THEN
+   CheckCamadaP1()
+ENDIF
+;ENDFOLD CHECK CAMADA 1
+
+;FOLD CHECK CAMADA 2
+IF (NOT Palete2_Completo AND Palete2_OK)OR OperarVazio THEN
+   CheckCamadaP2()
+ENDIF
+;ENDFOLD CHECK CAMADA 2
+
+;FOLD LOOP Main Routine
    
-   ;FOLD MAIN ROUTINE
-      WHILE TRUE
-         ; ->ler do CLP pallet
-         ; ->gravar na variavel PalletAtivo
-         PalletAtivo=2 ; TESTE
-         ReceitaAtivo=1 ; TESTE
-         StrPallet[PalletAtivo].Livre=TRUE ; TESTE
-         ; ->verificar se ja possui produto no pallet
-         ; ->se nao tiver escrever um produto
-         IF StrPallet[PalletAtivo].Livre == TRUE THEN
-            StrPallet[PalletAtivo].Livre=FALSE
-            StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
-         ENDIF
+   LOOP
+         
+            ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+      $BWDSTART = FALSE
+      PDAT_ACT=PDEFAULT
+      FDAT_ACT=FHOME
+      BAS (#PTP_PARAMS,100 )
+      $H_POS=XHOME
+      PTP  XHOME
+   ;ENDFOLD
+         
+      if (PickReady_Est1 or DryRun_Est1) and (Esteira==1) and (Palete1_OK or DryRun_Est1) and not StrPallet[Pallet_1].Completo then
+         
+         PalletAtivo = Pallet_1
+         ReceitaAtivo = Mosaico_Est1
+         StrPallet[PalletAtivo].ReceitaAtivo = ReceitaAtivo
+         Retorno_Camada_P1 = StrPallet[PalletAtivo].CamadaAtiva
+         
          RotinaATIVOS()
-         ;RotinaCLP()
          PickEsteira()
+         
+         UpdateIndexCaixas()   
+         IndexacaoVH_Est1 = IndexacaoVH
+         NumCaixas_Est1 = NumCaixas      
+         
          PlaceCaixaPallet()
-      ENDWHILE
-   ;ENDFOLD
-   
-   ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
-      $BWDSTART = FALSE
-      PDAT_ACT=PDEFAULT
-      FDAT_ACT=FHOME
-      BAS (#PTP_PARAMS,100 )
-      $H_POS=XHOME
-      PTP  XHOME
-   ;ENDFOLD
+            
+      else
+      if (PickReady_Est2 or DryRun_Est2) and (Esteira==2) and (Palete2_OK or DryRun_Est2) and not StrPallet[Pallet_2].Completo then
+         
+         PalletAtivo = Pallet_2
+         ReceitaAtivo = Mosaico_Est2
+         StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
+         Retorno_Camada_P2 = StrPallet[PalletAtivo].CamadaAtiva 
+         
+         RotinaATIVOS()                   
+         PickEsteira()
+         
+         UpdateIndexCaixas()
+         IndexacaoVH_Est2 = IndexacaoVH
+         NumCaixas_Est2 = NumCaixas
+         
+         PlaceCaixaPallet()
+         
+      endif
+      endif         
+         
+   ENDLOOP
+;ENDFOLD
+      
 END

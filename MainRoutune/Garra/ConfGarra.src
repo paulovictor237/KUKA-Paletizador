@@ -4,11 +4,11 @@ DEF ConfGarra( )
    IF (OperarVazio==FALSE) THEN
       SWITCH ConfGarraOp
          CASE 11
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -87,8 +87,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -164,8 +164,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_1_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 101
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -244,8 +244,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_1_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 102
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -327,8 +327,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -407,8 +407,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = TRUE
             Rec_Comp_Indiv_Gar_1 = FALSE
@@ -487,8 +487,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -567,8 +567,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -647,8 +647,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -887,8 +887,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -967,8 +967,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = TRUE
             Rec_Comp_Indiv_Gar_1 = FALSE
@@ -1047,8 +1047,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = TRUE
             Rec_Comp_Indiv_Gar_1 = FALSE
@@ -1127,8 +1127,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -1207,8 +1207,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -1287,8 +1287,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -1364,8 +1364,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 82
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -1444,8 +1444,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 91
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -1527,8 +1527,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE
@@ -1607,8 +1607,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = TRUE
             Rec_Comp_Indiv_Gar_1 = FALSE
@@ -1684,8 +1684,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 141
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -1764,8 +1764,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 142
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -1847,8 +1847,8 @@ DEF ConfGarra( )
             Abre_Gar_Triplo_Lado_A = TRUE
             Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = TRUE
             Rec_Comp_Indiv_Gar_1 = FALSE
@@ -1924,8 +1924,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 172
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -2004,8 +2004,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 173
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -2084,8 +2084,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 71
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -2164,8 +2164,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 72
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -2244,8 +2244,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 73
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -2324,8 +2324,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 51
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -2404,8 +2404,8 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 131
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
             Abre_Gar_Triplo_Lado_B = FALSE
             Fecha_Gar_Triplo_Lado_B = TRUE
@@ -2484,11 +2484,11 @@ DEF ConfGarra( )
             ;WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
             WAIT SEC 0.5
          CASE 181
-            Abre_Gar_Triplo_Lado_A = FALSE
-            Fecha_Gar_Triplo_Lado_A = TRUE
+            Abre_Gar_Triplo_Lado_A = TRUE
+            Fecha_Gar_Triplo_Lado_A = FALSE
 
-            Abre_Gar_Triplo_Lado_B = TRUE
-            Fecha_Gar_Triplo_Lado_B = FALSE
+            Abre_Gar_Triplo_Lado_B = FALSE
+            Fecha_Gar_Triplo_Lado_B = TRUE
 
             Ava_Comp_Indiv_Gar_1 = FALSE
             Rec_Comp_Indiv_Gar_1 = TRUE

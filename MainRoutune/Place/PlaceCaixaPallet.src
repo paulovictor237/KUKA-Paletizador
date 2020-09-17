@@ -78,7 +78,8 @@ DEF PlaceCaixaPallet()
       ;ENDFOLD
       
       IF (SkipSobeRelativo == FALSE) THEN
-         ;FOLD MOVIMENTO SOBE RELATIVO
+
+;FOLD MOVIMENTO SOBE RELATIVO
             XPlace.Z=XApp1Place.Z
             LIN  XPlace 
             ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
@@ -100,5 +101,7 @@ DEF PlaceCaixaPallet()
       ;ENDFOLD
       
    UNTIL (SkipGoHome == FALSE)
+   
+   AbreGarraCompleto_noWait()
    
 END

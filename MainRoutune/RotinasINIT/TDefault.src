@@ -43,6 +43,7 @@
    ;FOLD Variaveis Default Pallet
       FOR I = 1 to MaxPallets
          StrPallet[I].Livre = TRUE
+         StrPallet[I].Completo = FALSE
          StrPallet[I].ReceitaAtivo = 1
          StrPallet[I].PlaceAtivo = 1
          StrPallet[I].CamadaAtiva = 1

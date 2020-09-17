@@ -1,4 +1,5 @@
-&ACCESS RVO1
+﻿&ACCESS RVO1
+&REL 1
 &PARAM EDITMASK = *
 DEF AbreGarra( )
    IF (OperarVazio==FALSE) THEN
@@ -614,6 +615,5 @@ DEF AbreGarra( )
             WAIT FOR ( Cil_1_Gar_1_Ava == TRUE )
             WAIT SEC 0.5
       ENDSWITCH
-      WAIT SEC 1
    ENDIF
 END
