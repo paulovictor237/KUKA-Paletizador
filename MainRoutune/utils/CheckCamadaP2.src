@@ -1,4 +1,4 @@
-&ACCESS RVP
+&ACCESS RVO1
 &REL 31
 &PARAM DISKPATH = KRC:\R1\Program\40291_LineaP_Paletizacao\SubRotinas
 DEF CheckCamadaP2( )

@@ -1,3 +1,6 @@
+&ACCESS RV1
+&REL 1
+&PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Place
 DEF PlaceCaixaPallet()
    
    ;FOLD ROTINAS DE INICIALIZACAO

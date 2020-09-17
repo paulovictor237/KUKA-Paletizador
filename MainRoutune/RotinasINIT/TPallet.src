@@ -1,4 +1,4 @@
-&ACCESS RVO
+&ACCESS RVO1
 &REL 3
 &PARAM EDITMASK = *
 DEF TPallet( )
@@ -39,16 +39,16 @@ DEF TPallet( )
    ;ENDFOLD
 
    ;FOLD OffsetEsteira
-      OffsetEsteira1.X=150
-      OffsetEsteira1.Y=-5
-      OffsetEsteira1.Z=-70
+      OffsetEsteira1.X=-90
+      OffsetEsteira1.Y=30
+      OffsetEsteira1.Z=-55
       OffsetEsteira1.A=0
       OffsetEsteira1.B=0
       OffsetEsteira1.C=0
 
-      OffsetEsteira2.X=150
-      OffsetEsteira2.Y=-5
-      OffsetEsteira2.Z=-70
+      OffsetEsteira2.X=-90
+      OffsetEsteira2.Y=34
+      OffsetEsteira2.Z=-55
       OffsetEsteira2.A=0
       OffsetEsteira2.B=0
       OffsetEsteira2.C=0
