@@ -2,7 +2,7 @@
 &REL 67
 &PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Pick
 DEF PickEsteira ( )
-      
+   RotinaATIVOS() 
    NENHUM = TRUE
    
    ;FOLD PickEsteira de cada receita e esteira
@@ -68,26 +68,65 @@ DEF PickEsteira ( )
    ;SET Ponto de pick
    XAPP1PICK = XPICK
    XAPP2PICK = XPICK
+   XSAIPICK  = XPICK
    
-IF (PalletAtivo==1) THEN
-      ;Pega a altura da caixa para fazer as posicoes relativas
+   ;Captura o Y da esteira para o ponto de aproximacao
+   IF (PalletAtivo==1) THEN
       XAPP1PICK.Y = XAppEsteira1.Y
       XAPP2PICK.Y = XAppEsteira1.Y   
    ENDIF
    
    IF (PalletAtivo==2) THEN
-      ;Pega a altura da caixa para fazer as posicoes relativas
       XAPP1PICK.Y = XAppEsteira2.Y
       XAPP2PICK.Y = XAppEsteira2.Y     
    ENDIF
 
-   IF (PalletCompleto==TRUE) THEN
-      XAPP1PICK.Z = XPICK.Z + AlturaPalletCompleto + 60
-   ELSE
-      XAPP1PICK.Z = XPICK.Z + CamadaAtiva*AlturaCaixa + 60
-   ENDIF
+   ;FOLD raciocinio do calculo de igualar bases
+      ;    ZPick  _      _ ZPlace
+      ;           |      |
+      ;           |      |
+      ;           |      |
+      ;           |      - BPlace
+      ;           |      |
+      ;    BPick  -      |
+      ;           |      |
+      ;           |      |
+      ;             ZERO
 
-   XAPP2PICK.Z = XPICK.Z
+      ;ZPick  + BPick  = ZPlace + BPlace 
+
+      ;ZPick  = ZPlace + BPlace - BPick
+      ;ZPlace = ZPick  + BPick  - BPlace
+
+      ;ALTURATOPO=1800
+      ;ZPick  = ALTURATOPO - BPick
+      ;ZPlace = ALTURATOPO - BPlace
+   ;ENDFOLD
+
+   ;FOLD TOPO DINAMICO IGUALANDO A BASE PLACE COM A DO PICK
+      ;Puxa qual o ponto que sera feito o Place
+      SetPlacePos()
+      ;iguala as bases para obter o Z relativo
+      ;ZPick      = ZPlace       +  BPlace                                          - BPick
+      XAPP1PICK.Z = XApp1Place.Z + (BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z) - BaseRelativa.Z
+
+      ;Configura a altura de saida do pick
+      XSAIPICK.Z = XAPP1PICK.Z
+
+      ;Se o pallet estiver completo o pick eh forcado com a altura MAX
+      IF (PalletCompleto==TRUE) THEN
+         XAPP1PICK.Z = AlturaPalletCompleto
+         PalletCompleto=FALSE
+      ENDIF
+
+      ;Por seguranca deve garantir que sempre sera acima da altura minima
+      ; ZPick2 = ALTURATOPO - BPick
+      ; IF (ZPick1 < ZPick2)
+      IF (XAPP1PICK.Z<(ALTURATOPO - BaseRelativa.Z)) THEN
+         XAPP1PICK.Z = ALTURATOPO - BaseRelativa.Z
+         XSAIPICK.Z  = ALTURATOPO - BaseRelativa.Z
+      ENDIF
+   ;ENDFOLD
 
    ;APROXIMA TOPO
    PTP XAPP1PICK C_DIS   
@@ -105,8 +144,6 @@ IF (PalletAtivo==1) THEN
    FechaGarra()
    
    ;SOBE EM MOVIMENTO RELATIVO
-   XSAIPICK = XPICK
-   XSAIPICK.Z=XPICK.Z + (CamadaAtiva)*AlturaCaixa
    LIN XSAIPICK
    
 END

@@ -18,7 +18,9 @@ DEF SetCamada( )
       IF StrPallet[PalletAtivo].CamadaAtiva > StrReceita[ReceitaAtivo].Camadas THEN
          ;Envia alerta de Pallet concluido
          PalletCompleto=TRUE
-         AlturaPalletCompleto = CamadaAtiva*AlturaCaixa
+         ;seta essa altura com relacao a altura de pick
+         ;ZPick               = ZPlace       +  BPlace                                          - BPick
+         AlturaPalletCompleto = XApp1Place.Z + (BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z) - BaseRelativa.Z
          ResetaPallet()
       ENDIF
    ;ENDFOLD     

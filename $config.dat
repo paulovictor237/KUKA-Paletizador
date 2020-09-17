@@ -48,7 +48,7 @@
 ;ENDFOLD
 
 ;FOLD Variaveis adicionais
-    CONST INT ALTURATOPO=850
+    CONST REAL ALTURATOPO=1800
     REAL AlturaPalletCompleto=0
     BOOL PalletCompleto=FALSE
 ;ENDFOLD
