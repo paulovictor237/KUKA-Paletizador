@@ -1,4 +1,4 @@
-&ACCESS RVO1
+&ACCESS RVO
 &PARAM EDITMASK = *
 DEF SetPlacePos()
    ;Esses valores devem vir sempre da main

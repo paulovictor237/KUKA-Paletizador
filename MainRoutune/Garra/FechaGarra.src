@@ -1,4 +1,4 @@
-﻿&ACCESS RVO1
+&ACCESS RVO1
 &REL 1
 &PARAM EDITMASK = *
 DEF FechaGarra( )

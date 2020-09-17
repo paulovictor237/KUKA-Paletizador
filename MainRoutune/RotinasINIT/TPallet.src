@@ -1,5 +1,5 @@
 &ACCESS RVO
-&REL 10
+&REL 3
 &PARAM EDITMASK = *
 DEF TPallet( )
    ;DECL FRAME TBASE[5] 
@@ -23,9 +23,9 @@ DEF TPallet( )
    ;ENDFOLD
 
    ;FOLD OffSetPallet
-      StrPallet[1].OffSetPallet.X=0
-      StrPallet[1].OffSetPallet.Y=0
-      StrPallet[1].OffSetPallet.Z=60
+      StrPallet[1].OffSetPallet.X=130
+      StrPallet[1].OffSetPallet.Y=80
+      StrPallet[1].OffSetPallet.Z=-55
       StrPallet[1].OffSetPallet.A=0
       StrPallet[1].OffSetPallet.B=0
       StrPallet[1].OffSetPallet.C=0
@@ -39,9 +39,9 @@ DEF TPallet( )
    ;ENDFOLD
 
    ;FOLD OffsetEsteira
-      OffsetEsteira1.X=0
-      OffsetEsteira1.Y=0
-      OffsetEsteira1.Z=60
+      OffsetEsteira1.X=150
+      OffsetEsteira1.Y=-5
+      OffsetEsteira1.Z=-70
       OffsetEsteira1.A=0
       OffsetEsteira1.B=0
       OffsetEsteira1.C=0

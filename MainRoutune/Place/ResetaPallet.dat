@@ -1,3 +1,6 @@
+&ACCESS RVO
+&REL 3
+&PARAM EDITMASK = *
 DEFDAT  ResetaPallet
 
 ENDDAT

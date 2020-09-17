@@ -1,4 +1,5 @@
-﻿DEF RotinaATIVOS ( )
+&ACCESS RV
+DEF RotinaATIVOS ( )
    
    ;FOLD STRUC Pallet
       ReceitaAtivo = StrPallet[PalletAtivo].ReceitaAtivo
