@@ -80,8 +80,8 @@ StrPallet[Pallet_2].Livre=TRUE
 ;FOLD SET INDEX ESTEIRA 1
    
   PalletAtivo = Pallet_1
-  ReceitaAtivo = Mosaico_Est1
-  RotinaATIVOS()
+  StrPallet[PalletAtivo].ReceitaAtivo = Mosaico_Est1
+  AtualizaVariaveis()
   IndexacaoVH_Est1 = IndexacaoVH
   NumCaixas_Est1 = NumCaixas 
   
@@ -90,8 +90,8 @@ StrPallet[Pallet_2].Livre=TRUE
 ;FOLD SET INDEX ESTEIRA 2
    
   PalletAtivo = Pallet_2
-  ReceitaAtivo = Mosaico_Est2
-  RotinaATIVOS()  
+  StrPallet[PalletAtivo].ReceitaAtivo = Mosaico_Est2
+  AtualizaVariaveis()  
   IndexacaoVH_Est2 = IndexacaoVH
   NumCaixas_Est2 = NumCaixas 
   
@@ -129,7 +129,7 @@ ENDIF
          StrPallet[PalletAtivo].ReceitaAtivo = ReceitaAtivo
          Retorno_Camada_P1 = StrPallet[PalletAtivo].CamadaAtiva
          
-         RotinaATIVOS()
+         AtualizaVariaveis()
          PickEsteira()
          
          UpdateIndexCaixas()   
@@ -146,7 +146,7 @@ ENDIF
          StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
          Retorno_Camada_P2 = StrPallet[PalletAtivo].CamadaAtiva 
          
-         RotinaATIVOS()                   
+         AtualizaVariaveis()                   
          PickEsteira()
          
          UpdateIndexCaixas()

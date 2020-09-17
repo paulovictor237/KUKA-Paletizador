@@ -24,7 +24,7 @@ DEF PlaceCaixaPallet()
    
    REPEAT
       ;FOLD PUXA TUDO PARA AS VARIAVEIS
-         RotinaATIVOS()
+         AtualizaVariaveis()
       ;ENDFOLD 
 
       ;FOLD ATUALIZA OS PONTOS DE PLACE

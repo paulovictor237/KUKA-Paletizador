@@ -1,5 +1,5 @@
 &ACCESS RV
-DEF RotinaATIVOS ( )
+DEF AtualizaVariaveis ( )
    
    ;FOLD STRUC Pallet
       ReceitaAtivo = StrPallet[PalletAtivo].ReceitaAtivo
