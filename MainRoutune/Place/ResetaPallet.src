@@ -1,4 +1,4 @@
-&ACCESS RVO3
+&ACCESS RVO
 &REL 3
 &PARAM EDITMASK = *
 DEF ResetaPallet( )

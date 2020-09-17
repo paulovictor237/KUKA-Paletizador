@@ -1,5 +1,5 @@
 &ACCESS RVO1
-&REL 58
+&REL 67
 &PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Pick
 DEF PickEsteira ( )
       

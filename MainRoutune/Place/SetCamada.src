@@ -5,7 +5,7 @@ DEF SetCamada( )
    ;para evitar que a garra dessa na hora do pick com o pallet concluido
    PalletCompleto=FALSE
    ;precisa saber qual o pallet ativo
-   ;atravez do pallet ativo o programa sabe qual mozaico estÃ¡ selecionado
+   ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
    ;FOLD VERIFICA CAIXA E CAMADA
       ;->apos colocar a caixa deve acrescentar + 1 em
       StrPallet[PalletAtivo].PlaceAtivo = StrPallet[PalletAtivo].PlaceAtivo + 1

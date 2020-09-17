@@ -1,4 +1,4 @@
-﻿&ACCESS RVP
+&ACCESS RVP
 &REL 10
 DEF  MainProgram ( )
    ;FOLD INI;%{PE}
@@ -62,8 +62,8 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
       WHILE TRUE
          ; ->ler do CLP pallet
          ; ->gravar na variavel PalletAtivo
-         PalletAtivo=2 ; TESTE
-         ReceitaAtivo=1 ; TESTE
+         PalletAtivo=1 ; TESTE
+         ReceitaAtivo=Produto_k ; TESTE
          StrPallet[PalletAtivo].Livre=TRUE ; TESTE
          ; ->verificar se ja possui produto no pallet
          ; ->se nao tiver escrever um produto

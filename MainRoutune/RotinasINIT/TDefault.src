@@ -1,4 +1,5 @@
-﻿DEF TDefault ( )
+&ACCESS RV1
+DEF TDefault ( )
    
    ;FOLD Variaveis Default da Matriz de Pontos
       FOR I = 1 to MaxMatrizI

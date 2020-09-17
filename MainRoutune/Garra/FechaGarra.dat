@@ -1,3 +1,6 @@
-﻿DEFDAT FechaGarra
+&ACCESS RVO
+&REL 1
+&PARAM EDITMASK = *
+DEFDAT FechaGarra
 
 ENDDAT
