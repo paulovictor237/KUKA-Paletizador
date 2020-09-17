@@ -115,7 +115,7 @@ DEF PickEsteira ( )
 
       ;Se o pallet estiver completo o pick eh forcado com a altura MAX
       IF (PalletCompleto==TRUE) THEN
-         XAPP1PICK.Z = AlturaPalletCompleto
+         XAPP1PICK.Z = AlturaPalletCompleto - BaseRelativa.Z
          PalletCompleto=FALSE
       ENDIF
 

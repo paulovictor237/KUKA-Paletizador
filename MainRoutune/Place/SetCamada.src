@@ -19,8 +19,8 @@ DEF SetCamada( )
          ;Envia alerta de Pallet concluido
          PalletCompleto=TRUE
          ;seta essa altura com relacao a altura de pick
-         ;ZPick               = ZPlace       +  BPlace                                          - BPick
-         AlturaPalletCompleto = XApp1Place.Z + (BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z) - BaseRelativa.Z
+         ;ZPick               = ZPlace       +  BPlace         - BPick
+         AlturaPalletCompleto = XApp1Place.Z + (BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z)
          ResetaPallet()
       ENDIF
    ;ENDFOLD     

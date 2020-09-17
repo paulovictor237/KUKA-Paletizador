@@ -1,138 +1,139 @@
-;FOLD Padrao Paletizacao
-
-;FOLD ENUM RECEITA
-    CONST INT Produto_A  = 1
-    CONST INT Produto_B  = 2
-    CONST INT Produto_C1 = 3
-    CONST INT Produto_C2 = 4
-    CONST INT Produto_E1 = 5
-    CONST INT Produto_E2 = 6
-    CONST INT Produto_E3 = 7
-    CONST INT Produto_F  = 8
-    CONST INT Produto_G  = 9
-    CONST INT Produto_I  = 10
-    CONST INT Produto_J  = 11
-    CONST INT Produto_K  = 12
-    CONST INT Produto_L  = 13
-    CONST INT Produto_M  = 14
-    CONST INT Produto_N  = 15
-    CONST INT Produto_O  = 16
-    CONST INT Produto_P  = 17
-    CONST INT Produto_Q  = 18
-    CONST INT Produto_R  = 19
-    CONST INT Produto_S  = 20
-    CONST INT Produto_T  = 21
-;ENDFOLD
-
-;FOLD ENUM Pallet
-    CONST INT Pallet_1  = 1
-    CONST INT Pallet_2  = 2
-;ENDFOLD
-
-;FOLD VARIAVEIS CLP
-    ;{PalletAtivo} numero da esteira que está com a caixa
-    ;{CLPNumCaixas} numero de caixas para o pick
-    ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
-    INT  CLPNumCaixas=1    
-    BOOL CLPIndexacaoVH=FALSE
-;ENDFOLD
-
-;FOLD Principais variaveis
-    INT PalletAtivo=1
-    INT LayerAtivo=1
-    INT PlaceLayerAtivo=1
-;ENDFOLD
-
-;FOLD Variaveis de estado
-    BOOL OperarVazio=FALSE
-;ENDFOLD
-
-;FOLD Variaveis adicionais
-    CONST REAL ALTURATOPO=1800
-    REAL AlturaPalletCompleto=0
-    BOOL PalletCompleto=FALSE
-;ENDFOLD
-
-;FOLD Esteira e Pick
-    CONST E6POS DefaultPoint={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    CONST FRAME NULLFRAME = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    
-    FRAME OffsetEsteira1 = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    FRAME OffsetEsteira2 = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    
-    FRAME BaseEsteira1 = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    FRAME BaseEsteira2 = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-;ENDFOLD
-
-;FOLD STRUC Pallet
-    BOOL Livre=FALSE
-    INT ReceitaAtivo=1
-    INT PlaceAtivo=1
-    INT CamadaAtiva=1
-    FRAME BasePoint = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    FRAME OffSetPallet = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    E6POS Approch = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    STRUC DefPallet INT ReceitaAtivo, BOOL Livre, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, FRAME OffSetPallet, E6POS Approch
-    ;---------- StrPallet[MaxPallets] ----------
-    CONST INT MaxPallets=2
-    DECL GLOBAL DefPallet StrPallet[2];[MaxPallets]
-;ENDFOLD
-
-;FOLD STRUC Receita
-    INT PlacesCamada = 1
-    INT Camadas = 1
-    INT AlturaCaixa = 1
-    FRAME OffsetProduto = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-    E6POS Pick_E_1_P_1 = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS Pick_E_1_P_2 = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS Pick_E_1_P_3 = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS Pick_E_1_P_4 = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS Pick_E_2_P_1 = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS Pick_E_2_P_2 = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS Pick_E_2_P_3 = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS Pick_E_2_P_4 = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick_E_1_P_1, Pick_E_1_P_2, Pick_E_1_P_3, Pick_E_1_P_4, Pick_E_2_P_1, Pick_E_2_P_2, Pick_E_2_P_3, Pick_E_2_P_4
-    ;---------- StrReceita[MaxReceitas] ----------
-    CONST INT MaxReceitas=21 ; 21
-    CONST INT MaxCamadas=12 ; 8
-    DECL GLOBAL DefStrReceita StrReceita[21];[MaxReceitas]
-    INT  StrReceitaLayer[21,12];[MaxReceitas,MaxCamadas]
-;ENDFOLD
-
-;FOLD STRUC MatrizPontos
-    ;CLP
-    ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
-    ;-> {NumCaixas} numero de caixas para o pick
-    ;Configuracao de Pick
-    ;-> {ConfGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-    ;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
-    ;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-    ;Configuracao de Place
-    ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
-    ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
-    ;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
-    ;Pontos de Place
-    ;-> {XApp1Place} Primeiro ponto de aproximacao de place
-    ;-> {XApp2Place} Segundo ponto de aproximacao de place
-    ;-> {XPlace} Ponto de place
-    
-    BOOL IndexacaoVH = FALSE
-    BOOL SkipGoHome = FALSE
-    BOOL SkipSobeRelativo = FALSE
-    INT NumCaixas = 1
-    INT PickOp = 1
-    INT ConfGarraOp = 1
-    INT FechaGarraOp = 1
-    INT AbreGarraOp = 1
-    E6POS XApp1Place = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS XApp2Place = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    E6POS XPlace = {X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
-    STRUC DefMatriz BOOL IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace
-    ;---------- MatrizPontos[MaxMatrizI,MaxMatrizJ,MaxMatrizK] ----------
-    CONST INT MaxMatrizI=2  ;[numero de pallets por receita]
-    CONST INT MaxMatrizJ=21 ;[acompanha o MaxReceitas]
-    CONST INT MaxMatrizK=25 ;[numero Maximo de Pontos]
-    DECL GLOBAL DefMatriz MatrizPontos[2,21,25];[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
-;ENDFOLD
-
-;ENDFOLD
+   ;FOLD Padrao Paletizacao
+   
+   ;FOLD ENUM RECEITA
+   CONST INT Produto_A=1
+   CONST INT Produto_B=2
+   CONST INT Produto_C1=3
+   CONST INT Produto_C2=4
+   CONST INT Produto_E1=5
+   CONST INT Produto_E2=6
+   CONST INT Produto_E3=7
+   CONST INT Produto_F=8
+   CONST INT Produto_G=9
+   CONST INT Produto_I=10
+   CONST INT Produto_J=11
+   CONST INT Produto_K=12
+   CONST INT Produto_L=13
+   CONST INT Produto_M=14
+   CONST INT Produto_N=15
+   CONST INT Produto_O=16
+   CONST INT Produto_P=17
+   CONST INT Produto_Q=18
+   CONST INT Produto_R=19
+   CONST INT Produto_S=20
+   CONST INT Produto_T=21
+   ;ENDFOLD
+   
+   ;FOLD ENUM Pallet
+   CONST INT Pallet_1=1
+   CONST INT Pallet_2=2
+   ;ENDFOLD
+   
+   ;FOLD VARIAVEIS CLP
+   ;{PalletAtivo} numero da esteira que está com a caixa
+   ;{CLPNumCaixas} numero de caixas para o pick
+   ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
+   INT CLPNumCaixas=1
+   BOOL CLPIndexacaoVH=FALSE
+   ;ENDFOLD
+   
+   ;FOLD Principais variaveis
+   INT PalletAtivo=1
+   INT LayerAtivo=1
+   INT PlaceLayerAtivo=1
+   ;ENDFOLD
+   
+   ;FOLD Variaveis de estado
+   BOOL OperarVazio=FALSE
+   ;ENDFOLD
+   
+   ;FOLD Variaveis adicionais
+   CONST REAL ALTURATOPO=360
+   REAL AlturaPalletCompleto=0
+   BOOL PalletCompleto=FALSE
+   REAL DeleyFechaGarra=1.01
+   ;ENDFOLD
+   
+   ;FOLD Esteira e Pick
+   CONST E6POS DefaultPoint={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   CONST FRAME NULLFRAME={x 0,Y 0,Z 0,A 0,B 0,C 0}
+   
+   FRAME OffsetEsteira1={x 0,Y 0,Z 0,A 0,B 0,C 0}
+   FRAME OffsetEsteira2={x 0,Y 0,Z 0,A 0,B 0,C 0}
+   
+   FRAME BaseEsteira1={x 0,Y 0,Z 0,A 0,B 0,C 0}
+   FRAME BaseEsteira2={x 0,Y 0,Z 0,A 0,B 0,C 0}
+   ;ENDFOLD
+   
+   ;FOLD STRUC Pallet
+   BOOL Livre=FALSE
+   INT ReceitaAtivo=1
+   INT PlaceAtivo=1
+   INT CamadaAtiva=1
+   FRAME BasePoint={x 0,Y 0,Z 0,A 0,B 0,C 0}
+   FRAME OffSetPallet={x 0,Y 0,Z 0,A 0,B 0,C 0}
+   E6POS Approch={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   STRUC DefPallet INT ReceitaAtivo, BOOL Livre, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, FRAME OffSetPallet, E6POS Approch
+   ;---------- StrPallet[MaxPallets] ----------
+   CONST INT MaxPallets=2
+   DECL GLOBAL DefPallet StrPallet[2];[MaxPallets]
+   ;ENDFOLD
+   
+   ;FOLD STRUC Receita
+   INT PlacesCamada=1
+   INT Camadas=1
+   INT AlturaCaixa=1
+   FRAME OffsetProduto={x 0,Y 0,Z 0,A 0,B 0,C 0}
+   E6POS Pick_E_1_P_1={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS Pick_E_1_P_2={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS Pick_E_1_P_3={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS Pick_E_1_P_4={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS Pick_E_2_P_1={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS Pick_E_2_P_2={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS Pick_E_2_P_3={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS Pick_E_2_P_4={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick_E_1_P_1, Pick_E_1_P_2, Pick_E_1_P_3, Pick_E_1_P_4, Pick_E_2_P_1, Pick_E_2_P_2, Pick_E_2_P_3, Pick_E_2_P_4
+   ;---------- StrReceita[MaxReceitas] ----------
+   CONST INT MaxReceitas=21; 21
+   CONST INT MaxCamadas=12; 8
+   DECL GLOBAL DefStrReceita StrReceita[21];[MaxReceitas]
+   INT StrReceitaLayer[21,12];[MaxReceitas,MaxCamadas]
+   ;ENDFOLD
+   
+   ;FOLD STRUC MatrizPontos
+   ;CLP
+   ;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
+   ;-> {NumCaixas} numero de caixas para o pick
+   ;Configuracao de Pick
+   ;-> {ConfGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+   ;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
+   ;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+   ;Configuracao de Place
+   ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+   ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
+   ;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
+   ;Pontos de Place
+   ;-> {XApp1Place} Primeiro ponto de aproximacao de place
+   ;-> {XApp2Place} Segundo ponto de aproximacao de place
+   ;-> {XPlace} Ponto de place
+   
+   BOOL IndexacaoVH=FALSE
+   BOOL SkipGoHome=FALSE
+   BOOL SkipSobeRelativo=FALSE
+   INT NumCaixas=1
+   INT PickOp=1
+   INT ConfGarraOp=1
+   INT FechaGarraOp=1
+   INT AbreGarraOp=1
+   E6POS XApp1Place={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS XApp2Place={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   E6POS XPlace={X 0,Y 0,Z 0,A 0,B 0,C 0,S 0,T 0,E1 0,E2 0,E3 0,E4 0,E5 0,E6 0}
+   STRUC DefMatriz BOOL IndexacaoVH, SkipGoHome, SkipSobeRelativo, INT NumCaixas, ConfGarraOp, PickOp, FechaGarraOp, AbreGarraOp, E6POS XApp1Place, XApp2Place, XPlace
+   ;---------- MatrizPontos[MaxMatrizI,MaxMatrizJ,MaxMatrizK] ----------
+   CONST INT MaxMatrizI=2;[numero de pallets por receita]
+   CONST INT MaxMatrizJ=21;[acompanha o MaxReceitas]
+   CONST INT MaxMatrizK=25;[numero Maximo de Pontos]
+   DECL GLOBAL DefMatriz MatrizPontos[2,21,25];[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
+   ;ENDFOLD
+   
+   ;ENDFOLD
