@@ -20,7 +20,7 @@ DEF TDefault ( )
          ENDFOR   
       ENDFOR 
    ;ENDFOLD
-
+   
    ;FOLD Variaveis Default Receita
       FOR I = 1 to MaxReceitas
          StrReceita[I].PlacesCamada = 1
@@ -40,7 +40,7 @@ DEF TDefault ( )
          ENDFOR
       ENDFOR    
    ;ENDFOLD
-
+   
    ;FOLD Variaveis Default Pallet
       FOR I = 1 to MaxPallets
          StrPallet[I].Livre = TRUE
@@ -53,14 +53,21 @@ DEF TDefault ( )
          StrPallet[I].Approch = DefaultPoint
       ENDFOR    
    ;ENDFOLD  
-
+   
+   ;FOLD Variaveis Default CLP
+      FOR I = 1 to MaxCLP
+         StrCLP[I].ProximoPlace  = 1
+         StrCLP[I].ProximaCamada = 1
+      ENDFOR
+   ;ENDFOLD
+   
    ;FOLD OffsetEsteira
       OffsetEsteira1 = NULLFRAME
       OffsetEsteira2 = NULLFRAME
       BaseEsteira1 = NULLFRAME
       BaseEsteira1 = NULLFRAME
    ;ENDFOLD
-
+   
    ;FOLD Principais variaveis
       PalletAtivo = 1
       LayerAtivo = 1
@@ -69,5 +76,5 @@ DEF TDefault ( )
       PlaceAtivo = 1
       CamadaAtiva = 1
    ;ENDFOLD
-
+   
 END

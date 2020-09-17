@@ -1,7 +1,4 @@
 ﻿DEFDAT UpdateIndexCaixas 
-    BOOL SaidaLoop = FALSE
-    INT ProximoPlace
-    INT ProximaCamada
     INT ProxPlacesCamada
     INT ProxLayer
     INT ProxPlaceLayer

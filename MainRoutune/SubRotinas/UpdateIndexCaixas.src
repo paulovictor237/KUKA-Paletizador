@@ -1,51 +1,38 @@
 ﻿DEF UpdateIndexCaixas ( )
-   ;{PalletAtivo} numero da esteira que está com a caixa
-   ;{CLPNumCaixas} numero de caixas para o pick
-   ;{CLPIndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
-   ;INT PalletAtivo=1
-   ;INT  CLPNumCaixas    
-   ;BOOL CLPIndexacaoVH  
-   SaidaLoop = FALSE
+   ;o ponto atual sempre eh de pick
+   ProximoPlace  = StrCLP[PalletAtivo].ProximoPlace
+   ProximaCamada = StrCLP[PalletAtivo].ProximaCamada
    
+   ;passo para descobrir o endereco do ponto na matriz
+   ProxPlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
+   ProxLayer        = StrReceitaLayer[ReceitaAtivo,ProximaCamada]
+   ProxPlaceLayer   = ProximoPlace + ProxPlacesCamada*(ProxLayer-1)
+   
+   ;captura o valor da matriz
+   IndexacaoVH = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].IndexacaoVH
+   NumCaixas = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].NumCaixas 
+   
+   ;consome só os places que não ocorre pick
    REPEAT
-      ;precisa saber qual o pallet ativo
-      ;atravez do pallet ativo o programa sabe qual mozaico está selecionado
-      ;verifica se eh primeiro place
-      
-      ;VERIFICA CAIXA E CAMADA      
-      ;->apos colocar a caixa deve acrescentar + 1 em
-      ProximoPlace=StrPallet[PalletAtivo].PlaceAtivo + 1
-      ProximaCamada=StrPallet[PalletAtivo].CamadaAtiva
-      
+      StrCLP[PalletAtivo].ProximoPlace = StrCLP[PalletAtivo].ProximoPlace + 1
       ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
-      IF ProximoPlace > StrReceita[ReceitaAtivo].PlacesCamada THEN
-         ProximoPlace=1 ;verificar aqui se deve comecar com 1 ou 0
-         ProximaCamada=StrPallet[PalletAtivo].CamadaAtiva + 1
+      IF StrCLP[PalletAtivo].ProximoPlace > StrReceita[ReceitaAtivo].PlacesCamada THEN
+         StrCLP[PalletAtivo].ProximoPlace=1 ;verificar aqui se deve comecar com 1 ou 0
+         StrCLP[PalletAtivo].ProximaCamada=StrCLP[PalletAtivo].ProximaCamada + 1
       ENDIF
       ;->se a qtd de camadas do pallet for acima da qtd do mozaico
-      IF ProximaCamada > StrReceita[ReceitaAtivo].Camadas THEN
-         ;Envia alerta de Pallet concluido
-         ProximoPlace = 1
-         ProximaCamada = 1
-         SaidaLoop = FALSE
+      IF StrCLP[PalletAtivo].ProximaCamada > StrReceita[ReceitaAtivo].Camadas THEN
+         ;Pallet Completo
+         StrCLP[PalletAtivo].ProximoPlace = 1
+         StrCLP[PalletAtivo].ProximaCamada = 1
          EXIT
       ENDIF
       
+      ;PUXA TUDO PARA AS VARIAVEIS
+      ;passo para descobrir o endereco do ponto na matriz
       ProxPlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
-      ProxLayer = StrReceitaLayer[ReceitaAtivo,ProximaCamada]
-      ProxPlaceLayer = ProximoPlace + ProxPlacesCamada*(ProxLayer-1)
-      
-      IF (MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].SkipGoHome == TRUE) THEN
-         SaidaLoop = TRUE
-      ENDIF 
-      IF (MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].SkipGoHome == FALSE) AND (SaidaLoop == TRUE)  THEN
-         SaidaLoop = FALSE
-      ENDIF
-      
-   UNTIL (SaidaLoop == FALSE)
-   
-   ;SaidaLoop
-   IndexacaoVH = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].IndexacaoVH
-   NumCaixas = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].NumCaixas  
-   
+      ProxLayer        = StrReceitaLayer[ReceitaAtivo,ProximaCamada]
+      ProxPlaceLayer   = ProximoPlace + ProxPlacesCamada*(ProxLayer-1)
+      SkipGoHome = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].SkipGoHome
+   UNTIL (SkipGoHome == FALSE) 
 END
