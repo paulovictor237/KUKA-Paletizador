@@ -31,22 +31,6 @@
       
    UNTIL (ProxSkipGoHome == FALSE) 
 
-   ;AVANÇA MAIS UM PONTO
-
-   ;-> SetCamada()
-   ProxPlace = ProxPlace + 1
-   ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
-   IF ( ProxPlace > StrReceita[ReceitaAtivo].PlacesCamada ) THEN
-      ProxPlace = 1 
-      ProxCamada = ProxCamada + 1
-   ENDIF
-   ;->se a qtd de camadas do pallet for acima da qtd do mozaico
-   IF ( ProxCamada > StrReceita[ReceitaAtivo].Camadas ) THEN
-      ;Pallet Completo
-      ProxPlace = 1
-      ProxCamada = 1
-   ENDIF
-
    ;passo para descobrir o endereco do ponto na matriz
    ProxPlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
    ProxLayer        = StrReceitaLayer[ReceitaAtivo,ProxCamada]

@@ -54,13 +54,6 @@ DEF TDefault ( )
       ENDFOR    
    ;ENDFOLD  
    
-   ;FOLD Variaveis Default CLP
-      FOR I = 1 to MaxCLP
-         StrCLP[I].ProximoPlace  = 1
-         StrCLP[I].ProximaCamada = 1
-      ENDFOR
-   ;ENDFOLD
-   
    ;FOLD OffsetEsteira
       OffsetEsteira1 = NULLFRAME
       OffsetEsteira2 = NULLFRAME
