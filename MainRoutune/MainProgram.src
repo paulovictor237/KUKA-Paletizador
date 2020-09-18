@@ -81,7 +81,7 @@ StrPallet[Pallet_2].Livre=TRUE
    
   PalletAtivo = Pallet_1
   StrPallet[PalletAtivo].ReceitaAtivo = Mosaico_Est1
-  UpdateIndexCaixas()
+  AtualizaVariaveis()
   IndexacaoVH_Est1 = IndexacaoVH
   NumCaixas_Est1 = NumCaixas 
   
@@ -91,7 +91,7 @@ StrPallet[Pallet_2].Livre=TRUE
    
   PalletAtivo = Pallet_2
   StrPallet[PalletAtivo].ReceitaAtivo = Mosaico_Est2
-  UpdateIndexCaixas()  
+  AtualizaVariaveis()  
   IndexacaoVH_Est2 = IndexacaoVH
   NumCaixas_Est2 = NumCaixas 
   

@@ -1,43 +1,59 @@
 ﻿DEF UpdateIndexCaixas ( )
-   ;o ponto atual sempre eh de pick
-   ProximoPlace  = StrCLP[PalletAtivo].ProximoPlace
-   ProximaCamada = StrCLP[PalletAtivo].ProximaCamada
+   ;Por Garantia atualiza as variaveis locais
+   AtualizaVariaveis()
+
+   ;Captura atual ponto de Place e Camada
+   ProxPlace  = StrPallet[PalletAtivo].PlaceAtivo
+   ProxCamada = StrPallet[PalletAtivo].CamadaAtiva
    
+   ;Consome os places que nao ocorre pick
+   REPEAT
+      ;ATUALIZA VARIAVEIS DE SKIP
+      ProxPlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
+      ProxLayer        = StrReceitaLayer[ReceitaAtivo,ProxCamada]
+      ProxPlaceLayer   = ProxPlace + ProxPlacesCamada*(ProxLayer-1)
+      ProxSkipGoHome   = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].SkipGoHome
+      
+      ;-> SetCamada()
+      ProxPlace = ProxPlace + 1
+      ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
+      IF ( ProxPlace > StrReceita[ReceitaAtivo].PlacesCamada ) THEN
+         ProxPlace = 1 
+         ProxCamada = ProxCamada + 1
+      ENDIF
+      ;->se a qtd de camadas do pallet for acima da qtd do mozaico
+      IF ( ProxCamada > StrReceita[ReceitaAtivo].Camadas ) THEN
+         ;Pallet Completo
+         ProxPlace = 1
+         ProxCamada = 1
+         EXIT
+      ENDIF
+      
+   UNTIL (ProxSkipGoHome == FALSE) 
+
+   ;AVANÇA MAIS UM PONTO
+
+   ;-> SetCamada()
+   ProxPlace = ProxPlace + 1
+   ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
+   IF ( ProxPlace > StrReceita[ReceitaAtivo].PlacesCamada ) THEN
+      ProxPlace = 1 
+      ProxCamada = ProxCamada + 1
+   ENDIF
+   ;->se a qtd de camadas do pallet for acima da qtd do mozaico
+   IF ( ProxCamada > StrReceita[ReceitaAtivo].Camadas ) THEN
+      ;Pallet Completo
+      ProxPlace = 1
+      ProxCamada = 1
+   ENDIF
+
    ;passo para descobrir o endereco do ponto na matriz
    ProxPlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
-   ProxLayer        = StrReceitaLayer[ReceitaAtivo,ProximaCamada]
-   ProxPlaceLayer   = ProximoPlace + ProxPlacesCamada*(ProxLayer-1)
+   ProxLayer        = StrReceitaLayer[ReceitaAtivo,ProxCamada]
+   ProxPlaceLayer   = ProxPlace + ProxPlacesCamada*(ProxLayer-1)
    
    ;captura o valor da matriz
    IndexacaoVH = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].IndexacaoVH
    NumCaixas = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].NumCaixas 
    
-   ;consome só os places que não ocorre pick
-   REPEAT
-      ;PUXA TUDO PARA AS VARIAVEIS
-      ProximoPlace  = StrCLP[PalletAtivo].ProximoPlace
-      ProximaCamada = StrCLP[PalletAtivo].ProximaCamada
-      
-      ;ATUALIZA VARIAVEIS DE SKIP
-      ProxPlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
-      ProxLayer        = StrReceitaLayer[ReceitaAtivo,ProximaCamada]
-      ProxPlaceLayer   = ProximoPlace + ProxPlacesCamada*(ProxLayer-1)
-      SkipGoHome = MatrizPontos[PalletAtivo,ReceitaAtivo,ProxPlaceLayer].SkipGoHome
-      
-      ;TROCA A CAMADA DO PALLET -> SetCamada()
-      StrCLP[PalletAtivo].ProximoPlace = StrCLP[PalletAtivo].ProximoPlace + 1
-      ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
-      IF StrCLP[PalletAtivo].ProximoPlace > StrReceita[ReceitaAtivo].PlacesCamada THEN
-         StrCLP[PalletAtivo].ProximoPlace=1 ;verificar aqui se deve comecar com 1 ou 0
-         StrCLP[PalletAtivo].ProximaCamada=StrCLP[PalletAtivo].ProximaCamada + 1
-      ENDIF
-      ;->se a qtd de camadas do pallet for acima da qtd do mozaico
-      IF StrCLP[PalletAtivo].ProximaCamada > StrReceita[ReceitaAtivo].Camadas THEN
-         ;Pallet Completo
-         StrCLP[PalletAtivo].ProximoPlace = 1
-         StrCLP[PalletAtivo].ProximaCamada = 1
-         EXIT
-      ENDIF
-      
-   UNTIL (SkipGoHome == FALSE) 
 END

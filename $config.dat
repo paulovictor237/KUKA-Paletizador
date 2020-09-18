@@ -136,13 +136,4 @@ CONST INT MaxMatrizK=25;[numero Maximo de Pontos]
 DECL DefMatriz MatrizPontos[2,21,25];[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
 ;ENDFOLD
 
-;FOLD STRUC CLP
-INT ProximoPlace=1
-INT ProximaCamada=1
-STRUC DefCLP INT ProximoPlace, ProximaCamada
-;---------- StrCLP[MaxPallets] ----------
-CONST INT MaxCLP=2;Mesmo numero de MaxPallets
-DECL DefCLP StrCLP[2];[MaxCLP]
-;ENDFOLD
-
 ;ENDFOLD
