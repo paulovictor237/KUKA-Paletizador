@@ -134,7 +134,8 @@ DEF PickEsteira ( )
    PTP XAPP1PICK C_DIS   
    
    ;CONFIGURA GARRA
-   ConfGarra()
+   ;ConfGarra()
+   ConfGarra_Wait()
    
    ;APROXIMA DA CAIXA
    LIN XAPP2PICK C_DIS C_DIS

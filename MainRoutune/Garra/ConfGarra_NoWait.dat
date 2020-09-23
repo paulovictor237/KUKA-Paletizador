@@ -1,0 +1,6 @@
+&ACCESS RVO1
+&REL 1
+&PARAM EDITMASK = *
+DEFDAT ConfGarra_NoWait
+   
+ENDDAT

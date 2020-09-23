@@ -153,6 +153,8 @@ DEF PlaceCaixaPallet()
       
    UNTIL (SkipGoHome == FALSE)
    
-   AbreGarraCompleto_noWait()
+   ;AbreGarraCompleto_noWait()
+   AtualizaVariaveis()
+   ConfGarra_NoWait()
    
 END
