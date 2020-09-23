@@ -2,8 +2,9 @@
 &REL 1
 &PARAM EDITMASK = *
 DEF FechaGarra( )
-   IF (OperarVazio==FALSE) THEN
+
       SWITCH FechaGarraOp
+         
          CASE 0
                  
             ;FOLD SETAR PRESSAO LADO1 E LADO2
@@ -47,7 +48,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
          CASE 1
      
             ;FOLD SETAR PRESSAO LADO1 E LADO2
@@ -91,7 +92,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_1_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
          CASE 32
             ;FOLD SETAR PRESSAO LADO1 E LADO2
       
@@ -133,7 +134,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
 
             Ava_Cil_1_Gar_1 = FALSE
             Rec_Cil_1_Gar_1 = TRUE
@@ -159,9 +160,10 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_1_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
          
          CASE 61
+            
             ;FOLD SETAR PRESSAO LADO1 E LADO2
       
             ;FOLD Gripper SET [11]ModificaPressaoLado1 State=[1]PressaoMax Wait 0[s] Check with Strategy 1 ;%{PE}
@@ -178,6 +180,7 @@ DEF FechaGarra( )
             ;ENDFOLD
 
             ;ENDFOLD
+            
             Ava_Cil_1_Gar_1 = FALSE
             Rec_Cil_1_Gar_1 = TRUE
 
@@ -202,7 +205,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_1_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
 
             Ava_Cil_2_Gar_1 = FALSE
             Rec_Cil_2_Gar_1 = TRUE
@@ -229,9 +232,10 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
             
          CASE 192
+            
             ;FOLD SETAR PRESSAO LADO1 E LADO2
       
             ;FOLD Gripper SET [11]ModificaPressaoLado1 State=[1]PressaoMax Wait 0[s] Check with Strategy 1 ;%{PE}
@@ -248,6 +252,7 @@ DEF FechaGarra( )
             ;ENDFOLD
 
             ;ENDFOLD
+            
             Ava_Cil_1_Gar_1 = FALSE
             Rec_Cil_1_Gar_1 = TRUE
 
@@ -272,7 +277,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_1_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
 
             Ava_Cil_2_Gar_1 = FALSE
             Rec_Cil_2_Gar_1 = TRUE
@@ -299,9 +304,10 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
             
          CASE 171
+            
                         ;FOLD SETAR PRESSAO LADO1 E LADO2
       
             ;FOLD Gripper SET [11]ModificaPressaoLado1 State=[2]PressaoMix Wait 0[s] Check with Strategy 1 ;%{PE}
@@ -318,6 +324,7 @@ DEF FechaGarra( )
             ;ENDFOLD
 
             ;ENDFOLD
+            
             Ava_Cil_2_Gar_1 = FALSE
             Rec_Cil_2_Gar_1 = TRUE
 
@@ -342,7 +349,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
 
             Ava_Cil_1_Gar_1 = FALSE
             Rec_Cil_1_Gar_1 = TRUE
@@ -368,8 +375,9 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_1_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
          CASE 172
+            
                         ;FOLD SETAR PRESSAO LADO1 E LADO2
       
             ;FOLD Gripper SET [11]ModificaPressaoLado1 State=[1]PressaoMax Wait 0[s] Check with Strategy 1 ;%{PE}
@@ -386,6 +394,7 @@ DEF FechaGarra( )
             ;ENDFOLD
 
             ;ENDFOLD
+            
             Ava_Cil_1_Gar_1 = FALSE
             Rec_Cil_1_Gar_1 = TRUE
 
@@ -410,7 +419,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_1_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
 
             Ava_Cil_2_Gar_1 = FALSE
             Rec_Cil_2_Gar_1 = TRUE
@@ -437,8 +446,9 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
          CASE 3
+            
                         ;FOLD SETAR PRESSAO LADO1 E LADO2
       
             ;FOLD Gripper SET [11]ModificaPressaoLado1 State=[1]PressaoMax Wait 0[s] Check with Strategy 1 ;%{PE}
@@ -455,6 +465,7 @@ DEF FechaGarra( )
             ;ENDFOLD
 
             ;ENDFOLD
+            
             Ava_Cil_1_Gar_1 = FALSE
             Rec_Cil_1_Gar_1 = TRUE
 
@@ -479,7 +490,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_1_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
 
             Ava_Cil_2_Gar_1 = FALSE
             Rec_Cil_2_Gar_1 = TRUE
@@ -505,8 +516,9 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
          CASE 4
+            
                         ;FOLD SETAR PRESSAO LADO1 E LADO2
       
             ;FOLD Gripper SET [11]ModificaPressaoLado1 State=[2]PressaoMix Wait 0[s] Check with Strategy 1 ;%{PE}
@@ -523,6 +535,7 @@ DEF FechaGarra( )
             ;ENDFOLD
 
             ;ENDFOLD
+            
             Ava_Cil_2_Gar_1 = FALSE
             Rec_Cil_2_Gar_1 = TRUE
 
@@ -547,7 +560,7 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_2_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_2_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
 
             Ava_Cil_1_Gar_1 = FALSE
             Rec_Cil_1_Gar_1 = TRUE
@@ -573,8 +586,9 @@ DEF FechaGarra( )
             WAIT FOR ( Cil_1_Gar_4_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_5_Ava == FALSE )
             WAIT FOR ( Cil_1_Gar_6_Ava == FALSE )
-            WAIT SEC DeleyFechaGarra
+            
       ENDSWITCH
-      WAIT SEC 1
-   ENDIF
+      
+      WAIT SEC DelayFechaGarra
+      
 END

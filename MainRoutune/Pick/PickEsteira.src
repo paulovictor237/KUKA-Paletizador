@@ -1,10 +1,11 @@
 &ACCESS RVO1
-&REL 70
-&PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Pick
+&REL 89
+&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\Pick
 DEF PickEsteira ( )
-   AtualizaVariaveis() 
+   AtualizaVariaveis()
+   $Advance=3   
+   ConfGarra_nowait()
    NENHUM = TRUE
-   $Advance=3
    
    ;FOLD PickEsteira de cada receita e esteira
       ;verifica qual opcao de pick do place
@@ -127,16 +128,13 @@ DEF PickEsteira ( )
          XAPP1PICK.Z = ALTURATOPO - BaseRelativa.Z
          XSAIPICK.Z  = ALTURATOPO - BaseRelativa.Z
       ENDIF
-   ;ENDFOLD
-
+   ;ENDFOLD   
+   
    ;APROXIMA TOPO
    PTP XAPP1PICK C_DIS   
    
    ;CONFIGURA GARRA
    ConfGarra()
-
-   ;APROXIMA TOPO
-   PTP XAPP1PICK C_DIS  
    
    ;APROXIMA DA CAIXA
    LIN XAPP2PICK C_DIS C_DIS

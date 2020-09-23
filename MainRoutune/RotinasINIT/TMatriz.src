@@ -1319,7 +1319,7 @@ DEF TMatriz( )
          MatrizPontos[Pallet_1,Produto_K,6].NumCaixas = 2
          MatrizPontos[Pallet_1,Produto_K,6].ConfGarraOp = 102
          MatrizPontos[Pallet_1,Produto_K,6].PickOp = 2
-         MatrizPontos[Pallet_1,Produto_K,6].FechaGarraOp = 1
+         MatrizPontos[Pallet_1,Produto_K,6].FechaGarraOp = 3
          MatrizPontos[Pallet_1,Produto_K,6].AbreGarraOp = 1
          MatrizPontos[Pallet_1,Produto_K,6].SkipGoHome = False
          MatrizPontos[Pallet_1,Produto_K,6].SkipSobeRelativo = False

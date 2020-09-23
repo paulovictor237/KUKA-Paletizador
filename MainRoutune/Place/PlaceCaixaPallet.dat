@@ -1,9 +1,9 @@
 &ACCESS RV1
-&REL 1
-&PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Place
+&REL 17
+&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\Place
 DEFDAT  PLACECAIXAPALLET
 FRAME RelFrame={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
-FRAME BaseRelativa={X -16.4080048,Y -2601.99097,Z -877.545,A 0.0,B 0.0,C 0.0}
+FRAME BaseRelativa={X -171.408,Y -2596.99097,Z -722.545,A 0.0,B 0.0,C 0.0}
 BOOL SkipPTP=FALSE
 BOOL PrimeiroPonto=FALSE
 E6POS XTopoPallet
