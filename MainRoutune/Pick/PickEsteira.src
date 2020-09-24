@@ -145,6 +145,15 @@ DEF PickEsteira ( )
    
    ;Fecha Garra  
    FechaGarra()
+
+   ;TRAVA/FREIA GARRA    
+   IF (TravaGarra) THEN
+      HomePositionBrake = TRUE
+      WorkPositionBrake = FALSE
+   ELSE
+      HomePositionBrake = FALSE
+      WorkPositionBrake = TRUE
+   ENDIF
    
    ;SOBE EM MOVIMENTO RELATIVO
    LIN XSAIPICK

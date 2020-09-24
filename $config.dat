@@ -1,33 +1,6 @@
 ;FOLD Padrao Paletizacao
 
-;FOLD ENUM RECEITA
-CONST INT Produto_A=1
-CONST INT Produto_B=2
-CONST INT Produto_C1=3
-CONST INT Produto_C2=4
-CONST INT Produto_E1=5
-CONST INT Produto_E2=6
-CONST INT Produto_E3=7
-CONST INT Produto_F=8
-CONST INT Produto_G=9
-CONST INT Produto_I=10
-CONST INT Produto_J=11
-CONST INT Produto_K=12
-CONST INT Produto_L=13
-CONST INT Produto_M=14
-CONST INT Produto_N=15
-CONST INT Produto_O=16
-CONST INT Produto_P=17
-CONST INT Produto_Q=18
-CONST INT Produto_R=19
-CONST INT Produto_S=20
-CONST INT Produto_T=21
-;ENDFOLD
-
-;FOLD ENUM Pallet
-CONST INT Pallet_1=1
-CONST INT Pallet_2=2
-;ENDFOLD
+;FOLD STRUCT E VARIAVEIS PRINCIPAIS
 
 ;FOLD VARIAVEIS CLP
 ;{PalletAtivo}?numero?da esteira que est? com a caixa
@@ -72,11 +45,7 @@ INT PlaceAtivo=1
 INT CamadaAtiva=1
 FRAME BasePoint={X -146.408,Y -2681.99097,Z -822.545,A 0.0,B 0.0,C 0.0}
 FRAME OffSetPallet={X 130.0,Y 80.0,Z -55.0,A 0.0,B 0.0,C 0.0}
-E6POS Approch={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0,S 0,T 0,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-STRUC DefPallet INT ReceitaAtivo, BOOL Livre, Completo, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, FRAME OffSetPallet, E6POS Approch
-;---------- StrPallet[MaxPallets] ----------
-CONST INT MaxPallets=2
-DECL DefPallet StrPallet[2];[MaxPallets]
+STRUC DefPallet INT ReceitaAtivo, BOOL Livre, Completo, INT PlaceAtivo, CamadaAtiva, FRAME BasePoint, FRAME OffSetPallet
 ;ENDFOLD
 
 ;FOLD STRUC Receita
@@ -84,20 +53,7 @@ INT PlacesCamada=4
 INT Camadas=6
 INT AlturaCaixa=276
 FRAME OffsetProduto={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
-E6POS Pick_E_1_P_1={X 654.397827,Y 265.888062,Z 619.715881,A -180.0,B 0.0,C 180.0,S 2,T 42,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS Pick_E_1_P_2={X 654.398,Y 131.824844,Z 619.715942,A -180.0,B 0.0,C 180.0,S 2,T 42,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS Pick_E_1_P_3={X 654.397827,Y 265.888062,Z 619.715881,A -180.0,B 0.0,C 180.0,S 2,T 42,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS Pick_E_1_P_4={X 654.398,Y 131.824844,Z 619.715942,A -180.0,B 0.0,C 180.0,S 2,T 42,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS Pick_E_2_P_1={X 654.397949,Y -168.493942,Z 625.116211,A -180.0,B 0.0,C 180.0,S 2,T 35,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS Pick_E_2_P_2={X 654.397949,Y -304.227814,Z 625.116272,A -180.0,B 0.0,C 180.0,S 2,T 35,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS Pick_E_2_P_3={X 654.397949,Y -168.493942,Z 625.116211,A -180.0,B 0.0,C 180.0,S 2,T 35,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS Pick_E_2_P_4={X 654.397949,Y -304.227814,Z 625.116272,A -180.0,B 0.0,C 180.0,S 2,T 35,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto, E6POS Pick_E_1_P_1, Pick_E_1_P_2, Pick_E_1_P_3, Pick_E_1_P_4, Pick_E_2_P_1, Pick_E_2_P_2, Pick_E_2_P_3, Pick_E_2_P_4
-;---------- StrReceita[MaxReceitas] ----------
-CONST INT MaxReceitas=21; 21
-CONST INT MaxCamadas=12; 8
-DECL DefStrReceita StrReceita[21];[MaxReceitas]
-INT StrReceitaLayer[21,12];[MaxReceitas,MaxCamadas]
+STRUC DefStrReceita INT PlacesCamada, Camadas, AlturaCaixa, FRAME OffsetProduto
 ;ENDFOLD
 
 ;FOLD STRUC MatrizPontos
@@ -125,15 +81,67 @@ INT PickOp=2
 INT ConfGarraOp=11
 INT FechaGarraOp=0
 INT AbreGarraOp=11
+
+INT SensoresCaixa = 123456
+BOOL TravaGarra = False
+FRAME OffsetPlace = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+
 E6POS XApp1Place={X 392.379425,Y 496.916656,Z 990.172791,A -90.0,B 0.0,C 180.0,S 2,T 10,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 E6POS XApp2Place={X 392.379425,Y 496.917023,Z 840.172363,A -90.0,B 0.0,C 180.0,S 2,T 10,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 E6POS XPlace={X 303.263,Y 448.706055,Z 670.171692,A -89.9999695,B 0.0,C 180.0,S 2,T 10,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-STRUC DefMatriz BOOL IndexacaoVH, SkipGoHome, SkipSobeRelativo, INT NumCaixas, ConfGarraOp, PickOp, FechaGarraOp, AbreGarraOp, E6POS XApp1Place, XApp2Place, XPlace
+STRUC DefMatriz BOOL TravaGarra,IndexacaoVH, SkipGoHome, SkipSobeRelativo, INT SensoresCaixa,NumCaixas, ConfGarraOp, PickOp, FechaGarraOp, AbreGarraOp, E6POS XApp1Place, XApp2Place, XPlace, FRAME OffsetPlace
+;ENDFOLD
+
+;ENDFOLD
+
+;FOLD ENUM E DECLARACAO DAS STRUCS
+;FOLD ENUM Pallet
+CONST INT Pallet_1 = 1
+CONST INT Pallet_2 = 2
+;ENDFOLD
+
+;FOLD ENUM RECEITA
+CONST INT Prdt_9Aero = 1
+CONST INT Prdt_5Aero = 2
+CONST INT Prdt_2Aero = 3
+CONST INT Prdt_11CoffeCrisp = 4
+CONST INT Prdt_17KitKat = 5
+CONST INT Prdt_19KitKat = 6
+CONST INT Prdt_20KitKat = 7
+CONST INT Prdt_21KitKat = 8
+CONST INT Prdt_23Smarties = 9
+CONST INT Prdt_22KitKat = 10
+CONST INT Prdt_24a28All = 11
+CONST INT Prdt_30All = 12
+CONST INT Prdt_16CoffeCrisp = 13
+CONST INT Prdt_10CoffeCrisp = 14
+CONST INT Prdt_1Aero = 15
+CONST INT Prdt_15CoffeCrisp = 16
+CONST INT Prdt_7Aero = 17
+CONST INT Prdt_32BarPacking = 18
+CONST INT Prdt_33BarPacking = 19
+CONST INT Prdt_37BarPacking = 20
+CONST INT Prdt_36BarPacking = 21
+CONST INT Prdt_34BarPacking = 22
+CONST INT Prdt_35BarPacking = 23
+;ENDFOLD
+
+;FOLD STR
+;---------- StrPallet[MaxPallets] ----------
+CONST INT MaxPallets=2
+DECL GLOBAL DefPallet StrPallet[2];[MaxPallets]
+;---------- StrReceita[MaxReceitas] ----------
+CONST INT MaxReceitas=23
+CONST INT MaxCamadas=12
+DECL GLOBAL DefStrReceita StrReceita[23];[MaxReceitas]
+INT  StrReceitaLayer[23,12];[MaxReceitas,MaxCamadas]
 ;---------- MatrizPontos[MaxMatrizI,MaxMatrizJ,MaxMatrizK] ----------
 CONST INT MaxMatrizI=2;[numero de pallets por receita]
-CONST INT MaxMatrizJ=21;[acompanha o MaxReceitas]
-CONST INT MaxMatrizK=25;[numero Maximo de Pontos]
-DECL DefMatriz MatrizPontos[2,21,25];[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
+CONST INT MaxMatrizJ=23;[acompanha o MaxReceitas]
+CONST INT MaxMatrizK=16;[numero Maximo de Pontos]
+DECL GLOBAL DefMatriz MatrizPontos[2,23,16];[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
+;ENDFOLD
+
 ;ENDFOLD
 
 ;ENDFOLD

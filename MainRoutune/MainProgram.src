@@ -1,5 +1,6 @@
 &ACCESS RVP
-&REL 11
+&REL 34
+&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao
 DEF  MainProgram ()
 
 ;FOLD INI;%{PE}
@@ -21,6 +22,8 @@ DEF  MainProgram ()
          EstadoAutExt = 0
          Estado_Palete1 = 0
          Estado_Palete2 = 0
+         UpdateIndex_Est1 = FALSE
+         UpdateIndex_Est2 = FALSE
       ;ENDFOLD (USER INI)
 ;ENDFOLD (INI)
       
@@ -83,9 +86,10 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
 ;FOLD SET CAMADA PALLET2
    
   PalletAtivo = Pallet_2
-  StrPallet[PalletAtivo].ReceitaAtivo = Produto_B ;Mosaico_Est2
+  StrPallet[PalletAtivo].ReceitaAtivo = Produto_A ;Mosaico_Est2
   StrPallet[PalletAtivo].CamadaAtiva = 1 ;Camada_P2
   StrPallet[PalletAtivo].Livre=TRUE
+  StrPallet[PalletAtivo].PlaceAtivo = 4
   AtualizaVariaveis()   
   
 ;ENDFOLD
@@ -125,16 +129,29 @@ ENDIF
 ;ENDFOLD CHECK CAMADA 2
 
 ;FOLD LOOP Main Routine
-      LOOP
-   
-      Esteira = 1
+   LOOP
+
+;Selecionar Base 1 e TOOL1 e da Touch UP num ponto no meio das duas esteiras
+;FOLD PTP AppEsteiras CONT Vel=100 % DEFAULT Tool[1]:GarraUniversal Base[0];%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=AppEsteiras; Kuka.BlendingEnabled=True; Kuka.MoveDataPtpName=DEFAULT; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
+;ENDFOLD
+$BWDSTART = FALSE
+PDAT_ACT = PDEFAULT
+FDAT_ACT = FAppEsteiras
+BAS(#PTP_PARAMS, 100.0)
+SET_CD_PARAMS (0)
+PTP XAppEsteiras C_Dis
+;ENDFOLD
+                       
+      Esteira = 2
       if (PickReady_Est1 or DryRun_Est1) and (Esteira==1) and (Palete1_OK or DryRun_Est1) and not StrPallet[Pallet_1].Completo then
          
          Esteira = 2
          
          PalletAtivo = Pallet_1
          ReceitaAtivo = Mosaico_Est1
-         ;StrPallet[PalletAtivo].ReceitaAtivo = ReceitaAtivo
+         StrPallet[PalletAtivo].ReceitaAtivo = ReceitaAtivo
          Retorno_Camada_P1 = StrPallet[PalletAtivo].CamadaAtiva
          
          AtualizaVariaveis()
@@ -142,9 +159,14 @@ ENDIF
          
          UpdateIndexCaixas()   
          IndexacaoVH_Est1 = IndexacaoVH
-         NumCaixas_Est1 = NumCaixas      
+         NumCaixas_Est1 = NumCaixas 
+         UpdateIndex_Est1 = TRUE         
          
          PlaceCaixaPallet()
+         
+         ;wait for UpdateIndex_Est1_ACK
+         ;UpdateIndex_Est1 = FALSE
+         ;wait for not UpdateIndex_Est1_ACK
             
       else
       if (PickReady_Est2 or DryRun_Est2) and (Esteira==2) and (Palete2_OK or DryRun_Est2) and not StrPallet[Pallet_2].Completo then
@@ -153,7 +175,7 @@ ENDIF
          
          PalletAtivo = Pallet_2
          ReceitaAtivo = Mosaico_Est2
-         ;StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
+         StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
          Retorno_Camada_P2 = StrPallet[PalletAtivo].CamadaAtiva 
          
          AtualizaVariaveis()                   
@@ -162,12 +184,19 @@ ENDIF
          UpdateIndexCaixas()
          IndexacaoVH_Est2 = IndexacaoVH
          NumCaixas_Est2 = NumCaixas
+         UpdateIndex_Est2 = TRUE 
          
          PlaceCaixaPallet()
          
-      endif
-      endif         
+         ;wait for UpdateIndex_Est2_ACK
+         ;UpdateIndex_Est2 = FALSE
+         ;wait for not UpdateIndex_Est2_ACK
          
+      endif
+      endif                  
+         
+      XAppEsteiras.Z = AlturaUltimoDeposito
+      
    ENDLOOP
 ;ENDFOLD
       

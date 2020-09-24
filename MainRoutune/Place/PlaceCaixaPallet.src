@@ -111,6 +111,10 @@ DEF PlaceCaixaPallet()
          LIN  XPlace 
       ;ENDFOLD  
       
+      ;FOLD Verifica Caixas
+         VerificaCaixas()
+      ;ENDFOLD
+
       ;FOLD ABRE GARRA  
          AbreGarra()
       ;ENDFOLD     

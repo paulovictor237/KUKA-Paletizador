@@ -13,9 +13,12 @@ DEF TDefault ( )
                MatrizPontos[I,J,k].AbreGarraOp = 0
                MatrizPontos[I,J,k].SkipGoHome = FALSE
                MatrizPontos[I,J,k].SkipSobeRelativo = FALSE
+               MatrizPontos[I,J,k].SensoresCaixa = 123456
+               MatrizPontos[I,J,k].TravaGarra = False
                MatrizPontos[I,J,k].XApp1Place = DefaultPoint
                MatrizPontos[I,J,k].XApp2Place = DefaultPoint
                MatrizPontos[I,J,k].XPlace = DefaultPoint
+               MatrizPontos[I,J,k].OffsetPlace = {x 0,Y 0,Z 0,A 0,B 0,C 0}
             ENDFOR
          ENDFOR   
       ENDFOR 
@@ -27,14 +30,6 @@ DEF TDefault ( )
          StrReceita[I].Camadas = 1
          StrReceita[I].AlturaCaixa = 1
          StrReceita[I].OffsetProduto = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-         StrReceita[I].Pick_E_1_P_1 = DefaultPoint
-         StrReceita[I].Pick_E_1_P_2 = DefaultPoint
-         StrReceita[I].Pick_E_1_P_3 = DefaultPoint
-         StrReceita[I].Pick_E_1_P_4 = DefaultPoint
-         StrReceita[I].Pick_E_2_P_1 = DefaultPoint
-         StrReceita[I].Pick_E_2_P_2 = DefaultPoint
-         StrReceita[I].Pick_E_2_P_3 = DefaultPoint
-         StrReceita[I].Pick_E_2_P_4 = DefaultPoint
          FOR J = 1 to MaxCamadas
             StrReceitaLayer[I,J] = 1
          ENDFOR
@@ -50,7 +45,6 @@ DEF TDefault ( )
          StrPallet[I].CamadaAtiva = 1
          StrPallet[I].BasePoint = {x 0,Y 0,Z 0,A 0,B 0,C 0}
          StrPallet[I].OffSetPallet = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-         StrPallet[I].Approch = DefaultPoint
       ENDFOR    
    ;ENDFOLD  
    
