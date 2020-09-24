@@ -76,8 +76,9 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
 ;FOLD SET CAMADA PALLET1
    
   PalletAtivo = Pallet_1
-  StrPallet[PalletAtivo].ReceitaAtivo = Produto_B;Mosaico_Est1
+  StrPallet[PalletAtivo].ReceitaAtivo = 1;Mosaico_Est1
   StrPallet[PalletAtivo].CamadaAtiva = 1 ;Camada_P1
+  ;StrPallet[PalletAtivo].PlaceAtivo = 4
   StrPallet[PalletAtivo].Livre=TRUE
   AtualizaVariaveis()
    
@@ -86,10 +87,10 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
 ;FOLD SET CAMADA PALLET2
    
   PalletAtivo = Pallet_2
-  StrPallet[PalletAtivo].ReceitaAtivo = Produto_A ;Mosaico_Est2
+  StrPallet[PalletAtivo].ReceitaAtivo = 1 ;Mosaico_Est2
   StrPallet[PalletAtivo].CamadaAtiva = 1 ;Camada_P2
+  ;StrPallet[PalletAtivo].PlaceAtivo = 4
   StrPallet[PalletAtivo].Livre=TRUE
-  StrPallet[PalletAtivo].PlaceAtivo = 4
   AtualizaVariaveis()   
   
 ;ENDFOLD

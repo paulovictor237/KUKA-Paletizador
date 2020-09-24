@@ -18,19 +18,27 @@ DEF PickEsteira ( )
             BaseRelativa.B = BaseEsteira1.B + OffsetEsteira1.B
             BaseRelativa.C = BaseEsteira1.C + OffsetEsteira1.C
             IF (PickOp==1) THEN
-               XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_1
+               XPICK = Pick_E_1_P_1
                NENHUM = FALSE
             ENDIF
             IF (PickOp==2) THEN
-               XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_2
+               XPICK = Pick_E_1_P_2
                NENHUM = FALSE
             ENDIF
             IF (PickOp==3) THEN
-               XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_3
+               XPICK = Pick_E_1_P_3
                NENHUM = FALSE
             ENDIF
             IF (PickOp==4) THEN
-               XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_4
+               XPICK = Pick_E_1_P_4
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==5) THEN
+               XPICK = Pick_E_1_P_5
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==6) THEN
+               XPICK = Pick_E_1_P_6
                NENHUM = FALSE
             ENDIF
          CASE 2
@@ -41,24 +49,36 @@ DEF PickEsteira ( )
             BaseRelativa.B = BaseEsteira2.B + OffsetEsteira2.B
             BaseRelativa.C = BaseEsteira2.C + OffsetEsteira2.C
             IF (PickOp==1) THEN
-               XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_1
+               XPICK = Pick_E_2_P_1
                NENHUM = FALSE
             ENDIF
             IF (PickOp==2) THEN
-               XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_2
+               XPICK = Pick_E_2_P_2
                NENHUM = FALSE
             ENDIF
             IF (PickOp==3) THEN
-               XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_3
+               XPICK = Pick_E_2_P_3
                NENHUM = FALSE
             ENDIF
             IF (PickOp==4) THEN
-               XPICK = StrReceita[ReceitaAtivo].Pick_E_2_P_4
+               XPICK = Pick_E_2_P_4
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==5) THEN
+               XPICK = Pick_E_2_P_5
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==6) THEN
+               XPICK = Pick_E_2_P_6
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==7) THEN
+               XPICK = Pick_E_2_P_7
                NENHUM = FALSE
             ENDIF
       ENDSWITCH
       IF (NENHUM==TRUE) THEN
-         XPICK = StrReceita[ReceitaAtivo].Pick_E_1_P_1
+         XPICK = Pick_E_1_P_1
          BaseRelativa = NULLFRAME
       ENDIF
    ;ENDFOLD

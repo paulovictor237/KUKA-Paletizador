@@ -1,5 +1,4 @@
 ;FOLD Padrao Paletizacao
-
 ;FOLD STRUCT E VARIAVEIS PRINCIPAIS
 
 ;FOLD VARIAVEIS CLP
@@ -30,10 +29,10 @@ BOOL PalletCompleto=FALSE
 CONST E6POS DefaultPoint={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0,S 0,T 0,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 CONST FRAME NULLFRAME={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
 
-FRAME OffsetEsteira1={X -90.0,Y 30.0,Z -55.0,A 0.0,B 0.0,C 0.0}
-FRAME OffsetEsteira2={X -90.0,Y 34.0,Z -55.0,A 0.0,B 0.0,C 0.0}
+FRAME OffsetEsteira1={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+FRAME OffsetEsteira2={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
 
-FRAME BaseEsteira1={X 1273.68799,Y -630.658,Z -549.545,A 0.0,B 0.0,C 0.0}
+FRAME BaseEsteira1={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
 FRAME BaseEsteira2={X 1273.68799,Y 616.142,Z -554.945,A 0.0,B 0.0,C 0.0}
 ;ENDFOLD
 
@@ -82,64 +81,64 @@ INT ConfGarraOp=11
 INT FechaGarraOp=0
 INT AbreGarraOp=11
 
-INT SensoresCaixa = 123456
-BOOL TravaGarra = False
-FRAME OffsetPlace = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+INT SensoresCaixa=123456
+BOOL TravaGarra=FALSE
+FRAME OffsetPlace={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
 
 E6POS XApp1Place={X 392.379425,Y 496.916656,Z 990.172791,A -90.0,B 0.0,C 180.0,S 2,T 10,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 E6POS XApp2Place={X 392.379425,Y 496.917023,Z 840.172363,A -90.0,B 0.0,C 180.0,S 2,T 10,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 E6POS XPlace={X 303.263,Y 448.706055,Z 670.171692,A -89.9999695,B 0.0,C 180.0,S 2,T 10,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-STRUC DefMatriz BOOL TravaGarra,IndexacaoVH, SkipGoHome, SkipSobeRelativo, INT SensoresCaixa,NumCaixas, ConfGarraOp, PickOp, FechaGarraOp, AbreGarraOp, E6POS XApp1Place, XApp2Place, XPlace, FRAME OffsetPlace
+STRUC DefMatriz BOOL TravaGarra, IndexacaoVH, SkipGoHome, SkipSobeRelativo, INT SensoresCaixa, NumCaixas, ConfGarraOp, PickOp, FechaGarraOp, AbreGarraOp, E6POS XApp1Place, XApp2Place, XPlace, FRAME OffsetPlace
 ;ENDFOLD
 
 ;ENDFOLD
 
 ;FOLD ENUM E DECLARACAO DAS STRUCS
 ;FOLD ENUM Pallet
-CONST INT Pallet_1 = 1
-CONST INT Pallet_2 = 2
+CONST INT Pallet_1=1
+CONST INT Pallet_2=2
 ;ENDFOLD
 
 ;FOLD ENUM RECEITA
-CONST INT Prdt_9Aero = 1
-CONST INT Prdt_5Aero = 2
-CONST INT Prdt_2Aero = 3
-CONST INT Prdt_11CoffeCrisp = 4
-CONST INT Prdt_17KitKat = 5
-CONST INT Prdt_19KitKat = 6
-CONST INT Prdt_20KitKat = 7
-CONST INT Prdt_21KitKat = 8
-CONST INT Prdt_23Smarties = 9
-CONST INT Prdt_22KitKat = 10
-CONST INT Prdt_24a28All = 11
-CONST INT Prdt_30All = 12
-CONST INT Prdt_16CoffeCrisp = 13
-CONST INT Prdt_10CoffeCrisp = 14
-CONST INT Prdt_1Aero = 15
-CONST INT Prdt_15CoffeCrisp = 16
-CONST INT Prdt_7Aero = 17
-CONST INT Prdt_32BarPacking = 18
-CONST INT Prdt_33BarPacking = 19
-CONST INT Prdt_37BarPacking = 20
-CONST INT Prdt_36BarPacking = 21
-CONST INT Prdt_34BarPacking = 22
-CONST INT Prdt_35BarPacking = 23
+CONST INT Prdt_9Aero=1
+CONST INT Prdt_5Aero=2
+CONST INT Prdt_2Aero=3
+CONST INT Prdt_11CoffeCrisp=4
+CONST INT Prdt_17KitKat=5
+CONST INT Prdt_19KitKat=6
+CONST INT Prdt_20KitKat=7
+CONST INT Prdt_21KitKat=8
+CONST INT Prdt_23Smarties=9
+CONST INT Prdt_22KitKat=10
+CONST INT Prdt_24a28All=11
+CONST INT Prdt_30All=12
+CONST INT Prdt_16CoffeCrisp=13
+CONST INT Prdt_10CoffeCrisp=14
+CONST INT Prdt_1Aero=15
+CONST INT Prdt_15CoffeCrisp=16
+CONST INT Prdt_7Aero=17
+CONST INT Prdt_32BarPacking=18
+CONST INT Prdt_33BarPacking=19
+CONST INT Prdt_37BarPacking=20
+CONST INT Prdt_36BarPacking=21
+CONST INT Prdt_34BarPacking=22
+CONST INT Prdt_35BarPacking=23
 ;ENDFOLD
 
 ;FOLD STR
 ;---------- StrPallet[MaxPallets] ----------
 CONST INT MaxPallets=2
-DECL GLOBAL DefPallet StrPallet[2];[MaxPallets]
+DECL DefPallet StrPallet[2];[MaxPallets]
 ;---------- StrReceita[MaxReceitas] ----------
 CONST INT MaxReceitas=23
 CONST INT MaxCamadas=12
-DECL GLOBAL DefStrReceita StrReceita[23];[MaxReceitas]
-INT  StrReceitaLayer[23,12];[MaxReceitas,MaxCamadas]
+DECL DefStrReceita StrReceita[23];[MaxReceitas]
+INT StrReceitaLayer[23,12];[MaxReceitas,MaxCamadas]
 ;---------- MatrizPontos[MaxMatrizI,MaxMatrizJ,MaxMatrizK] ----------
 CONST INT MaxMatrizI=2;[numero de pallets por receita]
 CONST INT MaxMatrizJ=23;[acompanha o MaxReceitas]
 CONST INT MaxMatrizK=16;[numero Maximo de Pontos]
-DECL GLOBAL DefMatriz MatrizPontos[2,23,16];[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
+DECL DefMatriz MatrizPontos[2,23,16];[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
 ;ENDFOLD
 
 ;ENDFOLD

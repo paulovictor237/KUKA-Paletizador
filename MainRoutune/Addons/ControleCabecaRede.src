@@ -5,12 +5,12 @@ DEF ControleCabecaRede ()
 ;######################################################################
 
 Set_Output_CH1 = FALSE
-Set_Output_CH2 = TRUE   ;Porta Utilizada no Bloco de Valvulas 1
+Set_Output_CH2 = FALSE   ;Porta Utilizada no Bloco de Valvulas 1
 Set_Output_CH3 = FALSE
-Set_Output_CH4 = TRUE   ;Porta Utilizada no Bloco de Valvulas 1
+Set_Output_CH4 = FALSE   ;Porta Utilizada no Bloco de Valvulas 1
 Set_Output_CH5 = FALSE
 Set_Output_CH6 = TRUE   ;Porta Utilizada no Regulador de Pressao 1
 Set_Output_CH7 = TRUE   ;Porta Utilizada no Regulador de Pressao 1
-Set_Output_CH8 = FALSE
+Set_Output_CH8 = TRUE
 
 END

@@ -160,5 +160,8 @@ DEF PlaceCaixaPallet()
    ;AbreGarraCompleto_noWait()
    AtualizaVariaveis()
    ConfGarra_NoWait()
-   
+
+   ;AlturaUltimoDeposito = XPlace.Z
+   $BASE = $NULLFRAME
+   AlturaUltimoDeposito = $POS_ACT.Z
 END

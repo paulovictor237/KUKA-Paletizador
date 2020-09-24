@@ -4,7 +4,7 @@ DEF TDefault ( )
    ;FOLD Variaveis Default da Matriz de Pontos
       FOR I = 1 to MaxMatrizI
          FOR J = 1 to MaxMatrizJ
-            FOR K = 1 to MaxMatrizK
+            FOR k = 1 to MaxMatrizK
                MatrizPontos[I,J,k].IndexacaoVH = FALSE
                MatrizPontos[I,J,k].NumCaixas = 0
                MatrizPontos[I,J,k].PickOp = 0

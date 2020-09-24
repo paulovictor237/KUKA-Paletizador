@@ -28,32 +28,32 @@ DEF VerificaCaixas( )
          ;654321.....
          resto = (NumSensores - resto + 1)
       ENDIF
-      SWITCH resto
-         CASE 1
-            IF (NOT SensorCaixa1) AND SensoresGarraAtivos THEN
-               FalhaCaixa = TRUE
-            ENDIF
-         CASE 2
-            IF (NOT SensorCaixa2) AND SensoresGarraAtivos THEN
-               FalhaCaixa = TRUE
-            ENDIF
-         CASE 3
-            IF (NOT SensorCaixa3) AND SensoresGarraAtivos THEN
-               FalhaCaixa = TRUE
-            ENDIF
-         CASE 4
-            IF (NOT SensorCaixa4) AND SensoresGarraAtivos THEN
-               FalhaCaixa = TRUE
-            ENDIF
-         CASE 5
-            IF (NOT SensorCaixa5) AND SensoresGarraAtivos THEN
-               FalhaCaixa = TRUE
-            ENDIF
-         CASE 6
-            IF (NOT SensorCaixa6) AND SensoresGarraAtivos THEN
-               FalhaCaixa = TRUE
-            ENDIF
-      ENDSWITCH
+      ; SWITCH resto
+      ;    CASE 1
+      ;       IF (NOT SensorCaixa1) AND SensoresGarraAtivos THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 2
+      ;       IF (NOT SensorCaixa2) AND SensoresGarraAtivos THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 3
+      ;       IF (NOT SensorCaixa3) AND SensoresGarraAtivos THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 4
+      ;       IF (NOT SensorCaixa4) AND SensoresGarraAtivos THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 5
+      ;       IF (NOT SensorCaixa5) AND SensoresGarraAtivos THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 6
+      ;       IF (NOT SensorCaixa6) AND SensoresGarraAtivos THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ; ENDSWITCH
    ENDWHILE
 
    IF FalhaCaixa THEN
