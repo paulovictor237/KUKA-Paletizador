@@ -107,13 +107,13 @@ DEF PickEsteira ( )
    
    ;Captura o Y da esteira para o ponto de aproximacao
    ;IF (PalletAtivo==1) THEN
-   ;   XAPP1PICK.Y = XAppEsteira1.Y
-   ;   XAPP2PICK.Y = XAppEsteira1.Y   
+   ;   XAPP1PICK.Y = XAPP1PICK.Y - 50
+   ;   XAPP2PICK.Y = XAPP2PICK.Y - 50
    ;ENDIF
    
    ;IF (PalletAtivo==2) THEN
-   ;   XAPP1PICK.Y = XAppEsteira2.Y
-   ;   XAPP2PICK.Y = XAppEsteira2.Y     
+   ;   XAPP1PICK.Y = XAPP1PICK.Y + 50
+   ;   XAPP2PICK.Y = XAPP2PICK.Y + 50
    ;ENDIF
 
    ;FOLD raciocinio do calculo de igualar bases
