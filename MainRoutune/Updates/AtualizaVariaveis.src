@@ -14,6 +14,7 @@ DEF AtualizaVariaveis ( )
       PlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
       Camadas = StrReceita[ReceitaAtivo].Camadas
       AlturaCaixa = StrReceita[ReceitaAtivo].AlturaCaixa
+      Layers = StrReceita[ReceitaAtivo].Layers
       OffsetProduto = StrReceita[ReceitaAtivo].OffsetProduto      
       ;por possuir duas Layers por Receita o numero referente ao place
       ;deve subir em relacao a LayerAtivo
