@@ -1,9 +1,7 @@
 &ACCESS RVP
-&REL 34
-&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao
-DEF  MainProgram ()
-
-;FOLD INI;%{PE}
+&REL 10
+DEF  MainProgram ( )
+   ;FOLD INI;%{PE}
       ;FOLD BASISTECH INI
          GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
          INTERRUPT ON 3 
@@ -18,26 +16,9 @@ DEF  MainProgram ()
          TReceita()
          $TOOL = TOOL_DATA[1]
          $BASE=$NULLFRAME
-         $Advance = 3 
-         EstadoAutExt = 0
-         Estado_Palete1 = 0
-         Estado_Palete2 = 0
-         UpdateIndex_Est1 = FALSE
-         UpdateIndex_Est2 = FALSE
+         $Advance=0
       ;ENDFOLD (USER INI)
-;ENDFOLD (INI)
-      
-;FOLD Sobe Seguro
-
-;Realiza primeiro SAK do programa   
-$base=base_data[1]
-$tool=tool_data[1]
-XSobeSeguro = $POS_ACT
-PTP XSobeSeguro
-XSobeSeguro.Z = h_SobeSeguro ; TODO: Criar variavel LimiteTopoMaximo
-LIN XSobeSeguro
-
-;ENDFOLD
+   ;ENDFOLD (INI)
   
 ;FOLD ABRE_GARRAS
    
@@ -68,46 +49,7 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
 
 ;ENDFOLD
 
-;FOLD Reseta Paletes
-  StrPallet[PalletAtivo].Completo=FALSE
-  StrPallet[PalletAtivo].Completo=FALSE
-;ENDFOLD
-
-;FOLD SET CAMADA PALLET1
-   
-  PalletAtivo = Pallet_1
-  StrPallet[PalletAtivo].ReceitaAtivo = 1;Mosaico_Est1
-  StrPallet[PalletAtivo].CamadaAtiva = 1 ;Camada_P1
-  ;StrPallet[PalletAtivo].PlaceAtivo = 4
-  StrPallet[PalletAtivo].Livre=TRUE
-  AtualizaVariaveis()
-   
-;ENDFOLD
-
-;FOLD SET CAMADA PALLET2
-   
-  PalletAtivo = Pallet_2
-  StrPallet[PalletAtivo].ReceitaAtivo = 1 ;Mosaico_Est2
-  StrPallet[PalletAtivo].CamadaAtiva = 1 ;Camada_P2
-  ;StrPallet[PalletAtivo].PlaceAtivo = 4
-  StrPallet[PalletAtivo].Livre=TRUE
-  AtualizaVariaveis()   
-  
-;ENDFOLD
-
-;FOLD SET INDEX ESTEIRA 1
-  
-  IndexacaoVH_Est1 = IndexacaoVH
-  NumCaixas_Est1 = NumCaixas 
-  
-;ENDFOLD
-
-;FOLD SET INDEX ESTEIRA 2
-  IndexacaoVH_Est2 = IndexacaoVH
-  NumCaixas_Est2 = NumCaixas  
-;ENDFOLD
-
-            ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+   ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
       $BWDSTART = FALSE
       PDAT_ACT=PDEFAULT
       FDAT_ACT=FHOME
@@ -115,90 +57,34 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
       $H_POS=XHOME
       PTP  XHOME
    ;ENDFOLD
-
-;FOLD CHECK CAMADA 1
-
-IF (NOT Palete1_Completo AND Palete1_OK) or not DryRun_Est1 THEN
-   CheckCamadaP1()
-ENDIF
-;ENDFOLD CHECK CAMADA 1
-
-;FOLD CHECK CAMADA 2
-IF (NOT Palete2_Completo AND Palete2_OK) or not DryRun_Est2 THEN
-   CheckCamadaP2()
-ENDIF
-;ENDFOLD CHECK CAMADA 2
-
-;FOLD LOOP Main Routine
-   LOOP
-
-;Selecionar Base 1 e TOOL1 e da Touch UP num ponto no meio das duas esteiras
-;FOLD PTP AppEsteiras CONT Vel=100 % DEFAULT Tool[1]:GarraUniversal Base[0];%{PE}
-;FOLD Parameters ;%{h}
-;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=AppEsteiras; Kuka.BlendingEnabled=True; Kuka.MoveDataPtpName=DEFAULT; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
-;ENDFOLD
-$BWDSTART = FALSE
-PDAT_ACT = PDEFAULT
-FDAT_ACT = FAppEsteiras
-BAS(#PTP_PARAMS, 100.0)
-SET_CD_PARAMS (0)
-PTP XAppEsteiras C_Dis
-;ENDFOLD
-                       
-      Esteira = 2
-      if (PickReady_Est1 or DryRun_Est1) and (Esteira==1) and (Palete1_OK or DryRun_Est1) and not StrPallet[Pallet_1].Completo then
-         
-         Esteira = 2
-         
-         PalletAtivo = Pallet_1
-         ReceitaAtivo = Mosaico_Est1
-         StrPallet[PalletAtivo].ReceitaAtivo = ReceitaAtivo
-         Retorno_Camada_P1 = StrPallet[PalletAtivo].CamadaAtiva
-         
+   
+   ;FOLD MAIN ROUTINE
+      WHILE TRUE
+         ; ->ler do CLP pallet
+         ; ->gravar na variavel PalletAtivo
+         PalletAtivo=1 ; TESTE
+         ReceitaAtivo=Prdt_9Aero ; TESTE
+         ;ReceitaAtivo=Prdt_19KitKat
+         StrPallet[PalletAtivo].Livre=TRUE ; TESTE
+         ; ->verificar se ja possui produto no pallet
+         ; ->se nao tiver escrever um produto
+         IF StrPallet[PalletAtivo].Livre == TRUE THEN
+            StrPallet[PalletAtivo].Livre=FALSE
+            StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
+         ENDIF
          AtualizaVariaveis()
+         ;RotinaCLP()
          PickEsteira()
-         
-         UpdateIndexCaixas()   
-         IndexacaoVH_Est1 = IndexacaoVH
-         NumCaixas_Est1 = NumCaixas 
-         UpdateIndex_Est1 = TRUE         
-         
          PlaceCaixaPallet()
-         
-         ;wait for UpdateIndex_Est1_ACK
-         ;UpdateIndex_Est1 = FALSE
-         ;wait for not UpdateIndex_Est1_ACK
-            
-      else
-      if (PickReady_Est2 or DryRun_Est2) and (Esteira==2) and (Palete2_OK or DryRun_Est2) and not StrPallet[Pallet_2].Completo then
-         
-         Esteira = 1
-         
-         PalletAtivo = Pallet_2
-         ReceitaAtivo = Mosaico_Est2
-         StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
-         Retorno_Camada_P2 = StrPallet[PalletAtivo].CamadaAtiva 
-         
-         AtualizaVariaveis()                   
-         PickEsteira()
-         
-         UpdateIndexCaixas()
-         IndexacaoVH_Est2 = IndexacaoVH
-         NumCaixas_Est2 = NumCaixas
-         UpdateIndex_Est2 = TRUE 
-         
-         PlaceCaixaPallet()
-         
-         ;wait for UpdateIndex_Est2_ACK
-         ;UpdateIndex_Est2 = FALSE
-         ;wait for not UpdateIndex_Est2_ACK
-         
-      endif
-      endif                  
-         
-      XAppEsteiras.Z = AlturaUltimoDeposito
-      
-   ENDLOOP
-;ENDFOLD
-      
+      ENDWHILE
+   ;ENDFOLD
+   
+   ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+      $BWDSTART = FALSE
+      PDAT_ACT=PDEFAULT
+      FDAT_ACT=FHOME
+      BAS (#PTP_PARAMS,100 )
+      $H_POS=XHOME
+      PTP  XHOME
+   ;ENDFOLD
 END

@@ -1,20 +1,12 @@
 &ACCESS RVP
-&REL 34
-&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao
-DEFDAT  MAINPROGRAM
-;FOLD EXTERNAL DECLARATIONS;%{PE}%MKUKATPBASIS,%CEXT,%VCOMMON,%P
-;FOLD BASISTECH EXT;%{PE}%MKUKATPBASIS,%CEXT,%VEXT,%P
-EXT  BAS (BAS_COMMAND  :IN,REAL  :IN )
-;ENDFOLD (BASISTECH EXT)
-;FOLD USER EXT;%{E}%MKUKATPUSER,%CEXT,%VEXT,%P
-;Make your modifications here
-;ENDFOLD (USER EXT)
-;ENDFOLD (EXTERNAL DECLARATIONS)
-
-DECL E6POS XAppEsteiras={X 1843.53406,Y 17.5693359,Z 789.930359,A 179.232162,B 1.04279857E-11,C 180.000,S 2,T 35,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-DECL FDAT FAppEsteiras={TOOL_NO 1,BASE_NO 0,IPO_FRAME #BASE,POINT2[] " "}
-DECL PDAT PPDAT6={VEL 100.000,ACC 100.000,APO_DIST 200.000,APO_MODE #CDIS,GEAR_JERK 50.0000,EXAX_IGN 0}
-
-DECL BASIS_SUGG_T LAST_BASIS={POINT1[] "P0                      ",POINT2[] "P0                      ",CP_PARAMS[] "CPDAT0                  ",PTP_PARAMS[] "PDAT0                   ",CONT[] "                        ",CP_VEL[] "2.0                     ",PTP_VEL[] "100                     ",SYNC_PARAMS[] "SYNCDAT                 ",SPL_NAME[] "S0                      ",A_PARAMS[] "ADAT0                   ",PC_SYNCSTRING[] "                        ",GL_SYNCSTRING[] "                        "}
-DECL MODULEPARAM_T LAST_TP_PARAMS={PARAMS[] "Kuka.PointName=AppEsteiras; Kuka.FrameData.base_no=0; Kuka.FrameData.tool_no=1; Kuka.FrameData.ipo_frame=#BASE; Kuka.FrameData.point2=; Kuka.isglobalpoint=False; Kuka.VelocityPtp=100; Kuka.BlendingEnabled=True; Kuka.CurrentCDSetIndex=0         "}
+&REL 10
+DEFDAT MainProgram
+   ;FOLD EXTERNAL DECLARATIONS;%{PE}%MKUKATPBASIS,%CEXT,%VCOMMON,%P
+   ;FOLD BASISTECH EXT;%{PE}%MKUKATPBASIS,%CEXT,%VEXT,%P
+   EXT  BAS (BAS_COMMAND  :IN,REAL  :IN )
+   ;ENDFOLD (BASISTECH EXT)
+   ;FOLD USER EXT;%{E}%MKUKATPUSER,%CEXT,%VEXT,%P
+   ;Make your modifications here
+   ;ENDFOLD (USER EXT)
+   ;ENDFOLD (EXTERNAL DECLARATIONS)
 ENDDAT

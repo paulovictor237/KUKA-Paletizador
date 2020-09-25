@@ -1,6 +1,6 @@
 &ACCESS RVO1
-&REL 89
-&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\Pick
+&REL 95
+&PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Pick
 DEF PickEsteira ( )
    AtualizaVariaveis()
    $Advance=3   
@@ -93,15 +93,15 @@ DEF PickEsteira ( )
    XSAIPICK  = XPICK
    
    ;Captura o Y da esteira para o ponto de aproximacao
-   IF (PalletAtivo==1) THEN
-      XAPP1PICK.Y = XAppEsteira1.Y
-      XAPP2PICK.Y = XAppEsteira1.Y   
-   ENDIF
+   ;IF (PalletAtivo==1) THEN
+   ;   XAPP1PICK.Y = XAppEsteira1.Y
+   ;   XAPP2PICK.Y = XAppEsteira1.Y   
+   ;ENDIF
    
-   IF (PalletAtivo==2) THEN
-      XAPP1PICK.Y = XAppEsteira2.Y
-      XAPP2PICK.Y = XAppEsteira2.Y     
-   ENDIF
+   ;IF (PalletAtivo==2) THEN
+   ;   XAPP1PICK.Y = XAppEsteira2.Y
+   ;   XAPP2PICK.Y = XAppEsteira2.Y     
+   ;ENDIF
 
    ;FOLD raciocinio do calculo de igualar bases
       ;    ZPick  _      _ ZPlace
@@ -146,6 +146,9 @@ DEF PickEsteira ( )
       ; IF (ZPick1 < ZPick2)
       IF (XAPP1PICK.Z<(ALTURATOPO - BaseRelativa.Z)) THEN
          XAPP1PICK.Z = ALTURATOPO - BaseRelativa.Z
+      ENDIF
+      ;Por seguranca deve garantir que sempre sera acima da altura minima
+      IF (XSAIPICK.Z<(ALTURATOPO - BaseRelativa.Z)) THEN
          XSAIPICK.Z  = ALTURATOPO - BaseRelativa.Z
       ENDIF
    ;ENDFOLD   

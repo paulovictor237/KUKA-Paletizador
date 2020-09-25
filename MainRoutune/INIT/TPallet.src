@@ -1,6 +1,7 @@
+&ACCESS RV
 DEF TPallet()
     ;FOLD RobRoot, Tools and Bases used
-        $ROBROOT = {x 0,y 0,z 0,a 0,b 0,c 0}
+   
         BASE_DATA[1] = {x -874.43,y -1399.074,z -106.8,a 0,b 0,c 0}
         BASE_DATA[2] = {x -874.43,y 2383.986,z -106,a 0,b 0,c 0}
         BASE_DATA[3] = {x 648.495,y -1967.367,z -106,a 0,b 0,c 0}
@@ -38,14 +39,14 @@ DEF TPallet()
     ;FOLD OffsetEsteira
        OffsetEsteira1.X=0
        OffsetEsteira1.Y=0
-       OffsetEsteira1.Z=0
+       OffsetEsteira1.Z=50
        OffsetEsteira1.A=0
        OffsetEsteira1.B=0
        OffsetEsteira1.C=0
 
        OffsetEsteira2.X=0
        OffsetEsteira2.Y=0
-       OffsetEsteira2.Z=0
+       OffsetEsteira2.Z=50
        OffsetEsteira2.A=0
        OffsetEsteira2.B=0
        OffsetEsteira2.C=0

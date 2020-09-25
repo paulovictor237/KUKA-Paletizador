@@ -1,6 +1,6 @@
 &ACCESS RV1
-&REL 17
-&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\Place
+&REL 28
+&PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Place
 DEF PlaceCaixaPallet()
    
    ;FOLD ROTINAS DE INICIALIZACAO
