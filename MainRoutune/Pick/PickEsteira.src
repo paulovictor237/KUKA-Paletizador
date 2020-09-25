@@ -41,6 +41,15 @@ DEF PickEsteira ( )
                XPICK = Pick_E_1_P_6
                NENHUM = FALSE
             ENDIF
+            IF (PickOp==7) THEN
+               XPICK = Pick_E_1_P_1
+               ;XPICK = Pick_E_1_P_7
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==8) THEN
+               XPICK = Pick_E_1_P_8
+               NENHUM = FALSE
+            ENDIF
          CASE 2
             BaseRelativa.X = BaseEsteira2.X + OffsetEsteira2.X
             BaseRelativa.Y = BaseEsteira2.Y + OffsetEsteira2.Y
@@ -74,6 +83,10 @@ DEF PickEsteira ( )
             ENDIF
             IF (PickOp==7) THEN
                XPICK = Pick_E_2_P_7
+               NENHUM = FALSE
+            ENDIF
+            IF (PickOp==8) THEN
+               XPICK = Pick_E_2_P_8
                NENHUM = FALSE
             ENDIF
       ENDSWITCH
