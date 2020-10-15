@@ -1,5 +1,0 @@
-﻿DEFDAT RotinaCLP 
-    BOOL SkipPTP = FALSE
-    INT ProximoPlace
-    INT ProximaCamada
-ENDDAT

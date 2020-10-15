@@ -1,56 +1,94 @@
-&ACCESS RVO1
-&PARAM EDITMASK = *
-DEF AbreGarra()
+DEF AbreGarra( )
    IF (OperarVazio==FALSE) THEN
       SWITCH AbreGarraOp
+         CASE 0
+            Ava_Cil_1_Gar_2=TRUE
+            Rec_Cil_1_Gar_2=FALSE
+
+            Ava_Cil_1_Gar_4=TRUE
+            Rec_Cil_1_Gar_4=FALSE
+
+            Ava_Cil_1_Gar_6=TRUE
+            Rec_Cil_1_Gar_6=FALSE
+
+            Ava_Cil_2_Gar_2=TRUE
+            Rec_Cil_2_Gar_2=FALSE
+
+            Ava_Cil_2_Gar_4=TRUE
+            Rec_Cil_2_Gar_4=FALSE
+
+            Ava_Cil_2_Gar_6=TRUE
+            Rec_Cil_2_Gar_6=FALSE
+
+            WAIT FOR ( Cil_1_Gar_2_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_2_Rec == FALSE )
+            WAIT FOR ( Cil_1_Gar_4_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_4_Rec == FALSE )
+            WAIT FOR ( Cil_1_Gar_6_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_6_Rec == FALSE )
+            WAIT FOR ( Cil_2_Gar_2_Ava == TRUE )
+            WAIT FOR ( Cil_2_Gar_4_Ava == TRUE )
+            WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
          CASE 1
-            ;AvancaCilindro
-            FechaGarra1 = FALSE
-            FechaGarra2 = FALSE
-            FechaGarra3 = FALSE
-            ;RecuaCilindro
-            AbreGarra1 = TRUE
-            AbreGarra2 = TRUE
-            AbreGarra3 = TRUE
-            ;CilindroRecuado
-            WAIT FOR  ( SensorGarraAberta1 )
-            WAIT FOR  ( SensorGarraAberta2 )
-            WAIT FOR  ( SensorGarraAberta3 )
+            Ava_Cil_1_Gar_1=TRUE
+            Rec_Cil_1_Gar_1=FALSE
+
+            Ava_Cil_1_Gar_3=TRUE
+            Rec_Cil_1_Gar_3=FALSE
+
+            Ava_Cil_1_Gar_5=TRUE
+            Rec_Cil_1_Gar_5=FALSE
+
+            Ava_Cil_2_Gar_1=TRUE
+            Rec_Cil_2_Gar_1=FALSE
+
+            Ava_Cil_2_Gar_3=TRUE
+            Rec_Cil_2_Gar_3=FALSE
+
+            Ava_Cil_2_Gar_5=TRUE
+            Rec_Cil_2_Gar_5=FALSE
+
+            WAIT FOR ( Cil_1_Gar_1_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_1_Rec == FALSE )
+            WAIT FOR ( Cil_1_Gar_3_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_3_Rec == FALSE )
+            WAIT FOR ( Cil_1_Gar_5_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_5_Rec == FALSE )
+            WAIT FOR ( Cil_2_Gar_1_Ava == TRUE )
+            WAIT FOR ( Cil_2_Gar_3_Ava == TRUE )
+            WAIT FOR ( Cil_2_Gar_5_Ava == TRUE )
          CASE 2
-            ;AvancaCilindro
-            FechaGarra4 = FALSE
-            FechaGarra5 = FALSE
-            FechaGarra6 = FALSE
-            ;RecuaCilindro
-            AbreGarra4 = TRUE
-            AbreGarra5 = TRUE
-            AbreGarra6 = TRUE
-            ;CilindroRecuado
-            WAIT FOR  ( SensorGarraAberta4 )
-            WAIT FOR  ( SensorGarraAberta5 )
-            WAIT FOR  ( SensorGarraAberta6 )
-         DEFAULT
-            ;AvancaCilindro
-            FechaGarra1 = FALSE
-            FechaGarra2 = FALSE
-            FechaGarra3 = FALSE
-            FechaGarra4 = FALSE
-            FechaGarra5 = FALSE
-            FechaGarra6 = FALSE
-            ;RecuaCilindro
-            AbreGarra1 = TRUE
-            AbreGarra2 = TRUE
-            AbreGarra3 = TRUE
-            AbreGarra4 = TRUE
-            AbreGarra5 = TRUE
-            AbreGarra6 = TRUE
-            ;CilindroRecuado
-            WAIT FOR  ( SensorGarraAberta1 )
-            WAIT FOR  ( SensorGarraAberta2 )
-            WAIT FOR  ( SensorGarraAberta3 )
-            WAIT FOR  ( SensorGarraAberta4 )
-            WAIT FOR  ( SensorGarraAberta5 )
-            WAIT FOR  ( SensorGarraAberta6 )
+            Ava_Cil_1_Gar_2=TRUE
+            Rec_Cil_1_Gar_2=FALSE
+
+            WAIT FOR ( Cil_1_Gar_2_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_2_Rec == FALSE )
+         CASE 3
+            Ava_Cil_1_Gar_4=TRUE
+            Rec_Cil_1_Gar_4=FALSE
+
+            WAIT FOR ( Cil_1_Gar_4_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_4_Rec == FALSE )
+         CASE 4
+            Ava_Cil_1_Gar_6=TRUE
+            Rec_Cil_1_Gar_6=FALSE
+
+            WAIT FOR ( Cil_1_Gar_6_Ava == TRUE )
+            WAIT FOR ( Cil_1_Gar_6_Rec == FALSE )
+         CASE 5
+            Ava_Cil_2_Gar_2=TRUE
+            Rec_Cil_2_Gar_2=FALSE
+
+            WAIT FOR ( Cil_2_Gar_2_Ava == TRUE )
+         CASE 6
+            Ava_Cil_2_Gar_4=TRUE
+            Rec_Cil_2_Gar_4=FALSE
+
+            Ava_Cil_2_Gar_6=TRUE
+            Rec_Cil_2_Gar_6=FALSE
+
+            WAIT FOR ( Cil_2_Gar_4_Ava == TRUE )
+            WAIT FOR ( Cil_2_Gar_6_Ava == TRUE )
       ENDSWITCH
       WAIT SEC 1
    ENDIF

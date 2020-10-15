@@ -1,0 +1,42 @@
+&ACCESS RV1
+DEF AtualizaVariaveis ( )
+   
+   ;FOLD STRUC Pallet
+      ReceitaAtivo = StrPallet[PalletAtivo].ReceitaAtivo
+      Livre = StrPallet[PalletAtivo].Livre
+      PlaceAtivo = StrPallet[PalletAtivo].PlaceAtivo
+      CamadaAtiva = StrPallet[PalletAtivo].CamadaAtiva
+      BasePoint = StrPallet[PalletAtivo].BasePoint
+      OffSetPallet = StrPallet[PalletAtivo].OffSetPallet
+   ;ENDFOLD
+   
+   ;FOLD STRUC Receita 
+      PlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
+      Camadas = StrReceita[ReceitaAtivo].Camadas
+      AlturaCaixa = StrReceita[ReceitaAtivo].AlturaCaixa
+      Layers = StrReceita[ReceitaAtivo].Layers
+      OffsetProduto = StrReceita[ReceitaAtivo].OffsetProduto      
+      ;por possuir duas Layers por Receita o numero referente ao place
+      ;deve subir em relacao a LayerAtivo
+      LayerAtivo = StrReceitaLayer[ReceitaAtivo,CamadaAtiva]
+      PlaceLayerAtivo = PlaceAtivo + PlacesCamada*(LayerAtivo-1)
+   ;ENDFOLD
+   
+   ;FOLD STRUC Matriz 
+      IndexacaoVH = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].IndexacaoVH
+      SkipGoHome = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipGoHome
+      SkipSobeRelativo = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipSobeRelativo
+      NumCaixas = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].NumCaixas
+      PickOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].PickOp
+      ConfGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].ConfGarraOp
+      FechaGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].FechaGarraOp
+      AbreGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].AbreGarraOp
+      SensoresCaixa = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SensoresCaixa
+      TravaGarra = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].TravaGarra
+      XApp1Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp1Place
+      XApp2Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp2Place
+      XPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XPlace
+      OffsetPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].OffsetPlace
+   ;ENDFOLD
+   
+END

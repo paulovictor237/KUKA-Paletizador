@@ -1,3 +1,5 @@
+&ACCESS RVP
+&REL 10
 DEF  MainProgram ( )
    ;FOLD INI;%{PE}
       ;FOLD BASISTECH INI
@@ -17,7 +19,36 @@ DEF  MainProgram ( )
          $Advance=0
       ;ENDFOLD (USER INI)
    ;ENDFOLD (INI)
+  
+;FOLD ABRE_GARRAS
    
+;FOLD Gripper SET [1]Gripper1Lado1 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}
+;FOLD Parameters Parameters ;%{h}
+;Params IlfProvider=GripperTech.GripperSet;setgripper=1;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
+;ENDFOLD
+GRPg_SetStateAndCheck(1, 1, 0, 1)
+;ENDFOLD
+;FOLD Gripper SET [2]Gripper2Lado1 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}
+;FOLD Parameters Parameters ;%{h}
+;Params IlfProvider=GripperTech.GripperSet;setgripper=2;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
+;ENDFOLD
+GRPg_SetStateAndCheck(2, 1, 0, 1)
+;ENDFOLD
+;FOLD Gripper SET [3]Gripper1Lado2 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}
+;FOLD Parameters Parameters ;%{h}
+;Params IlfProvider=GripperTech.GripperSet;setgripper=3;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
+;ENDFOLD
+GRPg_SetStateAndCheck(3, 1, 0, 1)
+;ENDFOLD
+;FOLD Gripper SET [4]Gripper2Lado2 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}
+;FOLD Parameters Parameters ;%{h}
+;Params IlfProvider=GripperTech.GripperSet;setgripper=4;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
+;ENDFOLD
+GRPg_SetStateAndCheck(4, 1, 0, 1)
+;ENDFOLD
+
+;ENDFOLD
+
    ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
       $BWDSTART = FALSE
       PDAT_ACT=PDEFAULT
@@ -31,9 +62,9 @@ DEF  MainProgram ( )
       WHILE TRUE
          ; ->ler do CLP pallet
          ; ->gravar na variavel PalletAtivo
-         PalletAtivo=2 ; TESTE
-         ReceitaAtivo=1 ; TESTE
-         EsteiraAtiva=1 ; TESTE
+         PalletAtivo=1 ; TESTE
+         ReceitaAtivo=Prdt_9Aero ; TESTE
+         ;ReceitaAtivo=Prdt_19KitKat
          StrPallet[PalletAtivo].Livre=TRUE ; TESTE
          ; ->verificar se ja possui produto no pallet
          ; ->se nao tiver escrever um produto
@@ -41,12 +72,10 @@ DEF  MainProgram ( )
             StrPallet[PalletAtivo].Livre=FALSE
             StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
          ENDIF
-         RotinaATIVOS()
+         AtualizaVariaveis()
          ;RotinaCLP()
          PickEsteira()
-         IF PegaOk THEN
-            PlaceCaixaPallet()
-         ENDIF 
+         PlaceCaixaPallet()
       ENDWHILE
    ;ENDFOLD
    

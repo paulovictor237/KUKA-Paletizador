@@ -1,6 +1,6 @@
 &ACCESS RVO
-&REL 1
+&REL 3
 &PARAM EDITMASK = *
-DEFDAT FechaGarra
+DEFDAT  SetCamada
 
 ENDDAT
