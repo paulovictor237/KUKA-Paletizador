@@ -4,9 +4,9 @@
 ;FOLD VARIAVEIS CLP
 ;{PalletAtivo}?numero?da esteira que est? com a caixa
 ;{CLPNumCaixas}?numero?de?caixas?para?o?pick
-;{CLPIndexacaoVH}?TRUE->?Vertical?/?FALSE?->?Horizontal
-INT CLPNumCaixas=1
-BOOL CLPIndexacaoVH=FALSE
+;{CLPIndexacaoHorizontal}?TRUE->?Vertical?/?FALSE?->?Horizontal
+INT CLP_NumCaixas=1
+BOOL CLP_IndexacaoHorizontal=FALSE
 ;ENDFOLD
 
 ;FOLD Principais variaveis
@@ -58,7 +58,7 @@ STRUC DefStrReceita INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetProd
 
 ;FOLD STRUC MatrizPontos
 ;CLP
-;-> {IndexacaoVH} TRUE-> Vertical / FALSE -> Horizontal
+;-> {IndexacaoHorizontal} TRUE-> Vertical / FALSE -> Horizontal
 ;-> {NumCaixas} numero de caixas para o pick
 ;Configuracao de Pick
 ;-> {ConfGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
@@ -73,7 +73,7 @@ STRUC DefStrReceita INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetProd
 ;-> {XApp2Place} Segundo ponto de aproximacao de place
 ;-> {XPlace} Ponto de place
 
-BOOL IndexacaoVH=FALSE
+BOOL IndexacaoHorizontal=FALSE
 BOOL SkipGoHome=FALSE
 BOOL SkipSobeRelativo=FALSE
 INT NumCaixas=4
@@ -89,7 +89,7 @@ FRAME OffsetPlace={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
 E6POS XApp1Place={X 1022.73303,Y -522.768860,Z 1064.59497,A 180.000,B 0.0,C -180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 E6POS XApp2Place={X 1022.73297,Y -522.768372,Z 964.595,A 180.000,B 0.0,C 180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 E6POS XPlace={X 1122.73279,Y -522.768616,Z 814.595154,A -180.000,B 0.0,C -180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-STRUC DefMatriz BOOL TravaGarra,IndexacaoVH,SkipGoHome,SkipSobeRelativo,INT SensoresCaixa,NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace,FRAME OffsetPlace
+STRUC DefMatriz BOOL TravaGarra,IndexacaoHorizontal,SkipGoHome,SkipSobeRelativo,INT SensoresCaixa,NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace,FRAME OffsetPlace
 ;ENDFOLD
 
 ;ENDFOLD
@@ -128,6 +128,8 @@ CONST INT Prdt_35BarPacking=23
 ;ENDFOLD
 
 ;FOLD STR
+;---------- StrPallet[MaxPallet][MaxNumPick] ----------
+DECL E6POS pick_esteira[2,20]
 ;---------- StrPallet[MaxPallets] ----------
 CONST INT MaxPallets=2
 DECL DefPallet StrPallet[2] ;[MaxPallets]

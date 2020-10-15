@@ -2,13 +2,11 @@
 &REL 95
 &PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Pick
 DEF PickEsteira ( )
-   AtualizaVariaveis()
+   PuxaReceita()
    $Advance=3   
    ConfGarra_nowait()
-   NENHUM = TRUE
    
-   ;FOLD PickEsteira de cada receita e esteira
-      ;verifica qual opcao de pick do place
+   ;FOLD verifica qual opcao de base para a esteira
       SWITCH PalletAtivo
          CASE 1
             BaseRelativa.X = BaseEsteira1.X + OffsetEsteira1.X
@@ -17,39 +15,6 @@ DEF PickEsteira ( )
             BaseRelativa.A = BaseEsteira1.A + OffsetEsteira1.A
             BaseRelativa.B = BaseEsteira1.B + OffsetEsteira1.B
             BaseRelativa.C = BaseEsteira1.C + OffsetEsteira1.C
-            IF (PickOp==1) THEN
-               XPICK = Pick_E_1_P_1
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==2) THEN
-               XPICK = Pick_E_1_P_2
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==3) THEN
-               XPICK = Pick_E_1_P_3
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==4) THEN
-               XPICK = Pick_E_1_P_4
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==5) THEN
-               XPICK = Pick_E_1_P_5
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==6) THEN
-               XPICK = Pick_E_1_P_6
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==7) THEN
-               XPICK = Pick_E_1_P_1
-               ;XPICK = Pick_E_1_P_7
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==8) THEN
-               XPICK = Pick_E_1_P_8
-               NENHUM = FALSE
-            ENDIF
          CASE 2
             BaseRelativa.X = BaseEsteira2.X + OffsetEsteira2.X
             BaseRelativa.Y = BaseEsteira2.Y + OffsetEsteira2.Y
@@ -57,45 +22,16 @@ DEF PickEsteira ( )
             BaseRelativa.A = BaseEsteira2.A + OffsetEsteira2.A
             BaseRelativa.B = BaseEsteira2.B + OffsetEsteira2.B
             BaseRelativa.C = BaseEsteira2.C + OffsetEsteira2.C
-            IF (PickOp==1) THEN
-               XPICK = Pick_E_2_P_1
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==2) THEN
-               XPICK = Pick_E_2_P_2
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==3) THEN
-               XPICK = Pick_E_2_P_3
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==4) THEN
-               XPICK = Pick_E_2_P_4
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==5) THEN
-               XPICK = Pick_E_2_P_5
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==6) THEN
-               XPICK = Pick_E_2_P_6
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==7) THEN
-               XPICK = Pick_E_2_P_7
-               NENHUM = FALSE
-            ENDIF
-            IF (PickOp==8) THEN
-               XPICK = Pick_E_2_P_8
-               NENHUM = FALSE
-            ENDIF
+         DEFAULT
+            BaseRelativa = NULLFRAME
       ENDSWITCH
-      IF (NENHUM==TRUE) THEN
-         XPICK = Pick_E_1_P_1
-         BaseRelativa = NULLFRAME
-      ENDIF
    ;ENDFOLD
 
+   ;FOLD PickEsteira de cada receita
+      Tpick_esteira()
+      XPICK = pick_esteira[PalletAtivo,PickOp]
+   ;ENDFOLD
+   
    ;SET BaseRelativa
    $TOOL = TOOL_DATA[1]
    $BASE=BaseRelativa

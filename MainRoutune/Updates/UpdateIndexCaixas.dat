@@ -1,5 +1,7 @@
 &ACCESS  RV
 DEFDAT  UPDATEINDEXCAIXAS
+INT I=1
+INT NumPassos=1
 INT ProxPlace=1
 INT ProxCamada=3
 INT ProxPlacesCamada=4

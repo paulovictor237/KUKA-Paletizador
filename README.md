@@ -1,10 +1,10 @@
 # FOLD STRUC MatrizPontos
 ### Cabecalho Pick
 
-{IndexacaoVH} FALSE-> Vertical / TRUE -> Horizontal
+{IndexacaoHorizontal} FALSE-> Vertical / TRUE -> Horizontal
 
 ```c++
-bool IndexacaoVH = false;
+bool IndexacaoHorizontal = false;
 ```
 {NumCaixas} numero de caixas para o pick (1,2,3,4,5...)
 

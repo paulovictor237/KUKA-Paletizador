@@ -14,6 +14,7 @@ DEF  MainProgram ( )
          TPallet()
          TMatriz()
          TReceita()
+         Tpick_esteira()
          $TOOL = TOOL_DATA[1]
          $BASE=$NULLFRAME
          $Advance=0
@@ -72,7 +73,7 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
             StrPallet[PalletAtivo].Livre=FALSE
             StrPallet[PalletAtivo].ReceitaAtivo=ReceitaAtivo
          ENDIF
-         AtualizaVariaveis()
+         PuxaReceita()
          ;RotinaCLP()
          PickEsteira()
          PlaceCaixaPallet()

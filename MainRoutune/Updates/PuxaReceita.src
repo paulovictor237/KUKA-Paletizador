@@ -1,5 +1,5 @@
 &ACCESS RV1
-DEF AtualizaVariaveis ( )
+DEF PuxaReceita ( )
    
    ;FOLD STRUC Pallet
       ReceitaAtivo = StrPallet[PalletAtivo].ReceitaAtivo
@@ -23,7 +23,7 @@ DEF AtualizaVariaveis ( )
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 
-      IndexacaoVH = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].IndexacaoVH
+      IndexacaoHorizontal = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].IndexacaoHorizontal
       SkipGoHome = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipGoHome
       SkipSobeRelativo = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipSobeRelativo
       NumCaixas = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].NumCaixas
@@ -39,4 +39,7 @@ DEF AtualizaVariaveis ( )
       OffsetPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].OffsetPlace
    ;ENDFOLD
    
+   ;FOLD SetPlacePos
+      SetPlacePos()
+   ;ENDFOLD
 END

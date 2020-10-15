@@ -5,7 +5,7 @@ DEF TDefault ( )
       FOR I = 1 to MaxMatrizI
          FOR J = 1 to MaxMatrizJ
             FOR k = 1 to MaxMatrizK
-               MatrizPontos[I,J,k].IndexacaoVH = FALSE
+               MatrizPontos[I,J,k].IndexacaoHorizontal = FALSE
                MatrizPontos[I,J,k].NumCaixas = 0
                MatrizPontos[I,J,k].PickOp = 0
                MatrizPontos[I,J,k].ConfGarraOp = 0
