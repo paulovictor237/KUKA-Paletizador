@@ -21,6 +21,14 @@ DEF  MainProgram ( )
       ;ENDFOLD (USER INI)
    ;ENDFOLD (INI)
   
+   ;FOLD CONFIGURACOES PADRAO DE MOVIMENTO
+      $VEL.CP = 2.0  ; 0 a 3 m/s: velocidade da ponta do TCP
+      $ACC.CP = 2.0  ; 0 a 2  m/s^2: aceleracao da ponta do TCP 
+      $APO.CDIS = 50 ; Blend a ser utilizado
+      $TOOL = TOOL_DATA[1]
+      ;$BASE = BASE_DATA[5]
+   ;ENDFOLD 
+  
 ;FOLD ABRE_GARRAS
    
 ;FOLD Gripper SET [1]Gripper1Lado1 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}

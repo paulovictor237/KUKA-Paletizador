@@ -148,4 +148,3 @@ DECL DefMatriz MatrizPontos[2,23,16] ;[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
 ;ENDFOLD
 
 ;ENDFOLD
-ENDDAT
