@@ -11,7 +11,9 @@ DEF PlaceCaixaPallet()
    ;FOLD SET BaseRelativa
       $TOOL = TOOL_DATA[1]
       $BASE = BaseRelativa
-   ;ENDFOLD   
+   ;ENDFOLD
+   
+   XSobeRelativoZ =  XApp1Place.Z
    
    REPEAT
       
@@ -55,7 +57,7 @@ DEF PlaceCaixaPallet()
 
       ;Configura a altura de saida do Place
       XSobeRelativo = XPlace
-      XSobeRelativo.Z = XApp1Place.Z
+      XSobeRelativo.Z = XSobeRelativoZ
 
       ;FOLD raciocinio do calculo de igualar bases
          ;    ZPick  _      _ ZPlace
