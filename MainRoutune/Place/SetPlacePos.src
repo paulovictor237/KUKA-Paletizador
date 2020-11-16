@@ -1,20 +1,24 @@
 &ACCESS RVO
 &PARAM EDITMASK = *
 DEF SetPlacePos()
-   ;Esses valores devem vir sempre da main
+   AlturaCaixa = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].AlturaCaixa
+   OffsetPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].OffsetPlace
    
-   ;XPlace     = faz o place no devido local
+   ;Puxa da receita o app1 app2 e place
    XApp1Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp1Place
    XApp2Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp2Place
    XPlace     = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XPlace
    
-   OffsetPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].OffsetPlace
-   
-   ;CamadaAtiva
+   ;Altura Z de aproximacao
+   ;XApp1Place.z = XPlace.z + AlturaCaixa + 60
+   ;XApp2Place.z = XPlace.z + AlturaCaixa/2
+   ;XPlace.z     = XPlace.z
+
+   ;Altura Z de CamadaAtiva
    XApp1Place.Z = XApp1Place.Z + (CamadaAtiva-1)*AlturaCaixa
    XApp2Place.Z = XApp2Place.Z + (CamadaAtiva-1)*AlturaCaixa
    XPlace.Z=XPlace.Z + (CamadaAtiva-1)*AlturaCaixa
-
+   
    ;FOLD OffsetPlace
       XApp1Place.X = XApp1Place.X + OffsetPlace.X
       XApp1Place.Y = XApp1Place.Y + OffsetPlace.Y
