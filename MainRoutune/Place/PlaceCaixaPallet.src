@@ -12,8 +12,15 @@ DEF PlaceCaixaPallet()
       $TOOL = TOOL_DATA[1]
       $BASE = BaseRelativa
    ;ENDFOLD
-   
-   XSobeRelativoZ =  XApp1Place.Z
+
+   ;Altura Z de aproximacao
+   ;XApp1Place.z = XPlace.z + AlturaCaixa + 60
+   ;XApp2Place.z = XPlace.z + AlturaCaixa/2
+   ;XPlace.z     = XPlace.z
+
+   ;Configura a altura do SobeRelativo
+   XSobeRelativoZ =  XPlace.z + AlturaCaixa + 60
+   ;XSobeRelativoZ =  XApp1Place.Z
    
    REPEAT
       
