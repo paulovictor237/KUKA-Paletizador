@@ -1,0 +1,46 @@
+DEF InterruptPlace( )
+   ;variavel para verificar se a interrupcao foi concluida
+   ;Interruption_done = TRUE - os sensores foram acionados e a interrupcao foi acionada
+   ;Interruption_done = FALSE - os sensores falharam e o robo deve parar
+   Interruption_done = FALSE 
+   ;Declarar interrupcao e a funcao a ser chamada em caso verdadeiro
+   INTERRUPT DECL 1 WHEN All_sensors_ON == TRUE DO StopRobot()
+   ;chamada da funcao de interrupcao
+   Interrupt_func()
+END
+
+GLOBAL DEF Interrupt_func( )
+   INTERRUPT ON 1
+      $Advance = 0
+      InterruptPoint=XP5;ponto de referencia
+      InterruptPoint.Z = InterruptPoint.Z - Offset_negative_Z;offset em Z    
+;FOLD LIN P1 Vel=2 m/s CPDAT1 Tool[1]:GarraUniversal Base[0] ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P1; Kuka.BlendingEnabled=False; Kuka.MoveDataName=CPDAT1; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+;ENDFOLD
+$BWDSTART = FALSE
+LDAT_ACT = LCPDAT1
+FDAT_ACT = FP1
+BAS(#CP_PARAMS, 2.0)
+SET_CD_PARAMS (0)
+LIN InterruptPoint C_DIS C_DIS
+;ENDFOLD  
+      $Advance = 3
+   INTERRUPT OFF 1
+END
+
+GLOBAL DEF StopRobot( )
+   BRAKE
+   ;confirma a saida da interrupcao
+   Interruption_done = TRUE
+   WAIT SEC 0
+   RESUME
+END
+
+;FOLD Verifica sensores Garra SPS
+   ; IF ($IN[1] AND $IN[2] AND $IN[7] AND $IN[9]) THEN
+   ;    All_sensors_ON=TRUE
+   ; ELSE
+   ;    All_sensors_ON=FALSE
+   ; ENDIF
+;ENDFOLD

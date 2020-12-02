@@ -1,7 +1,7 @@
 &ACCESS RVO
 &PARAM EDITMASK = *
 DEF SetPlacePos()
-   AlturaCaixa = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].AlturaCaixa
+   AlturaCaixa = StrReceita[ReceitaAtivo].AlturaCaixa
    OffsetPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].OffsetPlace
    
    ;Puxa da receita o app1 app2 e place
