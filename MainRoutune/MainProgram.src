@@ -10,7 +10,7 @@ DEF  MainProgram ( )
       ;FOLD USER INI
          ;Make your modifications here
          $PAL_MODE=TRUE
-         TDefault()
+         TPadraoSTR()
          TPallet()
          TMatriz()
          TReceita()

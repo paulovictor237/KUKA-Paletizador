@@ -1,4 +1,4 @@
 &ACCESS RV2
-DEFDAT TDefault 
+DEFDAT TPadraoSTR 
    INT  I,J,k
 ENDDAT
