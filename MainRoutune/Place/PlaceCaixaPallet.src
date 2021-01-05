@@ -8,9 +8,9 @@ DEF PlaceCaixaPallet()
       PrimeiroPonto = TRUE
    ;ENDFOLD
 
-   ;FOLD SET BaseRelativa
+   ;FOLD SET BaseRelAtual
       $TOOL = TOOL_DATA[1]
-      $BASE = BaseRelativa
+      $BASE = BaseRelAtual
    ;ENDFOLD
 
    ;Altura Z de aproximacao
@@ -18,9 +18,9 @@ DEF PlaceCaixaPallet()
    ;XApp2Place.z = XPlace.z + AlturaCaixa/2
    ;XPlace.z     = XPlace.z
 
-   ;Configura a altura do SobeRelativo
-   XSobeRelativoZ =  XPlace.z + AlturaCaixa + 60
-   ;XSobeRelativoZ =  XApp1Place.Z
+   ;Configura a altura do SobeRelAtual
+   XSobeRelAtualZ =  XPlace.z + AlturaCaixa + 60
+   ;XSobeRelAtualZ =  XApp1Place.Z
    
    REPEAT
       
@@ -33,27 +33,27 @@ DEF PlaceCaixaPallet()
       ;ENDFOLD 
 
       ;FOLD ATUALIZA OFFSET PALLET+PRODUTO
-         BaseRelativa.X = BasePoint.X + OffSetPallet.X + OffsetProduto.X
-         BaseRelativa.Y = BasePoint.Y + OffSetPallet.Y + OffsetProduto.Y
-         BaseRelativa.Z = BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z
-         BaseRelativa.A = BasePoint.A + OffSetPallet.A + OffsetProduto.A
-         BaseRelativa.B = BasePoint.B + OffSetPallet.B + OffsetProduto.B
-         BaseRelativa.C = BasePoint.C + OffSetPallet.C + OffsetProduto.C
+         BaseRelAtual.X = BasePoint.X + OffSetPallet.X + OffsetProduto.X
+         BaseRelAtual.Y = BasePoint.Y + OffSetPallet.Y + OffsetProduto.Y
+         BaseRelAtual.Z = BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z
+         BaseRelAtual.A = BasePoint.A + OffSetPallet.A + OffsetProduto.A
+         BaseRelAtual.B = BasePoint.B + OffSetPallet.B + OffsetProduto.B
+         BaseRelAtual.C = BasePoint.C + OffSetPallet.C + OffsetProduto.C
       ;ENDFOLD
       
       ;FOLD ATUALIZA VARIAVEIS DE SKIP
-         SkipGoHome = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipGoHome
-         SkipSobeRelativo = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipSobeRelativo
+         SkipGoHome = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipGoHome
+         SkipSobeRelAtual = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipSobeRelAtual
       ;ENDFOLD
       
-      ;FOLD ATUALIZA TOPO DINAMICO - DESATIVADO
+      ;FOLD ATUALIZA TOPO DINAMICO - DESAtualDO
          ;->marca o mespo ponto de deposito so que deslocado em Z
          ;AQUI POSSO MARCAR UMA ALTURA PADRAO DEPOIS
          ;XTopoPallet = XApp1Place
          ;XTopoPallet.Z = ALTURATOPO
       ;ENDFOLD
       
-      ;FOLD MOVE XTopoPallet - DESATIVADO
+      ;FOLD MOVE XTopoPallet - DESAtualDO
          ;$BWDSTART = FALSE
          ;PDAT_ACT = PPDAT1
          ;FDAT_ACT = FP1
@@ -63,8 +63,8 @@ DEF PlaceCaixaPallet()
       ;ENDFOLD
 
       ;Configura a altura de saida do Place
-      XSobeRelativo = XPlace
-      XSobeRelativo.Z = XSobeRelativoZ
+      XSobeRelAtual = XPlace
+      XSobeRelAtual.Z = XSobeRelAtualZ
 
       ;FOLD raciocinio do calculo de igualar bases
          ;    ZPick  _      _ ZPlace
@@ -93,8 +93,8 @@ DEF PlaceCaixaPallet()
       ;aqui so verifica se esse ponto possui a altura minima
       ; ZPlace2 = ALTURATOPO - BPlace
       ; IF (ZPlace1 < ZPlace2)
-      IF (PrimeiroPonto == TRUE) AND (XApp1Place.Z<(ALTURATOPO - BaseRelativa.Z)) THEN
-         XApp1Place.Z = ALTURATOPO - BaseRelativa.Z
+      IF (PrimeiroPonto == TRUE) AND (XApp1Place.Z<(ALTURATOPO - BaseRelAtual.Z)) THEN
+         XApp1Place.Z = ALTURATOPO - BaseRelAtual.Z
       ENDIF
       PrimeiroPonto = FALSE
 
@@ -108,7 +108,7 @@ DEF PlaceCaixaPallet()
          LIN  XApp1Place C_DIS C_DIS
       ENDIF
       
-      IF (SkipSobeRelativo == TRUE) THEN
+      IF (SkipSobeRelAtual == TRUE) THEN
          SkipPTP = TRUE
       ENDIF
       
@@ -130,27 +130,27 @@ DEF PlaceCaixaPallet()
          SetCamada()
       ;ENDFOLD
       
-      IF (SkipSobeRelativo == FALSE) THEN
-         ;Se for realizar um sobe relativo para ir para pick de novo
+      IF (SkipSobeRelAtual == FALSE) THEN
+         ;Se for realizar um sobe relAtual para ir para pick de novo
          ;esse ponto tem que casar com o ponto de pick
          ;para isso se verifica se ao menos a altura é a mínima 
          ;IF (SkipGoHome == FALSE) THEN
          ;   SetPlacePos()
-         ;   XSobeRelativo.Z = XApp1Place.Z
-         ;   IF ( XSobeRelativo.Z<(ALTURATOPO - BaseRelativa.Z) ) THEN
-         ;      XSobeRelativo.Z = ALTURATOPO - BaseRelativa.Z
+         ;   XSobeRelAtual.Z = XApp1Place.Z
+         ;   IF ( XSobeRelAtual.Z<(ALTURATOPO - BaseRelAtual.Z) ) THEN
+         ;      XSobeRelAtual.Z = ALTURATOPO - BaseRelAtual.Z
          ;   ENDIF
          ;ENDIF
-         IF (SkipGoHome == FALSE) AND (XSobeRelativo.Z<(ALTURATOPO - BaseRelativa.Z)) THEN
-            XSobeRelativo.Z = ALTURATOPO - BaseRelativa.Z
+         IF (SkipGoHome == FALSE) AND (XSobeRelAtual.Z<(ALTURATOPO - BaseRelAtual.Z)) THEN
+            XSobeRelAtual.Z = ALTURATOPO - BaseRelAtual.Z
          ENDIF
-         LIN  XSobeRelativo 
+         LIN  XSobeRelAtual 
          ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
          ;RelFrame.Z=AlturaCaixa + 100
          ;LIN_REL RelFrame   
       ENDIF
       
-      ;FOLD MOVE XTopoPallet  - DESATIVADO
+      ;FOLD MOVE XTopoPallet  - DESAtualDO
          ;Seta valores de de2osito na saida do deposito
          ;XTopoPallet.X = XPlace.X
          ;XTopoPallet.Y = XPlace.Y 

@@ -1,6 +1,6 @@
 DEF ControleCabecaRede ()
 ;######################################################################
-;Ativa as portas que terao a funcionalidade de Output na cabeca de red
+;Atual as portas que terao a funcionalidade de Output na cabeca de red
 ;Modulo Ethercat Baluff
 ;######################################################################
 

@@ -2,14 +2,14 @@
 &REL 3
 &PARAM EDITMASK = *
 DEF ResetaPallet( )
-   ;precisa saber qual o pallet ativo
-   ;atravez do pallet ativo o programa sabe qual mozaico est� selecionado
+   ;precisa saber qual o pallet Atual
+   ;atravez do pallet Atual o programa sabe qual mozaico est� selecionado
    
    ;FOLD RESETA PALLET
-      ;StrPallet[PalletAtivo].Livre=TRUE
-      ;StrPallet[PalletAtivo].ReceitaAtivo=1
-      StrPallet[PalletAtivo].PlaceAtivo=1
-      StrPallet[PalletAtivo].CamadaAtiva=1
+      ;StrPallet[PalletAtual].Livre=TRUE
+      ;StrPallet[PalletAtual].ReceitaAtual=1
+      StrPallet[PalletAtual].PlaceAtual=1
+      StrPallet[PalletAtual].CamadaAtual=1
    ;ENDFOLD     
    
 END

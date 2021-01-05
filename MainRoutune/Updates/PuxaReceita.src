@@ -2,41 +2,41 @@
 DEF PuxaReceita ( )
    
    ;FOLD STRUC Pallet
-      ReceitaAtivo = StrPallet[PalletAtivo].ReceitaAtivo
-      Livre = StrPallet[PalletAtivo].Livre
-      PlaceAtivo = StrPallet[PalletAtivo].PlaceAtivo
-      CamadaAtiva = StrPallet[PalletAtivo].CamadaAtiva
-      BasePoint = StrPallet[PalletAtivo].BasePoint
-      OffSetPallet = StrPallet[PalletAtivo].OffSetPallet
+      ReceitaAtual = StrPallet[PalletAtual].ReceitaAtual
+      Livre = StrPallet[PalletAtual].Livre
+      PlaceAtual = StrPallet[PalletAtual].PlaceAtual
+      CamadaAtual = StrPallet[PalletAtual].CamadaAtual
+      BasePoint = StrPallet[PalletAtual].BasePoint
+      OffSetPallet = StrPallet[PalletAtual].OffSetPallet
    ;ENDFOLD
    
    ;FOLD STRUC Receita 
-      PlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
-      Camadas = StrReceita[ReceitaAtivo].Camadas
-      AlturaCaixa = StrReceita[ReceitaAtivo].AlturaCaixa
-      Layers = StrReceita[ReceitaAtivo].Layers
-      OffsetProduto = StrReceita[ReceitaAtivo].OffsetProduto      
+      PlacesCamada = StrReceita[ReceitaAtual].PlacesCamada
+      Camadas = StrReceita[ReceitaAtual].Camadas
+      AlturaCaixa = StrReceita[ReceitaAtual].AlturaCaixa
+      Layers = StrReceita[ReceitaAtual].Layers
+      OffsetProduto = StrReceita[ReceitaAtual].OffsetProduto      
       ;por possuir duas Layers por Receita o numero referente ao place
-      ;deve subir em relacao a LayerAtivo
-      LayerAtivo = StrReceitaLayer[ReceitaAtivo,CamadaAtiva]
-      PlaceLayerAtivo = PlaceAtivo + PlacesCamada*(LayerAtivo-1)
+      ;deve subir em relacao a LayerAtual
+      LayerAtual = StrReceitaLayer[ReceitaAtual,CamadaAtual]
+      PlaceLayerAtual = PlaceAtual + PlacesCamada*(LayerAtual-1)
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 
-      IndexacaoHorizontal = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].IndexacaoHorizontal
-      SkipGoHome = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipGoHome
-      SkipSobeRelativo = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipSobeRelativo
-      NumCaixas = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].NumCaixas
-      PickOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].PickOp
-      ConfGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].ConfGarraOp
-      FechaGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].FechaGarraOp
-      AbreGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].AbreGarraOp
-      SensoresCaixa = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SensoresCaixa
-      TravaGarra = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].TravaGarra
-      XApp1Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp1Place
-      XApp2Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp2Place
-      XPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XPlace
-      OffsetPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].OffsetPlace
+      IndexacaoHorizontal = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].IndexacaoHorizontal
+      SkipGoHome = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipGoHome
+      SkipSobeRelAtual = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipSobeRelAtual
+      NumCaixas = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].NumCaixas
+      PickOp = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].PickOp
+      ConfGarraOp = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].ConfGarraOp
+      FechaGarraOp = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].FechaGarraOp
+      AbreGarraOp = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].AbreGarraOp
+      SensoresCaixa = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].SensoresCaixa
+      TravaGarra = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].TravaGarra
+      XApp1Place = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp1Place
+      XApp2Place = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp2Place
+      XPlace = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XPlace
+      OffsetPlace = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].OffsetPlace
    ;ENDFOLD
    
    ;FOLD SetPlacePos

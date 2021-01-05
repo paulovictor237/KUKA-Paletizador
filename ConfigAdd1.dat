@@ -2,7 +2,7 @@
 ;FOLD STRUCT E VARIAVEIS PRINCIPAIS
 
 ;FOLD VARIAVEIS CLP
-;{PalletAtivo}?numero?da esteira que est? com a caixa
+;{PalletAtual}?numero?da esteira que est? com a caixa
 ;{CLPNumCaixas}?numero?de?caixas?para?o?pick
 ;{CLPIndexacaoHorizontal}?TRUE->?Vertical?/?FALSE?->?Horizontal
 INT CLP_NumCaixas=1
@@ -10,9 +10,9 @@ BOOL CLP_IndexacaoHorizontal=FALSE
 ;ENDFOLD
 
 ;FOLD Principais variaveis
-INT PalletAtivo=1
-INT LayerAtivo=1
-INT PlaceLayerAtivo=1
+INT PalletAtual=1
+INT LayerAtual=1
+INT PlaceLayerAtual=1
 ;ENDFOLD
 
 ;FOLD Variaveis de estado
@@ -39,12 +39,12 @@ FRAME BaseEsteira2={X 654.194,Y 1949.21899,Z -106.000,A 0.0,B 0.0,C 0.0}
 ;FOLD STRUC Pallet
 BOOL Livre=FALSE
 BOOL Completo=FALSE
-INT ReceitaAtivo=1
-INT PlaceAtivo=1
-INT CamadaAtiva=1
+INT ReceitaAtual=1
+INT PlaceAtual=1
+INT CamadaAtual=1
 FRAME BasePoint={X -874.430,Y -1399.07397,Z -106.800,A 0.0,B 0.0,C 0.0}
 FRAME OffSetPallet={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
-STRUC DefPallet INT ReceitaAtivo,BOOL Livre,Completo,INT PlaceAtivo,CamadaAtiva,FRAME BasePoint,FRAME OffSetPallet
+STRUC DefPallet INT ReceitaAtual,BOOL Livre,Completo,INT PlaceAtual,CamadaAtual,FRAME BasePoint,FRAME OffSetPallet
 ;ENDFOLD
 
 ;FOLD STRUC Receita
@@ -67,7 +67,7 @@ STRUC DefStrReceita INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetProd
 ;Configuracao de Place
 ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
 ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
-;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
+;-> {SkipSobeRelAtual} Quando TRUE indica que nao deve subir relAtual para cima depois do place
 ;Pontos de Place
 ;-> {XApp1Place} Primeiro ponto de aproximacao de place
 ;-> {XApp2Place} Segundo ponto de aproximacao de place
@@ -75,7 +75,7 @@ STRUC DefStrReceita INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetProd
 
 BOOL IndexacaoHorizontal=FALSE
 BOOL SkipGoHome=FALSE
-BOOL SkipSobeRelativo=FALSE
+BOOL SkipSobeRelAtual=FALSE
 INT NumCaixas=4
 INT PickOp=3
 INT ConfGarraOp=3
@@ -89,7 +89,7 @@ FRAME OffsetPlace={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
 E6POS XApp1Place={X 1022.73303,Y -522.768860,Z 1064.59497,A 180.000,B 0.0,C -180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 E6POS XApp2Place={X 1022.73297,Y -522.768372,Z 964.595,A 180.000,B 0.0,C 180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
 E6POS XPlace={X 1122.73279,Y -522.768616,Z 814.595154,A -180.000,B 0.0,C -180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-STRUC DefMatriz BOOL TravaGarra,IndexacaoHorizontal,SkipGoHome,SkipSobeRelativo,INT SensoresCaixa,NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace,FRAME OffsetPlace
+STRUC DefMatriz BOOL TravaGarra,IndexacaoHorizontal,SkipGoHome,SkipSobeRelAtual,INT SensoresCaixa,NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace,FRAME OffsetPlace
 ;ENDFOLD
 
 ;ENDFOLD

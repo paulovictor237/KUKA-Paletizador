@@ -12,7 +12,7 @@ DEF TPadraoSTR ( )
                MatrizPontos[I,J,k].FechaGarraOp = 0
                MatrizPontos[I,J,k].AbreGarraOp = 0
                MatrizPontos[I,J,k].SkipGoHome = FALSE
-               MatrizPontos[I,J,k].SkipSobeRelativo = FALSE
+               MatrizPontos[I,J,k].SkipSobeRelAtual = FALSE
                MatrizPontos[I,J,k].SensoresCaixa = 123456
                MatrizPontos[I,J,k].TravaGarra = False
                MatrizPontos[I,J,k].XApp1Place = DefaultPoint
@@ -41,9 +41,9 @@ DEF TPadraoSTR ( )
       FOR I = 1 to MaxPallets
          StrPallet[I].Livre = TRUE
          StrPallet[I].Completo = FALSE
-         StrPallet[I].ReceitaAtivo = 1
-         StrPallet[I].PlaceAtivo = 1
-         StrPallet[I].CamadaAtiva = 1
+         StrPallet[I].ReceitaAtual = 1
+         StrPallet[I].PlaceAtual = 1
+         StrPallet[I].CamadaAtual = 1
          StrPallet[I].BasePoint = {x 0,Y 0,Z 0,A 0,B 0,C 0}
          StrPallet[I].OffSetPallet = {x 0,Y 0,Z 0,A 0,B 0,C 0}
       ENDFOR    
@@ -57,12 +57,12 @@ DEF TPadraoSTR ( )
    ;ENDFOLD
    
    ;FOLD Principais variaveis
-      PalletAtivo = 1
-      LayerAtivo = 1
-      PlaceLayerAtivo = 1
-      ReceitaAtivo = 1
-      PlaceAtivo = 1
-      CamadaAtiva = 1
+      PalletAtual = 1
+      LayerAtual = 1
+      PlaceLayerAtual = 1
+      ReceitaAtual = 1
+      PlaceAtual = 1
+      CamadaAtual = 1
    ;ENDFOLD
    
 END

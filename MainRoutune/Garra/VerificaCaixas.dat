@@ -1,6 +1,6 @@
 DEFDAT VerificaCaixas
    BOOL SensorCaixa1=FALSE
-   BOOL SensoresGarraAtivos=FALSE
+   BOOL SensoresGarraAtuals=FALSE
    BOOL FalhaCaixa=FALSE
    INT Numero = 123456
    

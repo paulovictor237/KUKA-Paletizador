@@ -19,38 +19,38 @@ DEF VerificaCaixas( )
       resto  = Dividendo - quociente*divisor;   
       Dividendo = Dividendo/divisor;
       ;SE MANTEM
-      IF (PalletAtivo == 1) THEN
+      IF (PalletAtual == 1) THEN
          ;123456.....
          resto=resto
       ENDIF
       ;INVERTE NUMEROS 1->6 2->5 3->4 ...
-      IF (PalletAtivo == 2) THEN
+      IF (PalletAtual == 2) THEN
          ;654321.....
          resto = (NumSensores - resto + 1)
       ENDIF
       ; SWITCH resto
       ;    CASE 1
-      ;       IF (NOT SensorCaixa1) AND SensoresGarraAtivos THEN
+      ;       IF (NOT SensorCaixa1) AND SensoresGarraAtuals THEN
       ;          FalhaCaixa = TRUE
       ;       ENDIF
       ;    CASE 2
-      ;       IF (NOT SensorCaixa2) AND SensoresGarraAtivos THEN
+      ;       IF (NOT SensorCaixa2) AND SensoresGarraAtuals THEN
       ;          FalhaCaixa = TRUE
       ;       ENDIF
       ;    CASE 3
-      ;       IF (NOT SensorCaixa3) AND SensoresGarraAtivos THEN
+      ;       IF (NOT SensorCaixa3) AND SensoresGarraAtuals THEN
       ;          FalhaCaixa = TRUE
       ;       ENDIF
       ;    CASE 4
-      ;       IF (NOT SensorCaixa4) AND SensoresGarraAtivos THEN
+      ;       IF (NOT SensorCaixa4) AND SensoresGarraAtuals THEN
       ;          FalhaCaixa = TRUE
       ;       ENDIF
       ;    CASE 5
-      ;       IF (NOT SensorCaixa5) AND SensoresGarraAtivos THEN
+      ;       IF (NOT SensorCaixa5) AND SensoresGarraAtuals THEN
       ;          FalhaCaixa = TRUE
       ;       ENDIF
       ;    CASE 6
-      ;       IF (NOT SensorCaixa6) AND SensoresGarraAtivos THEN
+      ;       IF (NOT SensorCaixa6) AND SensoresGarraAtuals THEN
       ;          FalhaCaixa = TRUE
       ;       ENDIF
       ; ENDSWITCH

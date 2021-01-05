@@ -1,23 +1,23 @@
 &ACCESS RVO
 &PARAM EDITMASK = *
 DEF SetPlacePos()
-   AlturaCaixa = StrReceita[ReceitaAtivo].AlturaCaixa
-   OffsetPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].OffsetPlace
+   AlturaCaixa = StrReceita[ReceitaAtual].AlturaCaixa
+   OffsetPlace = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].OffsetPlace
    
    ;Puxa da receita o app1 app2 e place
-   XApp1Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp1Place
-   XApp2Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp2Place
-   XPlace     = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XPlace
+   XApp1Place = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp1Place
+   XApp2Place = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp2Place
+   XPlace     = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XPlace
    
    ;Altura Z de aproximacao
    ;XApp1Place.z = XPlace.z + AlturaCaixa + 60
    ;XApp2Place.z = XPlace.z + AlturaCaixa/2
    ;XPlace.z     = XPlace.z
 
-   ;Altura Z de CamadaAtiva
-   XApp1Place.Z = XApp1Place.Z + (CamadaAtiva-1)*AlturaCaixa
-   XApp2Place.Z = XApp2Place.Z + (CamadaAtiva-1)*AlturaCaixa
-   XPlace.Z=XPlace.Z + (CamadaAtiva-1)*AlturaCaixa
+   ;Altura Z de CamadaAtual
+   XApp1Place.Z = XApp1Place.Z + (CamadaAtual-1)*AlturaCaixa
+   XApp2Place.Z = XApp2Place.Z + (CamadaAtual-1)*AlturaCaixa
+   XPlace.Z=XPlace.Z + (CamadaAtual-1)*AlturaCaixa
    
    ;FOLD OffsetPlace
       XApp1Place.X = XApp1Place.X + OffsetPlace.X

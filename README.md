@@ -44,10 +44,10 @@ int AbreGarraOp = 1;
 bool SkipGoHome = false;
 ```
 
-{SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
+{SkipSobeRelAtual} Quando TRUE indica que nao deve subir relAtual para cima depois do place
 
 ```c++
-bool SkipSobeRelativo = false;
+bool SkipSobeRelAtual = false;
 ```
 
 ### Cabecalho Pontos
