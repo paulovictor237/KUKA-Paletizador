@@ -2,41 +2,41 @@
 DEF PuxaReceita ( )
    
    ;FOLD STRUC Pallet
-      ReceitaAtual = StrPallet[PalletAtual].ReceitaAtual
-      Livre = StrPallet[PalletAtual].Livre
-      PlaceAtual = StrPallet[PalletAtual].PlaceAtual
-      CamadaAtual = StrPallet[PalletAtual].CamadaAtual
-      BasePoint = StrPallet[PalletAtual].BasePoint
-      OffSetPallet = StrPallet[PalletAtual].OffSetPallet
+      ReceitaAtual = Pallet_STR[PalletAtual].ReceitaAtual
+      Livre = Pallet_STR[PalletAtual].Livre
+      PlaceAtual = Pallet_STR[PalletAtual].PlaceAtual
+      CamadaAtual = Pallet_STR[PalletAtual].CamadaAtual
+      BasePoint = Pallet_STR[PalletAtual].BasePoint
+      OffSetPallet = Pallet_STR[PalletAtual].OffSetPallet
    ;ENDFOLD
    
    ;FOLD STRUC Receita 
-      PlacesCamada = StrReceita[ReceitaAtual].PlacesCamada
-      Camadas = StrReceita[ReceitaAtual].Camadas
-      AlturaCaixa = StrReceita[ReceitaAtual].AlturaCaixa
-      Layers = StrReceita[ReceitaAtual].Layers
-      OffsetProduto = StrReceita[ReceitaAtual].OffsetProduto      
+      PlacesCamada = Receita_STR[ReceitaAtual].PlacesCamada
+      Camadas = Receita_STR[ReceitaAtual].Camadas
+      AlturaCaixa = Receita_STR[ReceitaAtual].AlturaCaixa
+      Layers = Receita_STR[ReceitaAtual].Layers
+      OffsetProduto = Receita_STR[ReceitaAtual].OffsetProduto      
       ;por possuir duas Layers por Receita o numero referente ao place
       ;deve subir em relacao a LayerAtual
-      LayerAtual = StrReceitaLayer[ReceitaAtual,CamadaAtual]
+      LayerAtual = Receita_STR_Layer[ReceitaAtual,CamadaAtual]
       PlaceLayerAtual = PlaceAtual + PlacesCamada*(LayerAtual-1)
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 
-      IndexacaoHorizontal = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].IndexacaoHorizontal
-      SkipGoHome = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipGoHome
-      SkipSobeRelAtual = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipSobeRelAtual
-      NumCaixas = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].NumCaixas
-      PickOp = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].PickOp
-      ConfGarraOp = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].ConfGarraOp
-      FechaGarraOp = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].FechaGarraOp
-      AbreGarraOp = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].AbreGarraOp
-      SensoresCaixa = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].SensoresCaixa
-      TravaGarra = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].TravaGarra
-      XApp1Place = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp1Place
-      XApp2Place = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp2Place
-      XPlace = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XPlace
-      OffsetPlace = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].OffsetPlace
+      IndexacaoHorizontal = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].IndexacaoHorizontal
+      SkipGoHome = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipGoHome
+      SkipSobeRelAtual = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipSobeRelAtual
+      NumCaixas = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].NumCaixas
+      PickOp = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].PickOp
+      ConfGarraOp = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].ConfGarraOp
+      FechaGarraOp = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].FechaGarraOp
+      AbreGarraOp = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].AbreGarraOp
+      SensoresCaixa = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SensoresCaixa
+      TravaGarra = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].TravaGarra
+      XApp1Place = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp1Place
+      XApp2Place = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp2Place
+      XPlace = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XPlace
+      OffsetPlace = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].OffsetPlace
    ;ENDFOLD
    
    ;FOLD SetPlacePos

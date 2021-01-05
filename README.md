@@ -1,4 +1,4 @@
-# FOLD STRUC MatrizPontos
+# FOLD STRUC Ponto_STR
 ### Cabecalho Pick
 
 {IndexacaoHorizontal} FALSE-> Vertical / TRUE -> Horizontal
@@ -72,12 +72,12 @@ E6POS XPlace;
 
 ## Criar Struct 
 
-MatrizPontos[MOZAICOS,PONTOS]
+Ponto_STR[MOZAICOS,PONTOS]
 
 ```c++
 const int MaxMatrizI = 8
 const int MaxMatrizJ = 15  
-DECL GLOBAL Matriz MatrizPontos[8,15];
+DECL GLOBAL Matriz Ponto_STR[8,15];
 ```
 
 # ENDFOLD

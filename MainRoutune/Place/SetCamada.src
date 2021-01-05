@@ -8,14 +8,14 @@ DEF SetCamada( )
    ;atravez do pallet Atual o programa sabe qual mozaico est� selecionado
    ;FOLD VERIFICA CAIXA E CAMADA
       ;->apos colocar a caixa deve acrescentar + 1 em
-      StrPallet[PalletAtual].PlaceAtual = StrPallet[PalletAtual].PlaceAtual + 1
+      Pallet_STR[PalletAtual].PlaceAtual = Pallet_STR[PalletAtual].PlaceAtual + 1
       ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
-      IF StrPallet[PalletAtual].PlaceAtual > StrReceita[ReceitaAtual].PlacesCamada THEN
-         StrPallet[PalletAtual].PlaceAtual=1 ;verificar aqui se deve comecar com 1 ou 0
-         StrPallet[PalletAtual].CamadaAtual=StrPallet[PalletAtual].CamadaAtual + 1
+      IF Pallet_STR[PalletAtual].PlaceAtual > Receita_STR[ReceitaAtual].PlacesCamada THEN
+         Pallet_STR[PalletAtual].PlaceAtual=1 ;verificar aqui se deve comecar com 1 ou 0
+         Pallet_STR[PalletAtual].CamadaAtual=Pallet_STR[PalletAtual].CamadaAtual + 1
       ENDIF
       ;->se a qtd de camadas do pallet for acima da qtd do mozaico
-      IF StrPallet[PalletAtual].CamadaAtual > StrReceita[ReceitaAtual].Camadas THEN
+      IF Pallet_STR[PalletAtual].CamadaAtual > Receita_STR[ReceitaAtual].Camadas THEN
          ;Envia alerta de Pallet concluido
          PalletCompleto=TRUE
          ;seta essa altura com relacao a altura de pick

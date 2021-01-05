@@ -74,12 +74,12 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
          PalletAtual=1 ; TESTE
          ReceitaAtual=Prdt_9Aero ; TESTE
          ;ReceitaAtual=Prdt_19KitKat
-         StrPallet[PalletAtual].Livre=TRUE ; TESTE
+         Pallet_STR[PalletAtual].Livre=TRUE ; TESTE
          ; ->verificar se ja possui produto no pallet
          ; ->se nao tiver escrever um produto
-         IF StrPallet[PalletAtual].Livre == TRUE THEN
-            StrPallet[PalletAtual].Livre=FALSE
-            StrPallet[PalletAtual].ReceitaAtual=ReceitaAtual
+         IF Pallet_STR[PalletAtual].Livre == TRUE THEN
+            Pallet_STR[PalletAtual].Livre=FALSE
+            Pallet_STR[PalletAtual].ReceitaAtual=ReceitaAtual
          ENDIF
          PuxaReceita()
          ;RotinaCLP()

@@ -10,8 +10,8 @@ DEF TPallet()
     ;ENDFOLD
 
     ;FOLD Iniciar Opcoes de Pallet
-       StrPallet[1].BasePoint=BASE_DATA[1]
-       StrPallet[2].BasePoint=BASE_DATA[2]
+       Pallet_STR[1].BasePoint=BASE_DATA[1]
+       Pallet_STR[2].BasePoint=BASE_DATA[2]
     ;ENDFOLD
 
     ;FOLD Iniciar Opcoes de Esteira
@@ -20,19 +20,19 @@ DEF TPallet()
     ;ENDFOLD
 
     ;FOLD OffSetPallet
-       StrPallet[1].OffSetPallet.X=0
-       StrPallet[1].OffSetPallet.Y=0
-       StrPallet[1].OffSetPallet.Z=0
-       StrPallet[1].OffSetPallet.A=0
-       StrPallet[1].OffSetPallet.B=0
-       StrPallet[1].OffSetPallet.C=0
+       Pallet_STR[1].OffSetPallet.X=0
+       Pallet_STR[1].OffSetPallet.Y=0
+       Pallet_STR[1].OffSetPallet.Z=0
+       Pallet_STR[1].OffSetPallet.A=0
+       Pallet_STR[1].OffSetPallet.B=0
+       Pallet_STR[1].OffSetPallet.C=0
 
-       StrPallet[2].OffSetPallet.X=0
-       StrPallet[2].OffSetPallet.Y=0
-       StrPallet[2].OffSetPallet.Z=0
-       StrPallet[2].OffSetPallet.A=0
-       StrPallet[2].OffSetPallet.B=0
-       StrPallet[2].OffSetPallet.C=0
+       Pallet_STR[2].OffSetPallet.X=0
+       Pallet_STR[2].OffSetPallet.Y=0
+       Pallet_STR[2].OffSetPallet.Z=0
+       Pallet_STR[2].OffSetPallet.A=0
+       Pallet_STR[2].OffSetPallet.B=0
+       Pallet_STR[2].OffSetPallet.C=0
 
     ;ENDFOLD
 

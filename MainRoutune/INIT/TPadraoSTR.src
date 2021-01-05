@@ -5,20 +5,20 @@ DEF TPadraoSTR ( )
       FOR I = 1 to MaxMatrizI
          FOR J = 1 to MaxMatrizJ
             FOR k = 1 to MaxMatrizK
-               MatrizPontos[I,J,k].IndexacaoHorizontal = FALSE
-               MatrizPontos[I,J,k].NumCaixas = 0
-               MatrizPontos[I,J,k].PickOp = 0
-               MatrizPontos[I,J,k].ConfGarraOp = 0
-               MatrizPontos[I,J,k].FechaGarraOp = 0
-               MatrizPontos[I,J,k].AbreGarraOp = 0
-               MatrizPontos[I,J,k].SkipGoHome = FALSE
-               MatrizPontos[I,J,k].SkipSobeRelAtual = FALSE
-               MatrizPontos[I,J,k].SensoresCaixa = 123456
-               MatrizPontos[I,J,k].TravaGarra = False
-               MatrizPontos[I,J,k].XApp1Place = DefaultPoint
-               MatrizPontos[I,J,k].XApp2Place = DefaultPoint
-               MatrizPontos[I,J,k].XPlace = DefaultPoint
-               MatrizPontos[I,J,k].OffsetPlace = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+               Ponto_STR[I,J,k].IndexacaoHorizontal = FALSE
+               Ponto_STR[I,J,k].NumCaixas = 0
+               Ponto_STR[I,J,k].PickOp = 0
+               Ponto_STR[I,J,k].ConfGarraOp = 0
+               Ponto_STR[I,J,k].FechaGarraOp = 0
+               Ponto_STR[I,J,k].AbreGarraOp = 0
+               Ponto_STR[I,J,k].SkipGoHome = FALSE
+               Ponto_STR[I,J,k].SkipSobeRelAtual = FALSE
+               Ponto_STR[I,J,k].SensoresCaixa = 123456
+               Ponto_STR[I,J,k].TravaGarra = False
+               Ponto_STR[I,J,k].XApp1Place = DefaultPoint
+               Ponto_STR[I,J,k].XApp2Place = DefaultPoint
+               Ponto_STR[I,J,k].XPlace = DefaultPoint
+               Ponto_STR[I,J,k].OffsetPlace = {x 0,Y 0,Z 0,A 0,B 0,C 0}
             ENDFOR
          ENDFOR   
       ENDFOR 
@@ -26,26 +26,26 @@ DEF TPadraoSTR ( )
    
    ;FOLD Variaveis Default Receita
       FOR I = 1 to MaxReceitas
-         StrReceita[I].PlacesCamada = 1
-         StrReceita[I].Camadas = 1
-         StrReceita[I].AlturaCaixa = 1
-         StrReceita[I].Layers = 1
-         StrReceita[I].OffsetProduto = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+         Receita_STR[I].PlacesCamada = 1
+         Receita_STR[I].Camadas = 1
+         Receita_STR[I].AlturaCaixa = 1
+         Receita_STR[I].Layers = 1
+         Receita_STR[I].OffsetProduto = {x 0,Y 0,Z 0,A 0,B 0,C 0}
          FOR J = 1 to MaxCamadas
-            StrReceitaLayer[I,J] = 1
+            Receita_STR_Layer[I,J] = 1
          ENDFOR
       ENDFOR    
    ;ENDFOLD
    
    ;FOLD Variaveis Default Pallet
       FOR I = 1 to MaxPallets
-         StrPallet[I].Livre = TRUE
-         StrPallet[I].Completo = FALSE
-         StrPallet[I].ReceitaAtual = 1
-         StrPallet[I].PlaceAtual = 1
-         StrPallet[I].CamadaAtual = 1
-         StrPallet[I].BasePoint = {x 0,Y 0,Z 0,A 0,B 0,C 0}
-         StrPallet[I].OffSetPallet = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+         Pallet_STR[I].Livre = TRUE
+         Pallet_STR[I].Completo = FALSE
+         Pallet_STR[I].ReceitaAtual = 1
+         Pallet_STR[I].PlaceAtual = 1
+         Pallet_STR[I].CamadaAtual = 1
+         Pallet_STR[I].BasePoint = {x 0,Y 0,Z 0,A 0,B 0,C 0}
+         Pallet_STR[I].OffSetPallet = {x 0,Y 0,Z 0,A 0,B 0,C 0}
       ENDFOR    
    ;ENDFOLD  
    

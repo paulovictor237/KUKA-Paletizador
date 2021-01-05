@@ -1,13 +1,13 @@
 &ACCESS RVO
 &PARAM EDITMASK = *
 DEF SetPlacePos()
-   AlturaCaixa = StrReceita[ReceitaAtual].AlturaCaixa
-   OffsetPlace = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].OffsetPlace
+   AlturaCaixa = Receita_STR[ReceitaAtual].AlturaCaixa
+   OffsetPlace = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].OffsetPlace
    
    ;Puxa da receita o app1 app2 e place
-   XApp1Place = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp1Place
-   XApp2Place = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp2Place
-   XPlace     = MatrizPontos[PalletAtual,ReceitaAtual,PlaceLayerAtual].XPlace
+   XApp1Place = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp1Place
+   XApp2Place = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp2Place
+   XPlace     = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XPlace
    
    ;Altura Z de aproximacao
    ;XApp1Place.z = XPlace.z + AlturaCaixa + 60
