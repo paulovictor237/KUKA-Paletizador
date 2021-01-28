@@ -1,18 +1,9 @@
 ;FOLD Padrao Paletizacao
 ;FOLD STRUCT E VARIAVEIS PRINCIPAIS
 
-;FOLD VARIAVEIS CLP
-;{PalletAtual}?numero?da esteira que est? com a caixa
-;{CLPNumCaixas}?numero?de?caixas?para?o?pick
-;{CLPIndexacaoHorizontal}?TRUE->?Vertical?/?FALSE?->?Horizontal
-INT CLP_NumCaixas=1
-BOOL CLP_IndexacaoHorizontal=FALSE
-;ENDFOLD
-
-;FOLD Principais variaveis
-INT PalletAtual=1
-INT LayerAtual=1
-INT PlaceLayerAtual=1
+;FOLD Esteira e Pick
+CONST E6POS DefaultPoint={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0,S 0,T 0,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
+CONST FRAME NULLFRAME={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
 ;ENDFOLD
 
 ;FOLD Variaveis de estado
@@ -26,14 +17,25 @@ BOOL PalletCompleto=FALSE
 ;ENDFOLD
 
 ;FOLD Esteira e Pick
-CONST E6POS DefaultPoint={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0,S 0,T 0,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-CONST FRAME NULLFRAME={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+FRAME OffsetEsteira1
+FRAME OffsetEsteira2
 
-FRAME OffsetEsteira1={X 0.0,Y 0.0,Z 50.0000,A 0.0,B 0.0,C 0.0}
-FRAME OffsetEsteira2={X 0.0,Y 0.0,Z 50.0000,A 0.0,B 0.0,C 0.0}
+FRAME BaseEsteira1
+FRAME BaseEsteira2
+;ENDFOLD
 
-FRAME BaseEsteira1={X 648.495,Y -1967.36694,Z -106.000,A 0.0,B 0.0,C 0.0}
-FRAME BaseEsteira2={X 654.194,Y 1949.21899,Z -106.000,A 0.0,B 0.0,C 0.0}
+;FOLD VARIAVEIS CLP
+;{PalletAtual}?numero?da esteira que est? com a caixa
+;{CLPNumCaixas}?numero?de?caixas?para?o?pick
+;{CLPIndexacaoHorizontal}?TRUE->?Vertical?/?FALSE?->?Horizontal
+INT CLP_NumCaixas
+BOOL CLP_IndexacaoHorizontal
+;ENDFOLD
+
+;FOLD Principais variaveis
+INT PalletAtual
+INT LayerAtual
+INT PlaceLayerAtual
 ;ENDFOLD
 
 ;FOLD STRUC Pallet
@@ -42,17 +44,17 @@ BOOL Completo=FALSE
 INT ReceitaAtual=1
 INT PlaceAtual=1
 INT CamadaAtual=1
-FRAME BasePoint={X -874.430,Y -1399.07397,Z -106.800,A 0.0,B 0.0,C 0.0}
-FRAME OffSetPallet={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+FRAME BasePoint
+FRAME OffSetPallet
 STRUC DefPallet INT ReceitaAtual,BOOL Livre,Completo,INT PlaceAtual,CamadaAtual,FRAME BasePoint,FRAME OffSetPallet
 ;ENDFOLD
 
 ;FOLD STRUC Receita
-INT PlacesCamada=2
-INT Camadas=6
-INT AlturaCaixa=191
-INT Layers=1
-FRAME OffsetProduto={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+INT PlacesCamada
+INT Camadas
+INT AlturaCaixa
+INT Layers
+FRAME OffsetProduto
 STRUC DefReceita_STR INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetProduto
 ;ENDFOLD
 
@@ -73,22 +75,22 @@ STRUC DefReceita_STR INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetPro
 ;-> {XApp2Place} Segundo ponto de aproximacao de place
 ;-> {XPlace} Ponto de place
 
-BOOL IndexacaoHorizontal=FALSE
-BOOL SkipGoHome=FALSE
-BOOL SkipSobeRelAtual=FALSE
-INT NumCaixas=4
-INT PickOp=3
-INT ConfGarraOp=3
-INT FechaGarraOp=0
-INT AbreGarraOp=0
+BOOL IndexacaoHorizontal
+BOOL SkipGoHome
+BOOL SkipSobeRelAtual
+INT NumCaixas
+INT PickOp
+INT ConfGarraOp
+INT FechaGarraOp
+INT AbreGarraOp
 
-INT SensoresCaixa=123456
-BOOL TravaGarra=FALSE
-FRAME OffsetPlace={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+INT SensoresCaixa
+BOOL TravaGarra
+FRAME OffsetPlace
 
-E6POS XApp1Place={X 1022.73303,Y -522.768860,Z 1064.59497,A 180.000,B 0.0,C -180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS XApp2Place={X 1022.73297,Y -522.768372,Z 964.595,A 180.000,B 0.0,C 180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
-E6POS XPlace={X 1122.73279,Y -522.768616,Z 814.595154,A -180.000,B 0.0,C -180.000,S 2,T 2,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
+E6POS XApp1Place
+E6POS XApp2Place
+E6POS XPlace
 STRUC DefMatriz BOOL TravaGarra,IndexacaoHorizontal,SkipGoHome,SkipSobeRelAtual,INT SensoresCaixa,NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace,FRAME OffsetPlace
 ;ENDFOLD
 

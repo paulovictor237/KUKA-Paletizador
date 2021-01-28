@@ -1,6 +1,6 @@
 &ACCESS RV2
 DEF TPadraoSTR ( )
-   
+   INT  I,J,k
    ;FOLD Variaveis Default da Matriz de Pontos
       FOR I = 1 to MaxMatrizI
          FOR J = 1 to MaxMatrizJ

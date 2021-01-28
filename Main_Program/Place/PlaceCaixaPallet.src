@@ -8,11 +8,6 @@ DEF PlaceCaixaPallet()
       PrimeiroPonto = TRUE
    ;ENDFOLD
 
-   ;FOLD SET BaseRelAtual
-      $TOOL = TOOL_DATA[1]
-      $BASE = BaseRelAtual
-   ;ENDFOLD
-
    ;Altura Z de aproximacao
    ;XApp1Place.z = XPlace.z + AlturaCaixa + 60
    ;XApp2Place.z = XPlace.z + AlturaCaixa/2
@@ -97,6 +92,11 @@ DEF PlaceCaixaPallet()
          XApp1Place.Z = ALTURATOPO - BaseRelAtual.Z
       ENDIF
       PrimeiroPonto = FALSE
+
+      ;FOLD SET BaseRelAtual
+         $TOOL = TOOL_DATA[1]
+         $BASE = BaseRelAtual
+      ;ENDFOLD
 
       ;TRES PONTOS DE DEPOSITO
       ;XApp1Place DIRETO com movimento PTP         
