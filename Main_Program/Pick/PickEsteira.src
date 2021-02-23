@@ -1,0 +1,133 @@
+&ACCESS RVO1
+&REL 95
+&PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Pick
+DEF PickEsteira ( )
+   PuxaReceita()
+   $Advance=3   
+   ConfGarra_nowait()
+   
+   ;FOLD verifica qual opcao de base para a esteira
+      SWITCH PalletAtual
+         CASE 1
+            BaseRelAtual.X = BaseEsteira1.X + OffsetEsteira1.X
+            BaseRelAtual.Y = BaseEsteira1.Y + OffsetEsteira1.Y
+            BaseRelAtual.Z = BaseEsteira1.Z + OffsetEsteira1.Z
+            BaseRelAtual.A = BaseEsteira1.A + OffsetEsteira1.A
+            BaseRelAtual.B = BaseEsteira1.B + OffsetEsteira1.B
+            BaseRelAtual.C = BaseEsteira1.C + OffsetEsteira1.C
+         CASE 2
+            BaseRelAtual.X = BaseEsteira2.X + OffsetEsteira2.X
+            BaseRelAtual.Y = BaseEsteira2.Y + OffsetEsteira2.Y
+            BaseRelAtual.Z = BaseEsteira2.Z + OffsetEsteira2.Z
+            BaseRelAtual.A = BaseEsteira2.A + OffsetEsteira2.A
+            BaseRelAtual.B = BaseEsteira2.B + OffsetEsteira2.B
+            BaseRelAtual.C = BaseEsteira2.C + OffsetEsteira2.C
+         DEFAULT
+            BaseRelAtual = NULLFRAME
+      ENDSWITCH
+   ;ENDFOLD
+
+   ;FOLD PickEsteira de cada receita
+      Tpick_esteira()
+      XPICK = pick_esteira[PalletAtual,PickOp]
+   ;ENDFOLD
+   
+   ;SET BaseRelAtual
+   $TOOL = TOOL_DATA[1]
+   $BASE=BaseRelAtual
+
+   ;SET Ponto de pick
+   XAPP1PICK = XPICK
+   XAPP2PICK = XPICK
+   XSAIPICK  = XPICK
+   
+   ;Captura o Y da esteira para o ponto de aproximacao
+   ;IF (PalletAtual==1) THEN
+   ;   XAPP1PICK.Y = XAPP1PICK.Y - 50
+   ;   XAPP2PICK.Y = XAPP2PICK.Y - 50
+   ;ENDIF
+   
+   ;IF (PalletAtual==2) THEN
+   ;   XAPP1PICK.Y = XAPP1PICK.Y + 50
+   ;   XAPP2PICK.Y = XAPP2PICK.Y + 50
+   ;ENDIF
+
+   ;FOLD raciocinio do calculo de igualar bases
+      ;    ZPick  _      _ ZPlace
+      ;           |      |
+      ;           |      |
+      ;           |      |
+      ;           |      - BPlace
+      ;           |      |
+      ;    BPick  -      |
+      ;           |      |
+      ;           |      |
+      ;             ZERO
+
+      ;ZPick  + BPick  = ZPlace + BPlace 
+
+      ;ZPick  = ZPlace + BPlace - BPick
+      ;ZPlace = ZPick  + BPick  - BPlace
+
+      ;ALTURATOPO=1800
+      ;ZPick  = ALTURATOPO - BPick
+      ;ZPlace = ALTURATOPO - BPlace
+   ;ENDFOLD
+
+   ;FOLD TOPO DINAMICO IGUALANDO A BASE PLACE COM A DO PICK
+      ;Puxa qual o ponto que sera feito o Place
+      SetPlacePos()
+      ;iguala as bases para obter o Z relAtual
+      ;ZPick      = ZPlace       +  BPlace                                          - BPick
+      XAPP1PICK.Z = XApp1Place.Z + (BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z) - BaseRelAtual.Z
+
+      ;Configura a altura de saida do pick
+      XSAIPICK.Z = XAPP1PICK.Z
+
+      ;Se o pallet estiver completo o pick eh forcado com a altura MAX
+      IF (PalletCompleto==TRUE) THEN
+         XAPP1PICK.Z = AlturaPalletCompleto - BaseRelAtual.Z
+         PalletCompleto=FALSE
+      ENDIF
+
+      ;Por seguranca deve garantir que sempre sera acima da altura minima
+      ; ZPick2 = ALTURATOPO - BPick
+      ; IF (ZPick1 < ZPick2)
+      IF (XAPP1PICK.Z<(ALTURATOPO - BaseRelAtual.Z)) THEN
+         XAPP1PICK.Z = ALTURATOPO - BaseRelAtual.Z
+      ENDIF
+      ;Por seguranca deve garantir que sempre sera acima da altura minima
+      IF (XSAIPICK.Z<(ALTURATOPO - BaseRelAtual.Z)) THEN
+         XSAIPICK.Z  = ALTURATOPO - BaseRelAtual.Z
+      ENDIF
+   ;ENDFOLD   
+   
+   ;APROXIMA TOPO
+   PTP XAPP1PICK C_DIS   
+   
+   ;CONFIGURA GARRA
+   ;ConfGarra()
+   ConfGarra_Wait()
+   
+   ;APROXIMA DA CAIXA
+   LIN XAPP2PICK C_DIS C_DIS
+   
+   ;PONTO DE PICK
+   LIN XPICK
+   
+   ;Fecha Garra  
+   FechaGarra()
+
+   ;TRAVA/FREIA GARRA    
+   IF (TravaGarra) THEN
+      HomePositionBrake = TRUE
+      WorkPositionBrake = FALSE
+   ELSE
+      HomePositionBrake = FALSE
+      WorkPositionBrake = TRUE
+   ENDIF
+   
+   ;SOBE EM MOVIMENTO RELAtual
+   LIN XSAIPICK
+   
+END

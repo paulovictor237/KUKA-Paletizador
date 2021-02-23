@@ -1,10 +1,10 @@
-# FOLD STRUC MatrizPontos
+# FOLD STRUC Ponto_STR
 ### Cabecalho Pick
 
-{IndexacaoVH} FALSE-> Vertical / TRUE -> Horizontal
+{IndexacaoHorizontal} FALSE-> Vertical / TRUE -> Horizontal
 
 ```c++
-bool IndexacaoVH = false;
+bool IndexacaoHorizontal = false;
 ```
 {NumCaixas} numero de caixas para o pick (1,2,3,4,5...)
 
@@ -44,10 +44,10 @@ int AbreGarraOp = 1;
 bool SkipGoHome = false;
 ```
 
-{SkipSobeRelativo} Quando TRUE indica que nao deve subir relativo para cima depois do place
+{SkipSobeRelAtual} Quando TRUE indica que nao deve subir relAtual para cima depois do place
 
 ```c++
-bool SkipSobeRelativo = false;
+bool SkipSobeRelAtual = false;
 ```
 
 ### Cabecalho Pontos
@@ -72,12 +72,12 @@ E6POS XPlace;
 
 ## Criar Struct 
 
-MatrizPontos[MOZAICOS,PONTOS]
+Ponto_STR[MOZAICOS,PONTOS]
 
 ```c++
 const int MaxMatrizI = 8
 const int MaxMatrizJ = 15  
-DECL GLOBAL Matriz MatrizPontos[8,15];
+DECL GLOBAL Matriz Ponto_STR[8,15];
 ```
 
 # ENDFOLD

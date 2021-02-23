@@ -1,0 +1,28 @@
+&ACCESS RVO3
+&REL 3
+&PARAM EDITMASK = *
+DEF SetCamada( )
+   ;para evitar que a garra dessa na hora do pick com o pallet concluido
+   PalletCompleto=FALSE
+   ;precisa saber qual o pallet Atual
+   ;atravez do pallet Atual o programa sabe qual mozaico est� selecionado
+   ;FOLD VERIFICA CAIXA E CAMADA
+      ;->apos colocar a caixa deve acrescentar + 1 em
+      Pallet_STR[PalletAtual].PlaceAtual = Pallet_STR[PalletAtual].PlaceAtual + 1
+      ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
+      IF Pallet_STR[PalletAtual].PlaceAtual > Receita_STR[ReceitaAtual].PlacesCamada THEN
+         Pallet_STR[PalletAtual].PlaceAtual=1 ;verificar aqui se deve comecar com 1 ou 0
+         Pallet_STR[PalletAtual].CamadaAtual=Pallet_STR[PalletAtual].CamadaAtual + 1
+      ENDIF
+      ;->se a qtd de camadas do pallet for acima da qtd do mozaico
+      IF Pallet_STR[PalletAtual].CamadaAtual > Receita_STR[ReceitaAtual].Camadas THEN
+         ;Envia alerta de Pallet concluido
+         PalletCompleto=TRUE
+         ;seta essa altura com relacao a altura de pick
+         ;ZPick               = ZPlace       +  BPlace         - BPick
+         AlturaPalletCompleto = XApp1Place.Z + (BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z)
+         ResetaPallet()
+      ENDIF
+   ;ENDFOLD     
+   
+END

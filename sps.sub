@@ -168,10 +168,10 @@ endif
       if Force_PickEsteira2 then
          Esteira=2
       else
-      if (Esteira==1) and (not (PickReady_Est1 or DryRun_Est1)) and (PickReady_Est2 or DryRun_Est2) or StrPallet[Pallet_1].Completo then
+      if (Esteira==1) and (not (PickReady_Est1 or DryRun_Est1)) and (PickReady_Est2 or DryRun_Est2) or Pallet_STR[Pallet_1].Completo then
          Esteira=2
       else
-      if (Esteira==2) and (not (PickReady_Est2 or DryRun_Est2)) and (PickReady_Est1 or DryRun_Est1) or StrPallet[Pallet_2].Completo then
+      if (Esteira==2) and (not (PickReady_Est2 or DryRun_Est2)) and (PickReady_Est1 or DryRun_Est1) or Pallet_STR[Pallet_2].Completo then
          Esteira=1
       endif
       endif
@@ -182,7 +182,7 @@ endif
 
 ;FOLD Controle Palete1 Completo
       
-      if StrPallet[Pallet_1].Completo or Force_Palete1Completo then
+      if Pallet_STR[Pallet_1].Completo or Force_Palete1Completo then
          Palete1_Completo = true
       endif
       
@@ -206,7 +206,7 @@ endif
             
             if not Palete1_Posicionado then               
                Palete1_Posicionado_ACK = false                             
-               StrPallet[Pallet_1].Completo = false
+               Pallet_STR[Pallet_1].Completo = false
                Palete1_Completo = false
                Estado_Palete1 = 0
             endif
@@ -217,7 +217,7 @@ endif
 
 ;FOLD Controle Palete2 Completo
    
-      if StrPallet[Pallet_2].Completo or Force_Palete2Completo then
+      if Pallet_STR[Pallet_2].Completo or Force_Palete2Completo then
          Palete2_Completo = true
       endif
       
@@ -241,7 +241,7 @@ endif
             
             if not Palete1_Posicionado then               
                Palete1_Posicionado_ACK = false                             
-               StrPallet[Pallet_1].Completo = false
+               Pallet_STR[Pallet_1].Completo = false
                Palete1_Completo = false
                Estado_Palete1 = 0
             endif
@@ -296,24 +296,24 @@ END
 def ATT_VARIABLES_FROM_CLP()
 
    ;Obtem Informacoes de Receita
-   ;StrPallet[1].Livre = FALSE
-   ;StrPallet[1].ReceitaAtivo = Mosaico_Est1
-   ;StrPallet[1].CamadaAtiva = Camada_P1 ;TODO: Bloquear quando o programa do robo estiver rodando
-   StrPallet[1].OffSetPallet.X=OffsetPallete_dx_1
-   StrPallet[1].OffSetPallet.Y=OffsetPallete_dy_1
-   StrPallet[1].OffSetPallet.Z=OffsetPallete_dz_1
-   StrPallet[1].OffSetPallet.A=OffsetPallete_dA_1/1000
-   StrPallet[1].OffSetPallet.B=0
-   StrPallet[1].OffSetPallet.C=0
+   ;Pallet_STR[1].Livre = FALSE
+   ;Pallet_STR[1].ReceitaAtual = Mosaico_Est1
+   ;Pallet_STR[1].CamadaAtual = Camada_P1 ;TODO: Bloquear quando o programa do robo estiver rodando
+   Pallet_STR[1].OffSetPallet.X=OffsetPallete_dx_1
+   Pallet_STR[1].OffSetPallet.Y=OffsetPallete_dy_1
+   Pallet_STR[1].OffSetPallet.Z=OffsetPallete_dz_1
+   Pallet_STR[1].OffSetPallet.A=OffsetPallete_dA_1/1000
+   Pallet_STR[1].OffSetPallet.B=0
+   Pallet_STR[1].OffSetPallet.C=0
 
    
-   StrReceita[StrPallet[1].ReceitaAtivo].OffsetProduto.X = OffsetMosaico_dx_1
-   StrReceita[StrPallet[1].ReceitaAtivo].OffsetProduto.Y = OffsetMosaico_dy_1
-   StrReceita[StrPallet[1].ReceitaAtivo].OffsetProduto.Z = OffsetMosaico_dz_1
-   StrReceita[StrPallet[1].ReceitaAtivo].OffsetProduto.A = OffsetMosaico_dA_1/1000
-   ;StrReceita[StrPallet[1].ReceitaAtivo].AlturaCaixa =  Altura_Caixa_1
-   ;StrReceita[StrPallet[1].ReceitaAtivo].Camadas = NumPlacesCamada_1
-   ;StrReceita[StrPallet[1].ReceitaAtivo].PlacesCamada= NumCamadas_1
+   Receita_STR[Pallet_STR[1].ReceitaAtual].OffsetProduto.X = OffsetMosaico_dx_1
+   Receita_STR[Pallet_STR[1].ReceitaAtual].OffsetProduto.Y = OffsetMosaico_dy_1
+   Receita_STR[Pallet_STR[1].ReceitaAtual].OffsetProduto.Z = OffsetMosaico_dz_1
+   Receita_STR[Pallet_STR[1].ReceitaAtual].OffsetProduto.A = OffsetMosaico_dA_1/1000
+   ;Receita_STR[Pallet_STR[1].ReceitaAtual].AlturaCaixa =  Altura_Caixa_1
+   ;Receita_STR[Pallet_STR[1].ReceitaAtual].Camadas = NumPlacesCamada_1
+   ;Receita_STR[Pallet_STR[1].ReceitaAtual].PlacesCamada= NumCamadas_1
 
    OffsetEsteira1.X=OffsetEsteira_dx_1
    OffsetEsteira1.Y=OffsetEsteira_dy_1
@@ -323,23 +323,23 @@ def ATT_VARIABLES_FROM_CLP()
    OffsetEsteira1.C=0
    
    ;Obtem Informacoes de Receita
-   ;StrPallet[2].Livre = FALSE
-   ;StrPallet[2].ReceitaAtivo = Mosaico_Est2
-   ;StrPallet[2].CamadaAtiva = Camada_P2 ;TODO: Bloquear quanto o programa do robo estiver rodando
-   StrPallet[2].OffSetPallet.X=OffsetPallete_dx_2
-   StrPallet[2].OffSetPallet.Y=OffsetPallete_dy_2
-   StrPallet[2].OffSetPallet.Z=OffsetPallete_dz_2
-   StrPallet[2].OffSetPallet.A=OffsetPallete_dA_2/1000
-   StrPallet[2].OffSetPallet.B=0
-   StrPallet[2].OffSetPallet.C=0   
+   ;Pallet_STR[2].Livre = FALSE
+   ;Pallet_STR[2].ReceitaAtual = Mosaico_Est2
+   ;Pallet_STR[2].CamadaAtual = Camada_P2 ;TODO: Bloquear quanto o programa do robo estiver rodando
+   Pallet_STR[2].OffSetPallet.X=OffsetPallete_dx_2
+   Pallet_STR[2].OffSetPallet.Y=OffsetPallete_dy_2
+   Pallet_STR[2].OffSetPallet.Z=OffsetPallete_dz_2
+   Pallet_STR[2].OffSetPallet.A=OffsetPallete_dA_2/1000
+   Pallet_STR[2].OffSetPallet.B=0
+   Pallet_STR[2].OffSetPallet.C=0   
   
-   StrReceita[StrPallet[2].ReceitaAtivo].OffsetProduto.X = OffsetMosaico_dx_2
-   StrReceita[StrPallet[2].ReceitaAtivo].OffsetProduto.Y = OffsetMosaico_dy_2
-   StrReceita[StrPallet[2].ReceitaAtivo].OffsetProduto.Z = OffsetMosaico_dz_2
-   StrReceita[StrPallet[2].ReceitaAtivo].OffsetProduto.A = OffsetMosaico_dA_2/1000
-   ;StrReceita[StrPallet[2].ReceitaAtivo].AlturaCaixa =  Altura_Caixa_2
-   ;StrReceita[StrPallet[2].ReceitaAtivo].Camadas = NumPlacesCamada_2
-   ;StrReceita[StrPallet[2].ReceitaAtivo].PlacesCamada= NumCamadas_2
+   Receita_STR[Pallet_STR[2].ReceitaAtual].OffsetProduto.X = OffsetMosaico_dx_2
+   Receita_STR[Pallet_STR[2].ReceitaAtual].OffsetProduto.Y = OffsetMosaico_dy_2
+   Receita_STR[Pallet_STR[2].ReceitaAtual].OffsetProduto.Z = OffsetMosaico_dz_2
+   Receita_STR[Pallet_STR[2].ReceitaAtual].OffsetProduto.A = OffsetMosaico_dA_2/1000
+   ;Receita_STR[Pallet_STR[2].ReceitaAtual].AlturaCaixa =  Altura_Caixa_2
+   ;Receita_STR[Pallet_STR[2].ReceitaAtual].Camadas = NumPlacesCamada_2
+   ;Receita_STR[Pallet_STR[2].ReceitaAtual].PlacesCamada= NumCamadas_2
 
    OffsetEsteira2.X=OffsetEsteira_dx_2
    OffsetEsteira2.Y=OffsetEsteira_dy_2

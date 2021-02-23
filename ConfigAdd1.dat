@@ -1,0 +1,152 @@
+;FOLD Padrao Paletizacao
+;FOLD STRUCT E VARIAVEIS PRINCIPAIS
+
+;FOLD Esteira e Pick
+CONST E6POS DefaultPoint={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0,S 0,T 0,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
+CONST FRAME NULLFRAME={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+;ENDFOLD
+
+;FOLD Variaveis de estado
+BOOL OperarVazio=TRUE
+;ENDFOLD
+
+;FOLD Variaveis adicionais
+CONST REAL ALTURATOPO=1600.00
+REAL AlturaPalletCompleto=1912.79492
+BOOL PalletCompleto=FALSE
+;ENDFOLD
+
+;FOLD Esteira e Pick
+FRAME OffsetEsteira1
+FRAME OffsetEsteira2
+
+FRAME BaseEsteira1
+FRAME BaseEsteira2
+;ENDFOLD
+
+;FOLD VARIAVEIS CLP
+;{PalletAtual}?numero?da esteira que est? com a caixa
+;{CLPNumCaixas}?numero?de?caixas?para?o?pick
+;{CLPIndexacaoHorizontal}?TRUE->?Vertical?/?FALSE?->?Horizontal
+INT CLP_NumCaixas
+BOOL CLP_IndexacaoHorizontal
+;ENDFOLD
+
+;FOLD Principais variaveis
+INT PalletAtual
+INT LayerAtual
+INT PlaceLayerAtual
+;ENDFOLD
+
+;FOLD STRUC Pallet
+BOOL Livre=FALSE
+BOOL Completo=FALSE
+INT ReceitaAtual=1
+INT PlaceAtual=1
+INT CamadaAtual=1
+FRAME BasePoint
+FRAME OffSetPallet
+STRUC DefPallet INT ReceitaAtual,BOOL Livre,Completo,INT PlaceAtual,CamadaAtual,FRAME BasePoint,FRAME OffSetPallet
+;ENDFOLD
+
+;FOLD STRUC Receita
+INT PlacesCamada
+INT Camadas
+INT AlturaCaixa
+INT Layers
+FRAME OffsetProduto
+STRUC DefReceita_STR INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetProduto
+;ENDFOLD
+
+;FOLD STRUC Ponto_STR
+;CLP
+;-> {IndexacaoHorizontal} TRUE-> Vertical / FALSE -> Horizontal
+;-> {NumCaixas} numero de caixas para o pick
+;Configuracao de Pick
+;-> {ConfGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
+;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+;Configuracao de Place
+;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
+;-> {SkipSobeRelAtual} Quando TRUE indica que nao deve subir relAtual para cima depois do place
+;Pontos de Place
+;-> {XApp1Place} Primeiro ponto de aproximacao de place
+;-> {XApp2Place} Segundo ponto de aproximacao de place
+;-> {XPlace} Ponto de place
+
+BOOL IndexacaoHorizontal
+BOOL SkipGoHome
+BOOL SkipSobeRelAtual
+INT NumCaixas
+INT PickOp
+INT ConfGarraOp
+INT FechaGarraOp
+INT AbreGarraOp
+
+INT SensoresCaixa
+BOOL TravaGarra
+FRAME OffsetPlace
+
+E6POS XApp1Place
+E6POS XApp2Place
+E6POS XPlace
+STRUC DefMatriz BOOL TravaGarra,IndexacaoHorizontal,SkipGoHome,SkipSobeRelAtual,INT SensoresCaixa,NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace,FRAME OffsetPlace
+;ENDFOLD
+
+;ENDFOLD
+
+;FOLD ENUM E DECLARACAO DAS STRUCS
+
+;FOLD ENUM Pallet
+CONST INT Pallet_1=1
+CONST INT Pallet_2=2
+;ENDFOLD
+
+;FOLD ENUM RECEITA
+CONST INT Prdt_9Aero=1
+CONST INT Prdt_5Aero=2
+CONST INT Prdt_2Aero=3
+CONST INT Prdt_11CoffeCrisp=4
+CONST INT Prdt_17KitKat=5
+CONST INT Prdt_19KitKat=6
+CONST INT Prdt_20KitKat=7
+CONST INT Prdt_21KitKat=8
+CONST INT Prdt_23Smarties=9
+CONST INT Prdt_22KitKat=10
+CONST INT Prdt_24a28All=11
+CONST INT Prdt_30All=12
+CONST INT Prdt_16CoffeCrisp=13
+CONST INT Prdt_10CoffeCrisp=14
+CONST INT Prdt_1Aero=15
+CONST INT Prdt_15CoffeCrisp=16
+CONST INT Prdt_7Aero=17
+CONST INT Prdt_32BarPacking=18
+CONST INT Prdt_33BarPacking=19
+CONST INT Prdt_37BarPacking=20
+CONST INT Prdt_36BarPacking=21
+CONST INT Prdt_34BarPacking=22
+CONST INT Prdt_35BarPacking=23
+;ENDFOLD
+
+;FOLD STR
+;---------- Pallet_STR[MaxPallet][MaxNumPick] ----------
+DECL E6POS pick_esteira[2,20]
+;---------- Pallet_STR[MaxPallets] ----------
+CONST INT MaxPallets=2
+DECL DefPallet Pallet_STR[2] ;[MaxPallets]
+;---------- Receita_STR[MaxReceitas] ----------
+CONST INT MaxReceitas=26
+CONST INT MaxCamadas=12
+DECL DefReceita_STR Receita_STR[26] ;[MaxReceitas]
+DECL INT Receita_STR_Layer[26,12] ;[MaxReceitas,MaxCamadas]
+;---------- Ponto_STR[MaxMatrizI,MaxMatrizJ,MaxMatrizK] ----------
+CONST INT MaxMatrizI=2 ;[numero de pallets por receita]
+CONST INT MaxMatrizJ=23 ;[acompanha o MaxReceitas]
+CONST INT MaxMatrizK=16 ;[numero Maximo de Pontos]
+DECL DefMatriz Ponto_STR[2,23,16] ;[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
+;ENDFOLD
+
+;ENDFOLD
+
+;ENDFOLD

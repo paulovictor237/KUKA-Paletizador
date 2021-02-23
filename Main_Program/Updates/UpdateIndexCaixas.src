@@ -1,0 +1,47 @@
+﻿DEF UpdateIndexCaixas ( )
+   ;Por Garantia atualiza as variaveis locais
+   PuxaReceita()
+
+   ;Captura atual ponto de Place e Camada
+   ProxPlace  = Pallet_STR[PalletAtual].PlaceAtual
+   ProxCamada = Pallet_STR[PalletAtual].CamadaAtual
+   
+   ;numero de places avancados
+   NumPassos=1
+   FOR I = 1 to NumPassos
+      ;Consome os places que nao ocorre pick
+      REPEAT
+         ;ATUALIZA VARIAVEIS DE SKIP
+         ProxPlacesCamada = Receita_STR[ReceitaAtual].PlacesCamada
+         ProxLayer        = Receita_STR_Layer[ReceitaAtual,ProxCamada]
+         ProxPlaceLayer   = ProxPlace + ProxPlacesCamada*(ProxLayer-1)
+         ProxSkipGoHome   = Ponto_STR[PalletAtual,ReceitaAtual,ProxPlaceLayer].SkipGoHome
+         
+         ;-> SetCamada()
+         ProxPlace = ProxPlace + 1
+         ;->se a qtd de caixas da camada for acima da qtd do mozaico deve-se subir a camada
+         IF ( ProxPlace > Receita_STR[ReceitaAtual].PlacesCamada ) THEN
+            ProxPlace = 1 
+            ProxCamada = ProxCamada + 1
+         ENDIF
+         ;->se a qtd de camadas do pallet for acima da qtd do mozaico
+         IF ( ProxCamada > Receita_STR[ReceitaAtual].Camadas ) THEN
+            ;Pallet Completo
+            ProxPlace = 1
+            ProxCamada = 1
+            EXIT
+         ENDIF
+         
+      UNTIL (ProxSkipGoHome == FALSE)
+   ENDFOR
+
+   ;passo para descobrir o endereco do ponto na matriz
+   ProxPlacesCamada = Receita_STR[ReceitaAtual].PlacesCamada
+   ProxLayer        = Receita_STR_Layer[ReceitaAtual,ProxCamada]
+   ProxPlaceLayer   = ProxPlace + ProxPlacesCamada*(ProxLayer-1)
+   
+   ;captura o valor da matriz
+   CLP_IndexacaoHorizontal = Ponto_STR[PalletAtual,ReceitaAtual,ProxPlaceLayer].IndexacaoHorizontal
+   CLP_NumCaixas = Ponto_STR[PalletAtual,ReceitaAtual,ProxPlaceLayer].NumCaixas 
+   
+END

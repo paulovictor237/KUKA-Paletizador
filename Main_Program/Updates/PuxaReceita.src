@@ -1,0 +1,45 @@
+&ACCESS RV1
+DEF PuxaReceita ( )
+   
+   ;FOLD STRUC Pallet
+      ReceitaAtual = Pallet_STR[PalletAtual].ReceitaAtual
+      Livre = Pallet_STR[PalletAtual].Livre
+      PlaceAtual = Pallet_STR[PalletAtual].PlaceAtual
+      CamadaAtual = Pallet_STR[PalletAtual].CamadaAtual
+      BasePoint = Pallet_STR[PalletAtual].BasePoint
+      OffSetPallet = Pallet_STR[PalletAtual].OffSetPallet
+   ;ENDFOLD
+   
+   ;FOLD STRUC Receita 
+      PlacesCamada = Receita_STR[ReceitaAtual].PlacesCamada
+      Camadas = Receita_STR[ReceitaAtual].Camadas
+      AlturaCaixa = Receita_STR[ReceitaAtual].AlturaCaixa
+      Layers = Receita_STR[ReceitaAtual].Layers
+      OffsetProduto = Receita_STR[ReceitaAtual].OffsetProduto      
+      ;por possuir duas Layers por Receita o numero referente ao place
+      ;deve subir em relacao a LayerAtual
+      LayerAtual = Receita_STR_Layer[ReceitaAtual,CamadaAtual]
+      PlaceLayerAtual = PlaceAtual + PlacesCamada*(LayerAtual-1)
+   ;ENDFOLD
+   
+   ;FOLD STRUC Matriz 
+      IndexacaoHorizontal = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].IndexacaoHorizontal
+      SkipGoHome = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipGoHome
+      SkipSobeRelAtual = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipSobeRelAtual
+      NumCaixas = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].NumCaixas
+      PickOp = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].PickOp
+      ConfGarraOp = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].ConfGarraOp
+      FechaGarraOp = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].FechaGarraOp
+      AbreGarraOp = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].AbreGarraOp
+      SensoresCaixa = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SensoresCaixa
+      TravaGarra = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].TravaGarra
+      XApp1Place = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp1Place
+      XApp2Place = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XApp2Place
+      XPlace = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].XPlace
+      OffsetPlace = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].OffsetPlace
+   ;ENDFOLD
+   
+   ;FOLD SetPlacePos
+      SetPlacePos()
+   ;ENDFOLD
+END

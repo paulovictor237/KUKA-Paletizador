@@ -1,0 +1,174 @@
+&ACCESS RV1
+&REL 28
+&PARAM DISKPATH = KRC:\R1\Program\MainRoutune\Place
+DEF PlaceCaixaPallet()
+   
+   ;FOLD ROTINAS DE INICIALIZACAO
+      SkipPTP = FALSE
+      PrimeiroPonto = TRUE
+   ;ENDFOLD
+
+   ;Altura Z de aproximacao
+   ;XApp1Place.z = XPlace.z + AlturaCaixa + 60
+   ;XApp2Place.z = XPlace.z + AlturaCaixa/2
+   ;XPlace.z     = XPlace.z
+
+   ;Configura a altura do SobeRelAtual
+   XSobeRelAtualZ =  XPlace.z + AlturaCaixa + 60
+   ;XSobeRelAtualZ =  XApp1Place.Z
+   
+   REPEAT
+      
+      ;FOLD PUXA TUDO PARA AS VARIAVEIS
+         PuxaReceita()
+      ;ENDFOLD 
+
+      ;FOLD ATUALIZA OS PONTOS DE PLACE
+         SetPlacePos()
+      ;ENDFOLD 
+
+      ;FOLD ATUALIZA OFFSET PALLET+PRODUTO
+         BaseRelAtual.X = BasePoint.X + OffSetPallet.X + OffsetProduto.X
+         BaseRelAtual.Y = BasePoint.Y + OffSetPallet.Y + OffsetProduto.Y
+         BaseRelAtual.Z = BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z
+         BaseRelAtual.A = BasePoint.A + OffSetPallet.A + OffsetProduto.A
+         BaseRelAtual.B = BasePoint.B + OffSetPallet.B + OffsetProduto.B
+         BaseRelAtual.C = BasePoint.C + OffSetPallet.C + OffsetProduto.C
+      ;ENDFOLD
+      
+      ;FOLD ATUALIZA VARIAVEIS DE SKIP
+         SkipGoHome = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipGoHome
+         SkipSobeRelAtual = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipSobeRelAtual
+      ;ENDFOLD
+      
+      ;FOLD ATUALIZA TOPO DINAMICO - DESAtualDO
+         ;->marca o mespo ponto de deposito so que deslocado em Z
+         ;AQUI POSSO MARCAR UMA ALTURA PADRAO DEPOIS
+         ;XTopoPallet = XApp1Place
+         ;XTopoPallet.Z = ALTURATOPO
+      ;ENDFOLD
+      
+      ;FOLD MOVE XTopoPallet - DESAtualDO
+         ;$BWDSTART = FALSE
+         ;PDAT_ACT = PPDAT1
+         ;FDAT_ACT = FP1
+         ;BAS(#PTP_PARAMS, 100.0)
+         ;SET_CD_PARAMS (0)
+         ;PTP XTopoPallet C_Dis
+      ;ENDFOLD
+
+      ;Configura a altura de saida do Place
+      XSobeRelAtual = XPlace
+      XSobeRelAtual.Z = XSobeRelAtualZ
+
+      ;FOLD raciocinio do calculo de igualar bases
+         ;    ZPick  _      _ ZPlace
+         ;           |      |
+         ;           |      |
+         ;           |      |
+         ;           |      - BPlace
+         ;           |      |
+         ;    BPick  -      |
+         ;           |      |
+         ;           |      |
+         ;             ZERO
+
+         ;ZPick  + BPick  = ZPlace + BPlace 
+
+         ;ZPick  = ZPlace + BPlace - BPick
+         ;ZPlace = ZPick  + BPick  - BPlace
+
+         ;ALTURATOPO=1800
+         ;ZPick  = ALTURATOPO - BPick
+         ;ZPlace = ALTURATOPO - BPlace
+      ;ENDFOLD
+
+      ;TOPO DINAMICO IGUALANDO A BASE PLACE COM A DO PICK
+      ;como o ponto de pick ja eh igual ao do place
+      ;aqui so verifica se esse ponto possui a altura minima
+      ; ZPlace2 = ALTURATOPO - BPlace
+      ; IF (ZPlace1 < ZPlace2)
+      IF (PrimeiroPonto == TRUE) AND (XApp1Place.Z<(ALTURATOPO - BaseRelAtual.Z)) THEN
+         XApp1Place.Z = ALTURATOPO - BaseRelAtual.Z
+      ENDIF
+      PrimeiroPonto = FALSE
+
+      ;FOLD SET BaseRelAtual
+         $TOOL = TOOL_DATA[1]
+         $BASE = BaseRelAtual
+      ;ENDFOLD
+
+      ;TRES PONTOS DE DEPOSITO
+      ;XApp1Place DIRETO com movimento PTP         
+      IF (SkipPTP == FALSE) THEN
+         PTP  XApp1Place C_DIS
+      ELSE
+         ;se for fazer um outro place o 
+         ;primeiro movimento deve ser linear
+         LIN  XApp1Place C_DIS C_DIS
+      ENDIF
+      
+      IF (SkipSobeRelAtual == TRUE) THEN
+         SkipPTP = TRUE
+      ENDIF
+      
+      ;SET_CD_PARAMS (0)
+      ;XApp2Place DIRETO com movimento LIN
+      LIN  XApp2Place C_DIS C_DIS
+      ;XPlace DIRETO com movimento LIN
+      LIN  XPlace 
+      
+      ;FOLD Verifica Caixas
+         VerificaCaixas()
+      ;ENDFOLD
+
+      ;FOLD ABRE GARRA  
+         AbreGarra()
+      ;ENDFOLD     
+      
+      ;FOLD TROCA A CAMADA DO PALLET
+         SetCamada()
+      ;ENDFOLD
+      
+      IF (SkipSobeRelAtual == FALSE) THEN
+         ;Se for realizar um sobe relAtual para ir para pick de novo
+         ;esse ponto tem que casar com o ponto de pick
+         ;para isso se verifica se ao menos a altura é a mínima 
+         ;IF (SkipGoHome == FALSE) THEN
+         ;   SetPlacePos()
+         ;   XSobeRelAtual.Z = XApp1Place.Z
+         ;   IF ( XSobeRelAtual.Z<(ALTURATOPO - BaseRelAtual.Z) ) THEN
+         ;      XSobeRelAtual.Z = ALTURATOPO - BaseRelAtual.Z
+         ;   ENDIF
+         ;ENDIF
+         IF (SkipGoHome == FALSE) AND (XSobeRelAtual.Z<(ALTURATOPO - BaseRelAtual.Z)) THEN
+            XSobeRelAtual.Z = ALTURATOPO - BaseRelAtual.Z
+         ENDIF
+         LIN  XSobeRelAtual 
+         ;RelFrame = {X 0,Y 0,Z 0,A 0,B 0,C 0}
+         ;RelFrame.Z=AlturaCaixa + 100
+         ;LIN_REL RelFrame   
+      ENDIF
+      
+      ;FOLD MOVE XTopoPallet  - DESAtualDO
+         ;Seta valores de de2osito na saida do deposito
+         ;XTopoPallet.X = XPlace.X
+         ;XTopoPallet.Y = XPlace.Y 
+         ;$BWDSTART = FALSE
+         ;PDAT_ACT = PPDAT1
+         ;FDAT_ACT = FP1
+         ;BAS(#PTP_PARAMS, 100.0)
+         ;SET_CD_PARAMS (0)
+         ;PTP XTopoPallet C_Dis
+      ;ENDFOLD
+      
+   UNTIL (SkipGoHome == FALSE)
+   
+   ;AbreGarraCompleto_noWait()
+   PuxaReceita()
+   ConfGarra_NoWait()
+
+   ;AlturaUltimoDeposito = XPlace.Z
+   $BASE = $NULLFRAME
+   AlturaUltimoDeposito = $POS_ACT.Z
+END

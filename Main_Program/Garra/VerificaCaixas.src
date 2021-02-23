@@ -1,0 +1,63 @@
+DEF VerificaCaixas( )
+   FalhaCaixa = false
+   ;FOLD Calculo para separar o numero em dezenas
+   ; numero = 31465 -> [3][1][4][6][5]
+   ; Dividendo |divisor
+   ; Resto      Quociente
+   ; Dividendo = Quociente*divisor + Resto
+   ; Resto = Dividendo - Quociente*divisor
+   ;ENDFOLD
+
+   Numero=123456
+   NumSensores=6
+
+   divisor=10
+   Dividendo = Numero;
+
+   WHILE (Dividendo > 0)
+      quociente = Dividendo/divisor;
+      resto  = Dividendo - quociente*divisor;   
+      Dividendo = Dividendo/divisor;
+      ;SE MANTEM
+      IF (PalletAtual == 1) THEN
+         ;123456.....
+         resto=resto
+      ENDIF
+      ;INVERTE NUMEROS 1->6 2->5 3->4 ...
+      IF (PalletAtual == 2) THEN
+         ;654321.....
+         resto = (NumSensores - resto + 1)
+      ENDIF
+      ; SWITCH resto
+      ;    CASE 1
+      ;       IF (NOT SensorCaixa1) AND SensoresGarraAtuals THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 2
+      ;       IF (NOT SensorCaixa2) AND SensoresGarraAtuals THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 3
+      ;       IF (NOT SensorCaixa3) AND SensoresGarraAtuals THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 4
+      ;       IF (NOT SensorCaixa4) AND SensoresGarraAtuals THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 5
+      ;       IF (NOT SensorCaixa5) AND SensoresGarraAtuals THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ;    CASE 6
+      ;       IF (NOT SensorCaixa6) AND SensoresGarraAtuals THEN
+      ;          FalhaCaixa = TRUE
+      ;       ENDIF
+      ; ENDSWITCH
+   ENDWHILE
+
+   IF FalhaCaixa THEN
+      ;Movimenta robo para posicao segura
+   ENDIF
+   
+END

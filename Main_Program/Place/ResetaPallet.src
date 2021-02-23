@@ -1,0 +1,15 @@
+&ACCESS RVO
+&REL 3
+&PARAM EDITMASK = *
+DEF ResetaPallet( )
+   ;precisa saber qual o pallet Atual
+   ;atravez do pallet Atual o programa sabe qual mozaico est� selecionado
+   
+   ;FOLD RESETA PALLET
+      ;Pallet_STR[PalletAtual].Livre=TRUE
+      ;Pallet_STR[PalletAtual].ReceitaAtual=1
+      Pallet_STR[PalletAtual].PlaceAtual=1
+      Pallet_STR[PalletAtual].CamadaAtual=1
+   ;ENDFOLD     
+   
+END
