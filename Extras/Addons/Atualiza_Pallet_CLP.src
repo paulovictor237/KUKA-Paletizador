@@ -1,0 +1,64 @@
+&ACCESS RV2
+DEF Atualiza_Pallet_CLP()
+   INT NumPallets
+   INT ProxPlace
+   INT ProxReceita
+   BOOL ProxIndexacaoHorizontal
+
+   FOR NumPallets = 1 to 5
+      
+      ;Captura atual ponto de Place e Camada
+      ProxPlace         = Pallet_STR[NumPallets].PlaceAtual
+      ProxReceita       = Pallet_STR[NumPallets].ReceitaAtual
+      
+      ProxIndexacaoHorizontal = Ponto_STR[Pallet_1,ProxReceita,ProxPlace].IndexacaoHorizontal
+      
+      IF ProxIndexacaoHorizontal == FALSE THEN
+         Pallet_STR[NumPallets].ProxIndexacao = 1
+      ELSE
+         Pallet_STR[NumPallets].ProxIndexacao = 2
+      ENDIF
+   ENDFOR
+
+   ;PUXA INFORMACOES
+   Pallet1_ReceitaAtual = Pallet_STR[Pallet_1].ReceitaAtual
+   Pallet1_PlaceAtual = Pallet_STR[Pallet_1].PlaceAtual
+   Pallet1_CamadaAtual = Pallet_STR[Pallet_1].CamadaAtual
+   Pallet1_Estado_OUT = Pallet_STR[Pallet_1].Estado
+   Pallet1_Caixas=Pallet_STR[Pallet_1].Caixas_Depositadas
+   Pallet1_Caixas=Pallet_STR[Pallet_1].Caixas_Depositadas
+   Pallet1_ProxIndexacao = Pallet_STR[Pallet_1].ProxIndexacao
+   
+   Pallet2_ReceitaAtual = Pallet_STR[Pallet_2].ReceitaAtual
+   Pallet2_PlaceAtual = Pallet_STR[Pallet_2].PlaceAtual
+   Pallet2_CamadaAtual = Pallet_STR[Pallet_2].CamadaAtual
+   Pallet2_Estado_OUT = Pallet_STR[Pallet_2].Estado
+   Pallet2_Caixas=Pallet_STR[Pallet_2].Caixas_Depositadas
+   Pallet2_Caixas=Pallet_STR[Pallet_2].Caixas_Depositadas
+   Pallet2_ProxIndexacao = Pallet_STR[Pallet_2].ProxIndexacao
+   
+   Pallet3_ReceitaAtual = Pallet_STR[Pallet_3].ReceitaAtual
+   Pallet3_PlaceAtual = Pallet_STR[Pallet_3].PlaceAtual
+   Pallet3_CamadaAtual = Pallet_STR[Pallet_3].CamadaAtual
+   Pallet3_Estado_OUT = Pallet_STR[Pallet_3].Estado
+   Pallet3_Caixas=Pallet_STR[Pallet_3].Caixas_Depositadas
+   Pallet3_Caixas=Pallet_STR[Pallet_3].Caixas_Depositadas
+   Pallet3_ProxIndexacao = Pallet_STR[Pallet_3].ProxIndexacao
+   
+   Pallet4_ReceitaAtual = Pallet_STR[Pallet_4].ReceitaAtual
+   Pallet4_PlaceAtual = Pallet_STR[Pallet_4].PlaceAtual
+   Pallet4_CamadaAtual = Pallet_STR[Pallet_4].CamadaAtual
+   Pallet4_Estado_OUT = Pallet_STR[Pallet_4].Estado
+   Pallet4_Caixas=Pallet_STR[Pallet_4].Caixas_Depositadas
+   Pallet4_Caixas=Pallet_STR[Pallet_4].Caixas_Depositadas
+   Pallet4_ProxIndexacao = Pallet_STR[Pallet_4].ProxIndexacao
+   
+   Pallet5_ReceitaAtual = Pallet_STR[Pallet_5].ReceitaAtual
+   Pallet5_PlaceAtual = Pallet_STR[Pallet_5].PlaceAtual
+   Pallet5_CamadaAtual = Pallet_STR[Pallet_5].CamadaAtual
+   Pallet5_Estado_OUT = Pallet_STR[Pallet_5].Estado
+   Pallet5_Caixas=Pallet_STR[Pallet_5].Caixas_Depositadas
+   Pallet5_Caixas=Pallet_STR[Pallet_5].Caixas_Depositadas
+   Pallet5_ProxIndexacao = Pallet_STR[Pallet_5].ProxIndexacao
+
+END

@@ -1,0 +1,17 @@
+&ACCESS RV2
+DEF ConfGarra_NoWait( )
+   IF (OperarVazio==FALSE) THEN
+      SWITCH ConfGarraOp
+         CASE 1
+            Recua_Cilindro = TRUE
+            Avanca_Cilindro = FALSE
+            ;WAIT FOR ( Cilindro_Recuado == TRUE )
+            ;WAIT FOR ( Cilindro_Avancado == FALSE )
+         DEFAULT
+            Recua_Cilindro = TRUE
+            Avanca_Cilindro = FALSE
+            ;WAIT FOR ( Cilindro_Recuado == TRUE )
+            ;WAIT FOR ( Cilindro_Avancado == FALSE )
+      ENDSWITCH
+   ENDIF
+END

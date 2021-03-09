@@ -1,0 +1,14 @@
+&ACCESS RV1
+DEFFCT INT CorrectInt(Value_IN: IN)
+;Foi Utilizado IF-ELse para corrigir o sinal oriundo do CLP
+;O INT do Kuka equivale ao INT32, e o INT DO CLP ao INT16
+;Entao, valores acima de 32768 correspondem a numeros negativos substraidos de 65536  
+   INT Value_IN
+   INT Value_Out 
+   IF Value_IN < 32768 THEN
+       Value_Out  = Value_IN
+   ELSE
+      Value_Out  = Value_IN - 65536
+   ENDIF
+   RETURN Value_Out
+ENDFCT

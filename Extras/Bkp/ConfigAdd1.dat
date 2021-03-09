@@ -1,0 +1,148 @@
+;FOLD Padrao Paletizacao
+
+;FOLD STRUCT E VARIAVEIS PRINCIPAIS
+
+;FOLD DefaultPoint
+CONST E6POS DefaultPoint={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0,S 0,T 0,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
+CONST FRAME NULLFRAME={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+;ENDFOLD
+
+;FOLD Variaveis de estado
+BOOL OperarVazio=FALSE
+;ENDFOLD
+
+;FOLD VARIAVIES DE TOPO
+;Abaixo de 820 o robo ira colidir com um pallet cheio
+CONST REAL ALTURATOPO=1020.00
+CONST REAL ALTURAPICK=205.000
+;REAL AlturaPalletCompleto=1200.00
+;BOOL PalletCompleto=FALSE
+;ENDFOLD
+
+;FOLD VARIAVEIS CLP
+;{PalletAtual}?numero?da esteira que est? com a caixa
+;{CLPNumCaixas}?numero?de?caixas?para?o?pick
+;{CLPIndexacaoHorizontal}?TRUE->?Vertical?/?FALSE?->?Horizontal
+INT CLP_NumCaixas
+BOOL CLP_IndexacaoHorizontal
+;ENDFOLD
+
+;FOLD Principais variaveis
+INT PalletAtual
+INT LayerAtual
+INT PlaceLayerAtual
+;ENDFOLD
+
+;FOLD Esteira e Pick
+FRAME OffsetEsteira1
+FRAME OffsetEsteira2
+
+FRAME BaseEsteira1
+FRAME BaseEsteira2
+;ENDFOLD
+
+;FOLD STRUC Pallet
+BOOL Livre
+BOOL Completo
+INT ReceitaAtual
+INT PlaceAtual
+INT CamadaAtual
+INT MaquinaPassos
+INT Estado
+INT Caixas_Depositadas
+INT ProxIndexacao
+FRAME BasePoint
+FRAME OffSetPallet
+STRUC DefPallet INT ProxIndexacao,Caixas_Depositadas,Estado,MaquinaPassos,ReceitaAtual,BOOL Livre,Completo,INT PlaceAtual,CamadaAtual,FRAME BasePoint,FRAME OffSetPallet
+;ENDFOLD
+
+;FOLD STRUC Receita
+INT PlacesCamada
+INT Camadas
+INT AlturaCaixa
+INT Layers
+FRAME OffsetProduto
+STRUC DefReceita_STR INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetProduto
+;ENDFOLD
+
+;FOLD STRUC Ponto_STR
+;CLP
+;-> {IndexacaoHorizontal} TRUE-> Vertical / FALSE -> Horizontal
+;-> {NumCaixas} numero de caixas para o pick
+;Configuracao de Pick
+;-> {ConfGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+;-> {PickOp} Opcao de pick na esteira (1,2,3,4,5...)
+;-> {FechaGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+;Configuracao de Place
+;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
+;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
+;-> {SkipSobeRelAtual} Quando TRUE indica que nao deve subir relAtual para cima depois do place
+;Pontos de Place
+;-> {XApp1Place} Primeiro ponto de aproximacao de place
+;-> {XApp2Place} Segundo ponto de aproximacao de place
+;-> {XPlace} Ponto de place
+
+BOOL IndexacaoHorizontal
+BOOL SkipGoHome
+BOOL SkipSobeRelativo
+INT NumCaixas
+INT PickOp=1
+INT ConfGarraOp=0
+INT FechaGarraOp=1
+INT AbreGarraOp=1
+
+INT SensoresCaixa
+BOOL TravaGarra
+FRAME OffsetPlace
+
+E6POS XApp1Place
+E6POS XApp2Place
+E6POS XPlace
+STRUC DefMatriz BOOL TravaGarra,IndexacaoHorizontal,SkipGoHome,SkipSobeRelativo,INT SensoresCaixa,NumCaixas,ConfGarraOp,PickOp,FechaGarraOp,AbreGarraOp,E6POS XApp1Place,XApp2Place,XPlace,FRAME OffsetPlace
+;ENDFOLD
+
+;ENDFOLD
+
+;FOLD ENUM E DECLARACAO DAS STRUCS
+
+;FOLD ENUM Pallet
+CONST INT Pallet_1=1
+CONST INT Pallet_2=2
+CONST INT Pallet_3=3
+CONST INT Pallet_4=4
+CONST INT Pallet_5=5
+;ENDFOLD
+
+;FOLD ENUM RECEITA
+CONST INT Prdt_M3385=1
+CONST INT Prdt_M3383=2
+CONST INT Prdt_M2803=3
+CONST INT Prdt_M2392A=4
+CONST INT Prdt_M2392B=5
+CONST INT Prdt_M3882A=6
+CONST INT Prdt_M3882B=7
+CONST INT Prdt_M4207A=8
+CONST INT Prdt_M4207B=9
+;ENDFOLD
+
+;FOLD STR 
+;---------- Pallet_STR[MaxPallet][MaxNumPick] ----------
+DECL E6POS pick_esteira[1,2]
+;---------- Pallet_STR[MaxPallets] ----------
+CONST INT MaxPallets=5
+DECL DefPallet Pallet_STR[5] ;[MaxPallets]
+;---------- Receita_STR[MaxReceitas] ----------
+CONST INT MaxReceitas=12
+CONST INT MaxCamadas=14
+DECL DefReceita_STR Receita_STR[12] ;[MaxReceitas]
+DECL INT Receita_STR_Layer[12,14] ;[MaxReceitas,MaxCamadas]
+;---------- Ponto_STR[MaxMatrizI,MaxMatrizJ,MaxMatrizK] ----------
+CONST INT MaxMatrizI=1 ;[numero de pallets por receita]
+CONST INT MaxMatrizJ=9 ;[acompanha o MaxReceitas]
+CONST INT MaxMatrizK=15 ;[numero Maximo de Pontos]
+DECL DefMatriz Ponto_STR[1,9,15] ;[MaxMatrizI,MaxMatrizJ,MaxMatrizK]
+;ENDFOLD
+
+;ENDFOLD
+
+;ENDFOLD

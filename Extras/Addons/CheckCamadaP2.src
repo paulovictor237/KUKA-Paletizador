@@ -1,0 +1,87 @@
+&ACCESS RVO1
+&REL 32
+&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\SubRotinas
+DEF CheckCamadaP2( )
+ Start_Check_Camada:
+ FalhaSelecaoCamada = FALSE
+ 
+   ;FOLD INI
+      ;FOLD BASISTECH INI
+         GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS == TRUE DO IR_STOPM ( )
+         INTERRUPT ON 3 
+         BAS (#INITMOV,0 )
+      ;ENDFOLD (BASISTECH INI)
+   ;ENDFOLD (INI)    
+   
+   ;Movimenta p/ topo Check Camada programa 1/2
+;FOLD PTP TopoCheckP2 CONT Vel=100 % PDAT4 Tool[1]:GarraUniversal Base[0];%{PE}%R 8.5.19,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:TopoCheckP2, 3:C_DIS, 5:100, 7:PDAT4, 9:0
+$BWDSTART=FALSE
+PDAT_ACT=PPDAT4
+FDAT_ACT=FTopoCheckP2
+BAS(#PTP_PARAMS,100)
+SET_CD_PARAMS( 0)
+PTP XTopoCheckP2 C_DIS
+;ENDFOLD
+   WAIT SEC 0
+   AlturaEsperada = Altura_Caixa_2 * (Camada_P2 - 1) 
+
+IF not Check_Camada_Mov THEN 
+
+      AlturaAtual = -Sick_Distance + AlturaMaxSensorSick
+      
+      IF (ABS (AlturaEsperada - AlturaAtual) > Dif_Max_Check_Camada) THEN
+         FalhaSelecaoCamada = TRUE
+         ;OPERADOR CORRIGE A RECEITA E/OU CAMADA OU Finaliza o Ciclo
+         WAIT FOR (Vai_Check_Camada OR Botao_FimCiclo_ACK)
+         IF Botao_Fim_de_Ciclo THEN
+            PTP  XHOME
+            Botao_FimCiclo_ACK=TRUE
+            WAIT FOR FALSE
+         ENDIF
+         GOTO Start_Check_Camada
+         ELSE
+            Retorno_Camada_P2 = Camada_P2
+            StrPallet[PalletAtivo].CamadaAtiva = Camada_P2
+            FalhaSelecaoCamada = FALSE        
+      ENDIF
+         ELSE
+         count_mean=1
+         h_min_monitoramento = AlturaMaxSensorSick    ;Altura maxima a ser medida
+         h_max_monitoramento = -1000                  ;Altura minima por default
+         
+         Start_Monitoramento=TRUE
+         X_passado = $POS_ACT.X
+         Y_passado = $POS_ACT.Y
+         
+         $VEL.CP = 0.8
+         Lin_rel {y 900}
+         Lin_rel {x -900}
+         Lin_rel {y -900}
+         Lin_rel {x 900}
+         Lin_rel {x -900, y 900}
+         Lin_rel {x 900, y -900}
+         
+         WAIT SEC 0
+         
+         $VEL.CP = 2         
+         Start_Monitoramento=FALSE
+         Filter_Low_Pass( ) 
+         IF ((h_max_monitoramento-AlturaEsperada) > Dif_Max_Check_Camada) THEN
+            FalhaSelecaoCamada = TRUE
+            ;OPERADOR CORRIGE A RECEITA E/OU CAMADA OU Finaliza o Ciclo
+         
+            IF Botao_Fim_de_Ciclo THEN
+               PTP  XHOME
+               Botao_FimCiclo_ACK=TRUE
+               WAIT FOR FALSE
+            ENDIF
+            WAIT FOR Vai_Check_Camada
+            WAIT FOR No_Pause_Robo==TRUE
+            Start_Monitoramento=FALSE
+            GOTO Start_Check_Camada
+
+         ENDIF
+         Start_Monitoramento=FALSE
+   ENDIF
+   
+END

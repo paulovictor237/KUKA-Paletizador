@@ -16,47 +16,22 @@ DEF  MainProgram ( )
          TReceita()
          Tpick_esteira()
          $TOOL = TOOL_DATA[1]
-         $BASE=$NULLFRAME
-         $Advance=0
+         $BASE = $NULLFRAME
+         $Advance=3
+         OperarVazio = FALSE
       ;ENDFOLD (USER INI)
    ;ENDFOLD (INI)
   
-   ;FOLD CONFIGURACOES PADRAO DE MOVIMENTO
-      $VEL.CP = 2.0  ; 0 a 3 m/s: velocidade da ponta do TCP
-      $ACC.CP = 2.0  ; 0 a 2  m/s^2: aceleracao da ponta do TCP 
-      $APO.CDIS = 50 ; Blend a ser utilizado
+   ;FOLD CONFIGURACOES DE MOVIMENTO      
+      $VEL.CP = 2.5
+      $ACC.CP = 8
+      $APO.CVEL = 80
+      $APO.CPTP = 80
+      $APO.CDIS = 20 
+      ;Base e Tool
       $TOOL = TOOL_DATA[1]
-      ;$BASE = BASE_DATA[5]
-   ;ENDFOLD 
-  
-;FOLD ABRE_GARRAS
-   
-;FOLD Gripper SET [1]Gripper1Lado1 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}
-;FOLD Parameters Parameters ;%{h}
-;Params IlfProvider=GripperTech.GripperSet;setgripper=1;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
-;ENDFOLD
-GRPg_SetStateAndCheck(1, 1, 0, 1)
-;ENDFOLD
-;FOLD Gripper SET [2]Gripper2Lado1 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}
-;FOLD Parameters Parameters ;%{h}
-;Params IlfProvider=GripperTech.GripperSet;setgripper=2;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
-;ENDFOLD
-GRPg_SetStateAndCheck(2, 1, 0, 1)
-;ENDFOLD
-;FOLD Gripper SET [3]Gripper1Lado2 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}
-;FOLD Parameters Parameters ;%{h}
-;Params IlfProvider=GripperTech.GripperSet;setgripper=3;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
-;ENDFOLD
-GRPg_SetStateAndCheck(3, 1, 0, 1)
-;ENDFOLD
-;FOLD Gripper SET [4]Gripper2Lado2 State=[1]OPEN Wait 0[s] Check with Strategy 1 ;%{PE}
-;FOLD Parameters Parameters ;%{h}
-;Params IlfProvider=GripperTech.GripperSet;setgripper=4;setstate=1;setcont=nocont;waittime=0;errorstrategy=1
-;ENDFOLD
-GRPg_SetStateAndCheck(4, 1, 0, 1)
-;ENDFOLD
-
-;ENDFOLD
+      $BASE = $NULLFRAME
+   ;ENDFOLD   
 
    ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
       $BWDSTART = FALSE
@@ -69,31 +44,14 @@ GRPg_SetStateAndCheck(4, 1, 0, 1)
    
    ;FOLD MAIN ROUTINE
       WHILE TRUE
-         ; ->ler do CLP pallet
-         ; ->gravar na variavel PalletAtual
+         ;Gravar PalletAtual
          PalletAtual=1 ; TESTE
-         ReceitaAtual=Prdt_9Aero ; TESTE
-         ;ReceitaAtual=Prdt_19KitKat
-         Pallet_STR[PalletAtual].Livre=TRUE ; TESTE
-         ; ->verificar se ja possui produto no pallet
-         ; ->se nao tiver escrever um produto
-         IF Pallet_STR[PalletAtual].Livre == TRUE THEN
-            Pallet_STR[PalletAtual].Livre=FALSE
-            Pallet_STR[PalletAtual].ReceitaAtual=ReceitaAtual
-         ENDIF
+         ReceitaAtual=1 ; TESTE
+         Pallet_STR[PalletAtual].ReceitaAtual=ReceitaAtual
          PuxaReceita()
-         ;RotinaCLP()
          PickEsteira()
          PlaceCaixaPallet()
       ENDWHILE
    ;ENDFOLD
    
-   ;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
-      $BWDSTART = FALSE
-      PDAT_ACT=PDEFAULT
-      FDAT_ACT=FHOME
-      BAS (#PTP_PARAMS,100 )
-      $H_POS=XHOME
-      PTP  XHOME
-   ;ENDFOLD
 END

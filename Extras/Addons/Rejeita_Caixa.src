@@ -1,0 +1,36 @@
+&ACCESS RVO1
+&REL 22
+&PARAM EDITMASK = *
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM DISKPATH = KRC:\R1\Program\40293_Furukawa\SubRotinas
+DEF Rejeita_Caixa( )
+   ;FOLD INI;%{PE}
+      ;FOLD BASISTECH INI
+         GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+         INTERRUPT ON 3 
+         BAS (#INITMOV,0 )
+      ;ENDFOLD (BASISTECH INI)
+      ;FOLD USER INI
+         ;Make your modifications here
+         
+      ;ENDFOLD (USER INI)
+      ;ENDFOLD (INI)
+      
+   ;Altura da maior caixa:220mm
+   XP2=XP1
+   XP2.Z = ALTURAPICK
+   PTP XP2 C_DIS
+   ;FOLD LIN P1 Vel=2 m/s CPDAT2 Tool[1]:GarraUniversal Base[0] ;%{PE}
+      ;FOLD Parameters ;%{h}
+         ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P1; Kuka.BlendingEnabled=False; Kuka.MoveDataName=CPDAT2; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+      ;ENDFOLD
+      $BWDSTART = FALSE
+      LDAT_ACT = LCPDAT2
+      FDAT_ACT = FP1
+      BAS(#CP_PARAMS, 2.0)
+      SET_CD_PARAMS (0)
+      LIN XP1
+   ;ENDFOLD
+   AbreGarra()
+   LIN XP2 C_DIS C_DIS 
+END

@@ -1,0 +1,148 @@
+&ACCESS RV1
+&REL 111
+&PARAM DISKPATH = KRC:\R1\Program\40293_Furukawa\Place
+DEF PlaceCaixaPallet()
+   ;Altura Z de aproximacao	
+   ;XApp1Place.z = XPlace.z + AlturaCaixa + 60	
+   ;XApp2Place.z = XPlace.z + AlturaCaixa/2
+ 
+   $VEL.CP = 3
+   $ACC.CP = 10
+   $APO.CVEL = 100
+   $APO.CPTP = 100
+   $APO.CDIS = 10000
+   
+   ;FOLD PUXA TUDO PARA AS VARIAVEIS
+      PuxaReceita()
+   ;ENDFOLD 
+   
+   ;FOLD ATUALIZA OS PONTOS DE PLACE
+      SetPlacePos()
+   ;ENDFOLD 
+   
+   ;FOLD ATUALIZA OFFSET PALLET+PRODUTO
+      BaseRelativa.X = BasePoint.X + OffSetPallet.X + OffsetProduto.X
+      BaseRelativa.Y = BasePoint.Y + OffSetPallet.Y + OffsetProduto.Y
+      BaseRelativa.Z = BasePoint.Z + OffSetPallet.Z + OffsetProduto.Z
+      BaseRelativa.A = BasePoint.A + OffSetPallet.A + OffsetProduto.A
+      BaseRelativa.B = BasePoint.B + OffSetPallet.B + OffsetProduto.B
+      BaseRelativa.C = BasePoint.C + OffSetPallet.C + OffsetProduto.C
+   ;ENDFOLD   
+   
+   ;TOPO DINAMICO IGUALANDO A BASE PLACE COM A DO PICK
+   XApp1PlaceTOPO = XApp1Place
+   XApp1PlaceTOPO.Z = ALTURATOPO - BaseRelativa.Z
+   ;Configura a altura de saida do Place
+   XSobeRelativo = XPlace
+   XSobeRelativo.Z = XApp1Place.Z
+   
+   ;FOLD SET BaseRelativa
+      $TOOL = TOOL_DATA[1]
+      $BASE = BaseRelativa
+   ;ENDFOLD
+   
+   ;FOLD PONTO INTERMEDIARIO       
+      IF(PalletAtual == 4) THEN
+         XIntermediario = XApp1PlaceTOPO
+         XIntermediario.x=-1660
+         ;XIntermediario.y=860
+         $APO.CDIS = 10000 
+         PTP XIntermediario C_DIS       
+      ENDIF
+      
+      IF(PalletAtual == 2) THEN
+         XIntermediario = XApp1PlaceTOPO
+         XIntermediario.x=650
+         ;XIntermediario.y=860  
+         PTP XIntermediario C_DIS
+      ENDIF
+      
+      IF(PalletAtual == 3) THEN
+         XIntermediario = XApp1PlaceTOPO
+         IF(XIntermediario.X < -494.765117 ) THEN
+            XIntermediario.x=-2100
+            XIntermediario.y=-900
+         ELSE
+            XIntermediario.x=1100
+            XIntermediario.y=-900
+         ENDIF
+         PTP XIntermediario C_DIS
+      ENDIF  
+   ;ENDFOLD
+
+   ;APROXIMA DO TOPO
+   PTP  XApp1PlaceTOPO  C_DIS
+   
+   $APO.CDIS = 20 
+   $APO.CVEL = 80
+   $APO.CPTP = 80
+  
+   ;TRES PONTOS DE DEPOSITO
+   PTP  XApp1Place C_DIS
+   
+   ;diminuir a velocidade para fazer o place
+   $VEL.CP = 1.5
+   $ACC.CP = 6
+   
+   ;XApp2Place DIRETO com movimento LIN
+   LIN  XApp2Place C_DIS C_DIS
+   ;XPlace DIRETO com movimento LIN
+   LIN  XPlace 
+   
+   ;FOLD Verifica caixa no deposito
+      IF(OperarVazio==FALSE)THEN
+         IF(Presenca_Caixa_Fixa == FALSE) OR (Presenca_Caixa_Movel == FALSE) THEN
+            AbreGarra()
+            Falha_caixa_sobre_real={X 0,Y 0,Z 0,A 0,B 0,C 0}
+            Falha_caixa_sobre_real.Z= AlturaCaixa+60
+            LIN_REL Falha_caixa_sobre_real
+            Falha_Deposito_caixa = TRUE
+            WAIT FOR ( Falha_Deposito_caixa_ACK == TRUE )
+            Falha_Deposito_caixa = FALSE
+         ENDIF
+      ENDIF
+   ;ENDFOLD 
+   
+   AbreGarra()    
+   
+   ;FOLD TROCA A CAMADA DO PALLET
+      SetCamada()
+      
+      Atualiza_Pallet_CLP()
+      indexacao_atualizada = TRUE
+      ;Acrescenta nova caixa
+      Pallet_STR[PalletAtual].Caixas_Depositadas = Pallet_STR[PalletAtual].Caixas_Depositadas +1
+   ;ENDFOLD
+   
+   LIN  XSobeRelativo C_DIS C_DIS
+   
+   ;aumenta a velocidade para sair do palete
+   $VEL.CP = 3
+   $ACC.CP = 10
+   $APO.CVEL = 100
+   $APO.CPTP = 100
+   $APO.CDIS = 10000
+   
+   ;VOLTA PRO TOPO
+   XApp1PlaceTOPO = XPlace
+   XApp1PlaceTOPO.Z = ALTURATOPO - BaseRelativa.Z
+   PTP  XApp1PlaceTOPO C_DIS
+   
+   ;PONTO INTERMEDIARIO JUST GO    
+   IF(PalletAtual == 4) OR (PalletAtual == 2) OR (PalletAtual == 3) THEN
+      PTP XIntermediario C_DIS       
+   ENDIF 
+   
+   ;FOLD XMAIN_GO_HOME ( Xpick_esteira_1 )
+      $TOOL = TOOL_DATA[1]
+      $BASE = $NULLFRAME
+      XMAIN_GO_HOME_1_1 = Xpick_esteira_1
+      XMAIN_GO_HOME_1_1.Z = ALTURATOPO
+      PTP XMAIN_GO_HOME_1_1 C_DIS
+      XMAIN_GO_HOME_1_1.Z = ALTURAPICK
+      PTP XMAIN_GO_HOME_1_1
+   ;ENDFOLD
+   
+   AlturaUltimoDeposito = $POS_ACT.Z
+   
+END

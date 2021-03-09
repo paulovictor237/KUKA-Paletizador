@@ -1,0 +1,204 @@
+&ACCESS RV1
+DEF CheckFalhaTransporteCx ()
+  
+   FalhaTransporteCaixa = FALSE
+   IF PalletAtivo == 1 THEN   
+      IF not DryRun_est1 or DryRun_est1 THEN
+         SWITCH StrPallet[PalletAtivo].ReceitaAtivo
+                  ;FOLD Check Produto_A
+                  CASE Produto_A
+                     SWITCH NumCaixas_Falha
+                     CASE 2
+                        IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or not SensorPresencaCaixa_4  THEN
+                           FalhaTransporteCaixa = TRUE
+                        ENDIF
+                     CASE 3
+                        IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or not SensorPresencaCaixa_4 or not SensorPresencaCaixa_3 THEN
+                           FalhaTransporteCaixa = TRUE
+                        ENDIF
+                     CASE 4
+                        IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or not SensorPresencaCaixa_4 or not SensorPresencaCaixa_3 or not SensorPresencaCaixa_2 or not SensorPresencaCaixa_1 THEN
+                           FalhaTransporteCaixa = TRUE
+                        ENDIF
+                     ENDSWITCH
+                  ;ENDFOLD
+                  ;FOLD Check Produto_K
+                     CASE Produto_K
+                        SWITCH NumCaixas_Falha
+                        CASE 2
+                           IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or SensorPresencaCaixa_4 THEN
+                              FalhaTransporteCaixa = TRUE
+                           ENDIF
+                        CASE 4
+                           IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or not SensorPresencaCaixa_4 or not SensorPresencaCaixa_3 or not SensorPresencaCaixa_1 THEN
+                              FalhaTransporteCaixa = TRUE
+                           ENDIF
+                     ENDSWITCH
+                  ;ENDFOLD
+                  ;FOLD Check Produto_B
+                     ;CASE Produto_B
+                  ;ENDFOLD 
+                  ;FOLD Check Produto_C1
+                     ;CASE Produto_C1
+                  ;ENDFOLD
+                  ;FOLD Check Produto_C2
+                     ;CASE Produto_C2
+                  ;ENDFOLD
+                  ;FOLD Check Produto_E1
+                     ;CASE Produto_E1
+                  ;ENDFOLD
+                  ;FOLD Check Produto_E2
+                     ;CASE Produto_E2
+                  ;ENDFOLD
+                  ;FOLD Check Produto_E3
+                     ;CASE Produto_E3
+                  ;ENDFOLD               
+                  ;FOLD Check Produto_F2
+                     ;CASE Produto_F2
+                  ;ENDFOLD
+                  ;FOLD Check Produto_G
+                     ;CASE Produto_G
+                  ;ENDFOLD  
+                  ;FOLD Check Produto_I
+                     ;CASE Produto_I
+                  ;ENDFOLD
+                  ;FOLD Check Produto_J
+                     ;CASE Produto_J
+                  ;ENDFOLD
+                  ;FOLD Check Produto_K
+                     ;CASE Produto_K
+                  ;ENDFOLD  
+                  ;FOLD Check Produto_L
+                     ;CASE Produto_L
+                  ;ENDFOLD              
+                  ;FOLD Check Produto_L
+                     ;CASE Produto_L
+                  ;ENDFOLD
+                  ;FOLD Check Produto_M
+                     ;CASE Produto_M
+                  ;ENDFOLD  
+                  ;FOLD Check Produto_N
+                     ;CASE Produto_N
+                  ;ENDFOLD
+                  ;FOLD Check Produto_O
+                     ;CASE Produto_O
+                  ;ENDFOLD             
+                  ;FOLD Check Produto_P
+                     ;CASE Produto_P
+                  ;ENDFOLD
+                  ;FOLD Check Produto_Q
+                     ;CASE Produto_Q
+                  ;ENDFOLD  
+                  ;FOLD Check Produto_R
+                     ;CASE Produto_R
+                  ;ENDFOLD
+                  ;FOLD Check Produto_S
+                     ;CASE Produto_S
+                  ;ENDFOLD
+                  ;FOLD Check Produto_T
+                     ;CASE Produto_T
+                  ;ENDFOLD             
+            ENDSWITCH
+      ENDIF
+      ELSE 
+         IF PalletAtivo == 2 THEN
+            IF not DryRun_est2 or DryRun_est2 THEN
+               SWITCH StrPallet[PalletAtivo].ReceitaAtivo
+                  ;FOLD Check Produto_A
+                  CASE Produto_A
+                     SWITCH NumCaixas_Falha
+                     CASE 2
+                        IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or not SensorPresencaCaixa_4  THEN
+                           FalhaTransporteCaixa = TRUE
+                        ENDIF
+                     CASE 3
+                        IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or not SensorPresencaCaixa_4 or not SensorPresencaCaixa_3 THEN
+                           FalhaTransporteCaixa = TRUE
+                        ENDIF
+                     CASE 4
+                        IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or not SensorPresencaCaixa_4 or not SensorPresencaCaixa_3 or not SensorPresencaCaixa_2 or not SensorPresencaCaixa_1 THEN
+                           FalhaTransporteCaixa = TRUE
+                        ENDIF
+                     ENDSWITCH
+                  ;ENDFOLD
+                  ;FOLD Check Produto_K
+                     CASE Produto_K
+                        SWITCH NumCaixas_Falha
+                        CASE 2
+                           IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or SensorPresencaCaixa_4 THEN
+                              FalhaTransporteCaixa = TRUE
+                           ENDIF
+                        CASE 4
+                           IF not SensorPresencaCaixa_6 or not SensorPresencaCaixa_5 or not SensorPresencaCaixa_4 or not SensorPresencaCaixa_3 or not SensorPresencaCaixa_1 THEN
+                              FalhaTransporteCaixa = TRUE
+                           ENDIF
+                     ENDSWITCH
+                  ;ENDFOLD
+                  ;FOLD Check Produto_B
+                     ;CASE Produto_B
+                  ;ENDFOLD 
+                  ;FOLD Check Produto_C1
+                     ;CASE Produto_C1
+                  ;ENDFOLD
+                  ;FOLD Check Produto_C2
+                     ;CASE Produto_C2
+                  ;ENDFOLD
+                  ;FOLD Check Produto_E1
+                     ;CASE Produto_E1
+                  ;ENDFOLD
+                  ;FOLD Check Produto_E2
+                     ;CASE Produto_E2
+                  ;ENDFOLD
+                  ;FOLD Check Produto_E3
+                     ;CASE Produto_E3
+                  ;ENDFOLD               
+                  ;FOLD Check Produto_F2
+                     ;CASE Produto_F2
+                  ;ENDFOLD
+                  ;FOLD Check Produto_G
+                     ;CASE Produto_G
+                  ;ENDFOLD  
+                  ;FOLD Check Produto_I
+                     ;CASE Produto_I
+                  ;ENDFOLD
+                  ;FOLD Check Produto_J
+                     ;CASE Produto_J
+                  ;ENDFOLD
+                  ;FOLD Check Produto_K
+                     ;CASE Produto_K
+                  ;ENDFOLD  
+                  ;FOLD Check Produto_L
+                     ;CASE Produto_L
+                  ;ENDFOLD              
+                  ;FOLD Check Produto_L
+                     ;CASE Produto_L
+                  ;ENDFOLD
+                  ;FOLD Check Produto_M
+                     ;CASE Produto_M
+                  ;ENDFOLD  
+                  ;FOLD Check Produto_N
+                     ;CASE Produto_N
+                  ;ENDFOLD
+                  ;FOLD Check Produto_O
+                     ;CASE Produto_O
+                  ;ENDFOLD             
+                  ;FOLD Check Produto_P
+                     ;CASE Produto_P
+                  ;ENDFOLD
+                  ;FOLD Check Produto_Q
+                     ;CASE Produto_Q
+                  ;ENDFOLD  
+                  ;FOLD Check Produto_R
+                     ;CASE Produto_R
+                  ;ENDFOLD
+                  ;FOLD Check Produto_S
+                     ;CASE Produto_S
+                  ;ENDFOLD
+                  ;FOLD Check Produto_T
+                     ;CASE Produto_T
+                  ;ENDFOLD             
+               ENDSWITCH
+            ENDIF
+         ENDIF
+      ENDIF
+END

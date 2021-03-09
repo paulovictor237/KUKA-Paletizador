@@ -1,0 +1,21 @@
+&ACCESS RV1
+DEFFCT INT ControlePlace (Pallet: IN )
+   INT Pallet
+   INT Step_Buffer   
+   IF Pallet==1 THEN
+      IF Place_Working_Est_1 THEN
+         Step_Buffer = 2
+      ELSE
+         Step_Buffer = 1
+      ENDIF
+   ELSE
+      IF Place_Working_Est_2 THEN
+         Step_Buffer = 2
+      ELSE
+         Step_Buffer = 1
+      ENDIF
+   ENDIF
+   
+   
+   RETURN Step_Buffer
+ENDFCT

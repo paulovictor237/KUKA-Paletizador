@@ -1,0 +1,58 @@
+&ACCESS RV2
+DEF ControlesPressao()
+;######################################################################
+;Controla a Pressao Necessaria em Cada um dos lados da Garra
+;return - Max ou ~0.75*Max
+;######################################################################
+
+;null
+END
+
+Global DEF PressaoMaxLadoA()
+
+   Val_Reg_Prop_1_Bit_5 = TRUE
+   Val_Reg_Prop_1_Bit_6 = TRUE
+   Val_Reg_Prop_1_Bit_7 = TRUE
+   Val_Reg_Prop_1_Bit_8 = TRUE
+END
+
+Global DEF PressaoMaxLadoB()
+   Val_Reg_Prop_2_Bit_5 = TRUE
+   Val_Reg_Prop_2_Bit_6 = TRUE
+   Val_Reg_Prop_2_Bit_7 = TRUE
+   Val_Reg_Prop_2_Bit_8 = TRUE
+END
+
+Global DEF ReduzPressaoLadoA()
+   Val_Reg_Prop_1_Bit_5 = FALSE
+   Val_Reg_Prop_1_Bit_6 = FALSE
+   Val_Reg_Prop_1_Bit_7 = FALSE
+   Val_Reg_Prop_1_Bit_8 = FALSE
+END
+
+Global DEF ReduzPressaoLadoB()
+   Val_Reg_Prop_2_Bit_5 = FALSE
+   Val_Reg_Prop_2_Bit_6 = FALSE
+   Val_Reg_Prop_2_Bit_7 = FALSE
+   Val_Reg_Prop_2_Bit_8 = FALSE
+END
+
+Global DEF BitsEstaticosPressao()
+   Val_Reg_Prop_1_Bit_1 = TRUE
+   Val_Reg_Prop_1_Bit_2 = TRUE
+   Val_Reg_Prop_1_Bit_3 = TRUE
+   Val_Reg_Prop_1_Bit_4 = TRUE
+   Val_Reg_Prop_1_Bit_5 = FALSE
+   Val_Reg_Prop_1_Bit_6 = FALSE
+   Val_Reg_Prop_1_Bit_7 = FALSE
+   Val_Reg_Prop_1_Bit_8 = FALSE
+   
+   Val_Reg_Prop_2_Bit_1 = TRUE
+   Val_Reg_Prop_2_Bit_2 = TRUE
+   Val_Reg_Prop_2_Bit_3 = TRUE
+   Val_Reg_Prop_2_Bit_4 = TRUE
+   Val_Reg_Prop_2_Bit_5 = FALSE
+   Val_Reg_Prop_2_Bit_6 = FALSE
+   Val_Reg_Prop_2_Bit_7 = FALSE
+   Val_Reg_Prop_2_Bit_8 = FALSE
+END

@@ -1,0 +1,50 @@
+&ACCESS RV1
+DEF PuxaReceita ( )
+   
+   ;FOLD STRUC Pallet
+      ReceitaAtual = Pallet_STR[PalletAtual].ReceitaAtual
+      Livre = Pallet_STR[PalletAtual].Livre
+      PlaceAtual = Pallet_STR[PalletAtual].PlaceAtual
+      CamadaAtual = Pallet_STR[PalletAtual].CamadaAtual
+      BasePoint = Pallet_STR[PalletAtual].BasePoint
+      OffSetPallet = Pallet_STR[PalletAtual].OffSetPallet
+      MaquinaPassos = Pallet_STR[PalletAtual].MaquinaPassos
+      Estado = Pallet_STR[PalletAtual].Estado
+      Caixas_Depositadas = Pallet_STR[PalletAtual].Caixas_Depositadas
+      ProxIndexacao = Pallet_STR[PalletAtual].ProxIndexacao
+   ;ENDFOLD
+   
+   ;FOLD STRUC Receita 
+      PlacesCamada = Receita_STR[ReceitaAtual].PlacesCamada
+      Camadas = Receita_STR[ReceitaAtual].Camadas
+      AlturaCaixa = Receita_STR[ReceitaAtual].AlturaCaixa
+      Layers = Receita_STR[ReceitaAtual].Layers
+      OffsetProduto = Receita_STR[ReceitaAtual].OffsetProduto      
+      ;por possuir duas Layers por Receita o numero referente ao place
+      ;deve subir em relacao a LayerAtual
+      LayerAtual = Receita_STR_Layer[ReceitaAtual,CamadaAtual]
+      ;PlaceLayerAtual = PlaceAtual + PlacesCamada*(LayerAtual-1)
+      PlaceLayerAtual = PlaceAtual
+   ;ENDFOLD
+   
+   ;FOLD STRUC Matriz 
+      IndexacaoHorizontal = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].IndexacaoHorizontal
+      SkipGoHome = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].SkipGoHome
+      SkipSobeRelativo = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].SkipSobeRelativo
+      NumCaixas = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].NumCaixas
+      PickOp = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].PickOp
+      ConfGarraOp = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].ConfGarraOp
+      FechaGarraOp = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].FechaGarraOp
+      AbreGarraOp = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].AbreGarraOp
+      SensoresCaixa = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].SensoresCaixa
+      TravaGarra = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].TravaGarra
+      XApp1Place = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].XApp1Place
+      XApp2Place = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].XApp2Place
+      XPlace = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].XPlace
+      OffsetPlace = Ponto_STR[Pallet_1,ReceitaAtual,PlaceLayerAtual].OffsetPlace
+   ;ENDFOLD
+   
+   ;FOLD SetPlacePos
+      SetPlacePos()
+   ;ENDFOLD
+END

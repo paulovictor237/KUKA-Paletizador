@@ -1,0 +1,27 @@
+&ACCESS RVO1
+&PARAM EDITMASK = *
+DEFFCT BOOL TorqueLimitsConf( )
+   
+   RETURN TRUE
+ENDFCT
+
+Global DEF SetMinTorque()
+   INT my_axis 
+   FOR my_axis = 1 to 6
+     myParams.lower = $holding_torque[my_axis] - Intervalo_de_Torque
+     myParams.upper = $holding_torque[my_axis] + Intervalo_de_Torque
+     myParams.monitor = #off
+     myParams.max_lag = 0.1
+     SET_TORQUE_LIMITS(my_axis, myParams)
+   ENDFOR
+END
+
+Global DEF SetMaxTorque()
+INT my_axis 
+FOR my_axis = 1 to 6
+  myParams.lower =  -1E10 ;(CONST)Extremo Inferior
+  myParams.upper =  1E10  ;(CONST)Extremo Superior
+  myParams.monitor = #on
+  SET_TORQUE_LIMITS(my_axis, myParams)
+ENDFOR
+END

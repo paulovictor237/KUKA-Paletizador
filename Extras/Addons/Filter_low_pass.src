@@ -1,0 +1,41 @@
+&ACCESS RVO1
+&REL 2
+&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\SubRotinas
+DEF Filter_Low_Pass( )
+   int i
+   int ii
+   int count_aux
+   
+   count_mean = count_mean-1 ;Array correction
+   
+   ;Set start of sequence
+   For i=1 to filter_size-1
+      Altura_Atual_vet[i] = 0
+   ENDFOR
+   
+   ;Set end of sequence
+   count_aux = count_mean+filter_size-1
+   For i=count_aux to count_aux+filter_size-1
+      Altura_Atual_vet[i] = 0
+   ENDFOR
+
+   ;Start my filter
+   local_mean = 0
+   i=1
+   For ii=2 to i+filter_size
+      local_mean = local_mean + Altura_Atual_vet[ii]
+   ENDFOR
+   local_mean = local_mean/filter_size
+
+   Altura_vet_Filtered[1]=local_mean
+
+   ;Move Average
+   For contador=2 to count_mean+filter_size-2
+      local_mean = local_mean+Altura_Atual_vet[contador+filter_size]/filter_size-Altura_Atual_vet[contador]/filter_size
+      Altura_vet_Filtered[contador]=local_mean
+      
+      IF Altura_vet_Filtered[contador]>=h_max_monitoramento THEN
+         h_max_monitoramento = Altura_vet_Filtered[contador]
+      ENDIF
+   ENDFOR
+END

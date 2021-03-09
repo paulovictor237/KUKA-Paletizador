@@ -1,0 +1,43 @@
+&ACCESS RV1
+DEF updateindexcaixas_P1 ( )
+   
+   ;Captura place e camada atual
+   ProxPlace  = StrPallet[Pallet_1].PlaceAtivo
+   ProxCamada = StrPallet[Pallet_1].CamadaAtiva
+   
+   ;Consome os places que nao ocorre pick
+   FOR count=1 TO StepBuffer_1  
+      REPEAT
+         ;ATUALIZA VARIAVEIS DE SKIP
+         ProxPlacesCamada = StrReceita[Mosaico_Est1].PlacesCamada
+         ProxLayer        = StrReceitaLayer[Mosaico_Est1,ProxCamada]
+         ProxPlaceLayer   = ProxPlace + ProxPlacesCamada*(ProxLayer-1)
+         ProxSkipGoHome   = MatrizPontos[Pallet_1,Mosaico_Est1,ProxPlaceLayer].SkipGoHome
+         
+         ;-> SetCamada()
+         ProxPlace = ProxPlace + 1
+         ;-> Se a qtd de caixas da camada for acima da qtd do mosaico deve-se subir a camada
+         IF ( ProxPlace > StrReceita[Mosaico_Est1].PlacesCamada ) THEN
+            ProxPlace = 1 
+            ProxCamada = ProxCamada + 1
+         ENDIF
+         
+         ;->Se a qtd de camadas do pallet for acima da qtd do mosaico
+         IF ( ProxCamada > StrReceita[Mosaico_Est1].Camadas ) THEN
+            ;Pallet Completo
+            ProxPlace = 1
+            ProxCamada = 1
+            EXIT
+         ENDIF
+      UNTIL (ProxSkipGoHome == FALSE)
+   ENDFOR
+   ;passo para descobrir o endereco do ponto na matriz
+   ProxPlacesCamada = StrReceita[Mosaico_Est1].PlacesCamada
+   ProxLayer        = StrReceitaLayer[Mosaico_Est1,ProxCamada]
+   ProxPlaceLayer   = ProxPlace + ProxPlacesCamada*(ProxLayer-1)
+   
+   ;captura o valor da matriz
+   IndexacaoVH_Est1 = MatrizPontos[Pallet_1,Mosaico_Est1,ProxPlaceLayer].IndexacaoVH
+   NumCaixas_Est1 = MatrizPontos[Pallet_1,Mosaico_Est1,ProxPlaceLayer].NumCaixas 
+   
+END

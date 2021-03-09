@@ -1,0 +1,33 @@
+&ACCESS RVO1
+DEF AbreGarra( )
+   IF (OperarVazio==FALSE) THEN
+      
+      Start_Check_Falhas:
+      
+      Start_Check_Falha_Gr = TRUE
+      Check_Cil_Abrir = TRUE
+      
+      SWITCH AbreGarraOp
+         CASE 1
+            Recua_Cilindro = TRUE
+            Avanca_Cilindro = FALSE
+            ;WAIT FOR ( Cilindro_Recuado == TRUE )
+            ;WAIT FOR ( Cilindro_Avancado == FALSE )
+         DEFAULT
+            Recua_Cilindro = TRUE
+            Avanca_Cilindro = FALSE
+            ;WAIT FOR ( Cilindro_Recuado == TRUE )
+            ;WAIT FOR ( Cilindro_Avancado == FALSE )
+      ENDSWITCH
+      ;WAIT SEC 0.5
+      WAIT FOR (((Cilindro_Recuado == TRUE)AND(Cilindro_Avancado == FALSE)) OR (Reset_Falha_Cilindros AND Falha_abre_garra))
+      ;FOLD Verifica se esta em Falha ao se abrir e retorna ao inicio
+         IF Falha_abre_garra THEN
+            Start_Check_Falha_Gr = FALSE
+            $TIMER[2]=0
+            Falha_abre_garra = FALSE
+            GOTO Start_Check_Falhas
+         ENDIF
+      ;endfold
+   ENDIF
+END

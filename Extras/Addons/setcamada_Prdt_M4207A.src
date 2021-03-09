@@ -1,0 +1,83 @@
+&ACCESS RV1
+DEF setcamada_Prdt_M4207A ( )
+   SWITCH Pallet_STR[PalletAtual].MaquinaPassos
+      ;7 camadas / 2 camadas caixa tombada
+      CASE 1;[1 ][2 ][3 ]
+         Pallet_STR[PalletAtual].PlaceAtual=Pallet_STR[PalletAtual].PlaceAtual+1
+         IF Pallet_STR[PalletAtual].PlaceAtual>3 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=1
+            Pallet_STR[PalletAtual].CamadaAtual=Pallet_STR[PalletAtual].CamadaAtual+1
+         ENDIF
+         IF Pallet_STR[PalletAtual].CamadaAtual>4 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=4
+            Pallet_STR[PalletAtual].CamadaAtual=1
+            Pallet_STR[PalletAtual].MaquinaPassos=2
+            Receita_STR[Prdt_M4207A].AlturaCaixa=365
+         ENDIF
+      CASE 2;[4 ][5 ][6 ]-[7 ][8 ][9 ]
+         Pallet_STR[PalletAtual].PlaceAtual=Pallet_STR[PalletAtual].PlaceAtual+1
+         IF Pallet_STR[PalletAtual].PlaceAtual>9 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=4
+            Pallet_STR[PalletAtual].CamadaAtual=Pallet_STR[PalletAtual].CamadaAtual+1
+         ENDIF
+         IF Pallet_STR[PalletAtual].CamadaAtual>1 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=10
+            Pallet_STR[PalletAtual].CamadaAtual=1
+            Pallet_STR[PalletAtual].MaquinaPassos=3
+            Receita_STR[Prdt_M4207A].AlturaCaixa=130
+         ENDIF
+      CASE 3;[10][11][12]
+         Pallet_STR[PalletAtual].PlaceAtual=Pallet_STR[PalletAtual].PlaceAtual+1
+         IF Pallet_STR[PalletAtual].PlaceAtual>12 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=10
+            Pallet_STR[PalletAtual].CamadaAtual=Pallet_STR[PalletAtual].CamadaAtual+1
+         ENDIF
+         IF Pallet_STR[PalletAtual].CamadaAtual>3 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=1
+            Pallet_STR[PalletAtual].CamadaAtual=5
+            Pallet_STR[PalletAtual].MaquinaPassos=4
+            Receita_STR[Prdt_M4207A].AlturaCaixa=130
+         ENDIF
+         
+      CASE 4;[1 ][2 ][3 ]
+         Pallet_STR[PalletAtual].PlaceAtual=Pallet_STR[PalletAtual].PlaceAtual+1
+         IF Pallet_STR[PalletAtual].PlaceAtual>3 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=1
+            Pallet_STR[PalletAtual].CamadaAtual=Pallet_STR[PalletAtual].CamadaAtual+1
+         ENDIF
+         IF Pallet_STR[PalletAtual].CamadaAtual>7 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=4
+            Pallet_STR[PalletAtual].CamadaAtual=2
+            Pallet_STR[PalletAtual].MaquinaPassos=5
+            Receita_STR[Prdt_M4207A].AlturaCaixa=365
+         ENDIF
+      CASE 5;[4 ][5 ][6 ]-[7 ][8 ][9 ]
+         Pallet_STR[PalletAtual].PlaceAtual=Pallet_STR[PalletAtual].PlaceAtual+1
+         IF  Pallet_STR[PalletAtual].PlaceAtual>9 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=4
+            Pallet_STR[PalletAtual].CamadaAtual=Pallet_STR[PalletAtual].CamadaAtual+1
+         ENDIF
+         IF Pallet_STR[PalletAtual].CamadaAtual>2 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=10
+            Pallet_STR[PalletAtual].CamadaAtual=4
+            Pallet_STR[PalletAtual].MaquinaPassos=6
+            Receita_STR[Prdt_M4207A].AlturaCaixa=130
+         ENDIF
+      CASE 6;[10][11][12]
+         Pallet_STR[PalletAtual].PlaceAtual=Pallet_STR[PalletAtual].PlaceAtual+1
+         IF  Pallet_STR[PalletAtual].PlaceAtual>12 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=10
+            Pallet_STR[PalletAtual].CamadaAtual=Pallet_STR[PalletAtual].CamadaAtual+1
+         ENDIF
+         IF Pallet_STR[PalletAtual].CamadaAtual>7 THEN
+            Pallet_STR[PalletAtual].PlaceAtual=1
+            Pallet_STR[PalletAtual].CamadaAtual=1
+            Pallet_STR[PalletAtual].MaquinaPassos=1
+            Receita_STR[Prdt_M4207A].AlturaCaixa=130
+            ;AVISA PALLET CONCLUIDO
+            ;ResetaPallet()
+            ;Estado >> 0 = nulo, 1 = em uso, 2 = cheio, 3 = Novo
+            Pallet_STR[PalletAtual].Estado = 2
+         ENDIF
+   ENDSWITCH
+END      

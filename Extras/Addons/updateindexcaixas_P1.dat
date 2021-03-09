@@ -1,0 +1,9 @@
+&ACCESS  RV
+DEFDAT  UPDATEINDEXCAIXAS_P1
+INT ProxPlace=6
+INT ProxCamada=2
+INT ProxPlacesCamada=6
+INT ProxLayer=2
+INT ProxPlaceLayer=12
+BOOL ProxSkipGoHome=FALSE
+ENDDAT

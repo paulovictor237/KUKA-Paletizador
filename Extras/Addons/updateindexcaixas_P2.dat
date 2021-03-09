@@ -1,0 +1,11 @@
+&ACCESS  RV
+&PARAM DISKPATH = KRC:\R1\Program\7216_Reckitt_Paletizacao\SubRotinas
+&REL 1
+DEFDAT  UPDATEINDEXCAIXAS_P2
+INT ProxPlace=1
+INT ProxCamada=4
+INT ProxPlacesCamada=4
+INT ProxLayer=2
+INT ProxPlaceLayer=5
+BOOL ProxSkipGoHome=FALSE
+ENDDAT

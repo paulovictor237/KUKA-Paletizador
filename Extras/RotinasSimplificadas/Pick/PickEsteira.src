@@ -1,0 +1,100 @@
+&ACCESS RVO1
+&REL 243
+&PARAM DISKPATH = KRC:\R1\Program\40293_Furukawa\Pick
+DEF PickEsteira ( )
+   ;FOLD INI;%{PE}
+      ;FOLD BASISTECH INI
+         GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+         INTERRUPT ON 3 
+         BAS (#INITMOV,0 )
+      ;ENDFOLD (BASISTECH INI)
+      ;FOLD USER INI
+         ;Make your modifications here
+       
+      ;ENDFOLD (USER INI)
+   ;ENDFOLD (INI)   
+   ConfGarra_nowait()
+   
+   ;FOLD CONFIGURACOES DE MOVIMENTO      
+      $VEL.CP = 2.5
+      $ACC.CP = 8
+      $APO.CVEL = 80
+      $APO.CPTP = 80
+      $APO.CDIS = 20 
+      ;Base e Tool
+      $TOOL = TOOL_DATA[1]
+      $BASE = $NULLFRAME
+   ;ENDFOLD
+   
+   ;configura o mesmo X  e Y do Xpick_esteira_1
+   Xpick_esteira_2.X = Xpick_esteira_1.X
+   Xpick_esteira_3.X = Xpick_esteira_1.X
+   
+   Xpick_esteira_2.Z = Xpick_esteira_1.Z
+   Xpick_esteira_3.Z = Xpick_esteira_1.Z
+   
+   SWITCH PickOp
+      CASE 1
+         XAPP1PICK = Xpick_esteira_1
+         XSAIPICK  = Xpick_esteira_1
+      CASE 2
+         XAPP1PICK = Xpick_esteira_2
+         XSAIPICK  = Xpick_esteira_3
+   ENDSWITCH
+   
+   XAPP1PICK.Z = ALTURAPICK
+   XSAIPICK.Z  = ALTURAPICK   
+   
+   ;APROXIMA TOPO
+   PTP XAPP1PICK C_DIS   
+   
+   ;CONFIGURA GARRA
+   AbreGarra()
+   ;ConfGarra_Wait()
+   
+   ;PONTO DE PICK
+   SWITCH PickOp
+      CASE 1
+         ;FOLD LIN pick_esteira_1 Vel=2 m/s CPDAT1 Tool[1]:GarraUniversal Base[0] ;%{PE}
+            ;FOLD Parameters ;%{h}
+               ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=pick_esteira_1; Kuka.BlendingEnabled=False; Kuka.MoveDataName=CPDAT1; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+            ;ENDFOLD
+            $BWDSTART = FALSE
+            LDAT_ACT = LCPDAT1_esteira
+            FDAT_ACT = Fpick_esteira_1
+            BAS(#CP_PARAMS, 2.0)
+            SET_CD_PARAMS (0)
+            LIN Xpick_esteira_1
+         ;ENDFOLD
+      CASE 2
+;FOLD LIN pick_esteira_2 CONT Vel=2 m/s CPDAT2 Tool[1]:GarraUniversal Base[0] ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=pick_esteira_2; Kuka.BlendingEnabled=True; Kuka.MoveDataName=CPDAT2; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+;ENDFOLD
+$BWDSTART = FALSE
+LDAT_ACT = LCPDAT2
+FDAT_ACT = Fpick_esteira_2
+BAS(#CP_PARAMS, 2.0)
+SET_CD_PARAMS (0)
+LIN Xpick_esteira_2 C_Dis C_Dis
+;ENDFOLD
+         
+         ;FOLD LIN pick_esteira_3 Vel=2 m/s CPDAT2 Tool[1]:GarraUniversal Base[0] ;%{PE}
+            ;FOLD Parameters ;%{h}
+               ;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=pick_esteira_3; Kuka.BlendingEnabled=False; Kuka.MoveDataName=CPDAT2; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+            ;ENDFOLD
+            $BWDSTART = FALSE
+            LDAT_ACT = LCPDAT2_esteira
+            FDAT_ACT = Fpick_esteira_3
+            BAS(#CP_PARAMS, 2.0)
+            SET_CD_PARAMS (0)
+            LIN Xpick_esteira_3
+         ;ENDFOLD
+   ENDSWITCH
+   
+   ;Fecha Garra  
+   FechaGarra()
+   
+   ;LIN XSAIPICK C_DIS C_DIS
+   
+END

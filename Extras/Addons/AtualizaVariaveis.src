@@ -1,0 +1,52 @@
+&ACCESS RV1
+DEF AtualizaVariaveis ( )
+   
+   ;FOLD STRUC Pallet
+      
+      WAIT SEC 0
+      
+      ReceitaAtivo = StrPallet[PalletAtivo].ReceitaAtivo
+      Livre = StrPallet[PalletAtivo].Livre
+      PlaceAtivo = StrPallet[PalletAtivo].PlaceAtivo
+      CamadaAtiva = StrPallet[PalletAtivo].CamadaAtiva
+      BasePoint = StrPallet[PalletAtivo].BasePoint
+      OffSetPallet = StrPallet[PalletAtivo].OffSetPallet
+      Approch = StrPallet[PalletAtivo].Approch
+   
+   ;ENDFOLD
+   
+   ;FOLD STRUC Receita 
+      PlacesCamada = StrReceita[ReceitaAtivo].PlacesCamada
+      Camadas = StrReceita[ReceitaAtivo].Camadas
+      AlturaCaixa = StrReceita[ReceitaAtivo].AlturaCaixa
+      OffsetProduto = StrReceita[ReceitaAtivo].OffsetProduto
+      Pick_E_1_P_1 = StrReceita[ReceitaAtivo].Pick_E_1_P_1
+      Pick_E_1_P_2 = StrReceita[ReceitaAtivo].Pick_E_1_P_2
+      Pick_E_1_P_3 = StrReceita[ReceitaAtivo].Pick_E_1_P_3
+      Pick_E_1_P_4 = StrReceita[ReceitaAtivo].Pick_E_1_P_4
+      Pick_E_2_P_1 = StrReceita[ReceitaAtivo].Pick_E_2_P_1
+      Pick_E_2_P_2 = StrReceita[ReceitaAtivo].Pick_E_2_P_2
+      Pick_E_2_P_3 = StrReceita[ReceitaAtivo].Pick_E_2_P_3
+      Pick_E_2_P_4 = StrReceita[ReceitaAtivo].Pick_E_2_P_4
+      
+      ;por possuir duas Layers por Receita o numero referente ao place
+      ;deve subir em relacao a LayerAtivo
+      LayerAtivo = StrReceitaLayer[ReceitaAtivo,CamadaAtiva]
+      PlaceLayerAtivo = PlaceAtivo + PlacesCamada*(LayerAtivo-1)
+   ;ENDFOLD
+   
+   ;FOLD STRUC Matriz 
+      IndexacaoVH = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].IndexacaoVH
+      SkipGoHome = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipGoHome
+      SkipSobeRelativo = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].SkipSobeRelativo
+      NumCaixas = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].NumCaixas
+      ConfGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].ConfGarraOp
+      PickOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].PickOp
+      FechaGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].FechaGarraOp
+      AbreGarraOp = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].AbreGarraOp
+      XApp1Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp1Place
+      XApp2Place = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XApp2Place
+      XPlace = MatrizPontos[PalletAtivo,ReceitaAtivo,PlaceLayerAtivo].XPlace
+   ;ENDFOLD
+   
+END

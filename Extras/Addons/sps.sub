@@ -1,0 +1,456 @@
+&ACCESS RVP
+&COMMENT PLC on control
+DEF  SPS ( )
+   ;FOLD DECLARATIONS
+      ;FOLD BASISTECH DECL
+         ;Automatik extern
+         DECL STATE_T STAT
+         DECL MODUS_T MODE
+      ;ENDFOLD (BASISTECH DECL)
+      ;FOLD USER DECL
+         ; Please insert user defined declarations
+         
+      ;ENDFOLD (USER DECL)
+   ;ENDFOLD (DECLARATIONS)
+   ;FOLD INI
+      ;FOLD AUTOEXT INIT
+         INTERRUPT DECL 91 WHEN $PRO_STATE1 == #P_FREE DO RESET_OUT ()
+         INTERRUPT ON 91
+         INTERRUPT DECL 92 WHEN $PRO_MOVE == TRUE DO RESET_LINESEL()
+         INTERRUPT ON 92
+         $LOOP_MSG[]="                                                            "
+         MODE = #SYNC
+         $H_POS = $H_POS
+         ;Automatik extern
+         IF $MODE_OP == #EX THEN
+            ;CWRITE($CMD,STAT,MODE,"RUN /R1/CELL()")
+         ENDIF
+      ;ENDFOLD (AUTOEXT INIT)
+      ;FOLD BACKUPMANAGER PLC INIT
+         BM_ENABLED = FALSE
+         BM_OUTPUTVALUE = 0
+      ;ENDFOLD (BACKUPMANAGER PLC INIT)
+      ;FOLD USER INIT
+         
+         ; Please insert user defined initialization commands
+         BitsEstaticosPressao()
+         ;PressaoMaxLadoA()
+         ;PressaoMaxLadoB()
+         ;ReduzPressaoLadoA()
+         ;ReduzPressaoLadoB()
+         ControleCabecaRede()
+         TDefault_PAL()
+         $FLAG[1] = FALSE ;Flag para controle de start program
+         $FLAG[2] = FALSE ;Flag para controle de start program
+         RoboRodando = FALSE
+         Set_Posicao_Manutencao = FALSE
+         Estado_UpdateIndex_P1 = 0
+         Estado_UpdateIndex_P2 = 0
+         Estado_Palete1 = 0
+         Estado_Palete2 = 0
+         EstadoAutExt = 0
+         PickP1_Ok = FALSE
+         PickP2_Ok = FALSE
+         
+      ;ENDFOLD (USER INIT)
+   ;ENDFOLD (INI)
+
+LOOP
+   WAIT FOR NOT($POWER_FAIL)
+   
+   ;FOLD BACKUPMANAGER PLC
+      IF BM_ENABLED THEN
+         BM_OUTPUTSIGNAL = BM_OUTPUTVALUE
+      ENDIF
+   ;ENDFOLD (BACKUPMANAGER PLC)
+   
+   ;FOLD GRIPPERTECH LOOP
+      GRPg_ChkSetStatePLC()
+   ;ENDFOLD (GRIPPERTECH LOOP)
+   
+   ;FOLD USER PLC
+      ;Make your modifications here
+      
+      ;FOLD Automatico Externo
+         
+         IF (not $EXT) THEN
+            MOVE_ENABLE_OUT = TRUE
+            EstadoAutExt = 0            
+         ENDIF
+         
+         SWITCH EstadoAutExt
+            
+            CASE 0 
+               CONF_MESS_OUT = FALSE   
+               EXT_START_OUT = FALSE
+               DRIVES_ON_OUT = FALSE   
+               MOVE_ENABLE_OUT = TRUE    
+               
+               IF (($EXT) and (not $USER_SAF OR Start_Robo)) THEN
+                  EstadoAutExt = 1
+               ENDIF
+               
+            CASE 1 
+               IF $USER_SAF THEN
+                  EstadoAutExt = 2
+               ENDIF
+               
+            CASE 2
+               DRIVES_ON_OUT = TRUE   
+               
+               IF $PERI_RDY THEN
+                  DRIVES_ON_OUT = FALSE   
+                  EstadoAutExt = 3    
+               ENDIF   
+               
+            CASE 3
+               CONF_MESS_OUT = TRUE 
+               
+               IF NOT $STOPMESS THEN
+                  CONF_MESS_OUT = FALSE
+                  EstadoAutExt = 4
+               ENDIF
+               
+            CASE 4
+               EXT_START_OUT = TRUE
+               
+               IF $PRO_ACT THEN
+                  EXT_START_OUT = FALSE
+                  EstadoAutExt = 0
+               ENDIF
+               
+            CASE 5
+               MOVE_ENABLE_OUT = FALSE  
+               
+               $TIMER_STOP[10] = TRUE
+               $TIMER[10] = 0
+               $TIMER_STOP[10] = FALSE 
+               
+               EstadoAutExt = 6
+               
+            CASE 6
+               IF ($TIMER[10] > 500) THEN
+                  EstadoAutExt = 0
+               ENDIF
+               
+         ENDSWITCH
+         
+         IF Stop_Robo THEN
+            EstadoAutExt = 5
+         ENDIF
+         
+      ;ENDFOLD           
+      
+      ;FOLD CHAMAR E CANCELAR ROTINA PRINCIPAL
+         
+         IF (($EXT == TRUE) AND ((Start_Robo == TRUE) OR (Posicao_Manutencao == TRUE)) AND ($FLAG[1] == FALSE) AND ($FLAG[2] == FALSE) AND (RoboRodando == FALSE)) THEN
+            $FLAG[1] = TRUE
+            IF Posicao_Manutencao THEN
+               Set_Posicao_Manutencao = TRUE
+            ENDIF
+         ENDIF
+         
+         IF (($MODE_OP <> #EX) AND (Start_Robo == FALSE)) THEN
+            $FLAG[1] = FALSE
+            $FLAG[2] = FALSE
+         ENDIF
+         
+         IF ($MODE_OP <> #EX) THEN
+            $FLAG[2] = FALSE
+         ENDIF
+         
+         IF (($MODE_OP == #EX) AND ($FLAG[1]) AND NOT (Stop_Robo)) THEN
+            CWRITE($CMD,STAT,MODE,"RUN /R1/CELL()")
+            $FLAG[1] = FALSE
+            $FLAG[2] = TRUE
+         ENDIF
+         
+         IF Stop_Robo THEN
+            CWRITE($CMD,STAT,MODE,"STOP 1")
+            CWRITE($CMD,STAT,MODE,"CANCEL 1")
+            $FLAG[1] = FALSE           ;Flag para controle de start program
+            $FLAG[2] = FALSE           ;Flag para controle de start program
+            EstadoAutExt = 5
+            Botao_FimCiclo_ACK = FALSE ;Derruba o ACK de Fim de Ciclo
+         ENDIF
+         
+      ;ENDFOLD
+      
+      ;FOLD Controle Pega Esteiras
+         
+         IF Force_PickEsteira1 THEN
+            Esteira = 1
+         ELSE
+            IF Force_PickEsteira2 THEN
+               Esteira = 2
+            ELSE
+               IF (Esteira == 1) AND (NOT ((PickP1_Ok AND Palete1_OK) OR DryRun_Est1)) AND ((PickP2_Ok AND Palete2_OK) OR DryRun_Est2) OR StrPallet[Pallet_1].Completo THEN
+                  Esteira = 2
+               ELSE
+                  IF (Esteira == 2) AND (NOT ((PickP2_Ok AND Palete2_OK) OR DryRun_Est2)) AND ((PickP1_Ok AND Palete1_OK) OR DryRun_Est1) OR StrPallet[Pallet_2].Completo THEN
+                     Esteira = 1 
+                  ENDIF
+               ENDIF
+            ENDIF
+         ENDIF
+         
+      ;ENDFOLD   
+      
+      ;FOLD Controle Palete1 Completo
+         IF Force_Palete1Completo OR Force_Palete1_2Completo THEN
+            Palete1_Forcado = TRUE
+         ENDIF
+         
+         IF (StrPallet[Pallet_1].Completo OR (Palete1_Forcado AND NOT Interlock_ForcePallet_1)) THEN
+            Palete1_Completo = TRUE
+            StrPallet[Pallet_1].Completo = TRUE     
+         ENDIF
+         
+         SWITCH Estado_Palete1
+            
+            CASE 0 
+               IF Palete1_Completo AND NOT Palete1_OK THEN           
+                  Estado_Palete1 = 1
+               ENDIF
+               
+            CASE 1 
+               IF Palete1_Forcado AND (Robo_Idle OR NOT RoboRodando) THEN
+                  Palete1_Completo = FALSE             ;TODO: Apagar no Futuro
+                  CWRITE($CMD,STAT,MODE,"STOP 1")      ;TODO: Apagar no Futuro
+                  CWRITE($CMD,STAT,MODE,"CANCEL 1")    ;TODO: Apagar no Futuro
+                  Estado_Palete1 = 0                   ;TODO: Apagar no Futuro
+                  
+                  ;StrPallet[Pallet_1].CamadaAtiva = 1 ;Reset palete P1
+                  ;StrPallet[Pallet_1].PlaceAtivo = 1  ;Reset palete P2
+                  ;Palete1_Forcado = FALSE             ;Para dar Continuidade a maquina de estados
+                  ;Necessario_Update_1 = TRUE          ;Forcando um novo Update de Caixas quando o robo estiver em Idle
+               ENDIF
+               
+               IF ((Palete1_OK) AND (Palete1_Posicionado) and NOT (Force_Palete1Completo)) THEN               
+                  Palete1_Posicionado_ACK = TRUE
+                  Palete1_Completo = FALSE
+                  StrPallet[Pallet_1].Completo = FALSE
+                  StrPallet[Pallet_1].CamadaAtiva = 1; Reset palete P1
+                  StrPallet[Pallet_1].PlaceAtivo = 1;  Reset palete P2
+                  Retorno_Camada_P1 = StrPallet[Pallet_1].CamadaAtiva
+                  Estado_Palete1 = 2
+               ENDIF
+               
+            CASE 2
+               IF NOT Palete1_Posicionado THEN               
+                  Palete1_Posicionado_ACK = FALSE                             
+                  Estado_Palete1 = 0
+               ENDIF
+               
+         ENDSWITCH
+         
+      ;ENDFOLD
+      
+      ;FOLD Controle Palete2 Completo
+         
+         IF Force_Palete2Completo OR Force_Palete1_2Completo THEN
+            Palete2_Forcado = TRUE
+         ENDIF
+         
+         IF (StrPallet[Pallet_2].Completo OR (Palete2_Forcado AND NOT Interlock_ForcePallet_2)) THEN
+            Palete2_Completo = TRUE
+            StrPallet[Pallet_2].Completo = TRUE     
+         ENDIF
+         
+         SWITCH Estado_Palete2
+            
+            CASE 0 
+               IF Palete2_Completo AND NOT Palete2_OK THEN           
+                  Estado_Palete2 = 1
+               ENDIF
+               
+            CASE 1 
+               IF Palete2_Forcado AND (Robo_Idle OR NOT RoboRodando) THEN
+                  Palete2_Completo = FALSE             ;TODO: Apagar no Futuro      
+                  CWRITE($CMD,STAT,MODE,"STOP 1")      ;TODO: Apagar no Futuro
+                  CWRITE($CMD,STAT,MODE,"CANCEL 1")    ;TODO: Apagar no Futuro
+                  Estado_Palete2 = 0                   ;TODO: Apagar no Futuro
+                  
+                  ;StrPallet[Pallet_2].CamadaAtiva = 1 ;Reset palete P1
+                  ;StrPallet[Pallet_2].PlaceAtivo = 1  ;Reset palete P2
+                  ;Palete2_Forcado = FALSE             ;Para dar Continuidade a maquina de estados
+                  ;Necessario_Update_2 = TRUE          ;Forcando um novo Update de Caixas Quando o Robo estiver em Idle
+               ENDIF
+               
+               IF ((Palete2_OK) AND (Palete2_Posicionado) AND NOT (Force_Palete2Completo)) THEN               
+                  Palete2_Posicionado_ACK = TRUE
+                  Palete2_Completo = FALSE
+                  StrPallet[Pallet_2].Completo = FALSE
+                  StrPallet[Pallet_2].CamadaAtiva = 1; Reset Pallet P1
+                  StrPallet[Pallet_2].PlaceAtivo = 1;  Reset Pallet P2
+                  Retorno_Camada_P2 = StrPallet[Pallet_2].CamadaAtiva
+                  Estado_Palete2 = 2
+               ENDIF
+               
+            CASE 2
+               IF NOT Palete2_Posicionado THEN               
+                  Palete2_Posicionado_ACK = FALSE                             
+                  Estado_Palete2 = 0
+               ENDIF
+               
+         ENDSWITCH
+         
+      ;ENDFOLD
+      
+      ;FOLD UPDATE OFFSET PALLET
+         
+         IF ((Mosaico_Est1 <> 0) AND (Mosaico_Est2 <> 0 )) AND (NOT RoboRodando) THEN
+            StrPallet[Pallet_1].OffSetPallet.X = CorrectInt(OffsetPallete_dx_1)
+            StrPallet[Pallet_1].OffSetPallet.Y = CorrectInt(OffsetPallete_dy_1)
+            StrPallet[Pallet_1].OffSetPallet.Z = CorrectInt(OffsetPallete_dz_1)
+            StrPallet[Pallet_1].OffSetPallet.A = OffsetPallete_da_1/100.0
+            
+            StrPallet[Pallet_2].OffSetPallet.X = CorrectInt(OffsetPallete_dx_2)
+            StrPallet[Pallet_2].OffSetPallet.Y = CorrectInt(OffsetPallete_dy_2)
+            StrPallet[Pallet_2].OffSetPallet.Z = CorrectInt(OffsetPallete_dz_2)
+            StrPallet[Pallet_2].OffSetPallet.A = OffsetPallete_da_2/100.0
+         ENDIF
+         
+      ;ENDFOLD 
+      
+      ;FOLD UPDATE OFFSET ESTEIRAS
+         
+         IF ((Mosaico_Est1 <> 0) AND (Mosaico_Est2 <> 0 )) AND (NOT RoboRodando) THEN
+            OffsetEsteira1.X = CorrectInt(OffsetEsteira_dx_1)
+            OffsetEsteira1.Y = CorrectInt(OffsetEsteira_dy_1)
+            OffsetEsteira1.Z = CorrectInt(OffsetEsteira_dz_1)
+            OffsetEsteira1.A = OffsetEsteira_da_1/100.0
+            
+            OffsetEsteira2.X = CorrectInt(OffsetEsteira_dx_2)
+            OffsetEsteira2.Y = CorrectInt(OffsetEsteira_dy_2)
+            OffsetEsteira2.Z = CorrectInt(OffsetEsteira_dz_2)
+            OffsetEsteira2.A = OffsetEsteira_da_2/100.0
+         ENDIF
+         
+      ;ENDFOLD
+      
+      ;FOLD UPDATE RECEITAS
+         
+         IF ((Mosaico_Est1 <> 0) AND (Mosaico_Est2 <> 0 )) AND (NOT RoboRodando) THEN ;If Criado por seguranca
+            StrReceita[Mosaico_Est1].AlturaCaixa = Altura_Caixa_1
+            StrReceita[Mosaico_Est1].PlacesCamada = NumPlacesCamada_1
+            StrReceita[Mosaico_Est1].Camadas = NumCamadas_1    
+            StrReceita[Mosaico_Est1].OffsetProduto.X = CorrectInt(OffsetMosaico_dx_1)
+            StrReceita[Mosaico_Est1].OffsetProduto.Y = CorrectInt(OffsetMosaico_dy_1)
+            StrReceita[Mosaico_Est1].OffsetProduto.Z = CorrectInt(OffsetMosaico_dz_1)
+            StrReceita[Mosaico_Est1].OffsetProduto.A = OffsetMosaico_da_1/100.0
+            
+            StrReceita[Mosaico_Est2].AlturaCaixa = Altura_Caixa_2
+            StrReceita[Mosaico_Est2].PlacesCamada = NumPlacesCamada_2
+            StrReceita[Mosaico_Est2].Camadas = NumCamadas_2
+            StrReceita[Mosaico_Est2].OffsetProduto.X = CorrectInt(OffsetMosaico_dx_2)
+            StrReceita[Mosaico_Est2].OffsetProduto.Y = CorrectInt(OffsetMosaico_dy_2)
+            StrReceita[Mosaico_Est2].OffsetProduto.Z = CorrectInt(OffsetMosaico_dz_2)
+            StrReceita[Mosaico_Est2].OffsetProduto.A = OffsetMosaico_da_2/100.0
+         ENDIF
+         
+      ;ENDFOLD 
+      
+      ;FOLD Monitoramento do Check Camada
+         
+         IF ((Start_Monitoramento) AND ($VEL_ACT <> 0)) THEN
+            
+            AlturaAtual = -Sick_Distance + AlturaMaxSensorSick
+            
+            IF ((AlturaAtual <> AlturaMaxSensorSick) AND (AlturaAtual >- 100)) THEN
+               
+               IF AlturaAtual>=h_max_monitoramento_nf THEN
+                  h_max_monitoramento_nf = AlturaAtual
+               ENDIF
+               
+               ;IF AlturaAtual <= h_min_monitoramento THEN
+               ;h_min_monitoramento = AlturaAtual
+               ;ENDIF
+               
+               X_atual = $POS_ACT.X
+               Y_atual = $POS_ACT.Y
+               
+               Dist_check_camada = SQRT(((X_atual-X_passado)*(X_atual-X_passado))+((Y_atual-Y_passado)*(Y_atual-Y_passado)))
+               
+               IF (count_mean+filter_size-1)<=4000 THEN
+                  IF Dist_check_camada>Resolucao_Check THEN
+                        Altura_Atual_vet[count_mean+filter_size-1] = AlturaAtual
+                        count_mean = count_mean+1
+                        X_passado = X_atual
+                        Y_passado = Y_atual                     
+                  ENDIF
+               ENDIF
+               
+               ;Store AlturaAtual
+
+            ENDIF
+         ENDIF
+         
+      ;ENDFOLD
+      
+      ;FOLD Mirror CLP
+         
+         Retorno_DryRunEst_1 = DryRun_Est1
+         Retorno_DryRunEst_2 = DryRun_Est2
+         IF ((Mosaico_Est1 <> 0) AND (Mosaico_Est2 <> 0 )) THEN
+            Mirror_Mosaico_Est1 = Mosaico_Est1
+            Mirror_Mosaico_Est2 = Mosaico_Est2
+            
+            AlturaCaixa_P1 = StrReceita[Mosaico_Est1].AlturaCaixa
+            AlturaCaixa_P2 = StrReceita[Mosaico_Est2].AlturaCaixa
+            
+            NumPlacesCamada_P1 = NumPlacesCamada_1            
+            NumCamada_P1 = NumCamadas_1
+            
+            NumPlacesCamada_P2 = NumPlacesCamada_2
+            NumCamada_P2 = NumCamadas_2
+         ENDIF
+         
+         IF (($PRO_STATE1 <> #P_ACTIVE) AND ($PRO_STATE1 <> #P_STOP)) THEN  ;CLP Atualizando as variaveis de camada quando um programa nao estiver em funcionamento
+            Retorno_Camada_P1 = Camada_P1
+            Retorno_Camada_P2 = Camada_P2
+         ENDIF
+         
+      ;ENDFOLD 
+      
+      ;FOLD ABRE E FECHA MANUALMENTE A GARRA
+         
+         IF NOT RoboRodando THEN
+            
+            IF Abre_Garra_Robo THEN
+               AbreGarraCompleto_noWait()
+            ENDIF
+            
+            IF Fecha_Garra THEN
+               FechaGrCompleto_noWait()
+            ENDIF
+            
+         ENDIF  
+         
+      ;ENDFOLD
+      
+   ;ENDFOLD (USER PLC)
+   
+ENDLOOP
+END
+
+DEF  RESET_OUT ( )
+   INT N
+   MsgLoop(" ")
+   IF REFLECT_PROG_NR == 1 THEN
+      FOR N = 0 TO PGNO_LENGTH - 1
+         $OUT[PGNO_FBIT_REFL + N] = FALSE
+      ENDFOR
+   ENDIF
+   IF (PGNO_REQ>0) THEN
+      $OUT[PGNO_REQ]=FALSE
+   ELSE
+      IF (PGNO_REQ<0) THEN
+         $OUT[-PGNO_REQ]=TRUE
+      ENDIF
+   ENDIF
+END
+
+DEF RESET_LINESEL()
+   $LINE_SEL_OK=FALSE
+END
