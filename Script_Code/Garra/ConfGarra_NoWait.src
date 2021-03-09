@@ -1,0 +1,11 @@
+DEF ConfGarra_NoWait( )
+   IF (OperarVazio==FALSE) THEN
+      SWITCH ConfGarraOp
+         CASE 1
+            Garra_Abre=FALSE
+            Garra_Fecha=TRUE
+
+      ENDSWITCH
+      WAIT SEC 1
+   ENDIF
+END

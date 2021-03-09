@@ -1,0 +1,17 @@
+DEF AbreGarra( )
+   IF (OperarVazio==FALSE) THEN
+      SWITCH AbreGarraOp
+         CASE 1
+            Garra_Abre=FALSE
+            Garra_Fecha=TRUE
+
+            WAIT FOR ( Garra_Recuada == TRUE )
+         DEFAULT
+            Garra_Abre=FALSE
+            Garra_Fecha=TRUE
+
+            WAIT FOR ( Garra_Recuada == TRUE )
+      ENDSWITCH
+      WAIT SEC 1
+   ENDIF
+END

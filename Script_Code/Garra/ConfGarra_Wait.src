@@ -1,0 +1,9 @@
+DEF ConfGarra_Wait( )
+   IF (OperarVazio==FALSE) THEN
+      SWITCH ConfGarraOp
+         CASE 1
+            WAIT FOR ( Garra_Recuada == TRUE )
+      ENDSWITCH
+      WAIT SEC 1
+   ENDIF
+END
