@@ -76,7 +76,7 @@ STRUC DefReceita_STR INT PlacesCamada,Camadas,AlturaCaixa,Layers,FRAME OffsetPro
 ;Configuracao de Place
 ;-> {AbreGarraOp} Opcao de abertura da garra (1,2,3,4,5...)
 ;-> {SkipGoHome} Quando TRUE indica que deve fazer outro place antes de ir para a posicao de pick
-;-> {SkipSobeRelAtual} Quando TRUE indica que nao deve subir relAtual para cima depois do place
+;-> {SkipSobeRelativo} Quando TRUE indica que nao deve subir relAtual para cima depois do place
 ;Pontos de Place
 ;-> {XApp1Place} Primeiro ponto de aproximacao de place
 ;-> {XApp2Place} Segundo ponto de aproximacao de place
@@ -127,7 +127,7 @@ CONST INT Prdt_M4207B=9
 
 ;FOLD STR 
 ;---------- Pallet_STR[MaxPallet][MaxNumPick] ----------
-DECL E6POS pick_esteira[1,2]
+DECL E6POS Pick_STR[1,2]
 ;---------- Pallet_STR[MaxPallets] ----------
 CONST INT MaxPallets=5
 DECL DefPallet Pallet_STR[5] ;[MaxPallets]

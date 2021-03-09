@@ -18,13 +18,14 @@ DEF PuxaReceita ( )
       PlacesCamada = Receita_STR[ReceitaAtual].PlacesCamada
       Camadas = Receita_STR[ReceitaAtual].Camadas
       AlturaCaixa = Receita_STR[ReceitaAtual].AlturaCaixa
-      Layers = Receita_STR[ReceitaAtual].Layers
-      OffsetProduto = Receita_STR[ReceitaAtual].OffsetProduto      
+      Layers = Receita_STR[ReceitaAtual].Layers      
       ;por possuir duas Layers por Receita o numero referente ao place
       ;deve subir em relacao a LayerAtual
       LayerAtual = Receita_STR_Layer[ReceitaAtual,CamadaAtual]
       ;PlaceLayerAtual = PlaceAtual + PlacesCamada*(LayerAtual-1)
       PlaceLayerAtual = PlaceAtual
+      ;Propriedades da receita
+      OffsetProduto = Receita_STR_Propriedades[PalletAtual,ReceitaAtual].OffsetProduto
    ;ENDFOLD
    
    ;FOLD STRUC Matriz 

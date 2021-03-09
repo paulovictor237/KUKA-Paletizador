@@ -10,11 +10,11 @@ DEF  MainProgram ( )
       ;FOLD USER INI
          ;Make your modifications here
          $PAL_MODE=TRUE
-         TPadraoSTR()
-         TPallet()
-         TMatriz()
-         TReceita()
-         Tpick_esteira()
+         Padrao_STR_Iniciar()
+         Pallet_STR_Iniciar()
+         Ponto_STR_Iniciar()
+         Receita_STR_Iniciar()
+         Pick_STR_Iniciar()
          $TOOL = TOOL_DATA[1]
          $BASE = $NULLFRAME
          $Advance=3

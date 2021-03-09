@@ -28,8 +28,8 @@ DEF PickEsteira ( )
    ;ENDFOLD
 
    ;FOLD PickEsteira de cada receita
-      Tpick_esteira()
-      XPICK = pick_esteira[PalletAtual,PickOp]
+      Pick_STR_Iniciar()
+      XPICK = Pick_STR[PalletAtual,PickOp]
    ;ENDFOLD
    
    ;SET BaseRelAtual
@@ -85,10 +85,10 @@ DEF PickEsteira ( )
       XSAIPICK.Z = XAPP1PICK.Z
 
       ;Se o pallet estiver completo o pick eh forcado com a altura MAX
-      IF (PalletCompleto==TRUE) THEN
-         XAPP1PICK.Z = AlturaPalletCompleto - BaseRelAtual.Z
-         PalletCompleto=FALSE
-      ENDIF
+      ;IF (PalletCompleto==TRUE) THEN
+      ;   XAPP1PICK.Z = AlturaPalletCompleto - BaseRelAtual.Z
+      ;   PalletCompleto=FALSE
+      ;ENDIF
 
       ;Por seguranca deve garantir que sempre sera acima da altura minima
       ; ZPick2 = ALTURATOPO - BPick
@@ -119,13 +119,13 @@ DEF PickEsteira ( )
    FechaGarra()
 
    ;TRAVA/FREIA GARRA    
-   IF (TravaGarra) THEN
-      HomePositionBrake = TRUE
-      WorkPositionBrake = FALSE
-   ELSE
-      HomePositionBrake = FALSE
-      WorkPositionBrake = TRUE
-   ENDIF
+   ;IF (TravaGarra) THEN
+   ;   HomePositionBrake = TRUE
+   ;   WorkPositionBrake = FALSE
+   ;ELSE
+   ;   HomePositionBrake = FALSE
+   ;   WorkPositionBrake = TRUE
+   ;ENDIF
    
    ;SOBE EM MOVIMENTO RELAtual
    LIN XSAIPICK

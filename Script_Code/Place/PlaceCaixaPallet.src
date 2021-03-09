@@ -38,7 +38,7 @@ DEF PlaceCaixaPallet()
       
       ;FOLD ATUALIZA VARIAVEIS DE SKIP
          SkipGoHome = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipGoHome
-         SkipSobeRelAtual = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipSobeRelAtual
+         SkipSobeRelativo = Ponto_STR[PalletAtual,ReceitaAtual,PlaceLayerAtual].SkipSobeRelativo
       ;ENDFOLD
       
       ;FOLD ATUALIZA TOPO DINAMICO - DESAtualDO
@@ -108,7 +108,7 @@ DEF PlaceCaixaPallet()
          LIN  XApp1Place C_DIS C_DIS
       ENDIF
       
-      IF (SkipSobeRelAtual == TRUE) THEN
+      IF (SkipSobeRelativo == TRUE) THEN
          SkipPTP = TRUE
       ENDIF
       
@@ -119,7 +119,7 @@ DEF PlaceCaixaPallet()
       LIN  XPlace 
       
       ;FOLD Verifica Caixas
-         VerificaCaixas()
+         ;VerificaCaixas()
       ;ENDFOLD
 
       ;FOLD ABRE GARRA  
@@ -130,7 +130,7 @@ DEF PlaceCaixaPallet()
          SetCamada()
       ;ENDFOLD
       
-      IF (SkipSobeRelAtual == FALSE) THEN
+      IF (SkipSobeRelativo == FALSE) THEN
          ;Se for realizar um sobe relAtual para ir para pick de novo
          ;esse ponto tem que casar com o ponto de pick
          ;para isso se verifica se ao menos a altura é a mínima 

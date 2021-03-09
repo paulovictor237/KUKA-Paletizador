@@ -1,0 +1,12 @@
+&ACCESS RVO1
+&REL 3
+&PARAM EDITMASK = *
+DEF ResetaPallet( )   
+   ;Pallet_STR[PalletAtual].Livre=TRUE
+   ;Pallet_STR[PalletAtual].ReceitaAtual=1
+   Pallet_STR[PalletAtual].PlaceAtual=1
+   Pallet_STR[PalletAtual].CamadaAtual=1
+   Pallet_STR[PalletAtual].MaquinaPassos=1
+   Pallet_STR[PalletAtual].ProxIndexacao=1
+   Pallet_STR[PalletAtual].Caixas_Depositadas = 0
+END

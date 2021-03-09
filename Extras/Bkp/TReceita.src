@@ -1,4 +1,4 @@
-DEF TReceita()
+DEF Receita_STR_Iniciar()
 ;FOLD Produto 9Aero
   Receita_STR[Prdt_9Aero].OffsetProduto.X=0
   Receita_STR[Prdt_9Aero].OffsetProduto.Y=0

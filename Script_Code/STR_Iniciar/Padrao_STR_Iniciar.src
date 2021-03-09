@@ -1,5 +1,5 @@
 &ACCESS RV2
-DEF TPadraoSTR ( )
+DEF Padrao_STR_Iniciar ( )
    INT  I,J,k
    ;FOLD Variaveis Default da Matriz de Pontos
       FOR I = 1 to MaxMatrizI
@@ -12,7 +12,7 @@ DEF TPadraoSTR ( )
                Ponto_STR[I,J,k].FechaGarraOp = 1
                Ponto_STR[I,J,k].AbreGarraOp = 1
                Ponto_STR[I,J,k].SkipGoHome = FALSE
-               Ponto_STR[I,J,k].SkipSobeRelAtual = FALSE
+               Ponto_STR[I,J,k].SkipSobeRelativo = FALSE
                Ponto_STR[I,J,k].SensoresCaixa = 123456
                Ponto_STR[I,J,k].TravaGarra = False
                Ponto_STR[I,J,k].XApp1Place = DefaultPoint
@@ -30,9 +30,11 @@ DEF TPadraoSTR ( )
          Receita_STR[I].Camadas = 1
          Receita_STR[I].AlturaCaixa = 1
          Receita_STR[I].Layers = 1
-         Receita_STR[I].OffsetProduto = {x 0,Y 0,Z 0,A 0,B 0,C 0}
          FOR J = 1 to MaxCamadas
             Receita_STR_Layer[I,J] = 1
+         ENDFOR
+         FOR J = 1 to MaxPallets
+            Receita_STR_Propriedades[J,I].OffsetProduto = {x 0,Y 0,Z 0,A 0,B 0,C 0}
          ENDFOR
       ENDFOR    
    ;ENDFOLD
